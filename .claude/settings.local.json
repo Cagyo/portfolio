@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python3 /Users/cagyo/projects/.claude/skills/ui-ux-pro-max/scripts/search.py \"portfolio developer dark mode glassmorphism amber\" --design-system -p \"Portfolio\")",
+      "Bash(python3 /Users/cagyo/projects/.claude/skills/ui-ux-pro-max/scripts/search.py \"glassmorphism dark mode portfolio\" --domain style -n 3)",
+      "Bash(python3 /Users/cagyo/projects/.claire/skills/ui-ux-pro-max/scripts/search.py \"portfolio landing hero\" --domain landing -n 3)",
+      "Bash(python3 /Users/cagyo/projects/.claude/skills/ui-ux-pro-max/scripts/search.py \"glassmorphism dark\" --domain style -n 2)",
+      "Bash(python3 /Users/cagyo/projects/.claude/skills/ui-ux-pro-max/scripts/search.py \"portfolio hero landing\" --domain landing -n 3)"
+    ]
+  }
+}
