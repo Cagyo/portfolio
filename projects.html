@@ -265,6 +265,132 @@
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
     }
+
+    /* ── Link strip ──────────────────────────────────────────────────── */
+    .link-strip {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 24px;
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+
+    /* Web / live link */
+    .link-web {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 7px 16px;
+      border-radius: 10px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      background: rgba(245,158,11,0.08);
+      border: 1px solid rgba(245,158,11,0.22);
+      color: #FBBF24;
+      text-decoration: none;
+      transition: background 0.2s, border-color 0.2s, transform 0.2s;
+      cursor: pointer;
+    }
+    .link-web:hover {
+      background: rgba(245,158,11,0.15);
+      border-color: rgba(245,158,11,0.45);
+      transform: translateY(-1px);
+    }
+    .link-web svg { flex-shrink: 0; }
+
+    /* App store buttons */
+    .link-store {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 7px 14px;
+      border-radius: 10px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.09);
+      text-decoration: none;
+      transition: background 0.2s, border-color 0.2s, transform 0.2s;
+      cursor: pointer;
+    }
+    .link-store:hover {
+      background: rgba(255,255,255,0.08);
+      border-color: rgba(255,255,255,0.18);
+      transform: translateY(-1px);
+    }
+    .link-store .store-icon { flex-shrink: 0; color: rgba(255,255,255,0.55); }
+    .link-store .store-label-top {
+      font-size: 0.6rem;
+      color: rgba(255,255,255,0.3);
+      line-height: 1;
+      margin-bottom: 1px;
+      display: block;
+    }
+    .link-store .store-label-main {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: rgba(255,255,255,0.75);
+      line-height: 1;
+      display: block;
+    }
+
+    /* Private / NDA */
+    .link-private-wrap {
+      position: relative;
+      display: inline-flex;
+    }
+    .link-private {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 7px 14px;
+      border-radius: 10px;
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.06);
+      color: rgba(255,255,255,0.28);
+      font-size: 0.8rem;
+      font-weight: 500;
+      cursor: not-allowed;
+      user-select: none;
+    }
+    .link-private svg { flex-shrink: 0; }
+    .link-private-tooltip {
+      position: absolute;
+      bottom: calc(100% + 8px);
+      left: 50%;
+      transform: translateX(-50%);
+      background: #16162a;
+      border: 1px solid rgba(255,255,255,0.1);
+      color: rgba(255,255,255,0.45);
+      font-size: 0.68rem;
+      font-weight: 500;
+      padding: 6px 12px;
+      border-radius: 8px;
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.18s ease;
+      z-index: 10;
+    }
+    .link-private-wrap:hover .link-private-tooltip { opacity: 1; }
+
+    /* Link type label (dim helper text) */
+    .link-type-label {
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.18);
+      margin-right: 2px;
+    }
+
+    @media (max-width: 640px) {
+      .link-strip { flex-direction: column; align-items: stretch; }
+      .link-web { justify-content: center; }
+      .link-store { justify-content: center; }
+      .link-private-wrap { width: 100%; }
+      .link-private { justify-content: center; width: 100%; }
+      .link-private-tooltip { left: 50%; }
+    }
   </style>
 </head>
 <body>
@@ -293,7 +419,7 @@
       </button>
 
       <div class="hidden sm:flex items-center gap-2 text-white/30 text-sm">
-        <span id="nav-count" class="font-heading font-bold text-white">2</span>
+        <span id="nav-count" class="font-heading font-bold text-white">3</span>
         <span>projects</span>
       </div>
     </div>
@@ -357,7 +483,7 @@
 
       <!-- Results bar -->
       <div class="flex items-center justify-between mb-5">
-        <p id="result-count" class="text-white/35 text-sm" aria-live="polite">Showing 2 projects</p>
+        <p id="result-count" class="text-white/35 text-sm" aria-live="polite">Showing 3 projects</p>
       </div>
 
       <!-- Project cards -->
@@ -410,6 +536,7 @@ const PROJECTS = [
     stack: ['React Native', 'OneSignal', 'Next.js', 'NestJS', 'Apollo Client/Server', 'PostgreSQL', 'Prisma'],
     stackFilters: ['React Native', 'Next.js', 'NestJS', 'GraphQL'],
     year: '2021–2024',
+    link: { type: 'web+mobile', webUrl: 'https://omegaeuropeanmasters.com', appStore: 'https://apps.apple.com', googlePlay: 'https://play.google.com' },
   },
   {
     id: 2,
@@ -435,6 +562,36 @@ const PROJECTS = [
     stack: ['React Native', 'React Query', 'REST APIs', 'TypeScript'],
     stackFilters: ['React Native'],
     year: '2020–2021',
+    link: { type: 'mobile', appStore: 'https://apps.apple.com', googlePlay: 'https://play.google.com' },
+  },
+  {
+    id: 3,
+    title: 'Fintech Trading Dashboard',
+    industry: 'Fintech',
+    company: 'Confidential',
+    productType: 'SaaS',
+    devTypes: ['Full Stack'],
+    role: 'Tech Lead',
+    skills: 'Full ownership',
+    teamLabel: '6',
+    teamDetail: '2 devs · 1 QA · 1 BA · 1 PO · 1 PM',
+    scale: 'Team',
+    description: 'Real-time trading analytics platform with live market data feeds, portfolio tracking, and compliance reporting. Built for institutional clients under strict regulatory requirements.',
+    achievements: [
+      'Sub-200ms data refresh across 50k+ data points',
+    ],
+    duties: [
+      'System architecture and technical decisions',
+      'Real-time WebSocket data pipeline',
+      'Frontend dashboard development',
+      'Compliance reporting module',
+      'Performance optimisation',
+      'Code review and team mentoring',
+    ],
+    stack: ['Next.js', 'NestJS', 'PostgreSQL', 'Redis', 'TypeScript', 'WebSocket'],
+    stackFilters: ['NestJS', 'Next.js'],
+    year: '2022–2023',
+    link: { type: 'private', label: 'Private — NDA' },
   },
 ];
 
@@ -457,7 +614,7 @@ const FILTER_GROUPS = [
   {
     key: 'industry',
     label: 'Industry',
-    options: ['Fintech', 'Sports', 'On-demand', 'Gov', 'Social', 'SaaS'],
+    options: ['Fintech', 'Sports', 'On-demand', 'Gov', 'Social'],
     match: (project, values) => values.includes(project.industry),
   },
   {
@@ -475,7 +632,7 @@ const FILTER_GROUPS = [
   {
     key: 'company',
     label: 'Company',
-    options: ['Solo', 'Avocado Technologies', 'Allsquare'],
+    options: ['Solo', 'Avocado Technologies', 'Allsquare', 'Confidential'],
     match: (project, values) => values.includes(project.company),
   },
 ];
@@ -679,8 +836,67 @@ function projectCard(p, index) {
         </div>
       </div>
 
+      ${renderLinks(p)}
     </article>
   `;
+}
+
+// ════════════════════════════════════════════
+//  LINK RENDERER
+// ════════════════════════════════════════════
+function renderLinks(p) {
+  if (!p.link) return '';
+  const { type, webUrl, appStore, googlePlay, label } = p.link;
+  let items = '';
+
+  if (type === 'web' || type === 'web+mobile') {
+    items += `
+      <a href="${webUrl}" target="_blank" rel="noopener noreferrer" class="link-web">
+        <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+        Live App
+      </a>`;
+  }
+
+  if (type === 'mobile' || type === 'web+mobile') {
+    if (appStore) {
+      items += `
+        <a href="${appStore}" target="_blank" rel="noopener noreferrer" class="link-store">
+          <svg class="store-icon w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+          <span>
+            <span class="store-label-top">Download on the</span>
+            <span class="store-label-main">App Store</span>
+          </span>
+        </a>`;
+    }
+    if (googlePlay) {
+      items += `
+        <a href="${googlePlay}" target="_blank" rel="noopener noreferrer" class="link-store">
+          <svg class="store-icon w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M3.18 23.76c.35.2.74.24 1.12.13l12.5-7.21-2.79-2.79-10.83 9.87zM.64 1.98C.24 2.34 0 2.94 0 3.7v16.6c0 .77.24 1.36.64 1.72l.09.09 9.31-9.31v-.22L.73 3.27.64 3.7v-.04zm20.23 8.85l-2.65-1.53-3.13 3.13 3.13 3.13 2.66-1.54c.76-.44.76-1.15 0-1.59l-.01.4zM4.3.14L16.8 7.35 14 10.14 3.18.27C3.53.06 3.96.1 4.3.34V.14z"/></svg>
+          <span>
+            <span class="store-label-top">Get it on</span>
+            <span class="store-label-main">Google Play</span>
+          </span>
+        </a>`;
+    }
+  }
+
+  if (type === 'private') {
+    items += `
+      <div class="link-private-wrap">
+        <span class="link-private">
+          <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+          ${label || 'Private — NDA'}
+        </span>
+        <div class="link-private-tooltip">Under NDA · available on request</div>
+      </div>`;
+  }
+
+  if (!items) return '';
+  return `
+    <div class="link-strip">
+      <span class="link-type-label">Links</span>
+      ${items}
+    </div>`;
 }
 
 // ════════════════════════════════════════════
