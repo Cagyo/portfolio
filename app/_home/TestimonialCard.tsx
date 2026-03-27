@@ -1,0 +1,51 @@
+import { ExternalLinkIcon } from "../../assets/icons/ExternalLinkIcon";
+import { QuoteMarkIcon } from "../../assets/icons/QuoteMarkIcon";
+import { LinkedInLogo } from "../../assets/logos/LinkedInLogo";
+
+type TestimonialCardProps = {
+  quote: string
+  author: {
+    name: string
+    role: string
+    initials: string
+    gradientClass: string
+    initialsColor?: string
+  }
+  linkedinUrl?: string
+  delay?: string
+}
+
+export function TestimonialCard({ quote, author, linkedinUrl, delay }: TestimonialCardProps) {
+  return (
+    <div
+      className="reveal glass rounded-2xl p-7 flex flex-col gap-6 hover:border-amber-500/20 transition-colors duration-300 cursor-default"
+      style={delay ? { transitionDelay: delay } : undefined}
+    >
+      <QuoteMarkIcon className="w-8 h-8 text-amber-500/30 flex-shrink-0" />
+      <p className="text-white/70 text-base leading-relaxed flex-1 italic">&ldquo;{quote}&rdquo;</p>
+      <div className="h-px bg-white/6" />
+      <div className="flex items-center justify-between gap-4">
+        <div className="flex items-center gap-3">
+          <div className={`w-10 h-10 rounded-xl ${author.gradientClass} flex items-center justify-center font-heading font-black text-sm flex-shrink-0`}>
+            <span className={author.initialsColor ?? "text-black"}>{author.initials}</span>
+          </div>
+          <div>
+            <p className="text-white font-semibold text-sm">{author.name}</p>
+            <p className="text-white/40 text-xs">{author.role}</p>
+          </div>
+        </div>
+        {linkedinUrl && (
+          <a
+            href={linkedinUrl}
+            aria-label="View on LinkedIn"
+            className="flex items-center gap-1.5 text-xs text-white/30 hover:text-[#0A66C2] transition-colors duration-200 cursor-pointer flex-shrink-0 group"
+          >
+            <LinkedInLogo className="w-4 h-4 text-[#0A66C2]/50 group-hover:text-[#0A66C2] transition-colors" />
+            <span className="hidden sm:inline">View on LinkedIn</span>
+            <ExternalLinkIcon className="w-3 h-3" />
+          </a>
+        )}
+      </div>
+    </div>
+  );
+}
