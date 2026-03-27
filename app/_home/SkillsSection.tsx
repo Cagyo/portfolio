@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { useTranslations } from "next-intl";
 import { ChevronDownIcon } from "../../assets/icons/ChevronDownIcon";
 import { BlobBackground } from "../_components/BlobBackground";
 import { EmptyState } from "../_components/EmptyState";
@@ -13,6 +14,7 @@ import { SKILLS } from "./skills-data";
 const INITIAL_REST = 10;
 
 export function SkillsSection() {
+  const t = useTranslations("skills");
   const [search, setSearch] = useState("");
   const [activeCat, setActiveCat] = useState("all");
   const [expanded, setExpanded] = useState(false);
@@ -48,20 +50,20 @@ export function SkillsSection() {
       <BlobBackground size="w-80 h-80" color="bg-amber-500" position="-bottom-20 -left-20" opacity="0.1" />
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <SectionHeader number="02." title="Skills" />
+        <SectionHeader number={t("sectionNumber")} title={t("sectionTitle")} />
 
         <div className="reveal mb-10 space-y-5">
           <SearchInput
             value={search}
             onChange={setSearch}
-            placeholder="Search skills…"
-            label="Search skills"
+            placeholder={t("searchPlaceholder")}
+            label={t("searchLabel")}
           />
           <SkillFilterTabs active={activeCat} counts={counts} onSelect={setActiveCat} />
         </div>
 
         <p className="text-white/30 text-xs mb-6 reveal" aria-live="polite">
-          Showing {filtered.length} of {SKILLS.length} skills
+          {t("counter", { filtered: filtered.length, total: SKILLS.length })}
         </p>
 
         <div className="reveal">
@@ -72,7 +74,7 @@ export function SkillsSection() {
               {topSkills.length > 0 && (
                 <>
                   <div className="flex items-center gap-3 mb-4">
-                    <span className="text-amber-500/70 text-xs uppercase tracking-widest font-semibold">Core expertise</span>
+                    <span className="text-amber-500/70 text-xs uppercase tracking-widest font-semibold">{t("coreExpertise")}</span>
                     <div className="flex-1 h-px bg-gradient-to-r from-amber-500/20 to-transparent" />
                   </div>
                   <div className="flex flex-wrap gap-3 mb-8">
@@ -86,7 +88,7 @@ export function SkillsSection() {
               {restSkills.length > 0 && (
                 <>
                   <div className="flex items-center gap-3 mb-4">
-                    <span className="text-white/25 text-xs uppercase tracking-widest">Additional skills</span>
+                    <span className="text-white/25 text-xs uppercase tracking-widest">{t("additionalSkills")}</span>
                     <div className="flex-1 h-px bg-white/5" />
                   </div>
                   <div className="flex flex-wrap gap-2 pb-2">
@@ -102,7 +104,7 @@ export function SkillsSection() {
                         aria-expanded={expanded}
                       >
                         <ChevronDownIcon className="toggle-chevron w-3.5 h-3.5" />
-                        <span>{expanded ? "Show less" : "Show more"}</span>
+                        <span>{expanded ? t("showLess") : t("showMore")}</span>
                         <span className="toggle-count">+{hiddenCount}</span>
                       </button>
                     </div>

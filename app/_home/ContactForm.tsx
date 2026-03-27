@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 import { ArrowRightIcon } from "../../assets/icons/ArrowRightIcon";
 import { CheckIcon } from "../../assets/icons/CheckIcon";
 import { SpinnerIcon } from "../../assets/icons/SpinnerIcon";
@@ -8,12 +9,12 @@ import { SpinnerIcon } from "../../assets/icons/SpinnerIcon";
 type FormState = "idle" | "loading" | "success";
 
 export function ContactForm() {
+  const t = useTranslations("contact");
   const [state, setState] = useState<FormState>("idle");
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setState("loading");
-    // Simulate async submit
     await new Promise((r) => setTimeout(r, 1200));
     setState("success");
   }
@@ -23,47 +24,47 @@ export function ContactForm() {
       <form onSubmit={handleSubmit} className="glass rounded-3xl p-8 space-y-5" noValidate>
         <div className="grid sm:grid-cols-2 gap-5">
           <div>
-            <label htmlFor="name" className="block text-white/60 text-sm font-medium mb-2">Name</label>
+            <label htmlFor="name" className="block text-white/60 text-sm font-medium mb-2">{t("form.nameLabel")}</label>
             <input
-              id="name" name="name" type="text" placeholder="John Doe" required
+              id="name" name="name" type="text" placeholder={t("form.namePlaceholder")} required
               className="form-input w-full rounded-xl px-4 py-3 text-white placeholder-white/25 text-sm"
             />
           </div>
           <div>
-            <label htmlFor="email" className="block text-white/60 text-sm font-medium mb-2">Email</label>
+            <label htmlFor="email" className="block text-white/60 text-sm font-medium mb-2">{t("form.emailLabel")}</label>
             <input
-              id="email" name="email" type="email" placeholder="john@example.com" required
+              id="email" name="email" type="email" placeholder={t("form.emailPlaceholder")} required
               className="form-input w-full rounded-xl px-4 py-3 text-white placeholder-white/25 text-sm"
             />
           </div>
         </div>
 
         <div>
-          <label htmlFor="subject" className="block text-white/60 text-sm font-medium mb-2">Subject</label>
+          <label htmlFor="subject" className="block text-white/60 text-sm font-medium mb-2">{t("form.subjectLabel")}</label>
           <input
-            id="subject" name="subject" type="text" placeholder="Project Inquiry" required
+            id="subject" name="subject" type="text" placeholder={t("form.subjectPlaceholder")} required
             className="form-input w-full rounded-xl px-4 py-3 text-white placeholder-white/25 text-sm"
           />
         </div>
 
         <div>
-          <label htmlFor="budget" className="block text-white/60 text-sm font-medium mb-2">Budget Range</label>
+          <label htmlFor="budget" className="block text-white/60 text-sm font-medium mb-2">{t("form.budgetLabel")}</label>
           <select
             id="budget" name="budget"
             className="form-input w-full rounded-xl px-4 py-3 text-white/70 text-sm cursor-pointer"
           >
-            <option value="" className="bg-gray-900">Select a range...</option>
-            <option value="5k" className="bg-gray-900">$5k – $15k</option>
-            <option value="15k" className="bg-gray-900">$15k – $50k</option>
-            <option value="50k" className="bg-gray-900">$50k+</option>
-            <option value="discuss" className="bg-gray-900">Let&apos;s discuss</option>
+            <option value="" className="bg-gray-900">{t("form.budgetPlaceholder")}</option>
+            <option value="5k" className="bg-gray-900">{t("form.budgetOptions.5k")}</option>
+            <option value="15k" className="bg-gray-900">{t("form.budgetOptions.15k")}</option>
+            <option value="50k" className="bg-gray-900">{t("form.budgetOptions.50k")}</option>
+            <option value="discuss" className="bg-gray-900">{t("form.budgetOptions.discuss")}</option>
           </select>
         </div>
 
         <div>
-          <label htmlFor="message" className="block text-white/60 text-sm font-medium mb-2">Message</label>
+          <label htmlFor="message" className="block text-white/60 text-sm font-medium mb-2">{t("form.messageLabel")}</label>
           <textarea
-            id="message" name="message" rows={5} placeholder="Tell me about your project..." required
+            id="message" name="message" rows={5} placeholder={t("form.messagePlaceholder")} required
             className="form-input w-full rounded-xl px-4 py-3 text-white placeholder-white/25 text-sm resize-none"
           />
         </div>
@@ -76,11 +77,11 @@ export function ContactForm() {
           {state === "loading" ? (
             <>
               <SpinnerIcon className="w-5 h-5 animate-spin" />
-              Sending…
+              {t("form.sending")}
             </>
           ) : (
             <>
-              <span>Send Message</span>
+              <span>{t("form.submit")}</span>
               <ArrowRightIcon className="w-5 h-5 relative z-10" />
             </>
           )}
@@ -89,7 +90,7 @@ export function ContactForm() {
         {state === "success" && (
           <div className="glass-amber rounded-xl p-4 flex items-center gap-3">
             <CheckIcon className="w-5 h-5 text-green-400 flex-shrink-0" />
-            <p className="text-white/80 text-sm">Message sent! I&apos;ll get back to you within 24 hours.</p>
+            <p className="text-white/80 text-sm">{t("form.successMessage")}</p>
           </div>
         )}
       </form>

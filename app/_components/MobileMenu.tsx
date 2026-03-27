@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 import { HamburgerIcon } from "../../assets/icons/HamburgerIcon";
 
 type NavLink = { label: string; href: string }
@@ -10,6 +11,7 @@ type MobileMenuProps = {
 }
 
 export function MobileMenu({ links }: MobileMenuProps) {
+  const t = useTranslations("nav");
   const [open, setOpen] = useState(false);
 
   return (
@@ -17,7 +19,7 @@ export function MobileMenu({ links }: MobileMenuProps) {
       <button
         onClick={() => setOpen((o) => !o)}
         className="text-white/70 hover:text-white cursor-pointer focus-visible:ring-2 focus-visible:ring-amber-500 rounded-lg p-1"
-        aria-label="Open navigation menu"
+        aria-label={t("mobileMenuAriaLabel")}
         aria-expanded={open}
       >
         <HamburgerIcon className="w-6 h-6" />
@@ -40,7 +42,7 @@ export function MobileMenu({ links }: MobileMenuProps) {
             onClick={() => setOpen(false)}
             className="btn-amber px-5 py-2 rounded-xl text-sm text-center cursor-pointer"
           >
-            <span>Hire Me</span>
+            <span>{t("cta")}</span>
           </a>
         </div>
       )}

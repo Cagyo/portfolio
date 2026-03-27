@@ -6,9 +6,11 @@ type FitItem = { text: string }
 type FitListProps = {
   goodFit: FitItem[]
   notFit: FitItem[]
+  goodFitHeading: string
+  notFitHeading: string
 }
 
-export function FitList({ goodFit, notFit }: FitListProps) {
+export function FitList({ goodFit, notFit, goodFitHeading, notFitHeading }: FitListProps) {
   return (
     <div className="grid sm:grid-cols-2 gap-5">
       {/* Good fit */}
@@ -23,7 +25,7 @@ export function FitList({ goodFit, notFit }: FitListProps) {
           >
             <CheckIcon className="w-4 h-4 text-green-400" strokeWidth={2.5} />
           </div>
-          <h3 className="font-heading font-bold text-white text-lg">Good fit</h3>
+          <h3 className="font-heading font-bold text-white text-lg">{goodFitHeading}</h3>
         </div>
         <ul className="space-y-4">
           {goodFit.map((item) => (
@@ -47,7 +49,7 @@ export function FitList({ goodFit, notFit }: FitListProps) {
           >
             <XMarkIcon className="w-4 h-4 text-red-400" />
           </div>
-          <h3 className="font-heading font-bold text-white text-lg">Not a fit</h3>
+          <h3 className="font-heading font-bold text-white text-lg">{notFitHeading}</h3>
         </div>
         <ul className="space-y-4">
           {notFit.map((item) => (

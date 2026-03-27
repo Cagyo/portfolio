@@ -1,0 +1,303 @@
+{
+  "nav": {
+    "links": {
+      "about": "About",
+      "skills": "Skills",
+      "projects": "Projects",
+      "reviews": "Reviews",
+      "services": "Services",
+      "fit": "Fit",
+      "contact": "Contact"
+    },
+    "cta": "Hire Me",
+    "mobileMenuAriaLabel": "Open navigation menu"
+  },
+  "hero": {
+    "badge": "Available for work",
+    "firstName": "Oleksii",
+    "lastName": "Berliziev",
+    "tagline": "Full-Stack",
+    "typewriterRoles": ["Developer", "Designer", "Architect", "Problem Solver"],
+    "description": "Crafting performant, beautiful digital experiences with modern web technologies. Turning complex problems into elegant solutions.",
+    "ctaWork": "View Work",
+    "ctaContact": "Get in Touch",
+    "photoAlt": "Photo",
+    "stats": [
+      { "value": "5+", "label": "Years Exp." },
+      { "value": "40+", "label": "Projects" },
+      { "value": "20+", "label": "Clients" }
+    ]
+  },
+  "about": {
+    "sectionNumber": "01.",
+    "sectionTitle": "About Me",
+    "bio1": "I'm a passionate full-stack developer with <highlight>5+ years of experience</highlight> building scalable web applications. I specialize in React, Node.js, and cloud infrastructure — creating products that users love.",
+    "bio2": "My approach combines clean code with thoughtful UX. I believe great software isn't just functional — it should feel intuitive and delightful. From startups to enterprise, I've helped teams ship products that make an impact.",
+    "bio3": "When I'm not coding, you'll find me exploring open-source projects, writing technical articles, or mentoring junior developers in the community.",
+    "experienceHeading": "Experience",
+    "infoGrid": {
+      "locationLabel": "Location",
+      "locationValue": "San Francisco, CA",
+      "experienceLabel": "Experience",
+      "experienceValue": "5+ Years",
+      "educationLabel": "Education",
+      "educationValue": "CS, MIT",
+      "focusLabel": "Focus",
+      "focusValue": "Full-Stack"
+    },
+    "experience": [
+      {
+        "title": "Senior Full-Stack Engineer",
+        "company": "Stripe",
+        "period": "2022 – Now",
+        "description": "Led development of payment dashboard serving 10M+ merchants. Reduced load time by 60%.",
+        "tags": ["React", "Node.js", "AWS"]
+      },
+      {
+        "title": "Full-Stack Developer",
+        "company": "Vercel",
+        "period": "2020 – 2022",
+        "description": "Built Next.js deployment infrastructure and contributed to open-source tooling used by 1M+ devs.",
+        "tags": ["Next.js", "TypeScript", "Docker"]
+      },
+      {
+        "title": "Frontend Engineer",
+        "company": "Figma",
+        "period": "2019 – 2020",
+        "description": "Built real-time collaboration features in the core editor. Shipped the Comments redesign.",
+        "tags": ["Canvas API", "WebSockets", "Vue"]
+      }
+    ]
+  },
+  "businessImpact": {
+    "eyebrow": "Business impact",
+    "heading": "Numbers that matter",
+    "headingGradient": "to your business",
+    "cta": "Work Together",
+    "metrics": [
+      { "value": "$2M+", "label": "Revenue\ninfluenced" },
+      { "value": "10M+", "label": "End users\nserved" },
+      { "value": "60%", "label": "Avg. performance\ngain delivered" },
+      { "value": "8+", "label": "Products\nshipped" }
+    ]
+  },
+  "skills": {
+    "sectionNumber": "02.",
+    "sectionTitle": "Skills",
+    "searchPlaceholder": "Search skills…",
+    "searchLabel": "Search skills",
+    "filterAriaLabel": "Filter by category",
+    "counter": "Showing {filtered} of {total} skills",
+    "coreExpertise": "Core expertise",
+    "additionalSkills": "Additional skills",
+    "showMore": "Show more",
+    "showLess": "Show less",
+    "noResults": "No results for \"{query}\"",
+    "clearSearch": "Clear search",
+    "categories": {
+      "all": "All",
+      "frontend": "Frontend",
+      "backend": "Backend",
+      "languages": "Languages",
+      "database": "Database",
+      "devops": "DevOps",
+      "cloud": "Cloud",
+      "tools": "Tools"
+    }
+  },
+  "projects": {
+    "sectionNumber": "03.",
+    "sectionTitle": "Projects",
+    "subtitle": "A selection of projects I've shipped — from side experiments to production systems serving millions of users.",
+    "viewLive": "View Live",
+    "appStore": "App Store",
+    "googlePlay": "Google Play",
+    "privateBuild": "Private Build",
+    "nda": "Internal project · NDA",
+    "viewAll": "View All Projects",
+    "items": [
+      {
+        "title": "SaaS Analytics Platform",
+        "description": "Real-time analytics dashboard for e-commerce. Processes events at massive scale with sub-100ms query latency. Built with Next.js, ClickHouse, and Redis.",
+        "category": "SaaS",
+        "role": "Lead Engineer · Full Stack",
+        "year": "2022 – Now",
+        "badgeLabel": "50M+ events/day · sub-100ms queries",
+        "tags": ["Next.js", "ClickHouse", "Redis", "Kafka", "TypeScript"]
+      },
+      {
+        "title": "Auth Kit",
+        "description": "Drop-in authentication library with 15+ providers, built for any Node.js stack.",
+        "category": "Open Source",
+        "role": "Creator",
+        "year": "2021 – 2023",
+        "badgeLabel": "2,400+ stars",
+        "tags": ["TypeScript", "OAuth2", "JWT"]
+      },
+      {
+        "title": "FinTrack Dashboard",
+        "description": "Personal finance tracker with AI-powered categorization and forecast charts.",
+        "category": "Fintech",
+        "role": "Solo Build",
+        "year": "2022",
+        "badgeLabel": "AI-powered · real-time sync",
+        "tags": ["React", "Recharts", "AI"]
+      },
+      {
+        "title": "DevPulse",
+        "description": "GitHub activity monitor with smart digest notifications. Available on iOS & Android.",
+        "category": "Dev Tools",
+        "role": "Solo Build",
+        "year": "2021 – Now",
+        "badgeLabel": "500+ daily users",
+        "tags": ["Node.js", "React Native", "GitHub API"]
+      },
+      {
+        "title": "Codebase AI",
+        "description": "AI code review assistant integrated into CI pipelines. Cuts PR review time significantly.",
+        "category": "AI / DevTools",
+        "role": "Co-creator",
+        "year": "2023",
+        "badgeLabel": "40% faster code reviews",
+        "tags": ["Python", "OpenAI", "CI/CD"]
+      }
+    ]
+  },
+  "recommendations": {
+    "sectionNumber": "04.",
+    "sectionTitle": "What people say",
+    "viewOnLinkedIn": "View on LinkedIn",
+    "items": [
+      {
+        "quote": "Working with Alex was a game-changer for our product. He didn't just write code — he thought about the business, challenged our assumptions, and delivered something we're genuinely proud of. Rare to find someone who can do architecture, mobile, and backend all at a senior level.",
+        "authorName": "James Donovan",
+        "authorRole": "CTO · Allsquare Golf",
+        "authorInitials": "JD"
+      },
+      {
+        "quote": "Alex took ownership of our mobile app from day one. He set up the architecture, handled code reviews, kept the team aligned, and shipped on time. Beyond technical skill, he communicates clearly and keeps the bigger picture in mind. Exactly what you need in a tech lead.",
+        "authorName": "Sarah Kim",
+        "authorRole": "Product Manager · Avocado Technologies",
+        "authorInitials": "SK"
+      }
+    ]
+  },
+  "engagement": {
+    "sectionNumber": "05.",
+    "sectionTitle": "Ways to work together",
+    "footerText": "Not sure which fits? Start with a discovery call — we'll figure it out together.",
+    "bookCall": "Book a call",
+    "mostPopular": "Most popular",
+    "bestForLabel": "Best for",
+    "cards": [
+      {
+        "tag": "Ship fast",
+        "title": "MVP & Fast Builds",
+        "body": "This website was built in days using AI-assisted development. That's the pace I bring to your project — a working solution in weeks, not months, without the overhead of a full agency process.",
+        "bestFor": "Founders who need to validate an idea, test a market, or ship something real before committing to a full build.",
+        "note": "Focused scope, no bureaucracy — shipped in weeks, not months."
+      },
+      {
+        "tag": "Long-term",
+        "title": "Full Product Build & Support",
+        "body": "Solid architecture from day one, built to scale. I'm embedded in your product long-term — designing, building, leading, and evolving it as your business grows.",
+        "bestFor": "Clients building something serious who want one technical partner for the long haul — not a series of handoffs.",
+        "note": "One partner. Full ownership. Zero handoffs."
+      },
+      {
+        "tag": "Existing project",
+        "title": "Project SOS",
+        "body": "You have an existing product — but it's messy, slow, or needs a senior hand. I come in, review the codebase and architecture, scope what needs fixing, and take ownership of moving it forward.",
+        "bestFor": "Teams with technical debt, founders who inherited a codebase, or products that need stabilising before the next growth phase.",
+        "note": "Rescue, refactor, and scale — without starting over."
+      }
+    ]
+  },
+  "fit": {
+    "quote": "I work best with clients who are decisive about what they're building and trust their engineer to figure out how.",
+    "goodFitHeading": "Good fit",
+    "notFitHeading": "Not a fit",
+    "goodFit": [
+      "Founders building a product from scratch",
+      "Teams that need a tech lead to own architecture",
+      "Greenfield projects where decisions still matter",
+      "Mobile + web + backend in one engagement"
+    ],
+    "notFit": [
+      "Executing a fully pre-written spec",
+      "Staff augmentation / body shop work",
+      "Projects requiring work in an existing non-JavaScript backend",
+      "Projects without a clear owner on the client side"
+    ]
+  },
+  "contact": {
+    "sectionNumber": "06.",
+    "sectionTitle": "Contact",
+    "heading": "Let's build something {gradient} together.",
+    "headingGradient": "amazing",
+    "subheading": "Whether you have a product idea, need a technical partner, or just want to say hi — my inbox is always open.",
+    "emailLabel": "Email",
+    "emailValue": "alex@example.com",
+    "locationLabel": "Location",
+    "locationValue": "San Francisco, CA (Remote OK)",
+    "responseTimeLabel": "Response Time",
+    "responseTimeValue": "Within 24 hours",
+    "availabilityTitle": "Open to opportunities",
+    "availabilityBody": "Currently available for freelance projects, consulting, and full-time roles starting Q2 2026.",
+    "preferCall": "Prefer a call?",
+    "bookDiscovery": "Book a free discovery call",
+    "bookDiscoveryMeta": "30 min · via Calendly",
+    "form": {
+      "nameLabel": "Name",
+      "namePlaceholder": "John Doe",
+      "emailLabel": "Email",
+      "emailPlaceholder": "john@example.com",
+      "subjectLabel": "Subject",
+      "subjectPlaceholder": "Project Inquiry",
+      "budgetLabel": "Budget Range",
+      "budgetPlaceholder": "Select a range...",
+      "budgetOptions": {
+        "5k": "$5k – $15k",
+        "15k": "$15k – $50k",
+        "50k": "$50k+",
+        "discuss": "Let's discuss"
+      },
+      "messageLabel": "Message",
+      "messagePlaceholder": "Tell me about your project...",
+      "submit": "Send Message",
+      "sending": "Sending…",
+      "successMessage": "Message sent! I'll get back to you within 24 hours."
+    }
+  },
+  "mentorship": {
+    "eyebrow": "Mentorship & Courses",
+    "badge": "Limited spots per cohort",
+    "heading": "Build real. Ship fast. Get hired.",
+    "body": "Production-grade full-stack development — TypeScript, NestJS, Next.js, React Native. You leave with working software and a GitHub repo that proves it.",
+    "cta": "View Program"
+  },
+  "footer": {
+    "copyright": "© 2026",
+    "author": "Oleksii Berliziev",
+    "crafted": "Crafted with precision",
+    "builtWithAI": "Built with AI",
+    "backToTop": "Back to top",
+    "githubAriaLabel": "GitHub",
+    "linkedinAriaLabel": "LinkedIn",
+    "twitterAriaLabel": "Twitter"
+  },
+  "common": {
+    "toggleTheme": "Toggle theme",
+    "searchPlaceholder": "Search…",
+    "downloadResume": "Download resume",
+    "resume": "Resume",
+    "githubProfile": "GitHub profile",
+    "linkedinProfile": "LinkedIn profile",
+    "twitterProfile": "Twitter profile",
+    "scroll": "Scroll"
+  },
+  "metadata": {
+    "title": "Oleksii Berliziev — Product Designer & Creative Developer",
+    "description": "Portfolio of Oleksii Berliziev — designing and building digital products that move people."
+  }
+}

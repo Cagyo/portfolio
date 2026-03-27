@@ -5,14 +5,16 @@ type EngagementCardProps = {
   title: string
   body: string
   bestFor: string
+  bestForLabel: string
   note: string
   featured?: boolean
+  mostPopularLabel?: string
   order?: string
   delay?: string
 }
 
 export function EngagementCard({
-  tag, tagIcon, tagVariant = "amber", title, body, bestFor, note, featured, order, delay,
+  tag, tagIcon, tagVariant = "amber", title, body, bestFor, bestForLabel, note, featured, mostPopularLabel, order, delay,
 }: EngagementCardProps) {
   const tagStyle = {
     amber: { bg: "rgba(245,158,11,0.15)", border: "rgba(245,158,11,0.30)", color: "#F59E0B" },
@@ -44,7 +46,7 @@ export function EngagementCard({
             {tag}
           </span>
           {featured && (
-            <span className="text-purple-400/40 text-xs font-medium">Most popular</span>
+            <span className="text-purple-400/40 text-xs font-medium">{mostPopularLabel}</span>
           )}
         </div>
         <div>
@@ -55,7 +57,7 @@ export function EngagementCard({
           className="rounded-xl p-4"
           style={{ background: bestForStyle.bg, border: `1px solid ${bestForStyle.border}` }}
         >
-          <p className={`${bestForStyle.labelColor} text-xs uppercase tracking-widest font-bold mb-1.5`}>Best for</p>
+          <p className={`${bestForStyle.labelColor} text-xs uppercase tracking-widest font-bold mb-1.5`}>{bestForLabel}</p>
           <p className="text-white/60 text-sm leading-relaxed">{bestFor}</p>
         </div>
         <p className="text-white/30 text-xs italic border-t border-white/5 pt-4">{note}</p>

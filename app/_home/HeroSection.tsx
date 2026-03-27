@@ -1,3 +1,4 @@
+import { getTranslations } from "next-intl/server";
 import { ArrowRightIcon } from "../../assets/icons/ArrowRightIcon";
 import { EnvelopeIcon } from "../../assets/icons/EnvelopeIcon";
 import { BlobBackground } from "../_components/BlobBackground";
@@ -8,13 +9,11 @@ import { OrbitRings } from "./OrbitRings";
 import { ProfileCard } from "./ProfileCard";
 import { Typewriter } from "./Typewriter";
 
-const STATS = [
-  { value: "5+", label: "Years Exp." },
-  { value: "40+", label: "Projects" },
-  { value: "20+", label: "Clients" },
-];
+export async function HeroSection() {
+  const t = await getTranslations("hero");
+  const stats = t.raw("stats") as { value: string; label: string }[];
+  const typewriterRoles = t.raw("typewriterRoles") as string[];
 
-export function HeroSection() {
   return (
     <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden pt-24 pb-24">
       <BlobBackground size="w-96 h-96" color="bg-amber-500" position="top-20 -left-32" delay="0s" />
@@ -43,22 +42,22 @@ export function HeroSection() {
               <ellipse cx="150" cy="310" rx="90" ry="70" fill="#334155" />
             </svg>
             <div className="absolute bottom-0 left-0 right-0 bg-black/50 text-white/40 text-xs py-2 text-center font-medium tracking-wide">
-              Photo
+              {t("photoAlt")}
             </div>
           </div>
 
-          <PulseBadge>Available for work</PulseBadge>
+          <PulseBadge>{t("badge")}</PulseBadge>
 
           {/* Name & role */}
           <div className="flex items-center justify-between gap-8">
             <div className="space-y-4">
               <h1 className="font-heading font-black text-5xl sm:text-6xl lg:text-7xl leading-none tracking-tight">
-                Oleksii
+                {t("firstName")}
                 <br />
-                <span className="text-gradient">Berliziev</span>
+                <span className="text-gradient">{t("lastName")}</span>
               </h1>
               <p className="text-xl sm:text-2xl text-white/60 font-light">
-                Full-Stack <Typewriter />
+                {t("tagline")} <Typewriter roles={typewriterRoles} />
               </p>
             </div>
             {/* Medium mobile photo */}
@@ -79,29 +78,28 @@ export function HeroSection() {
                   <ellipse cx="64" cy="104" rx="32" ry="24" fill="#334155" />
                 </svg>
                 <div className="absolute bottom-0 left-0 right-0 bg-black/50 text-white/40 text-[9px] py-0.5 text-center font-medium tracking-wide">
-                  Photo
+                  {t("photoAlt")}
                 </div>
               </div>
             </div>
           </div>
 
           <p className="text-white/50 text-lg leading-relaxed max-w-md">
-            Crafting performant, beautiful digital experiences with modern web technologies.
-            Turning complex problems into elegant solutions.
+            {t("description")}
           </p>
 
           <div className="flex flex-wrap gap-4">
             <a href="#projects" className="btn-amber px-7 py-3.5 rounded-xl text-base cursor-pointer inline-flex items-center gap-2">
-              <span>View Work</span>
+              <span>{t("ctaWork")}</span>
               <ArrowRightIcon className="w-4 h-4 relative z-10" />
             </a>
             <a href="#contact" className="btn-outline px-7 py-3.5 rounded-xl text-base cursor-pointer inline-flex items-center gap-2">
               <EnvelopeIcon className="w-4 h-4" />
-              Get in Touch
+              {t("ctaContact")}
             </a>
           </div>
 
-          <StatRow stats={STATS} />
+          <StatRow stats={stats} />
         </div>
 
         {/* Visual — floating card */}

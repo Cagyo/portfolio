@@ -1,3 +1,6 @@
+"use client";
+
+import { useTranslations } from "next-intl";
 import { CATEGORIES } from "./skills-data";
 
 type SkillFilterTabsProps = {
@@ -7,10 +10,13 @@ type SkillFilterTabsProps = {
 }
 
 export function SkillFilterTabs({ active, counts, onSelect }: SkillFilterTabsProps) {
+  const t = useTranslations("skills");
+
   return (
-    <div className="flex flex-wrap gap-2" role="group" aria-label="Filter by category">
+    <div className="flex flex-wrap gap-2" role="group" aria-label={t("filterAriaLabel")}>
       {CATEGORIES.map((cat) => {
         const key = cat.toLowerCase();
+        const label = t(`categories.${key}`);
         const isActive = active === key;
         return (
           <button
@@ -18,8 +24,8 @@ export function SkillFilterTabs({ active, counts, onSelect }: SkillFilterTabsPro
             onClick={() => onSelect(key)}
             className={`skill-filter-btn px-4 py-1.5 rounded-full text-xs font-semibold transition-all duration-200 cursor-pointer focus-visible:ring-2 focus-visible:ring-amber-500 ${isActive ? "active" : ""}`}
           >
-            {cat}
-            {cat === "All" && (
+            {label}
+            {key === "all" && (
               <span className="skill-count ml-1 opacity-60">{counts.all ?? 0}</span>
             )}
           </button>

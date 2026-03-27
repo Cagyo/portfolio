@@ -1,10 +1,12 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useTranslations } from "next-intl";
 import { MoonIcon } from "../../assets/icons/MoonIcon";
 import { SunIcon } from "../../assets/icons/SunIcon";
 
 export function ThemeToggle() {
+  const t = useTranslations("common");
   const [isDark, setIsDark] = useState(true);
 
   useEffect(() => {
@@ -28,13 +30,11 @@ export function ThemeToggle() {
     <button
       onClick={toggle}
       className="theme-toggle"
-      aria-label="Toggle theme"
+      aria-label={t("toggleTheme")}
     >
       {isDark ? (
-        // Sun icon
         <SunIcon className="w-[18px] h-[18px]" />
       ) : (
-        // Moon icon
         <MoonIcon className="w-[18px] h-[18px]" />
       )}
     </button>

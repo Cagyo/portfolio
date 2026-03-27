@@ -1,20 +1,11 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useTranslations } from "next-intl";
 import { NavLogo } from "./NavLogo";
 import { NavLinks } from "./NavLinks";
 import { MobileMenu } from "./MobileMenu";
 import { ThemeToggle } from "./ThemeToggle";
-
-const HOME_LINKS = [
-  { label: "About", href: "#about" },
-  { label: "Skills", href: "#skills" },
-  { label: "Projects", href: "#projects" },
-  { label: "Reviews", href: "#recommendations" },
-  { label: "Services", href: "#engagement" },
-  { label: "Fit", href: "#fit" },
-  { label: "Contact", href: "#contact" },
-];
 
 type NavProps = {
   links?: { label: string; href: string }[]
@@ -22,7 +13,21 @@ type NavProps = {
   ctaLabel?: string
 }
 
-export function Nav({ links = HOME_LINKS, ctaHref = "#contact", ctaLabel = "Hire Me" }: NavProps) {
+export function Nav({ links: linksProp, ctaHref = "#contact", ctaLabel }: NavProps) {
+  const t = useTranslations("nav");
+
+  const defaultLinks = [
+    { label: t("links.about"), href: "#about" },
+    { label: t("links.skills"), href: "#skills" },
+    { label: t("links.projects"), href: "#projects" },
+    { label: t("links.reviews"), href: "#recommendations" },
+    { label: t("links.services"), href: "#engagement" },
+    { label: t("links.fit"), href: "#fit" },
+    { label: t("links.contact"), href: "#contact" },
+  ];
+
+  const links = linksProp ?? defaultLinks;
+  const cta = ctaLabel ?? t("cta");
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -47,7 +52,7 @@ export function Nav({ links = HOME_LINKS, ctaHref = "#contact", ctaLabel = "Hire
         <div className="hidden md:flex items-center gap-3">
           <ThemeToggle />
           <a href={ctaHref} className="btn-amber px-5 py-2 rounded-xl text-sm cursor-pointer">
-            <span>{ctaLabel}</span>
+            <span>{cta}</span>
           </a>
         </div>
 

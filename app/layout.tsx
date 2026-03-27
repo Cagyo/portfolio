@@ -1,4 +1,5 @@
-import type { Metadata } from "next";
+import { getLocale, getMessages } from "next-intl/server";
+import { NextIntlClientProvider } from "next-intl";
 import { Archivo, Space_Grotesk } from "next/font/google";
 import { ThemeScript } from "./_components/ThemeScript";
 import "./globals.css";
@@ -15,26 +16,35 @@ const spaceGrotesk = Space_Grotesk({
   weight: ["300", "400", "500", "600", "700"],
 });
 
-export const metadata: Metadata = {
-  title: "Oleksii Berliziev — Product Designer & Creative Developer",
-  description:
-    "Portfolio of Oleksii Berliziev — designing and building digital products that move people.",
-};
+export async function generateMetadata() {
+  const t = await (await import("next-intl/server")).getTranslations("metadata");
+  return {
+    title: t("title"),
+    description: t("description"),
+  };
+}
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const locale = await getLocale();
+  const messages = await getMessages();
+
   return (
     <html
-      lang="en"
+      lang={locale}
       className={`${archivo.variable} ${spaceGrotesk.variable} h-full antialiased`}
     >
       <head>
         <ThemeScript />
       </head>
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <NextIntlClientProvider messages={messages}>
+          {children}
+        </NextIntlClientProvider>
+      </body>
     </html>
   );
 }

@@ -13,9 +13,10 @@ type TestimonialCardProps = {
   }
   linkedinUrl?: string
   delay?: string
+  viewOnLinkedInLabel: string
 }
 
-export function TestimonialCard({ quote, author, linkedinUrl, delay }: TestimonialCardProps) {
+export function TestimonialCard({ quote, author, linkedinUrl, delay, viewOnLinkedInLabel }: TestimonialCardProps) {
   return (
     <div
       className="reveal glass rounded-2xl p-7 flex flex-col gap-6 hover:border-amber-500/20 transition-colors duration-300 cursor-default"
@@ -37,11 +38,11 @@ export function TestimonialCard({ quote, author, linkedinUrl, delay }: Testimoni
         {linkedinUrl && (
           <a
             href={linkedinUrl}
-            aria-label="View on LinkedIn"
+            aria-label={viewOnLinkedInLabel}
             className="flex items-center gap-1.5 text-xs text-white/30 hover:text-[#0A66C2] transition-colors duration-200 cursor-pointer flex-shrink-0 group"
           >
             <LinkedInLogo className="w-4 h-4 text-[#0A66C2]/50 group-hover:text-[#0A66C2] transition-colors" />
-            <span className="hidden sm:inline">View on LinkedIn</span>
+            <span className="hidden sm:inline">{viewOnLinkedInLabel}</span>
             <ExternalLinkIcon className="w-3 h-3" />
           </a>
         )}
