@@ -288,6 +288,66 @@ const handleClick = async () => {
 
 ---
 
+## Styling
+
+### Architecture — three layers, do not mix
+
+| Layer | Mechanism | When to use |
+| --- | --- | --- |
+| Design tokens | CSS custom properties in `:root` / `html[data-theme]` in `globals.css` | Colors, surfaces, spacing scale |
+| Shared primitives | `@utility` blocks in `globals.css` | Classes used across 3+ components or applied to varying element types |
+| Component styles | Co-located `ComponentName.module.css` | Component-specific visual identity |
+
+Never add new plain `.className { }` blocks to `globals.css`. Use `@utility` or a CSS module instead.
+
+### `@utility` (shared primitives in `globals.css`)
+
+Current registered utilities: `glass`, `glass-amber`, `blob`, `text-gradient`, `dot-grid`, `reveal`, `form-input`
+
+Use `@utility` when a class is:
+- Consumed by 3+ components, **or**
+- Applied to varying HTML element types (e.g. `div`, `nav`, `form`, `span`)
+
+`@utility` blocks support CSS nesting for states: `&:hover`, `&:focus`, `&.active`, `&::before`.
+
+> **Never** move `reveal` to a CSS module — `use-reveal.ts` queries `.reveal` via `document.querySelectorAll` and adds `.visible` via `classList.add`. Global class name must be stable.
+
+### CSS Modules
+
+- File: `ComponentName.module.css` co-located next to its `ComponentName.tsx`
+- Class names: camelCase — `.navLink`, `.skillChipTop`, `.projectOverlay`
+- Conditional classes: use module refs directly
+
+```tsx
+className={`${styles.btn} ${isActive ? styles.active : ''}`}
+```
+
+- Descendant selectors are fine within one module when both elements are in the same component:
+
+```css
+.projectCard:hover .projectOverlay { opacity: 1; }
+```
+
+- `html[data-theme="light"]` ancestor selectors work inside module files for co-located theme overrides
+- Do not duplicate shared classes across multiple module files — promote to `@utility` instead
+
+### React UI primitives
+
+Extract a React component (not just a CSS class) when a styled element has:
+- A fixed semantic HTML element (`<a>` or `<button>`)
+- Consistent interactive structure across all call sites
+- Behavioral logic (polymorphic rendering, state, forwarded refs)
+
+Current UI primitives: `<Button>` — `variant?: "primary" | "outline"`, renders `<a>` when `href` is provided, `<button>` otherwise. Children are wrapped in `<span className={styles.inner}>` so that bare text nodes are lifted above the `::before` shimmer layer via `z-index`.
+
+### Rules
+
+- No inline `style={{}}` for themed values — use CSS custom properties
+- Do not use Tailwind `arbitrary values` (`w-[123px]`) for values that belong in a token
+- Do not add `position: relative; z-index: N` to individual child elements — let the component wrapper handle stacking context
+
+---
+
 ## SVG Icons & Logos
 
 All SVGs must be extracted as React components — never inline `<svg>` elements in page or feature components.
