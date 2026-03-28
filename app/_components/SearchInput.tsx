@@ -5,11 +5,12 @@ type SearchInputProps = {
   onChange: (value: string) => void
   placeholder?: string
   label?: string
+  className?: string
 }
 
-export function SearchInput({ value, onChange, placeholder = "Search…", label }: SearchInputProps) {
+export function SearchInput({ value, onChange, placeholder = "Search…", label, className = "max-w-sm" }: SearchInputProps) {
   return (
-    <div className="relative max-w-sm">
+    <div className={`relative ${className}`}>
       <SearchIcon className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-white/30 pointer-events-none" />
       <input
         type="search"

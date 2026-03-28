@@ -17,15 +17,15 @@
     "firstName": "Oleksii",
     "lastName": "Berliziev",
     "tagline": "Full-Stack",
-    "typewriterRoles": ["Developer", "Designer", "Architect", "Problem Solver"],
-    "description": "Crafting performant, beautiful digital experiences with modern web technologies. Turning complex problems into elegant solutions.",
+    "typewriterRoles": ["Senior Engineer", "Tech Lead", "Architect", "Problem Solver"],
+    "description": "I build products your business runs on.",
     "ctaWork": "View Work",
     "ctaContact": "Get in Touch",
     "photoAlt": "Photo",
     "stats": [
-      { "value": "5+", "label": "Years Exp." },
-      { "value": "40+", "label": "Projects" },
-      { "value": "20+", "label": "Clients" }
+      { "value": "10+", "label": "Years Exp." },
+      { "value": "15+", "label": "Projects" },
+      { "value": "10+", "label": "Clients" }
     ]
   },
   "about": {
@@ -295,6 +295,32 @@
     "linkedinProfile": "LinkedIn profile",
     "twitterProfile": "Twitter profile",
     "scroll": "Scroll"
+  },
+  "projectsPage": {
+    "title": "Projects",
+    "subtitle": "A curated record of projects I've built — covering architecture, leadership, and hands-on development across industries.",
+    "backToHome": "Back to home",
+    "filters": "Filters",
+    "clearAllFilters": "Clear all filters",
+    "searchPlaceholder": "Search projects…",
+    "searchLabel": "Search projects",
+    "showingOne": "Showing 1 project",
+    "showingMany": "Showing {count} projects",
+    "showDetails": "Show details",
+    "hideDetails": "Hide details",
+    "achievements": "Achievements",
+    "duties": "Duties",
+    "techStack": "Tech Stack",
+    "teamComposition": "Team Composition",
+    "scope": "Scope",
+    "liveApp": "Live App",
+    "appStore": "App Store",
+    "googlePlay": "Google Play",
+    "privateLabel": "Private — NDA",
+    "privateTooltip": "Under NDA · available on request",
+    "links": "Links",
+    "noResultsTitle": "No projects match your filters",
+    "noResultsHint": "Try adjusting or clearing your filters"
   },
   "metadata": {
     "title": "Oleksii Berliziev — Product Designer & Creative Developer",

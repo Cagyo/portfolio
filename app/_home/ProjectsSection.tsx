@@ -164,7 +164,7 @@ export async function ProjectsSection() {
         </div>
 
         <div className="text-center mt-12 reveal">
-          <a href="projects.html" className="btn-outline px-8 py-3.5 rounded-xl text-sm cursor-pointer inline-flex items-center gap-2">
+          <a href="/projects" className="btn-outline px-8 py-3.5 rounded-xl text-sm cursor-pointer inline-flex items-center gap-2">
             <ArrowLeftIcon className="w-4 h-4" />
             {t("viewAll")}
           </a>
