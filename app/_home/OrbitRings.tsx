@@ -1,20 +1,25 @@
 export function OrbitRings() {
   return (
-    <>
-      {/* Outer ring */}
-      <div className="absolute w-80 h-80 rounded-full border border-amber-500/20 animate-spin-slow" />
-      <div
-        className="absolute w-64 h-64 rounded-full border border-amber-500/10"
-        style={{ animation: "spin 12s linear infinite reverse" }}
-      />
+    <svg
+      className="absolute w-80 h-80"
+      viewBox="0 0 320 320"
+      fill="none"
+      aria-hidden="true"
+    >
+      {/* Static ring borders — rotating a circle is visually identical to not rotating it */}
+      <circle cx="160" cy="160" r="159" stroke="rgba(245,158,11,0.2)" strokeWidth="1" />
+      <circle cx="160" cy="160" r="127" stroke="rgba(245,158,11,0.1)" strokeWidth="1" />
 
-      {/* Orbit dots */}
-      <div className="absolute w-80 h-80 rounded-full" style={{ animation: "spin 8s linear infinite" }}>
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3 h-3 rounded-full bg-amber-500 animate-glow" />
-      </div>
-      <div className="absolute w-64 h-64 rounded-full" style={{ animation: "spin 12s linear infinite reverse" }}>
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-amber-400" />
-      </div>
-    </>
+      {/* Outer orbiting dot — one rotating group instead of a full div */}
+      <g style={{ transformBox: 'view-box', transformOrigin: 'center', animation: 'spin 8s linear infinite', willChange: 'transform' }}>
+        <circle cx="160" cy="1" r="10" fill="rgba(245,158,11,0.25)" className="animate-glow-opacity" />
+        <circle cx="160" cy="1" r="5"  fill="#F59E0B" />
+      </g>
+
+      {/* Inner orbiting dot */}
+      <g style={{ transformBox: 'view-box', transformOrigin: 'center', animation: 'spin 12s linear infinite reverse', willChange: 'transform' }}>
+        <circle cx="160" cy="33" r="3.5" fill="#FBBF24" />
+      </g>
+    </svg>
   );
 }
