@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
 import { MoonIcon } from "../../assets/icons/MoonIcon";
 import { SunIcon } from "../../assets/icons/SunIcon";
+import styles from "./ThemeToggle.module.css";
 
 export function ThemeToggle() {
   const t = useTranslations("common");
@@ -29,7 +30,7 @@ export function ThemeToggle() {
   return (
     <button
       onClick={toggle}
-      className="theme-toggle"
+      className={styles.themeToggle}
       aria-label={t("toggleTheme")}
     >
       {isDark ? (

@@ -1,0 +1,43 @@
+.primary {
+  background: linear-gradient(135deg, #F59E0B, #D97706);
+  color: #0D0D0D;
+  font-weight: 600;
+  transition: all 0.25s ease;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, #FBBF24, #F59E0B);
+    opacity: 0;
+    transition: opacity 0.25s;
+  }
+
+  &:hover::before { opacity: 1; }
+  &:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(245,158,11,0.4); }
+}
+
+.outline {
+  border: 1px solid rgba(245,158,11,0.5);
+  color: var(--amber);
+  transition: all 0.25s ease;
+
+  &:hover {
+    background: rgba(245,158,11,0.1);
+    border-color: var(--amber);
+    transform: translateY(-2px);
+  }
+}
+
+/* Raises all content (including bare text nodes) above the ::before shimmer */
+.inner {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: inherit;
+  gap: inherit;
+  flex: 1;
+}

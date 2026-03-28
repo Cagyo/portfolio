@@ -10,6 +10,7 @@ import { SectionHeader } from "../_components/SectionHeader";
 import { SkillChip } from "./SkillChip";
 import { SkillFilterTabs } from "./SkillFilterTabs";
 import { SKILLS } from "./skills-data";
+import styles from "./SkillsSection.module.css";
 
 const INITIAL_REST = 10;
 
@@ -100,12 +101,12 @@ export function SkillsSection() {
                     <div className="mt-5">
                       <button
                         onClick={() => setExpanded((e) => !e)}
-                        className={`skills-toggle-btn ${expanded ? "expanded" : ""}`}
+                        className={`${styles.skillsToggleBtn} ${expanded ? styles.expanded : ""}`}
                         aria-expanded={expanded}
                       >
-                        <ChevronDownIcon className="toggle-chevron w-3.5 h-3.5" />
+                        <ChevronDownIcon className={`${styles.toggleChevron} w-3.5 h-3.5`} />
                         <span>{expanded ? t("showLess") : t("showMore")}</span>
-                        <span className="toggle-count">+{hiddenCount}</span>
+                        <span className={styles.toggleCount}>+{hiddenCount}</span>
                       </button>
                     </div>
                   )}

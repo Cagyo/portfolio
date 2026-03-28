@@ -5,6 +5,7 @@ import { useTranslations } from "next-intl";
 import { ArrowRightIcon } from "../../assets/icons/ArrowRightIcon";
 import { CheckIcon } from "../../assets/icons/CheckIcon";
 import { SpinnerIcon } from "../../assets/icons/SpinnerIcon";
+import { Button } from "../_components/Button";
 
 type FormState = "idle" | "loading" | "success";
 
@@ -69,10 +70,10 @@ export function ContactForm() {
           />
         </div>
 
-        <button
+        <Button
           type="submit"
           disabled={state === "loading" || state === "success"}
-          className="btn-amber w-full py-4 rounded-xl text-base cursor-pointer flex items-center justify-center gap-2 disabled:opacity-70"
+          className="w-full py-4 rounded-xl text-base cursor-pointer flex items-center justify-center gap-2 disabled:opacity-70"
         >
           {state === "loading" ? (
             <>
@@ -81,11 +82,11 @@ export function ContactForm() {
             </>
           ) : (
             <>
-              <span>{t("form.submit")}</span>
-              <ArrowRightIcon className="w-5 h-5 relative z-10" />
+              {t("form.submit")}
+              <ArrowRightIcon className="w-5 h-5" />
             </>
           )}
-        </button>
+        </Button>
 
         {state === "success" && (
           <div className="glass-amber rounded-xl p-4 flex items-center gap-3">

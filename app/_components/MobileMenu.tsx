@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { HamburgerIcon } from "../../assets/icons/HamburgerIcon";
+import { Button } from "./Button";
 
 type NavLink = { label: string; href: string }
 
@@ -37,13 +38,13 @@ export function MobileMenu({ links }: MobileMenuProps) {
               {link.label}
             </a>
           ))}
-          <a
+          <Button
             href="#contact"
             onClick={() => setOpen(false)}
-            className="btn-amber px-5 py-2 rounded-xl text-sm text-center cursor-pointer"
+            className="px-5 py-2 rounded-xl text-sm text-center cursor-pointer"
           >
-            <span>{t("cta")}</span>
-          </a>
+            {t("cta")}
+          </Button>
         </div>
       )}
     </>

@@ -1,0 +1,11 @@
+.projMetaChip {
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  color: var(--text-ghost);
+}
+
+.projMetaDot {
+  color: var(--text-invisible);
+  font-size: 0.68rem;
+}

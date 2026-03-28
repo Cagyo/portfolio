@@ -6,6 +6,7 @@ import { NavLogo } from "./NavLogo";
 import { NavLinks } from "./NavLinks";
 import { MobileMenu } from "./MobileMenu";
 import { ThemeToggle } from "./ThemeToggle";
+import { Button } from "./Button";
 
 type NavProps = {
   links?: { label: string; href: string }[]
@@ -51,9 +52,9 @@ export function Nav({ links: linksProp, ctaHref = "#contact", ctaLabel }: NavPro
         {/* Desktop CTA + theme toggle */}
         <div className="hidden md:flex items-center gap-3">
           <ThemeToggle />
-          <a href={ctaHref} className="btn-amber px-5 py-2 rounded-xl text-sm cursor-pointer">
-            <span>{cta}</span>
-          </a>
+          <Button href={ctaHref} className="px-5 py-2 rounded-xl text-sm cursor-pointer">
+            {cta}
+          </Button>
         </div>
 
         {/* Mobile: theme toggle + hamburger */}

@@ -1,0 +1,39 @@
+.skillsToggleBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 16px;
+  border-radius: 10px;
+  background: var(--surface);
+  border: 1px solid var(--input-border);
+  color: var(--text-faint);
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  letter-spacing: 0.02em;
+
+  &:hover {
+    background: rgba(245,158,11,0.08);
+    border-color: rgba(245,158,11,0.3);
+    color: var(--tag-color);
+  }
+}
+
+.toggleCount {
+  background: rgba(245,158,11,0.15);
+  color: #F59E0B;
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 1px 6px;
+  border-radius: 4px;
+  letter-spacing: 0;
+}
+
+.toggleChevron {
+  transition: transform 0.3s ease;
+}
+
+.expanded .toggleChevron {
+  transform: rotate(180deg);
+}

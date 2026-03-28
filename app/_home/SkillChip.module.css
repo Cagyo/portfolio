@@ -1,0 +1,60 @@
+.skillChipTop {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border-radius: 12px;
+  background: var(--chip-top-bg);
+  border: 1px solid var(--chip-top-border);
+  color: var(--tag-color);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  cursor: default;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background: var(--chip-top-bg-hover);
+    border-color: var(--chip-top-border-hover);
+    box-shadow: 0 0 16px rgba(245,158,11,0.15);
+  }
+}
+
+.skillChipRest {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 10px;
+  background: var(--chip-rest-bg);
+  border: 1px solid var(--chip-rest-border);
+  color: var(--chip-rest-color);
+  font-size: 0.75rem;
+  font-weight: 500;
+  cursor: default;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background: var(--chip-rest-bg-hover);
+    border-color: var(--chip-rest-border-hover);
+    color: var(--chip-rest-color-hover);
+  }
+}
+
+.skillChipCat {
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 1px 5px;
+  border-radius: 4px;
+  background: var(--chip-cat-bg);
+  color: var(--chip-cat-color);
+}
+
+.chipDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--amber);
+  flex-shrink: 0;
+}

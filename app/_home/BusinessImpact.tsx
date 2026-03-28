@@ -1,5 +1,6 @@
 import { getTranslations } from "next-intl/server";
 import { ArrowRightIcon } from "../../assets/icons/ArrowRightIcon";
+import { Button } from "../_components/Button";
 
 export async function BusinessImpact() {
   const t = await getTranslations("businessImpact");
@@ -30,13 +31,13 @@ export async function BusinessImpact() {
               </div>
             ))}
           </div>
-          <a
+          <Button
             href="#contact"
-            className="btn-amber px-6 py-3 rounded-xl text-sm flex-shrink-0 inline-flex items-center gap-2 whitespace-nowrap"
+            className="px-6 py-3 rounded-xl text-sm flex-shrink-0 inline-flex items-center gap-2 whitespace-nowrap"
           >
-            <span>{t("cta")}</span>
-            <ArrowRightIcon className="w-4 h-4 relative z-10" />
-          </a>
+            {t("cta")}
+            <ArrowRightIcon className="w-4 h-4" />
+          </Button>
         </div>
       </div>
     </div>

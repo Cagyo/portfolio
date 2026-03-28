@@ -2,6 +2,7 @@
 
 import { useTranslations } from "next-intl";
 import { CATEGORIES } from "./skills-data";
+import styles from "./SkillFilterTabs.module.css";
 
 type SkillFilterTabsProps = {
   active: string
@@ -22,7 +23,7 @@ export function SkillFilterTabs({ active, counts, onSelect }: SkillFilterTabsPro
           <button
             key={cat}
             onClick={() => onSelect(key)}
-            className={`skill-filter-btn px-4 py-1.5 rounded-full text-xs font-semibold transition-all duration-200 cursor-pointer focus-visible:ring-2 focus-visible:ring-amber-500 ${isActive ? "active" : ""}`}
+            className={`${styles.skillFilterBtn} px-4 py-1.5 rounded-full text-xs font-semibold transition-all duration-200 cursor-pointer focus-visible:ring-2 focus-visible:ring-amber-500 ${isActive ? styles.active : ""}`}
           >
             {label}
             {key === "all" && (

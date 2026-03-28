@@ -1,3 +1,5 @@
+import styles from "./NavLinks.module.css"
+
 type NavLink = { label: string; href: string }
 
 type NavLinksProps = {
@@ -12,7 +14,7 @@ export function NavLinks({ links, className = "" }: NavLinksProps) {
         <a
           key={link.href}
           href={link.href}
-          className={`nav-link text-sm text-white/70 hover:text-white font-medium cursor-pointer ${className}`}
+          className={`${styles.navLink} text-sm text-white/70 hover:text-white font-medium cursor-pointer ${className}`}
         >
           {link.label}
         </a>

@@ -1,5 +1,6 @@
 import { getTranslations } from "next-intl/server";
 import { ArrowRightIcon } from "../../assets/icons/ArrowRightIcon";
+import { Button } from "../_components/Button";
 import { SparkleIcon } from "../../assets/icons/SparkleIcon";
 import { Tag } from "../_components/Tag";
 
@@ -35,10 +36,10 @@ export async function MentorshipTeaser() {
               <Tag>Next.js</Tag>
               <Tag>React Native</Tag>
             </div>
-            <a href="mentorship.html" className="btn-amber px-6 py-2.5 rounded-xl text-sm cursor-pointer inline-flex items-center gap-2">
-              <span>{t("cta")}</span>
-              <ArrowRightIcon className="w-4 h-4 relative z-10" />
-            </a>
+            <Button href="mentorship.html" className="px-6 py-2.5 rounded-xl text-sm cursor-pointer inline-flex items-center gap-2">
+              {t("cta")}
+              <ArrowRightIcon className="w-4 h-4" />
+            </Button>
           </div>
         </div>
       </div>

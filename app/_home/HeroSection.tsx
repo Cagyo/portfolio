@@ -2,6 +2,7 @@ import { getTranslations } from "next-intl/server";
 import { ArrowRightIcon } from "../../assets/icons/ArrowRightIcon";
 import { EnvelopeIcon } from "../../assets/icons/EnvelopeIcon";
 import { BlobBackground } from "../_components/BlobBackground";
+import { Button } from "../_components/Button";
 import { PulseBadge } from "../_components/PulseBadge";
 import { ScrollIndicator } from "../_components/ScrollIndicator";
 import { StatRow } from "../_components/StatRow";
@@ -89,14 +90,14 @@ export async function HeroSection() {
           </p>
 
           <div className="flex flex-wrap gap-4">
-            <a href="#projects" className="btn-amber px-7 py-3.5 rounded-xl text-base cursor-pointer inline-flex items-center gap-2">
-              <span>{t("ctaWork")}</span>
-              <ArrowRightIcon className="w-4 h-4 relative z-10" />
-            </a>
-            <a href="#contact" className="btn-outline px-7 py-3.5 rounded-xl text-base cursor-pointer inline-flex items-center gap-2">
+            <Button href="#projects" className="px-7 py-3.5 rounded-xl text-base cursor-pointer inline-flex items-center gap-2">
+              {t("ctaWork")}
+              <ArrowRightIcon className="w-4 h-4" />
+            </Button>
+            <Button href="#contact" variant="outline" className="px-7 py-3.5 rounded-xl text-base cursor-pointer inline-flex items-center gap-2">
               <EnvelopeIcon className="w-4 h-4" />
               {t("ctaContact")}
-            </a>
+            </Button>
           </div>
 
           <StatRow stats={stats} />

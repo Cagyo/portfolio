@@ -1,5 +1,6 @@
 import { Tag } from "../_components/Tag";
 import { ProjectMeta } from "./ProjectMeta";
+import styles from "./ProjectCard.module.css";
 
 type ProjectCardProps = {
   title: string
@@ -29,12 +30,12 @@ export function ProjectCard({
   const titleSize = featured ? "text-xl" : "text-lg";
 
   return (
-    <div className={`project-card glass rounded-3xl overflow-hidden cursor-pointer group reveal${featured ? " md:col-span-2" : ""}`}>
+    <div className={`${styles.projectCard} glass rounded-3xl overflow-hidden cursor-pointer group reveal${featured ? " md:col-span-2" : ""}`}>
       <div className={`relative ${imageH} overflow-hidden ${imageBg}`}>
         <div className="absolute inset-0 flex items-center justify-center">
           {imageContent}
         </div>
-        <div className="project-overlay absolute inset-0 bg-black/50 flex items-center justify-center">
+        <div className={`${styles.projectOverlay} absolute inset-0 bg-black/50 flex items-center justify-center`}>
           {linkOverlay}
         </div>
       </div>

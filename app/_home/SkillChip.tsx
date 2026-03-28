@@ -1,3 +1,5 @@
+import styles from "./SkillChip.module.css"
+
 type SkillChipProps = {
   name: string
   category: string
@@ -7,18 +9,18 @@ type SkillChipProps = {
 export function SkillChip({ name, category, variant }: SkillChipProps) {
   if (variant === "top") {
     return (
-      <span className="skill-chip-top">
-        <span className="chip-dot" />
+      <span className={styles.skillChipTop}>
+        <span className={styles.chipDot} />
         {name}
-        <span className="skill-chip-cat">{category}</span>
+        <span className={styles.skillChipCat}>{category}</span>
       </span>
     );
   }
 
   return (
-    <span className="skill-chip-rest">
+    <span className={styles.skillChipRest}>
       {name}
-      <span className="skill-chip-cat">{category}</span>
+      <span className={styles.skillChipCat}>{category}</span>
     </span>
   );
 }
