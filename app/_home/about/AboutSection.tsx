@@ -62,7 +62,7 @@ export async function AboutSection() {
                   description={exp.description}
                   tags={exp.tags}
                   logo={COMPANY_LOGOS[exp.company]}
-                  accentOpacity={["1", "0.6", "0.3"][i]}
+                  accentOpacity={["1", "0.7", "0.45", "0.25"][i]}
                   projectsHref={`/projects?company=${encodeURIComponent(exp.company)}`}
                 />
               )

@@ -37,35 +37,42 @@
     "experienceHeading": "Experience",
     "infoGrid": {
       "locationLabel": "Location",
-      "locationValue": "San Francisco, CA",
+      "locationValue": "Kyiv, Ukraine",
       "experienceLabel": "Experience",
-      "experienceValue": "5+ Years",
+      "experienceValue": "10+ Years",
       "educationLabel": "Education",
-      "educationValue": "CS, MIT",
+      "educationValue": "CS, NTUU \"KPI\"",
       "focusLabel": "Focus",
       "focusValue": "Full-Stack"
     },
     "experience": [
       {
-        "title": "Senior Full-Stack Engineer",
-        "company": "Stripe",
-        "period": "2022 – Now",
-        "description": "Led development of payment dashboard serving 10M+ merchants. Reduced load time by 60%.",
-        "tags": ["React", "Node.js", "AWS"]
+        "title": "Senior Full-Stack Engineer / Tech Lead",
+        "company": "All Square",
+        "period": "Dec 2022 – Jan 2026",
+        "description": "Led architecture and full-stack development of web (Next.js), mobile (React Native), and backend (Node.js, NestJS) products in a high-load environment. Managed deployment infrastructure, CI/CD pipelines, and code reviews as tech lead.",
+        "tags": ["Next.js", "React Native", "Node.js", "NestJS", "TypeScript", "CI/CD"]
       },
       {
-        "title": "Full-Stack Developer",
-        "company": "Vercel",
-        "period": "2020 – 2022",
-        "description": "Built Next.js deployment infrastructure and contributed to open-source tooling used by 1M+ devs.",
-        "tags": ["Next.js", "TypeScript", "Docker"]
+        "title": "Senior Full-Stack Engineer / Tech Lead",
+        "company": "Avocado Technology",
+        "period": "Sep 2017 – Dec 2022",
+        "description": "Led React Native development for iOS & Android apps and backend APIs using Node.js, Apollo GraphQL, MongoDB, and PostgreSQL. Set up automated CI/CD to App Store & Google Play. Managed AWS & standalone infrastructure. Conducted interviews, code reviews, and pre-sale estimations.",
+        "tags": ["React Native", "Node.js", "GraphQL", "MongoDB", "PostgreSQL", "AWS"]
       },
       {
-        "title": "Frontend Engineer",
-        "company": "Figma",
-        "period": "2019 – 2020",
-        "description": "Built real-time collaboration features in the core editor. Shipped the Comments redesign.",
-        "tags": ["Canvas API", "WebSockets", "Vue"]
+        "title": "Front-End Developer",
+        "company": "EngagePoint, Inc.",
+        "period": "Sep 2015 – Jul 2017",
+        "description": "Built SPAs with React, Angular, and TypeScript. Created data visualizations using D3/SVG. Developed accessible markup, unit tests (Karma, Jest), and a Chrome extension. Participated in SCRUM, code reviews, and mentored junior teammates.",
+        "tags": ["React", "Angular", "TypeScript", "D3.js", "JavaScript"]
+      },
+      {
+        "title": "Junior JavaScript Developer",
+        "company": "Geonix Company",
+        "period": "Apr 2015 – Sep 2015",
+        "description": "Developed geo-information web portals using ArcGIS Server services, JavaScript, Dojo, Bootstrap, and jQuery.",
+        "tags": ["JavaScript", "ArcGIS", "Dojo", "jQuery"]
       }
     ]
   },
@@ -75,10 +82,10 @@
     "headingGradient": "to your business",
     "cta": "Work Together",
     "metrics": [
-      { "value": "$2M+", "label": "Revenue\ninfluenced" },
-      { "value": "10M+", "label": "End users\nserved" },
-      { "value": "60%", "label": "Avg. performance\ngain delivered" },
-      { "value": "8+", "label": "Products\nshipped" }
+      { "value": "10+", "label": "Years of\nprofessional experience" },
+      { "value": "10+", "label": "Products\nshipped to production" },
+      { "value": "5+", "label": "iOS & Android\napps delivered" },
+      { "value": "8+", "label": "Years in tech lead\n& senior roles" }
     ]
   },
   "skills": {
