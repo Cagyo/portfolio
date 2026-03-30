@@ -30,6 +30,37 @@
 | Schema files | `kebab-case.ts` | `post-schema.ts` |
 | Constants | `kebab-case.ts` | `site-config.ts` |
 
+### Component Subdirectory Grouping
+
+Within `_components/` and feature folders, group logically related files into `kebab-case` subdirectories. A component file, its CSS module, co-located hooks, and data files all move together.
+
+```
+app/_components/
+  nav/           ← Nav, NavLinks+css, NavLogo, MobileMenu
+  button/        ← Button+css
+  tag/           ← Tag+css
+  theme/         ← ThemeScript, ThemeToggle+css
+
+app/_home/
+  hero/          ← HeroSection, ProfileCard, OrbitRings, Typewriter
+  about/         ← AboutSection and its sub-components
+  skills/        ← SkillsSection+css, SkillChip+css, SkillFilterTabs+css, skills-data.ts
+  projects/      ← ProjectsSection, ProjectCard+css, ProjectMeta+css
+  engagement/    ← EngagementSection, EngagementCard
+  recommendations/ ← RecommendationsSection, TestimonialCard
+  contact/       ← ContactSection, ContactForm, ContactInfo
+
+app/projects/_components/
+  filter/        ← ActiveChips, FilterGroup, FilterPanelMobile+css, FilterSidebar+css
+  project-card/  ← ProjectCard+css
+```
+
+**Rules:**
+- Group when 3+ files share a domain/feature and are only consumed together
+- CSS modules always move with their component (never split across directories)
+- No `index.ts` barrel files — import directly from the source file
+- Shared utilities/data used across groups stay at the parent level (e.g. `projects-data.ts` in `_components/` root)
+
 ### Components
 
 - **PascalCase**, always matches filename
