@@ -169,13 +169,13 @@
     "viewOnLinkedIn": "View on LinkedIn",
     "items": [
       {
-        "quote": "Working with Alex was a game-changer for our product. He didn't just write code — he thought about the business, challenged our assumptions, and delivered something we're genuinely proud of. Rare to find someone who can do architecture, mobile, and backend all at a senior level.",
+        "quote": "Working with Oleksii was a game-changer for our product. He didn't just write code — he thought about the business, challenged our assumptions, and delivered something we're genuinely proud of. Rare to find someone who can do architecture, mobile, and backend all at a senior level.",
         "authorName": "James Donovan",
         "authorRole": "CTO · Allsquare Golf",
         "authorInitials": "JD"
       },
       {
-        "quote": "Alex took ownership of our mobile app from day one. He set up the architecture, handled code reviews, kept the team aligned, and shipped on time. Beyond technical skill, he communicates clearly and keeps the bigger picture in mind. Exactly what you need in a tech lead.",
+        "quote": "Oleksii took ownership of our mobile app from day one. He set up the architecture, handled code reviews, kept the team aligned, and shipped on time. Beyond technical skill, he communicates clearly and keeps the bigger picture in mind. Exactly what you need in a tech lead.",
         "authorName": "Sarah Kim",
         "authorRole": "Product Manager · Avocado Technologies",
         "authorInitials": "SK"
@@ -237,7 +237,7 @@
     "headingGradient": "amazing",
     "subheading": "Whether you have a product idea, need a technical partner, or just want to say hi — my inbox is always open.",
     "emailLabel": "Email",
-    "emailValue": "alex@example.com",
+    "emailValue": "oleksii.berliziev@gmail.com",
     "locationLabel": "Location",
     "locationValue": "San Francisco, CA (Remote OK)",
     "responseTimeLabel": "Response Time",
@@ -251,7 +251,7 @@
       "nameLabel": "Name",
       "namePlaceholder": "John Doe",
       "emailLabel": "Email",
-      "emailPlaceholder": "john@example.com",
+      "emailPlaceholder": "oleksii.berliziev@gmail.com",
       "subjectLabel": "Subject",
       "subjectPlaceholder": "Project Inquiry",
       "budgetLabel": "Budget Range",
@@ -325,5 +325,115 @@
   "metadata": {
     "title": "Oleksii Berliziev — Product Designer & Creative Developer",
     "description": "Portfolio of Oleksii Berliziev — designing and building digital products that move people."
+  },
+  "mentorshipPage": {
+    "metadata": { "title": "Mentorship & Courses" },
+    "nav": {
+      "portfolio": "Portfolio",
+      "programs": "Programs",
+      "whoItsFor": "Who it's for",
+      "cta": "Apply Now"
+    },
+    "hero": {
+      "badge": "Limited spots per cohort · 2 tracks available",
+      "headline1": "Build real.",
+      "headline2": "Ship fast.",
+      "headlineGradient": "Get hired.",
+      "subhead": "Learn by building a production-grade product — not toy demos. You leave with working software, a GitHub repo recruiters can actually inspect, and the full-stack mindset for the AI era.",
+      "stats": [
+        { "value": "2", "label": "Tracks" },
+        { "value": "5", "label": "Spots / cohort" },
+        { "value": "$500", "label": "Total investment" },
+        { "value": "Real", "label": "Production output" }
+      ],
+      "ctaPrograms": "View Programs",
+      "ctaCall": "Book a Free Call"
+    },
+    "stack": {
+      "sectionNumber": "01.",
+      "sectionTitle": "What you'll build with",
+      "body": "A modern, production-proven stack used at the companies you want to work for. Every tool is chosen because it's in demand, not because it's trendy."
+    },
+    "tracks": {
+      "sectionNumber": "02.",
+      "sectionTitle": "Choose your track",
+      "body": "Both tracks deliver a real, deployable product. The difference is scope and duration. Same mentor, same standards, same outcome — more stack in the extended track.",
+      "scarcityText": "Small group — limited spots per cohort.",
+      "scarcitySubtext": "Not sure which track fits? Let's figure it out together.",
+      "bookCall": "Book a Free Call",
+      "deliverableLabel": "What you leave with",
+      "scopeLabel": "Scope",
+      "fastTrack": {
+        "badge": "Simplified",
+        "duration": "3 months",
+        "name": "Fast Track",
+        "tagline": "Core stack, real product, career-ready in a quarter.",
+        "price": "$500",
+        "pricePer": "/ total",
+        "priceBreakdown": "~$167/mo",
+        "deliverables": [
+          "Fully functioning platform (backend + web) on a topic you choose — use it as your MVP",
+          "GitHub repo a recruiter can actually read — real architecture, real commits",
+          "Portfolio website showcasing your work",
+          "You're prepared for the AI era — tools, workflows, mindset"
+        ],
+        "scope": ["TypeScript", "NestJS", "Next.js", "Prisma", "Docker", "AI Tools"],
+        "cta": "Apply for Fast Track"
+      },
+      "deepDive": {
+        "badge": "Extended",
+        "fullStackLabel": "Full Stack",
+        "duration": "6 months",
+        "name": "Deep Dive",
+        "tagline": "Full product — backend, web, and mobile app. The complete picture.",
+        "price": "$500",
+        "pricePer": "/ total",
+        "priceBreakdown": "~$83/mo",
+        "deliverables": [
+          "Complete platform — backend, web app + mobile app (iOS & Android)",
+          "GitHub repo a recruiter can actually read — real architecture, real commits",
+          "Portfolio website showcasing your work",
+          "You're prepared for the AI era — tools, AI agents, workflows, mindset",
+          "Highload architecture & deployment — your product can scale from day one"
+        ],
+        "scope": ["TypeScript", "NestJS", "Next.js", "React Native", "Prisma", "Docker", "AI Agent", "3rd-party", "Highload"],
+        "cta": "Apply for Deep Dive"
+      }
+    },
+    "fit": {
+      "sectionNumber": "03.",
+      "sectionTitle": "Who this is for",
+      "quote": "I work best with people who are committed to shipping — not just learning about shipping.",
+      "goodFitHeading": "Good fit",
+      "notFitHeading": "Not a fit",
+      "goodFit": [
+        "Junior devs who can write basic code but have never shipped to production",
+        "Career changers who completed a bootcamp and want a real project to show",
+        "Self-taught devs who want structured guidance and production standards",
+        "Anyone who wants a full-stack portfolio piece that's actually deployable"
+      ],
+      "notFit": [
+        "Complete beginners — you need HTML/CSS/JS basics before this makes sense",
+        "Looking for passive video courses to \"complete\" without building",
+        "Expecting theoretical lectures rather than hands-on building sessions",
+        "Not ready to commit consistent time each week to actually building"
+      ]
+    },
+    "apply": {
+      "badge": "Next cohort forming now",
+      "headline1": "Ready to build",
+      "headlineGradient": "something real?",
+      "body": "Start with a free 30-min call. We'll talk about what you want to build, which track fits, and whether we're a good match.",
+      "calendlyLabel": "Book a free discovery call",
+      "calendlyMeta": "30 min · via Calendly",
+      "or": "or",
+      "messageCta": "Send a message"
+    },
+    "footer": {
+      "copyright": "© 2026",
+      "author": "Oleksii Berliziev",
+      "suffix": "Mentorship & Courses.",
+      "backToPortfolio": "Back to Portfolio"
+    }
   }
 }

@@ -36,7 +36,7 @@ export async function MentorshipTeaser() {
               <Tag>Next.js</Tag>
               <Tag>React Native</Tag>
             </div>
-            <Button href="mentorship.html" className="px-6 py-2.5 rounded-xl text-sm cursor-pointer inline-flex items-center gap-2">
+            <Button href="/mentorship" className="px-6 py-2.5 rounded-xl text-sm cursor-pointer inline-flex items-center gap-2">
               {t("cta")}
               <ArrowRightIcon className="w-4 h-4" />
             </Button>
