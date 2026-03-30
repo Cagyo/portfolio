@@ -54,11 +54,21 @@
         "tags": ["Next.js", "React Native", "Node.js", "NestJS", "TypeScript", "CI/CD"]
       },
       {
-        "title": "Senior Full-Stack Engineer / Tech Lead",
         "company": "Avocado Technology",
         "period": "Sep 2017 – Dec 2022",
-        "description": "Led React Native development for iOS & Android apps and backend APIs using Node.js, Apollo GraphQL, MongoDB, and PostgreSQL. Set up automated CI/CD to App Store & Google Play. Managed AWS & standalone infrastructure. Conducted interviews, code reviews, and pre-sale estimations.",
-        "tags": ["React Native", "Node.js", "GraphQL", "MongoDB", "PostgreSQL", "AWS"]
+        "tags": ["React Native", "Node.js", "GraphQL", "MongoDB", "PostgreSQL", "AWS"],
+        "positions": [
+          {
+            "title": "Senior Full-Stack Engineer / Tech Lead",
+            "period": "Sep 2019 – Dec 2022",
+            "description": "Led architecture and end-to-end delivery of mobile and backend products as tech lead. Set up automated CI/CD to App Store & Google Play. Managed AWS & standalone infrastructure. Conducted code reviews, interviews, and pre-sale estimations."
+          },
+          {
+            "title": "React Native / Node.js Developer",
+            "period": "Sep 2017 – Sep 2019",
+            "description": "Built cross-platform iOS & Android apps with React Native. Developed GraphQL APIs using Apollo Server and Node.js. Maintained MongoDB and PostgreSQL databases. Contributed to unit testing and code review."
+          }
+        ]
       },
       {
         "title": "Front-End Developer",

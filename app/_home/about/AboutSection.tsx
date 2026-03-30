@@ -5,6 +5,7 @@ import { BlobBackground } from "../../_components/BlobBackground";
 import { SectionHeader } from "../../_components/SectionHeader";
 import { BusinessImpact } from "./BusinessImpact";
 import { ExperienceCard } from "./ExperienceCard";
+import { ExperienceList } from "./ExperienceList";
 import { InfoGrid } from "./InfoGrid";
 import { SocialLinks } from "./SocialLinks";
 import styles from "./AboutSection.module.css";
@@ -50,23 +51,36 @@ export async function AboutSection() {
           </div>
 
           {/* Timeline */}
-          <div className={`lg:col-span-2 reveal space-y-4 ${styles.bioContent}`}>
+          <div className={`lg:col-span-2 reveal ${styles.bioContent}`}>
             <h3 className="text-white/40 text-xs uppercase tracking-widest mb-6">{t("experienceHeading")}</h3>
-            {(t.raw("experience") as { title: string; company: string; period: string; description: string; tags: string[] }[]).map(
-              (exp, i) => (
-                <ExperienceCard
-                  key={exp.company}
-                  title={exp.title}
-                  company={exp.company}
-                  period={exp.period}
-                  description={exp.description}
-                  tags={exp.tags}
-                  logo={COMPANY_LOGOS[exp.company]}
-                  accentOpacity={["1", "0.7", "0.45", "0.25"][i]}
-                  projectsHref={`/projects?company=${encodeURIComponent(exp.company)}`}
-                />
-              )
-            )}
+            {(() => {
+              const items = t.raw("experience") as {
+                company: string
+                period: string
+                tags: string[]
+                title?: string
+                description?: string
+                positions?: { title: string; period: string; description: string }[]
+              }[];
+              return (
+                <ExperienceList total={items.length}>
+                  {items.map((exp, i) => (
+                    <ExperienceCard
+                      key={exp.company}
+                      company={exp.company}
+                      period={exp.period}
+                      tags={exp.tags}
+                      title={exp.title}
+                      description={exp.description}
+                      positions={exp.positions}
+                      logo={COMPANY_LOGOS[exp.company]}
+                      accentOpacity={["1", "0.7", "0.45", "0.25"][i]}
+                      projectsHref={`/projects?company=${encodeURIComponent(exp.company)}`}
+                    />
+                  ))}
+                </ExperienceList>
+              );
+            })()}
           </div>
         </div>
 
