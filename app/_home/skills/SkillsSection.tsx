@@ -9,7 +9,7 @@ import { SearchInput } from "../../_components/SearchInput";
 import { SectionHeader } from "../../_components/SectionHeader";
 import { SkillChip } from "./SkillChip";
 import { SkillFilterTabs } from "./SkillFilterTabs";
-import { SKILLS } from "./skills-data";
+import { CATEGORIES, SKILLS } from "./skills-data";
 import styles from "./SkillsSection.module.css";
 
 const INITIAL_REST = 10;
@@ -17,13 +17,13 @@ const INITIAL_REST = 10;
 export function SkillsSection() {
   const t = useTranslations("skills");
   const [search, setSearch] = useState("");
-  const [activeCat, setActiveCat] = useState("all");
+  const [activeCat, setActiveCat] = useState(0);
   const [expanded, setExpanded] = useState(false);
 
   const filtered = useMemo(() => {
     const q = search.toLowerCase();
     return SKILLS.filter((s) => {
-      const matchCat = activeCat === "all" || s.cat.toLowerCase() === activeCat;
+      const matchCat = activeCat === 0 || s.cat === activeCat;
       const matchText = s.name.toLowerCase().includes(q);
       return matchCat && matchText;
     });
@@ -32,16 +32,15 @@ export function SkillsSection() {
   const topSkills = filtered.filter((s) => s.top);
   const restSkills = filtered.filter((s) => !s.top);
 
-  const isFiltering = activeCat !== "all" || search.length > 0;
+  const isFiltering = activeCat !== 0 || search.length > 0;
   const visibleRest = isFiltering || expanded ? restSkills : restSkills.slice(0, INITIAL_REST);
   const hiddenCount = restSkills.length - INITIAL_REST;
   const showToggle = !isFiltering && hiddenCount > 0;
 
   const counts = useMemo(() => {
-    const c: Record<string, number> = { all: SKILLS.length };
+    const c: Record<number, number> = { [0]: SKILLS.length };
     SKILLS.forEach((s) => {
-      const key = s.cat.toLowerCase();
-      c[key] = (c[key] ?? 0) + 1;
+      c[s.cat] = (c[s.cat] ?? 0) + 1;
     });
     return c;
   }, []);
@@ -69,7 +68,7 @@ export function SkillsSection() {
 
         <div className="reveal">
           {filtered.length === 0 ? (
-            <EmptyState query={search} onClear={() => { setSearch(""); setActiveCat("all"); }} />
+            <EmptyState query={search} onClear={() => { setSearch(""); setActiveCat(0); }} />
           ) : (
             <>
               {topSkills.length > 0 && (
@@ -80,7 +79,7 @@ export function SkillsSection() {
                   </div>
                   <div className="flex flex-wrap gap-3 mb-8">
                     {topSkills.map((s) => (
-                      <SkillChip key={s.name} name={s.name} category={s.cat} variant="top" />
+                      <SkillChip key={s.name} name={s.name} category={CATEGORIES.find(c => c.id === s.cat)?.label ?? ""} variant="top" />
                     ))}
                   </div>
                 </>
@@ -94,7 +93,7 @@ export function SkillsSection() {
                   </div>
                   <div className="flex flex-wrap gap-2 pb-2">
                     {visibleRest.map((s) => (
-                      <SkillChip key={s.name} name={s.name} category={s.cat} variant="rest" />
+                      <SkillChip key={s.name} name={s.name} category={CATEGORIES.find(c => c.id === s.cat)?.label ?? ""} variant="rest" />
                     ))}
                   </div>
                   {showToggle && (
