@@ -222,6 +222,9 @@ body {
 ::-webkit-scrollbar-track { background: var(--scrollbar-track); }
 ::-webkit-scrollbar-thumb { background: var(--amber-dark); border-radius: 4px; }
 
+/* Offset anchor scroll targets below the fixed glass nav (~80px) */
+section[id] { scroll-margin-top: 3rem; }
+
 /* ══════════════════════════════════════════════
    UTILITIES — shared design primitives
 ══════════════════════════════════════════════ */
