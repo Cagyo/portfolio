@@ -1,6 +1,7 @@
 "use client";
 
 import { useLayoutEffect, useMemo, useState } from "react";
+import { useSearchParams } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { SearchInput } from "../../_components/SearchInput";
 import { ActiveChips } from "./filter/ActiveChips";
@@ -13,10 +14,15 @@ import { FILTER_GROUPS, PROJECTS } from "./projects-data";
 export function ProjectsPage() {
   const t = useTranslations("projectsPage");
 
+  const searchParams = useSearchParams();
+
   const [search, setSearch] = useState("");
   const [activeFilters, setActiveFilters] = useState<Record<string, Set<string>>>(() => {
     const init: Record<string, Set<string>> = {};
-    FILTER_GROUPS.forEach((g) => { init[g.key] = new Set(); });
+    FILTER_GROUPS.forEach((g) => {
+      const param = searchParams.get(g.key);
+      init[g.key] = param ? new Set([param]) : new Set();
+    });
     return init;
   });
   const [expandedIds, setExpandedIds] = useState<Set<number>>(new Set());

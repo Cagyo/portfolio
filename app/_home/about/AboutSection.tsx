@@ -1,5 +1,4 @@
 import { getTranslations } from "next-intl/server";
-import { FigmaLogo } from "../../../assets/logos/FigmaLogo";
 import { StripeLogo } from "../../../assets/logos/StripeLogo";
 import { VercelLogo } from "../../../assets/logos/VercelLogo";
 import { BlobBackground } from "../../_components/BlobBackground";
@@ -9,23 +8,19 @@ import { ExperienceCard } from "./ExperienceCard";
 import { InfoGrid } from "./InfoGrid";
 import { SocialLinks } from "./SocialLinks";
 
-const STRIPE_LOGO = (
-  <div className="w-9 h-9 rounded-xl flex items-center justify-center" style={{ background: "#635BFF" }}>
-    <StripeLogo className="w-5 h-5" />
-  </div>
-);
-
-const VERCEL_LOGO = (
-  <div className="w-9 h-9 rounded-xl flex items-center justify-center bg-black border border-white/10">
-    <VercelLogo className="w-4 h-4" />
-  </div>
-);
-
-const FIGMA_LOGO = (
-  <div className="w-9 h-9 rounded-xl flex items-center justify-center" style={{ background: "#1e1e1e", border: "1px solid rgba(255,255,255,0.1)" }}>
-    <FigmaLogo className="w-5 h-5" />
-  </div>
-);
+// Companies with known logos — anything not listed here gets the monogram fallback
+const COMPANY_LOGOS: Record<string, React.ReactNode> = {
+  Stripe: (
+    <div className="w-9 h-9 rounded-xl flex items-center justify-center" style={{ background: "#635BFF" }}>
+      <StripeLogo className="w-5 h-5" />
+    </div>
+  ),
+  Vercel: (
+    <div className="w-9 h-9 rounded-xl flex items-center justify-center bg-black border border-white/10">
+      <VercelLogo className="w-4 h-4" />
+    </div>
+  ),
+};
 
 export async function AboutSection() {
   const t = await getTranslations("about");
@@ -65,8 +60,9 @@ export async function AboutSection() {
                   period={exp.period}
                   description={exp.description}
                   tags={exp.tags}
-                  logo={[STRIPE_LOGO, VERCEL_LOGO, FIGMA_LOGO][i]}
+                  logo={COMPANY_LOGOS[exp.company]}
                   accentOpacity={["1", "0.6", "0.3"][i]}
+                  projectsHref={`/projects?company=${encodeURIComponent(exp.company)}`}
                 />
               )
             )}
