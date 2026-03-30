@@ -2,7 +2,7 @@ import { getTranslations } from "next-intl/server";
 import { ArrowRightIcon } from "../../../assets/icons/ArrowRightIcon";
 import { CalendarIcon } from "../../../assets/icons/CalendarIcon";
 import { BlobBackground } from "../../_components/BlobBackground";
-import { Button } from "../../_components/Button";
+import { Button } from "../../_components/button/Button";
 
 type HeroStat = { value: string; label: string }
 

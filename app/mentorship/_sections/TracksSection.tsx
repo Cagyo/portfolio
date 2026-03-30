@@ -3,7 +3,7 @@ import { ArrowRightIcon } from "../../../assets/icons/ArrowRightIcon";
 import { CalendarIcon } from "../../../assets/icons/CalendarIcon";
 import { CheckIcon } from "../../../assets/icons/CheckIcon";
 import { BlobBackground } from "../../_components/BlobBackground";
-import { Button } from "../../_components/Button";
+import { Button } from "../../_components/button/Button";
 import { SectionHeader } from "../../_components/SectionHeader";
 
 export async function TracksSection() {

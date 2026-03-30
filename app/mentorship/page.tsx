@@ -1,5 +1,5 @@
 import { getTranslations } from "next-intl/server";
-import { Nav } from "../_components/Nav";
+import { Nav } from "../_components/nav/Nav";
 import { RevealProvider } from "../_home/RevealProvider";
 import { ApplySection } from "./_sections/ApplySection";
 import { MentorshipFit } from "./_sections/MentorshipFit";

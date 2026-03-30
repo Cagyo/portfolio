@@ -1,8 +1,8 @@
 import { getTranslations } from "next-intl/server";
 import { ArrowRightIcon } from "../../assets/icons/ArrowRightIcon";
-import { Button } from "../_components/Button";
+import { Button } from "../_components/button/Button";
 import { SparkleIcon } from "../../assets/icons/SparkleIcon";
-import { Tag } from "../_components/Tag";
+import { Tag } from "../_components/tag/Tag";
 
 export async function MentorshipTeaser() {
   const t = await getTranslations("mentorship");

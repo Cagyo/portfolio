@@ -1,6 +1,6 @@
 import { getTranslations } from "next-intl/server";
 import { BlobBackground } from "../_components/BlobBackground";
-import { ProjectsPage } from "./ProjectsPage";
+import { ProjectsPage } from "./_components/ProjectsPage";
 
 export async function generateMetadata() {
   const t = await getTranslations("projectsPage");

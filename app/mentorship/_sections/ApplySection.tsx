@@ -3,7 +3,7 @@ import { ArrowRightIcon } from "../../../assets/icons/ArrowRightIcon";
 import { CalendarIcon } from "../../../assets/icons/CalendarIcon";
 import { ExternalLinkIcon } from "../../../assets/icons/ExternalLinkIcon";
 import { BlobBackground } from "../../_components/BlobBackground";
-import { Button } from "../../_components/Button";
+import { Button } from "../../_components/button/Button";
 
 export async function ApplySection() {
   const t = await getTranslations("mentorshipPage.apply");

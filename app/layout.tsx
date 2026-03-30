@@ -1,7 +1,7 @@
 import { getLocale, getMessages } from "next-intl/server";
 import { NextIntlClientProvider } from "next-intl";
 import { Archivo, Space_Grotesk } from "next/font/google";
-import { ThemeScript } from "./_components/ThemeScript";
+import { ThemeScript } from "./_components/theme/ThemeScript";
 import "./globals.css";
 
 const archivo = Archivo({
