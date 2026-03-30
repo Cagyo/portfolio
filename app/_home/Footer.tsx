@@ -3,6 +3,7 @@ import { SparkleIcon } from "../../assets/icons/SparkleIcon";
 import { GitHubLogo } from "../../assets/logos/GitHubLogo";
 import { LinkedInLogo } from "../../assets/logos/LinkedInLogo";
 import { XLogo } from "../../assets/logos/XLogo";
+import styles from "./Footer.module.css";
 
 export async function Footer() {
   const t = await getTranslations("footer");
@@ -15,8 +16,7 @@ export async function Footer() {
           <span className="text-white/15 mx-1.5">&middot;</span>
           <span className="inline-flex items-center gap-1.5">
             <span
-              className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-md text-xs font-semibold tracking-wide"
-              style={{ background: "rgba(245,158,11,0.08)", border: "1px solid rgba(245,158,11,0.18)", color: "rgba(245,158,11,0.65)" }}
+              className={`inline-flex items-center gap-1.5 px-2 py-0.5 rounded-md text-xs font-semibold tracking-wide ${styles.statusBadge}`}
             >
               <SparkleIcon className="w-3 h-3 flex-shrink-0" />
               {t("builtWithAI")}

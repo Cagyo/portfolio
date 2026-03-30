@@ -1,0 +1,5 @@
+.statusBadge {
+  background: rgba(245, 158, 11, 0.08);
+  border: 1px solid rgba(245, 158, 11, 0.18);
+  color: rgba(245, 158, 11, 0.65);
+}

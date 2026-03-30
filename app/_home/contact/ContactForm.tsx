@@ -6,6 +6,7 @@ import { ArrowRightIcon } from "../../../assets/icons/ArrowRightIcon";
 import { CheckIcon } from "../../../assets/icons/CheckIcon";
 import { SpinnerIcon } from "../../../assets/icons/SpinnerIcon";
 import { Button } from "../../_components/button/Button";
+import styles from "./ContactForm.module.css";
 
 type FormState = "idle" | "loading" | "success";
 
@@ -21,7 +22,7 @@ export function ContactForm() {
   }
 
   return (
-    <div className="lg:col-span-3 reveal" style={{ transitionDelay: "0.15s" }}>
+    <div className={`lg:col-span-3 reveal ${styles.formCol}`}>
       <form onSubmit={handleSubmit} className="glass rounded-3xl p-8 space-y-5" noValidate>
         <div className="grid sm:grid-cols-2 gap-5">
           <div>

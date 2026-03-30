@@ -5,6 +5,7 @@ import { CheckIcon } from "../../../assets/icons/CheckIcon";
 import { BlobBackground } from "../../_components/BlobBackground";
 import { Button } from "../../_components/button/Button";
 import { SectionHeader } from "../../_components/SectionHeader";
+import styles from "./TracksSection.module.css";
 
 export async function TracksSection() {
   const t = await getTranslations("mentorshipPage.tracks");
@@ -42,13 +43,7 @@ export async function TracksSection() {
 
             <div className="px-6 py-5 border-b border-white/5 flex items-baseline gap-2">
               <span
-                className="font-heading font-black text-4xl"
-                style={{
-                  background: "linear-gradient(135deg, #FBBF24 0%, #F59E0B 50%, #D97706 100%)",
-                  WebkitBackgroundClip: "text",
-                  WebkitTextFillColor: "transparent",
-                  backgroundClip: "text",
-                }}
+                className={`font-heading font-black text-4xl ${styles.amberPrice}`}
               >
                 {t("fastTrack.price")}
               </span>
@@ -85,7 +80,7 @@ export async function TracksSection() {
           </div>
 
           {/* Deep Dive */}
-          <div className="reveal relative glass rounded-2xl overflow-hidden flex flex-col" style={{ transitionDelay: "0.1s" }}>
+          <div className={`reveal relative glass rounded-2xl overflow-hidden flex flex-col ${styles.deepDiveCard}`}>
             <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-violet-600 via-violet-400 to-violet-600 pointer-events-none" />
 
             <div className="bg-gradient-to-r from-violet-500/15 to-violet-600/8 px-6 pt-6 pb-5 border-b border-white/5">
@@ -104,13 +99,7 @@ export async function TracksSection() {
 
             <div className="px-6 py-5 border-b border-white/5 flex items-baseline gap-2">
               <span
-                className="font-heading font-black text-4xl"
-                style={{
-                  background: "linear-gradient(135deg, #a78bfa, #7c3aed)",
-                  WebkitBackgroundClip: "text",
-                  WebkitTextFillColor: "transparent",
-                  backgroundClip: "text",
-                }}
+                className={`font-heading font-black text-4xl ${styles.violetPrice}`}
               >
                 {t("deepDive.price")}
               </span>
@@ -150,8 +139,7 @@ export async function TracksSection() {
 
         {/* Scarcity strip */}
         <div
-          className="reveal glass rounded-2xl px-7 py-5 flex flex-col sm:flex-row items-center justify-between gap-4"
-          style={{ transitionDelay: "0.2s" }}
+          className={`reveal glass rounded-2xl px-7 py-5 flex flex-col sm:flex-row items-center justify-between gap-4 ${styles.scarcityStrip}`}
         >
           <div className="flex items-center gap-3">
             <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse-slow flex-shrink-0" />
@@ -164,8 +152,7 @@ export async function TracksSection() {
             href="https://calendly.com/"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex-shrink-0 inline-flex items-center gap-2 px-6 py-2.5 rounded-xl text-sm font-semibold cursor-pointer text-white"
-            style={{ background: "linear-gradient(135deg, #8B5CF6, #7C3AED)" }}
+            className={`flex-shrink-0 inline-flex items-center gap-2 px-6 py-2.5 rounded-xl text-sm font-semibold cursor-pointer text-white ${styles.bookBtn}`}
           >
             <CalendarIcon className="w-4 h-4" />
             {t("bookCall")}

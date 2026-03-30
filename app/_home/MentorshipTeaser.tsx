@@ -3,6 +3,7 @@ import { ArrowRightIcon } from "../../assets/icons/ArrowRightIcon";
 import { Button } from "../_components/button/Button";
 import { SparkleIcon } from "../../assets/icons/SparkleIcon";
 import { Tag } from "../_components/tag/Tag";
+import styles from "./MentorshipTeaser.module.css";
 
 export async function MentorshipTeaser() {
   const t = await getTranslations("mentorship");
@@ -10,8 +11,7 @@ export async function MentorshipTeaser() {
     <section className="py-10 relative">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div
-          className="reveal glass rounded-3xl p-7 relative overflow-hidden flex flex-col lg:flex-row items-center gap-8"
-          style={{ borderColor: "rgba(167,139,250,0.2)" }}
+          className={`reveal glass rounded-3xl p-7 relative overflow-hidden flex flex-col lg:flex-row items-center gap-8 ${styles.card}`}
         >
           <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-violet-600 via-violet-400 to-transparent rounded-t-3xl pointer-events-none" />
 

@@ -7,11 +7,12 @@ import { BusinessImpact } from "./BusinessImpact";
 import { ExperienceCard } from "./ExperienceCard";
 import { InfoGrid } from "./InfoGrid";
 import { SocialLinks } from "./SocialLinks";
+import styles from "./AboutSection.module.css";
 
 // Companies with known logos — anything not listed here gets the monogram fallback
 const COMPANY_LOGOS: Record<string, React.ReactNode> = {
   Stripe: (
-    <div className="w-9 h-9 rounded-xl flex items-center justify-center" style={{ background: "#635BFF" }}>
+    <div className={`w-9 h-9 rounded-xl flex items-center justify-center ${styles.stripeIcon}`}>
       <StripeLogo className="w-5 h-5" />
     </div>
   ),
@@ -49,7 +50,7 @@ export async function AboutSection() {
           </div>
 
           {/* Timeline */}
-          <div className="lg:col-span-2 reveal space-y-4" style={{ transitionDelay: "0.15s" }}>
+          <div className={`lg:col-span-2 reveal space-y-4 ${styles.bioContent}`}>
             <h3 className="text-white/40 text-xs uppercase tracking-widest mb-6">{t("experienceHeading")}</h3>
             {(t.raw("experience") as { title: string; company: string; period: string; description: string; tags: string[] }[]).map(
               (exp, i) => (

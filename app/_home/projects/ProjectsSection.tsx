@@ -9,6 +9,7 @@ import { MonitorIcon } from "../../../assets/icons/MonitorIcon";
 import { AppStoreLogo } from "../../../assets/logos/AppStoreLogo";
 import { GooglePlayLogo } from "../../../assets/logos/GooglePlayLogo";
 import { ProjectCard } from "./ProjectCard";
+import styles from "./ProjectsSection.module.css";
 
 type ProjectItem = {
   title: string
@@ -75,9 +76,9 @@ const PROJECT_META: { iconPath: string; imageBg: string; overlayType: OverlayTyp
     imageContent: (
       <div className="flex gap-3 opacity-50">
         <div className="w-2 h-16 bg-cyan-400/60 rounded-full animate-pulse" />
-        <div className="w-2 h-10 bg-amber-400/60 rounded-full animate-pulse" style={{ animationDelay: "0.2s" }} />
-        <div className="w-2 h-20 bg-cyan-300/60 rounded-full animate-pulse" style={{ animationDelay: "0.4s" }} />
-        <div className="w-2 h-8 bg-amber-300/60 rounded-full animate-pulse" style={{ animationDelay: "0.6s" }} />
+        <div className={`w-2 h-10 bg-amber-400/60 rounded-full animate-pulse ${styles.pulseBar2}`} />
+        <div className={`w-2 h-20 bg-cyan-300/60 rounded-full animate-pulse ${styles.pulseBar3}`} />
+        <div className={`w-2 h-8 bg-amber-300/60 rounded-full animate-pulse ${styles.pulseBar4}`} />
       </div>
     ),
   },

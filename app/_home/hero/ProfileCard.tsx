@@ -1,11 +1,11 @@
+import styles from "./ProfileCard.module.css";
 import { Tag } from "../../_components/tag/Tag";
 
 export function ProfileCard() {
   return (
     <div className="animate-float relative z-10">
     <div
-      className="glass-amber rounded-3xl p-6 text-center w-64"
-      style={{ boxShadow: "0 0 60px rgba(245,158,11,0.15)" }}
+      className={`glass-amber rounded-3xl p-6 text-center w-64 ${styles.card}`}
     >
       {/* Photo placeholder */}
       <div className="w-28 h-28 mx-auto rounded-2xl mb-4 shadow-lg relative overflow-hidden bg-gradient-to-br from-slate-700 to-slate-800 border border-white/10">

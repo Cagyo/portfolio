@@ -405,7 +405,8 @@ Current UI primitives: `<Button>` — `variant?: "primary" | "outline"`, renders
 
 ### Rules
 
-- No inline `style={{}}` for themed values — use CSS custom properties
+- No inline `style={{}}` — use Tailwind utility classes or a co-located CSS module instead. Static RGBA colors, box-shadows, border colors, brand hex values, gradients, and fixed transition/animation delays must always move to a CSS module.
+- **Exception**: JS-computed or runtime-derived values only — e.g. `style={{ opacity: value }}`, `style={{ maxHeight: open ? 1000 : 0 }}`, `style={{ animationDelay: \`${delay}s\` }}` (prop-driven), data-driven colors from a data array (e.g. `style={{ color: item.iconColor }}`).
 - Do not use Tailwind `arbitrary values` (`w-[123px]`) for values that belong in a token
 - Do not add `position: relative; z-index: N` to individual child elements — let the component wrapper handle stacking context
 

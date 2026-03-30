@@ -3,6 +3,7 @@ import { ArrowRightIcon } from "../../../assets/icons/ArrowRightIcon";
 import { CalendarIcon } from "../../../assets/icons/CalendarIcon";
 import { BlobBackground } from "../../_components/BlobBackground";
 import { Button } from "../../_components/button/Button";
+import styles from "./MentorshipHero.module.css";
 
 type HeroStat = { value: string; label: string }
 
@@ -25,17 +26,15 @@ export async function MentorshipHero() {
 
         {/* Badge */}
         <div
-          className="reveal inline-flex items-center gap-2 rounded-full px-4 py-2 mb-8"
-          style={{ background: "rgba(139,92,246,0.1)", border: "1px solid rgba(139,92,246,0.3)" }}
+          className={`reveal inline-flex items-center gap-2 rounded-full px-4 py-2 mb-8 ${styles.badge}`}
         >
-          <span className="w-2 h-2 rounded-full animate-pulse-slow" style={{ background: "#A78BFA" }} />
-          <span className="text-sm font-medium" style={{ color: "#A78BFA" }}>{t("badge")}</span>
+          <span className={`w-2 h-2 rounded-full animate-pulse-slow ${styles.badgeDot}`} />
+          <span className={`text-sm font-medium ${styles.badgeLabel}`}>{t("badge")}</span>
         </div>
 
         {/* Headline */}
         <h1
-          className="reveal font-heading font-black text-5xl sm:text-6xl lg:text-7xl leading-none tracking-tight mb-6"
-          style={{ transitionDelay: "0.05s" }}
+          className={`reveal font-heading font-black text-5xl sm:text-6xl lg:text-7xl leading-none tracking-tight mb-6 ${styles.delay1}`}
         >
           {t("headline1")}<br />
           {t("headline2")}<br />
@@ -44,16 +43,14 @@ export async function MentorshipHero() {
 
         {/* Subhead */}
         <p
-          className="reveal text-white/55 text-lg sm:text-xl leading-relaxed max-w-2xl mb-10"
-          style={{ transitionDelay: "0.1s" }}
+          className={`reveal text-white/55 text-lg sm:text-xl leading-relaxed max-w-2xl mb-10 ${styles.delay2}`}
         >
           {t("subhead")}
         </p>
 
         {/* Stats */}
         <div
-          className="reveal flex flex-wrap justify-center gap-8 sm:gap-14 mb-12"
-          style={{ transitionDelay: "0.15s" }}
+          className={`reveal flex flex-wrap justify-center gap-8 sm:gap-14 mb-12 ${styles.delay3}`}
         >
           {stats.map((stat, i) => (
             <div key={stat.label} className="flex items-center gap-8 sm:gap-14">
@@ -68,8 +65,7 @@ export async function MentorshipHero() {
 
         {/* CTAs */}
         <div
-          className="reveal flex flex-wrap justify-center gap-4"
-          style={{ transitionDelay: "0.2s" }}
+          className={`reveal flex flex-wrap justify-center gap-4 ${styles.delay4}`}
         >
           <Button
             href="#plans"

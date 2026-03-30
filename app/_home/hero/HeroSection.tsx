@@ -1,4 +1,5 @@
 import { getTranslations } from "next-intl/server";
+import styles from "./HeroSection.module.css";
 import { ArrowRightIcon } from "../../../assets/icons/ArrowRightIcon";
 import { EnvelopeIcon } from "../../../assets/icons/EnvelopeIcon";
 import { BlobBackground } from "../../_components/BlobBackground";
@@ -28,8 +29,7 @@ export async function HeroSection() {
         <div className="space-y-8">
           {/* Small mobile: full-width photo */}
           <div
-            className="block sm:hidden w-full rounded-2xl relative overflow-hidden"
-            style={{ aspectRatio: "4/5", maxHeight: 300, border: "1px solid rgba(245,158,11,0.2)", boxShadow: "0 0 50px rgba(245,158,11,0.12)" }}
+            className={`block sm:hidden w-full rounded-2xl relative overflow-hidden ${styles.profileFrame}`}
           >
             <svg className="absolute inset-0 w-full h-full" viewBox="0 0 300 375" fill="none" preserveAspectRatio="xMidYMid slice">
               <rect width="300" height="375" fill="url(#mobileFullGrad)" />
@@ -64,8 +64,7 @@ export async function HeroSection() {
             {/* Medium mobile photo */}
             <div className="flex-shrink-0 hidden sm:block lg:hidden">
               <div
-                className="w-32 h-32 rounded-2xl relative overflow-hidden border border-amber-500/30"
-                style={{ boxShadow: "0 0 36px rgba(245,158,11,0.18)" }}
+                className={`w-32 h-32 rounded-2xl relative overflow-hidden border border-amber-500/30 ${styles.cardGlow}`}
               >
                 <svg className="absolute inset-0 w-full h-full" viewBox="0 0 128 128" fill="none">
                   <rect width="128" height="128" fill="url(#mobilePhotoGrad)" />

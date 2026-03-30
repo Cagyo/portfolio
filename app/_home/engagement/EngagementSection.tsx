@@ -6,6 +6,7 @@ import { ExternalLinkIcon } from "../../../assets/icons/ExternalLinkIcon";
 import { LightningIcon } from "../../../assets/icons/LightningIcon";
 import { WarningIcon } from "../../../assets/icons/WarningIcon";
 import { EngagementCard } from "./EngagementCard";
+import styles from "./EngagementSection.module.css";
 
 type TagVariant = "amber" | "purple" | "teal";
 
@@ -57,8 +58,7 @@ export async function EngagementSection() {
         </div>
 
         <div
-          className="reveal mt-10 glass rounded-2xl px-7 py-5 flex flex-col sm:flex-row items-center justify-between gap-4"
-          style={{ transitionDelay: "0.25s" }}
+          className={`reveal mt-10 glass rounded-2xl px-7 py-5 flex flex-col sm:flex-row items-center justify-between gap-4 ${styles.cta}`}
         >
           <p className="text-white/50 text-sm text-center sm:text-left">
             {t("footerText")}
