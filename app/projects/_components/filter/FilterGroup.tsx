@@ -19,7 +19,7 @@ export function FilterGroup({ label, options, active, onToggle }: FilterGroupPro
       <button
         type="button"
         className={styles.groupHeader}
-        onClick={() => setCollapsed((c) => !c)}
+        onClick={() => setCollapsed((prev) => !prev)}
         aria-expanded={!collapsed}
       >
         <span className="text-white/40 text-xs uppercase tracking-widest font-semibold">{label}</span>

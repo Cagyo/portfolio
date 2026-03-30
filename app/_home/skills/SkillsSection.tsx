@@ -21,16 +21,16 @@ export function SkillsSection() {
   const [expanded, setExpanded] = useState(false);
 
   const filtered = useMemo(() => {
-    const q = search.toLowerCase();
-    return SKILLS.filter((s) => {
-      const matchCat = activeCat === 0 || s.cat === activeCat;
-      const matchText = s.name.toLowerCase().includes(q);
+    const query = search.toLowerCase();
+    return SKILLS.filter((skill) => {
+      const matchCat = activeCat === 0 || skill.cat === activeCat;
+      const matchText = skill.name.toLowerCase().includes(query);
       return matchCat && matchText;
     });
   }, [search, activeCat]);
 
-  const topSkills = filtered.filter((s) => s.top);
-  const restSkills = filtered.filter((s) => !s.top);
+  const topSkills = filtered.filter((skill) => skill.top);
+  const restSkills = filtered.filter((skill) => !skill.top);
 
   const isFiltering = activeCat !== 0 || search.length > 0;
   const visibleRest = isFiltering || expanded ? restSkills : restSkills.slice(0, INITIAL_REST);
@@ -38,11 +38,11 @@ export function SkillsSection() {
   const showToggle = !isFiltering && hiddenCount > 0;
 
   const counts = useMemo(() => {
-    const c: Record<number, number> = { [0]: SKILLS.length };
-    SKILLS.forEach((s) => {
-      c[s.cat] = (c[s.cat] ?? 0) + 1;
+    const categoryCounts: Record<number, number> = { [0]: SKILLS.length };
+    SKILLS.forEach((skill) => {
+      categoryCounts[skill.cat] = (categoryCounts[skill.cat] ?? 0) + 1;
     });
-    return c;
+    return categoryCounts;
   }, []);
 
   return (
@@ -78,8 +78,8 @@ export function SkillsSection() {
                     <div className="flex-1 h-px bg-gradient-to-r from-amber-500/20 to-transparent" />
                   </div>
                   <div className="flex flex-wrap gap-3 mb-8">
-                    {topSkills.map((s) => (
-                      <SkillChip key={s.name} name={s.name} category={CATEGORIES.find(c => c.id === s.cat)?.label ?? ""} variant="top" />
+                    {topSkills.map((skill) => (
+                      <SkillChip key={skill.name} name={skill.name} category={CATEGORIES.find((category) => category.id === skill.cat)?.label ?? ""} variant="top" />
                     ))}
                   </div>
                 </>
@@ -92,14 +92,14 @@ export function SkillsSection() {
                     <div className="flex-1 h-px bg-white/5" />
                   </div>
                   <div className="flex flex-wrap gap-2 pb-2">
-                    {visibleRest.map((s) => (
-                      <SkillChip key={s.name} name={s.name} category={CATEGORIES.find(c => c.id === s.cat)?.label ?? ""} variant="rest" />
+                    {visibleRest.map((skill) => (
+                      <SkillChip key={skill.name} name={skill.name} category={CATEGORIES.find((category) => category.id === skill.cat)?.label ?? ""} variant="rest" />
                     ))}
                   </div>
                   {showToggle && (
                     <div className="mt-5">
                       <button
-                        onClick={() => setExpanded((e) => !e)}
+                        onClick={() => setExpanded((prev) => !prev)}
                         className={`${styles.skillsToggleBtn} ${expanded ? styles.expanded : ""}`}
                         aria-expanded={expanded}
                       >

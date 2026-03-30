@@ -31,8 +31,8 @@ export function ProjectCard({ project, expanded, onToggleExpand, animationDelay 
         <div className="flex flex-wrap items-start justify-between gap-3 mb-4">
           <div className="flex-1 min-w-0">
             <div className="flex flex-wrap items-center gap-2 mb-1.5">
-              {project.devTypes.map((t) => (
-                <Tag key={t}>{t}</Tag>
+              {project.devTypes.map((devType) => (
+                <Tag key={devType}>{devType}</Tag>
               ))}
               <span className="bg-white/5 border border-white/10 text-white/50 text-[0.65rem] font-semibold tracking-[0.04em] uppercase px-1.5 py-0.5 rounded">
                 {project.productType}
@@ -80,10 +80,10 @@ export function ProjectCard({ project, expanded, onToggleExpand, animationDelay 
               {t("achievements")}
             </p>
             <ul className="space-y-1">
-              {project.achievements.map((a) => (
-                <li key={a} className="flex items-start gap-2 text-sm text-white/80">
+              {project.achievements.map((achievement) => (
+                <li key={achievement} className="flex items-start gap-2 text-sm text-white/80">
                   <LightningIcon className="w-4 h-4 text-amber-400 flex-shrink-0 mt-0.5" />
-                  {a}
+                  {achievement}
                 </li>
               ))}
             </ul>
@@ -114,12 +114,12 @@ export function ProjectCard({ project, expanded, onToggleExpand, animationDelay 
           <div>
             <p className="text-white/30 text-xs uppercase tracking-widest font-semibold mb-3">{t("duties")}</p>
             <ul className="space-y-1.5">
-              {project.duties.map((d) => (
-                <li key={d} className="flex items-start gap-2 text-white/60 text-sm">
+              {project.duties.map((duty) => (
+                <li key={duty} className="flex items-start gap-2 text-white/60 text-sm">
                   <svg className="w-3.5 h-3.5 text-amber-500/60 flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 8 8">
                     <circle cx="4" cy="4" r="3" />
                   </svg>
-                  {d}
+                  {duty}
                 </li>
               ))}
             </ul>
@@ -130,8 +130,8 @@ export function ProjectCard({ project, expanded, onToggleExpand, animationDelay 
             <div>
               <p className="text-white/30 text-xs uppercase tracking-widest font-semibold mb-3">{t("techStack")}</p>
               <div className="flex flex-wrap gap-1.5">
-                {project.stack.map((s) => (
-                  <span key={s} className={styles.stackChip}>{s}</span>
+                {project.stack.map((stackItem) => (
+                  <span key={stackItem} className={styles.stackChip}>{stackItem}</span>
                 ))}
               </div>
             </div>

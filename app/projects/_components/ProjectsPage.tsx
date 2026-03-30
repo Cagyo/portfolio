@@ -19,9 +19,9 @@ export function ProjectsPage() {
   const [search, setSearch] = useState("");
   const [activeFilters, setActiveFilters] = useState<Record<string, Set<string>>>(() => {
     const init: Record<string, Set<string>> = {};
-    FILTER_GROUPS.forEach((g) => {
-      const param = searchParams.get(g.key);
-      init[g.key] = param ? new Set([param]) : new Set();
+    FILTER_GROUPS.forEach((filterGroup) => {
+      const param = searchParams.get(filterGroup.key);
+      init[filterGroup.key] = param ? new Set([param]) : new Set();
     });
     return init;
   });
@@ -34,25 +34,25 @@ export function ProjectsPage() {
   }, []);
 
   const filtered = useMemo(() => {
-    return PROJECTS.filter((p) => {
+    return PROJECTS.filter((project) => {
       if (search) {
-        const q = search.toLowerCase();
-        const haystack = [p.title, p.description, p.company, p.industry, ...p.stack, ...p.duties]
+        const query = search.toLowerCase();
+        const haystack = [project.title, project.description, project.company, project.industry, ...project.stack, ...project.duties]
           .join(" ")
           .toLowerCase();
-        if (!haystack.includes(q)) return false;
+        if (!haystack.includes(query)) return false;
       }
-      for (const g of FILTER_GROUPS) {
-        const active = activeFilters[g.key];
+      for (const filterGroup of FILTER_GROUPS) {
+        const active = activeFilters[filterGroup.key];
         if (active.size === 0) continue;
-        if (!g.match(p, [...active])) return false;
+        if (!filterGroup.match(project, [...active])) return false;
       }
       return true;
     });
   }, [search, activeFilters]);
 
   const totalActive = useMemo(
-    () => Object.values(activeFilters).reduce((acc, s) => acc + s.size, 0),
+    () => Object.values(activeFilters).reduce((acc, filterSet) => acc + filterSet.size, 0),
     [activeFilters],
   );
 
@@ -71,7 +71,7 @@ export function ProjectsPage() {
   function clearAll() {
     setActiveFilters(() => {
       const init: Record<string, Set<string>> = {};
-      FILTER_GROUPS.forEach((g) => { init[g.key] = new Set(); });
+      FILTER_GROUPS.forEach((filterGroup) => { init[filterGroup.key] = new Set(); });
       return init;
     });
     setSearch("");

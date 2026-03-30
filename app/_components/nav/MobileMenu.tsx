@@ -18,7 +18,7 @@ export function MobileMenu({ links }: MobileMenuProps) {
   return (
     <>
       <button
-        onClick={() => setOpen((o) => !o)}
+        onClick={() => setOpen((prev) => !prev)}
         className="text-white/70 hover:text-white cursor-pointer focus-visible:ring-2 focus-visible:ring-amber-500 rounded-lg p-1"
         aria-label={t("mobileMenuAriaLabel")}
         aria-expanded={open}

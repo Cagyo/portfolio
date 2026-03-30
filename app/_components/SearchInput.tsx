@@ -15,7 +15,7 @@ export function SearchInput({ value, onChange, placeholder = "Search…", label,
       <input
         type="search"
         value={value}
-        onChange={(e) => onChange(e.target.value)}
+        onChange={(event) => onChange(event.target.value)}
         placeholder={placeholder}
         aria-label={label ?? placeholder}
         className="form-input w-full pl-10 pr-4 py-2.5 rounded-xl text-sm text-white placeholder-white/25"

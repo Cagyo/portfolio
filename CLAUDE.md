@@ -104,6 +104,38 @@ export const SITE_NAME = 'My Portfolio'        // SCREAMING_SNAKE for primitives
 export const siteConfig = { name: '...' }      // camelCase for objects
 ```
 
+### Variables
+
+Never use single-letter variable names. Name the variable after what it represents.
+
+Common mappings:
+
+| Short | Use instead |
+| --- | --- |
+| `s` | contextual noun — `skill`, `stackItem`, `set` |
+| `q` | `query` |
+| `e` | `entry` (IntersectionObserver) / `event` (DOM/React events) |
+| `c` | contextual noun — `category`, `categoryCounts` |
+| `p` | `project` |
+| `v` | `value` |
+| `g` | `filterGroup` |
+| `a` | contextual noun — `achievement` |
+| `d` | contextual noun — `duty` |
+
+**Exception**: `t` from `useTranslations()` / `getTranslations()` is the accepted next-intl convention — do not rename.
+
+For boolean setter callbacks, use `prev` not a single letter:
+
+```ts
+// ❌
+setOpen((e) => !e)
+setCollapsed((c) => !c)
+
+// ✅
+setOpen((prev) => !prev)
+setCollapsed((prev) => !prev)
+```
+
 ---
 
 ## Types

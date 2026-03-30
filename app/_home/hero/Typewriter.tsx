@@ -14,25 +14,25 @@ export function Typewriter({ roles }: TypewriterProps) {
     let timer: ReturnType<typeof setTimeout>;
 
     function tick() {
-      const s = state.current;
-      const role = roles[s.idx];
+      const typewriterState = state.current;
+      const role = roles[typewriterState.idx];
 
-      if (!s.deleting) {
-        if (s.text.length < role.length) {
-          s.text = role.slice(0, s.text.length + 1);
-          if (textRef.current) textRef.current.textContent = s.text;
+      if (!typewriterState.deleting) {
+        if (typewriterState.text.length < role.length) {
+          typewriterState.text = role.slice(0, typewriterState.text.length + 1);
+          if (textRef.current) textRef.current.textContent = typewriterState.text;
           timer = setTimeout(tick, 100);
         } else {
-          timer = setTimeout(() => { s.deleting = true; tick(); }, 1800);
+          timer = setTimeout(() => { typewriterState.deleting = true; tick(); }, 1800);
         }
       } else {
-        if (s.text.length > 0) {
-          s.text = s.text.slice(0, -1);
-          if (textRef.current) textRef.current.textContent = s.text;
+        if (typewriterState.text.length > 0) {
+          typewriterState.text = typewriterState.text.slice(0, -1);
+          if (textRef.current) textRef.current.textContent = typewriterState.text;
           timer = setTimeout(tick, 60);
         } else {
-          s.deleting = false;
-          s.idx = (s.idx + 1) % roles.length;
+          typewriterState.deleting = false;
+          typewriterState.idx = (typewriterState.idx + 1) % roles.length;
           tick();
         }
       }

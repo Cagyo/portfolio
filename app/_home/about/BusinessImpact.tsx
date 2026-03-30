@@ -24,10 +24,10 @@ export async function BusinessImpact() {
           </div>
           <div className="hidden lg:block w-px self-stretch bg-white/10 mx-2" />
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-x-8 gap-y-6 flex-1">
-            {metrics.map((m) => (
-              <div key={m.value}>
-                <p className="font-heading font-black text-3xl text-gradient">{m.value}</p>
-                <p className="text-white/40 text-xs mt-1 leading-snug whitespace-pre-line">{m.label}</p>
+            {metrics.map((metric) => (
+              <div key={metric.value}>
+                <p className="font-heading font-black text-3xl text-gradient">{metric.value}</p>
+                <p className="text-white/40 text-xs mt-1 leading-snug whitespace-pre-line">{metric.label}</p>
               </div>
             ))}
           </div>
