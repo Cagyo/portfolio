@@ -146,54 +146,7 @@
     "googlePlay": "Google Play",
     "privateBuild": "Private Build",
     "nda": "Internal project · NDA",
-    "viewAll": "View All Projects",
-    "items": [
-      {
-        "title": "SaaS Analytics Platform",
-        "description": "Real-time analytics dashboard for e-commerce. Processes events at massive scale with sub-100ms query latency. Built with Next.js, ClickHouse, and Redis.",
-        "category": "SaaS",
-        "role": "Lead Engineer · Full Stack",
-        "year": "2022 – Now",
-        "badgeLabel": "50M+ events/day · sub-100ms queries",
-        "tags": ["Next.js", "ClickHouse", "Redis", "Kafka", "TypeScript"]
-      },
-      {
-        "title": "Auth Kit",
-        "description": "Drop-in authentication library with 15+ providers, built for any Node.js stack.",
-        "category": "Open Source",
-        "role": "Creator",
-        "year": "2021 – 2023",
-        "badgeLabel": "2,400+ stars",
-        "tags": ["TypeScript", "OAuth2", "JWT"]
-      },
-      {
-        "title": "FinTrack Dashboard",
-        "description": "Personal finance tracker with AI-powered categorization and forecast charts.",
-        "category": "Fintech",
-        "role": "Solo Build",
-        "year": "2022",
-        "badgeLabel": "AI-powered · real-time sync",
-        "tags": ["React", "Recharts", "AI"]
-      },
-      {
-        "title": "DevPulse",
-        "description": "GitHub activity monitor with smart digest notifications. Available on iOS & Android.",
-        "category": "Dev Tools",
-        "role": "Solo Build",
-        "year": "2021 – Now",
-        "badgeLabel": "500+ daily users",
-        "tags": ["Node.js", "React Native", "GitHub API"]
-      },
-      {
-        "title": "Codebase AI",
-        "description": "AI code review assistant integrated into CI pipelines. Cuts PR review time significantly.",
-        "category": "AI / DevTools",
-        "role": "Co-creator",
-        "year": "2023",
-        "badgeLabel": "40% faster code reviews",
-        "tags": ["Python", "OpenAI", "CI/CD"]
-      }
-    ]
+    "viewAll": "View All Projects"
   },
   "recommendations": {
     "sectionNumber": "04.",

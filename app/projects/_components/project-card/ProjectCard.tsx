@@ -9,6 +9,7 @@ import { AppStoreLogo } from "../../../../assets/logos/AppStoreLogo";
 import { GooglePlayLogo } from "../../../../assets/logos/GooglePlayLogo";
 import { Tag } from "../../../_components/tag/Tag";
 import type { ProjectData, ProjectPageLink } from "../projects-data";
+import { getProjectTitle } from "../../../_data/projects-data";
 import styles from "./ProjectCard.module.css";
 
 type ProjectCardProps = {
@@ -44,7 +45,7 @@ export function ProjectCard({ project, expanded, onToggleExpand, animationDelay 
                 <span className="text-white/25 text-xs font-mono">{project.year}</span>
               )}
             </div>
-            <h2 className="font-heading font-black text-xl text-white leading-tight">{project.title}</h2>
+            <h2 className="font-heading font-black text-xl text-white leading-tight">{getProjectTitle(project)}</h2>
           </div>
 
           {/* Meta column */}

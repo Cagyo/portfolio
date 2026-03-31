@@ -9,7 +9,7 @@ import { FilterPanelMobile } from "./filter/FilterPanelMobile";
 import { FilterSidebar } from "./filter/FilterSidebar";
 import { ProjectCard } from "./project-card/ProjectCard";
 import { ProjectsNav } from "./ProjectsNav";
-import { FILTER_GROUPS, PROJECTS } from "./projects-data";
+import { FILTER_GROUPS, PROJECTS, getProjectTitle } from "./projects-data";
 
 export function ProjectsPage() {
   const t = useTranslations("projectsPage");
@@ -37,7 +37,7 @@ export function ProjectsPage() {
     return PROJECTS.filter((project) => {
       if (search) {
         const query = search.toLowerCase();
-        const haystack = [project.title, project.description, project.company, project.industry, ...project.stack, ...project.duties]
+        const haystack = [getProjectTitle(project), project.description, project.company, project.industry, ...project.stack, ...project.duties]
           .join(" ")
           .toLowerCase();
         if (!haystack.includes(query)) return false;

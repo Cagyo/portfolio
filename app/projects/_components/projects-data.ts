@@ -1,31 +1,7 @@
-import projectsJson from "./projects-data.json"
+export type { ProjectData, ProjectPageLink } from "../../_data/projects-data"
+export { PROJECTS, getProjectTitle } from "../../_data/projects-data"
 
-export type ProjectPageLink =
-  | { type: "web"; url: string }
-  | { type: "web+mobile"; url: string; appStore: string; playStore: string }
-  | { type: "mobile"; appStore: string; playStore: string }
-  | { type: "private" }
-
-export type ProjectData = {
-  id: number
-  title: string
-  company: string
-  industry: string
-  productType: string
-  devTypes: string[]
-  role: string
-  skills: string
-  teamLabel: string
-  teamDetail: string
-  scale: string
-  description: string
-  achievements: string[]
-  duties: string[]
-  stack: string[]
-  stackFilters: string[]
-  year: string
-  link: ProjectPageLink
-}
+import type { ProjectData } from "../../_data/projects-data"
 
 export type FilterGroupConfig = {
   key: string
@@ -33,8 +9,6 @@ export type FilterGroupConfig = {
   options: string[]
   match: (project: ProjectData, values: string[]) => boolean
 }
-
-export const PROJECTS: ProjectData[] = projectsJson as ProjectData[]
 
 export const FILTER_GROUPS: FilterGroupConfig[] = [
   {
