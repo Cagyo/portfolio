@@ -1,0 +1,342 @@
+.recorder {
+  border-radius: 1rem;
+  background: color-mix(in srgb, var(--color-amber-400) 4%, transparent);
+  border: 1px solid color-mix(in srgb, var(--color-amber-400) 18%, transparent);
+  padding: 1.25rem 1.25rem;
+  min-height: 180px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+/* ── Idle (no recordings) ── */
+.idleState {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  width: 100%;
+  text-align: center;
+  padding: 0.5rem 0;
+}
+
+.hint {
+  font-size: 0.8125rem;
+  color: oklch(from white l c h / 0.45);
+  max-width: 28ch;
+  line-height: 1.6;
+}
+
+.recordBtn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 4rem;
+  height: 4rem;
+  border-radius: 9999px;
+  background: color-mix(in srgb, var(--color-amber-400) 15%, transparent);
+  border: 1.5px solid color-mix(in srgb, var(--color-amber-400) 45%, transparent);
+  color: var(--color-amber-400);
+  cursor: pointer;
+  transition: background 200ms ease, transform 150ms ease;
+}
+
+.recordBtn:hover {
+  background: color-mix(in srgb, var(--color-amber-400) 22%, transparent);
+  transform: scale(1.06);
+}
+
+.recordBtn:focus-visible {
+  outline: 2px solid var(--color-amber-400);
+  outline-offset: 3px;
+}
+
+.recordBtnRing {
+  position: absolute;
+  inset: -6px;
+  border-radius: 9999px;
+  border: 1.5px solid color-mix(in srgb, var(--color-amber-400) 25%, transparent);
+  animation: ringPulse 2.4s ease-in-out infinite;
+}
+
+@keyframes ringPulse {
+  0%, 100% { opacity: 0.6; transform: scale(1); }
+  50% { opacity: 0; transform: scale(1.18); }
+}
+
+.idleLabel {
+  font-size: 0.75rem;
+  color: oklch(from white l c h / 0.35);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+/* ── Recordings list ── */
+.recordingList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.recordingItem {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 0.625rem 0.75rem;
+  border-radius: 0.625rem;
+  background: color-mix(in srgb, white 4%, transparent);
+  border: 1px solid color-mix(in srgb, white 8%, transparent);
+  animation: itemSlideIn 220ms ease-out both;
+}
+
+@keyframes itemSlideIn {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.itemHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.itemLabel {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--color-amber-400);
+  letter-spacing: 0.02em;
+}
+
+.itemActions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+
+.itemTime {
+  font-size: 0.75rem;
+  font-variant-numeric: tabular-nums;
+  color: oklch(from white l c h / 0.4);
+}
+
+.itemPlayRow {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+}
+
+/* ── Shared: play / delete buttons ── */
+.playBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* 44×44 touch target */
+  min-width: 2.75rem;
+  min-height: 2.75rem;
+  border-radius: 9999px;
+  background: color-mix(in srgb, var(--color-amber-400) 18%, transparent);
+  border: 1.5px solid color-mix(in srgb, var(--color-amber-400) 40%, transparent);
+  color: var(--color-amber-400);
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background 200ms ease;
+}
+
+.playBtn:hover {
+  background: color-mix(in srgb, var(--color-amber-400) 28%, transparent);
+}
+
+.playBtn:focus-visible {
+  outline: 2px solid var(--color-amber-400);
+  outline-offset: 3px;
+}
+
+.deleteBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* 44×44 touch target */
+  min-width: 2rem;
+  min-height: 2rem;
+  border-radius: 9999px;
+  background: transparent;
+  border: 1px solid color-mix(in srgb, white 12%, transparent);
+  color: oklch(from white l c h / 0.35);
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: color 200ms ease, border-color 200ms ease, background 200ms ease;
+}
+
+.deleteBtn:hover {
+  color: #fca5a5;
+  border-color: color-mix(in srgb, #f87171 40%, transparent);
+  background: color-mix(in srgb, #f87171 10%, transparent);
+}
+
+.deleteBtn:focus-visible {
+  outline: 2px solid #f87171;
+  outline-offset: 3px;
+}
+
+/* ── Progress bar ── */
+.progressBar {
+  flex: 1;
+  height: 3px;
+  border-radius: 9999px;
+  background: color-mix(in srgb, var(--color-amber-400) 18%, transparent);
+  overflow: hidden;
+}
+
+.progressFill {
+  height: 100%;
+  background: var(--color-amber-400);
+  border-radius: 9999px;
+  transition: width 200ms linear;
+}
+
+/* ── Active recording bar ── */
+.recordingState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.875rem 0.75rem;
+  border-radius: 0.625rem;
+  background: color-mix(in srgb, #f87171 6%, transparent);
+  border: 1px dashed color-mix(in srgb, #f87171 30%, transparent);
+  animation: itemSlideIn 200ms ease-out both;
+}
+
+.recordingHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+}
+
+.recordingDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 9999px;
+  background: #f87171;
+  animation: blink 1s step-start infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.recordingLabel {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: oklch(from white l c h / 0.75);
+}
+
+.timer {
+  font-size: 0.8125rem;
+  font-variant-numeric: tabular-nums;
+  color: var(--color-amber-400);
+  font-weight: 500;
+}
+
+.waveform {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  height: 32px;
+}
+
+.waveBar {
+  display: block;
+  width: 3px;
+  background: color-mix(in srgb, var(--color-amber-400) 70%, transparent);
+  border-radius: 2px;
+  animation: waveAnim 0.6s ease-in-out infinite alternate;
+}
+
+@keyframes waveAnim {
+  from { height: 4px; }
+  to { height: 26px; }
+}
+
+.stopBtn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1.25rem;
+  border-radius: 9999px;
+  background: color-mix(in srgb, #f87171 18%, transparent);
+  border: 1px solid color-mix(in srgb, #f87171 35%, transparent);
+  color: #fca5a5;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 200ms ease;
+}
+
+.stopBtn:hover {
+  background: color-mix(in srgb, #f87171 28%, transparent);
+}
+
+.stopBtn:focus-visible {
+  outline: 2px solid #f87171;
+  outline-offset: 3px;
+}
+
+/* ── Add another button ── */
+.addAnotherBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border-radius: 0.625rem;
+  background: transparent;
+  border: 1.5px dashed color-mix(in srgb, var(--color-amber-400) 28%, transparent);
+  color: oklch(from white l c h / 0.45);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: color 200ms ease, border-color 200ms ease, background 200ms ease;
+}
+
+.addAnotherBtn:hover {
+  color: var(--color-amber-400);
+  border-color: color-mix(in srgb, var(--color-amber-400) 55%, transparent);
+  background: color-mix(in srgb, var(--color-amber-400) 6%, transparent);
+}
+
+.addAnotherBtn:focus-visible {
+  outline: 2px solid var(--color-amber-400);
+  outline-offset: 3px;
+}
+
+/* ── Max reached ── */
+.maxReachedLabel {
+  font-size: 0.75rem;
+  color: oklch(from white l c h / 0.35);
+  text-align: center;
+  padding: 0.25rem 0;
+}
+
+/* ── Error ── */
+.errorMsg {
+  font-size: 0.8125rem;
+  color: #fca5a5;
+  text-align: center;
+}
+
+/* ── Reduced motion ── */
+@media (prefers-reduced-motion: reduce) {
+  .waveBar           { animation: none; height: 14px; }
+  .recordBtnRing     { animation: none; }
+  .recordingDot      { animation: none; }
+  .recordingItem,
+  .recordingState    { animation: none; }
+}

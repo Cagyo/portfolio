@@ -284,6 +284,11 @@
       "namePlaceholder": "John Doe",
       "emailLabel": "Email",
       "emailPlaceholder": "oleksii.berliziev@gmail.com",
+      "modeTabs": {
+        "groupLabel": "Message input mode",
+        "typeLabel": "Type a message",
+        "voiceLabel": "Voice message"
+      },
       "subjectLabel": "Subject",
       "subjectPlaceholder": "Project Inquiry",
       "budgetLabel": "Budget Range",
@@ -298,7 +303,22 @@
       "messagePlaceholder": "Tell me about your project...",
       "submit": "Send Message",
       "sending": "Sending…",
-      "successMessage": "Message sent! I'll get back to you within 24 hours."
+      "successMessage": "Message sent! I'll get back to you within 24 hours.",
+      "voice": {
+        "hint": "Describe your project, timeline, and budget in your own words.",
+        "readyLabel": "Tap to record",
+        "recordingLabel": "Recording",
+        "recordingNLabel": "Recording {n}",
+        "recordBtn": "Start recording",
+        "stopBtn": "Stop",
+        "playBtn": "Play recording",
+        "pauseBtn": "Pause recording",
+        "deleteBtn": "Delete recording",
+        "addAnotherBtn": "Add another recording",
+        "maxReachedLabel": "Maximum {max} recordings reached",
+        "submitLabel": "Send Recording",
+        "micPermissionError": "Microphone access is required. Please allow it in your browser settings."
+      }
     }
   },
   "mentorship": {
