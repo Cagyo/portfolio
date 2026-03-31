@@ -67,9 +67,19 @@ export function ExperienceCard({
           {/* Company header */}
           <div className="flex items-start gap-3">
             <div className="flex-shrink-0 mt-0.5">{logoNode}</div>
-            <div>
-              <p className="font-heading font-bold text-white">{company}</p>
-              <p className="text-white/30 text-xs mt-0.5">{period}</p>
+            <div className="flex-1 flex items-start justify-between gap-2">
+              <div>
+                <p className="font-heading font-bold text-white">{company}</p>
+                <p className="text-white/30 text-xs mt-0.5">{period}</p>
+              </div>
+              {projectsHref && (
+                <Link
+                  href={projectsHref}
+                  className="text-amber-500/60 text-xs whitespace-nowrap hover:text-amber-400 transition-colors flex-shrink-0 mt-0.5"
+                >
+                  View projects →
+                </Link>
+              )}
             </div>
           </div>
 
@@ -105,20 +115,10 @@ export function ExperienceCard({
           </div>
         </>
 
-        <div className="flex items-center justify-between gap-2 mt-3">
-          <div className="flex flex-wrap gap-1.5">
-            {tags.map((tag) => (
-              <Tag key={tag}>{tag}</Tag>
-            ))}
-          </div>
-          {projectsHref && (
-            <Link
-              href={projectsHref}
-              className="text-amber-500/60 text-xs whitespace-nowrap hover:text-amber-400 transition-colors flex-shrink-0"
-            >
-              View projects →
-            </Link>
-          )}
+        <div className="flex flex-wrap gap-1.5 mt-3">
+          {tags.map((tag) => (
+            <Tag key={tag}>{tag}</Tag>
+          ))}
         </div>
       </div>
     </div>
