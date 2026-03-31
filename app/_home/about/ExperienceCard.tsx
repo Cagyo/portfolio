@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import { Tag } from "../../_components/tag/Tag";
 import styles from "./ExperienceCard.module.css";
@@ -18,11 +18,7 @@ type ExperienceCardProps = {
   logo?: React.ReactNode
   accentOpacity?: string
   projectsHref?: string
-  // Single-position fields
-  title?: string
-  description?: string
-  // Multi-position fields
-  positions?: ExperiencePosition[]
+  positions: ExperiencePosition[]
 }
 
 function getInitials(name: string): string {
@@ -40,21 +36,17 @@ export function ExperienceCard({
   logo,
   accentOpacity = "1",
   projectsHref,
-  title,
-  description,
   positions,
 }: ExperienceCardProps) {
-  const [expanded, setExpanded] = useState(false);
-  const [isClamped, setIsClamped] = useState(false);
-  const descRef = useRef<HTMLParagraphElement>(null);
+  const [expandedSet, setExpandedSet] = useState<Set<number>>(new Set());
 
-  const isMultiPosition = Array.isArray(positions) && positions.length > 1;
-
-  useEffect(() => {
-    if (!isMultiPosition && descRef.current) {
-      setIsClamped(descRef.current.scrollHeight > descRef.current.clientHeight);
-    }
-  }, [description, isMultiPosition]);
+  function togglePosition(index: number) {
+    setExpandedSet((prev) => {
+      const next = new Set(prev);
+      next.has(index) ? next.delete(index) : next.add(index);
+      return next;
+    });
+  }
 
   const logoNode = logo ?? (
     <div className="glass w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0">
@@ -71,85 +63,47 @@ export function ExperienceCard({
         style={{ opacity: accentOpacity }}
       />
       <div className="pl-4">
-        {isMultiPosition ? (
-          <>
-            {/* Company header */}
-            <div className="flex items-start gap-3">
-              <div className="flex-shrink-0 mt-0.5">{logoNode}</div>
-              <div>
-                <p className="font-heading font-bold text-white">{company}</p>
-                <p className="text-white/30 text-xs mt-0.5">{period}</p>
-              </div>
+        <>
+          {/* Company header */}
+          <div className="flex items-start gap-3">
+            <div className="flex-shrink-0 mt-0.5">{logoNode}</div>
+            <div>
+              <p className="font-heading font-bold text-white">{company}</p>
+              <p className="text-white/30 text-xs mt-0.5">{period}</p>
             </div>
+          </div>
 
-            {/* Positions timeline */}
-            <div className="mt-4">
-              {positions!.map((pos, posIndex) => (
+          {/* Positions timeline */}
+          <div className="mt-4">
+            {positions.map((pos, posIndex) => {
+              const isExpanded = expandedSet.has(posIndex);
+              return (
                 <div key={posIndex} className={styles.positionItem}>
                   <div className={styles.track}>
                     <div className={styles.dot} />
-                    {posIndex < positions!.length - 1 && <div className={styles.connector} />}
+                    {posIndex < positions.length - 1 && <div className={styles.connector} />}
                   </div>
-                  <div className={posIndex < positions!.length - 1 ? "pb-4" : ""}>
+                  <div className={posIndex < positions.length - 1 ? "pb-4" : ""}>
                     <div className="flex items-baseline justify-between gap-3">
                       <p className="text-white/90 font-medium text-sm">{pos.title}</p>
                       <span className="text-white/30 text-xs whitespace-nowrap">{pos.period}</span>
                     </div>
-                    <p className={`text-white/50 text-sm mt-1 leading-relaxed ${expanded ? "" : "line-clamp-2"}`}>
+                    <p className={`text-white/50 text-sm mt-1 leading-relaxed ${isExpanded ? "" : "line-clamp-2"}`}>
                       {pos.description}
                     </p>
+                    <button
+                      type="button"
+                      onClick={() => togglePosition(posIndex)}
+                      className="text-amber-500/70 text-xs mt-1 hover:text-amber-400 transition-colors cursor-pointer"
+                    >
+                      {isExpanded ? "Show less" : "Show more"}
+                    </button>
                   </div>
                 </div>
-              ))}
-            </div>
-
-            <button
-              type="button"
-              onClick={() => setExpanded((prev) => !prev)}
-              className="text-amber-500/70 text-xs mt-1 hover:text-amber-400 transition-colors cursor-pointer"
-            >
-              {expanded ? "Show less" : "Show more"}
-            </button>
-          </>
-        ) : (
-          <>
-            <div className="flex items-start justify-between gap-3">
-              <div className="flex items-start gap-3 min-w-0">
-                <div className="flex-shrink-0 mt-0.5">{logoNode}</div>
-                <div>
-                  <p className="font-heading font-bold text-white">{title}</p>
-                  <p className="text-amber-400/80 text-sm font-medium mt-0.5">{company}</p>
-                </div>
-              </div>
-              <span className="text-white/30 text-xs whitespace-nowrap mt-1">{period}</span>
-            </div>
-
-            <p
-              ref={descRef}
-              className={`text-white/50 text-sm mt-3 leading-relaxed transition-all duration-300 ${expanded ? "" : "line-clamp-2"}`}
-            >
-              {description}
-            </p>
-            {isClamped && !expanded && (
-              <button
-                type="button"
-                onClick={() => setExpanded(true)}
-                className="text-amber-500/70 text-xs mt-1 hover:text-amber-400 transition-colors cursor-pointer"
-              >
-                Show more
-              </button>
-            )}
-            {expanded && (
-              <button
-                type="button"
-                onClick={() => setExpanded(false)}
-                className="text-amber-500/70 text-xs mt-1 hover:text-amber-400 transition-colors cursor-pointer"
-              >
-                Show less
-              </button>
-            )}
-          </>
-        )}
+              );
+            })}
+          </div>
+        </>
 
         <div className="flex items-center justify-between gap-2 mt-3">
           <div className="flex flex-wrap gap-1.5">

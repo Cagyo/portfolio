@@ -58,9 +58,7 @@ export async function AboutSection() {
                 company: string
                 period: string
                 tags: string[]
-                title?: string
-                description?: string
-                positions?: { title: string; period: string; description: string }[]
+                positions: { title: string; period: string; description: string }[]
               }[];
               return (
                 <ExperienceList total={items.length}>
@@ -70,8 +68,6 @@ export async function AboutSection() {
                       company={exp.company}
                       period={exp.period}
                       tags={exp.tags}
-                      title={exp.title}
-                      description={exp.description}
                       positions={exp.positions}
                       logo={COMPANY_LOGOS[exp.company]}
                       accentOpacity={["1", "0.7", "0.45", "0.25"][i]}

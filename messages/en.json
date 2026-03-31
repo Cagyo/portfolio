@@ -47,11 +47,16 @@
     },
     "experience": [
       {
-        "title": "Senior Full-Stack Engineer / Tech Lead",
         "company": "All Square",
         "period": "Dec 2022 – Jan 2026",
-        "description": "Led architecture and full-stack development of web (Next.js), mobile (React Native), and backend (Node.js, NestJS) products in a high-load environment. Managed deployment infrastructure, CI/CD pipelines, and code reviews as tech lead.",
-        "tags": ["Next.js", "React Native", "Node.js", "NestJS", "TypeScript", "CI/CD"]
+        "tags": ["Next.js", "React Native", "Node.js", "NestJS", "TypeScript", "CI/CD"],
+        "positions": [
+          {
+            "title": "Senior Full-Stack Engineer / Tech Lead",
+            "period": "Dec 2022 – Jan 2026",
+            "description": "Led architecture and full-stack development of web (Next.js), mobile (React Native), and backend (Node.js, NestJS) products in a high-load environment. Managed deployment infrastructure, CI/CD pipelines, and code reviews as tech lead."
+          }
+        ]
       },
       {
         "company": "Avocado Technology",
@@ -71,18 +76,28 @@
         ]
       },
       {
-        "title": "Front-End Developer",
         "company": "EngagePoint, Inc.",
         "period": "Sep 2015 – Jul 2017",
-        "description": "Built SPAs with React, Angular, and TypeScript. Created data visualizations using D3/SVG. Developed accessible markup, unit tests (Karma, Jest), and a Chrome extension. Participated in SCRUM, code reviews, and mentored junior teammates.",
-        "tags": ["React", "Angular", "TypeScript", "D3.js", "JavaScript"]
+        "tags": ["React", "Angular", "TypeScript", "D3.js", "JavaScript"],
+        "positions": [
+          {
+            "title": "Front-End Developer",
+            "period": "Sep 2015 – Jul 2017",
+            "description": "Built SPAs with React, Angular, and TypeScript. Created data visualizations using D3/SVG. Developed accessible markup, unit tests (Karma, Jest), and a Chrome extension. Participated in SCRUM, code reviews, and mentored junior teammates."
+          }
+        ]
       },
       {
-        "title": "Junior JavaScript Developer",
         "company": "Geonix Company",
         "period": "Apr 2015 – Sep 2015",
-        "description": "Developed geo-information web portals using ArcGIS Server services, JavaScript, Dojo, Bootstrap, and jQuery.",
-        "tags": ["JavaScript", "ArcGIS", "Dojo", "jQuery"]
+        "tags": ["JavaScript", "ArcGIS", "Dojo", "jQuery"],
+        "positions": [
+          {
+            "title": "Junior JavaScript Developer",
+            "period": "Apr 2015 – Sep 2015",
+            "description": "Developed geo-information web portals using ArcGIS Server services, JavaScript, Dojo, Bootstrap, and jQuery."
+          }
+        ]
       }
     ]
   },
