@@ -6,7 +6,7 @@ type ProjectCardProps = {
   title: string
   description: string
   meta: { category: string; role: string; year: string }
-  badge: { iconPath: string; label: string }
+  badge: { icon: React.ReactNode; label: string }
   tags: string[]
   imageBg: string
   imageContent: React.ReactNode
@@ -44,9 +44,7 @@ export function ProjectCard({
         <h3 className={`font-heading font-bold ${titleSize} text-white mb-2`}>{title}</h3>
         <p className="text-white/50 text-sm leading-relaxed mb-4">{description}</p>
         <div className="inline-flex items-center gap-1.5 glass-amber rounded-lg px-3 py-1.5 mb-4">
-          <svg className="w-3.5 h-3.5 text-amber-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={badge.iconPath} />
-          </svg>
+          {badge.icon}
           <span className="text-amber-400 text-xs font-bold">{badge.label}</span>
         </div>
         <div className="flex flex-wrap gap-2">
