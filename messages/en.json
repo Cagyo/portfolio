@@ -31,9 +31,9 @@
   "about": {
     "sectionNumber": "01.",
     "sectionTitle": "About Me",
-    "bio1": "I'm a passionate full-stack developer with <highlight>5+ years of experience</highlight> building scalable web applications. I specialize in React, Node.js, and cloud infrastructure — creating products that users love.",
-    "bio2": "My approach combines clean code with thoughtful UX. I believe great software isn't just functional — it should feel intuitive and delightful. From startups to enterprise, I've helped teams ship products that make an impact.",
-    "bio3": "When I'm not coding, you'll find me exploring open-source projects, writing technical articles, or mentoring junior developers in the community.",
+    "bio1": "I've spent the last <highlight>10+ years</highlight> building things end-to-end — and I mean that literally. Mobile, backend, frontend, and infrastructure — I like them all. I don't hand off when my \"part\" is done; I care about the whole system working — and about keeping it simple enough that someone can understand, maintain, and debug it when that person is no longer you.",
+    "bio2": "Most of my career has involved switching between two modes: being the sole engineer with full ownership, and being the person others looked to for architectural direction within a team. Both shaped how I think. Working solo teaches you to make decisions fast and own the consequences. Working with teams teaches you when to lead, when to listen, and when the right answer isn't your answer. I've learned to value both — and to show up the same way in either.",
+    "bio3": "My stack is TypeScript through and through — React Native, NestJS, Next.js, GraphQL. The stack matters less to me than the quality of the product. I've shipped products used by thousands of people — and I know what dancing on the edge of the abyss feels like.\r\n\r\nI want to understand the product, influence the direction, and build something I'd actually want to use.",
     "experienceHeading": "Experience",
     "infoGrid": {
       "locationLabel": "Location",

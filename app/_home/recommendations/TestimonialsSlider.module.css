@@ -1,0 +1,25 @@
+.cardTransition {
+  animation: sliderFadeIn 0.25s ease forwards;
+}
+
+@keyframes sliderFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.arrowBtn {
+  /* Arrow buttons extend slightly outside the card — give the wrapper overflow-visible */
+}
+
+/* On small screens, hide arrows and use dots only */
+@media (max-width: 767px) {
+  .arrowBtn {
+    display: none;
+  }
+}

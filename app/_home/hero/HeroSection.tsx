@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { getTranslations } from "next-intl/server";
 import styles from "./HeroSection.module.css";
 import { ArrowRightIcon } from "../../../assets/icons/ArrowRightIcon";
@@ -7,14 +8,22 @@ import { Button } from "../../_components/button/Button";
 import { PulseBadge } from "../../_components/PulseBadge";
 import { ScrollIndicator } from "../../_components/ScrollIndicator";
 import { StatRow } from "../../_components/StatRow";
-import { OrbitRings } from "./OrbitRings";
-import { ProfileCard } from "./ProfileCard";
+import { PhotoCard } from "./PhotoCard";
 import { Typewriter } from "./Typewriter";
 
 export async function HeroSection() {
-  const t = await getTranslations("hero");
+  const [t, tRecs] = await Promise.all([
+    getTranslations("hero"),
+    getTranslations("recommendations"),
+  ]);
   const stats = t.raw("stats") as { value: string; label: string }[];
   const typewriterRoles = t.raw("typewriterRoles") as string[];
+  const recItems = tRecs.raw("items") as {
+    quote: string;
+    authorName: string;
+    authorRole: string;
+  }[];
+  const firstRec = recItems[0];
 
   return (
     <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden pt-24 pb-24">
@@ -31,20 +40,14 @@ export async function HeroSection() {
           <div
             className={`block sm:hidden w-full rounded-2xl relative overflow-hidden ${styles.profileFrame}`}
           >
-            <svg className="absolute inset-0 w-full h-full" viewBox="0 0 300 375" fill="none" preserveAspectRatio="xMidYMid slice">
-              <rect width="300" height="375" fill="url(#mobileFullGrad)" />
-              <defs>
-                <linearGradient id="mobileFullGrad" x1="0" y1="0" x2="300" y2="375" gradientUnits="userSpaceOnUse">
-                  <stop offset="0%" stopColor="#1e293b" />
-                  <stop offset="100%" stopColor="#0f172a" />
-                </linearGradient>
-              </defs>
-              <circle cx="150" cy="120" r="55" fill="#334155" />
-              <ellipse cx="150" cy="310" rx="90" ry="70" fill="#334155" />
-            </svg>
-            <div className="absolute bottom-0 left-0 right-0 bg-black/50 text-white/40 text-xs py-2 text-center font-medium tracking-wide">
-              {t("photoAlt")}
-            </div>
+            <Image
+              src="/assets/photo/main_photo.jpg"
+              alt={t("photoAlt")}
+              fill
+              className="object-cover object-[50%_20%]"
+              sizes="100vw"
+              priority
+            />
           </div>
 
           {/* <PulseBadge>{t("badge")}</PulseBadge> */}
@@ -66,20 +69,14 @@ export async function HeroSection() {
               <div
                 className={`w-32 h-32 rounded-2xl relative overflow-hidden border border-amber-500/30 ${styles.cardGlow}`}
               >
-                <svg className="absolute inset-0 w-full h-full" viewBox="0 0 128 128" fill="none">
-                  <rect width="128" height="128" fill="url(#mobilePhotoGrad)" />
-                  <defs>
-                    <linearGradient id="mobilePhotoGrad" x1="0" y1="0" x2="128" y2="128" gradientUnits="userSpaceOnUse">
-                      <stop offset="0%" stopColor="#1e293b" />
-                      <stop offset="100%" stopColor="#0f172a" />
-                    </linearGradient>
-                  </defs>
-                  <circle cx="64" cy="44" r="21" fill="#334155" />
-                  <ellipse cx="64" cy="104" rx="32" ry="24" fill="#334155" />
-                </svg>
-                <div className="absolute bottom-0 left-0 right-0 bg-black/50 text-white/40 text-[9px] py-0.5 text-center font-medium tracking-wide">
-                  {t("photoAlt")}
-                </div>
+                <Image
+                  src="/assets/photo/main_photo.jpg"
+                  alt={t("photoAlt")}
+                  fill
+                  className="object-cover object-[50%_20%]"
+                  sizes="128px"
+                  priority
+                />
               </div>
             </div>
           </div>
@@ -102,10 +99,12 @@ export async function HeroSection() {
           <StatRow stats={stats} />
         </div>
 
-        {/* Visual — floating card */}
+        {/* Visual — photo card */}
         <div className="relative hidden lg:flex items-center justify-center">
-          {/* <OrbitRings />
-          <ProfileCard /> */}
+          <PhotoCard
+            availableLabel={t("badge")}
+            testimonial={firstRec}
+          />
         </div>
       </div>
 
