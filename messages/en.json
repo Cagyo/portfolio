@@ -154,16 +154,12 @@
     "viewOnLinkedIn": "View on LinkedIn",
     "items": [
       {
-        "quote": "Working with Oleksii was a game-changer for our product. He didn't just write code — he thought about the business, challenged our assumptions, and delivered something we're genuinely proud of. Rare to find someone who can do architecture, mobile, and backend all at a senior level.",
-        "authorName": "James Donovan",
-        "authorRole": "CTO · Allsquare Golf",
-        "authorInitials": "JD"
-      },
-      {
-        "quote": "Oleksii took ownership of our mobile app from day one. He set up the architecture, handled code reviews, kept the team aligned, and shipped on time. Beyond technical skill, he communicates clearly and keeps the bigger picture in mind. Exactly what you need in a tech lead.",
-        "authorName": "Sarah Kim",
-        "authorRole": "Product Manager · Avocado Technologies",
-        "authorInitials": "SK"
+        "quote": "I can definitely recommend Oleksii as a results-oriented, experienced software developer/lead who consistently seeks optimal solutions and takes ownership at the project/company levels.",
+        "authorName": "Andrii Grygorenko",
+        "authorRole": "Senior Project manager · Allsquare Golf",
+        "authorInitials": "AG",
+        "authorPhoto": "/recommendations/andrii-grygorenko.jpg",
+        "linkedinUrl": "https://www.linkedin.com/in/oleksii-berliziev/"
       }
     ]
   },
@@ -224,7 +220,7 @@
     "emailLabel": "Email",
     "emailValue": "oleksii.berliziev@gmail.com",
     "locationLabel": "Location",
-    "locationValue": "San Francisco, CA (Remote OK)",
+    "locationValue": "Kyiv, Ukraine",
     "responseTimeLabel": "Response Time",
     "responseTimeValue": "Within 24 hours",
     "availabilityTitle": "Open to opportunities",

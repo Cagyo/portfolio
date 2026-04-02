@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { ExternalLinkIcon } from "../../../assets/icons/ExternalLinkIcon";
 import { QuoteMarkIcon } from "../../../assets/icons/QuoteMarkIcon";
 import { LinkedInLogo } from "../../../assets/logos/LinkedInLogo";
@@ -10,6 +11,7 @@ type TestimonialCardProps = {
     initials: string
     gradientClass: string
     initialsColor?: string
+    photoUrl?: string
   }
   linkedinUrl?: string
   delay?: string
@@ -27,9 +29,21 @@ export function TestimonialCard({ quote, author, linkedinUrl, delay, viewOnLinke
       <div className="h-px bg-white/6" />
       <div className="flex items-center justify-between gap-4">
         <div className="flex items-center gap-3">
-          <div className={`w-10 h-10 rounded-xl ${author.gradientClass} flex items-center justify-center font-heading font-black text-sm flex-shrink-0`}>
-            <span className={author.initialsColor ?? "text-black"}>{author.initials}</span>
-          </div>
+          {author.photoUrl ? (
+            <div className="w-10 h-10 rounded-xl overflow-hidden flex-shrink-0">
+              <Image
+                src={author.photoUrl}
+                alt={author.name}
+                width={40}
+                height={40}
+                className="w-full h-full object-cover"
+              />
+            </div>
+          ) : (
+            <div className={`w-10 h-10 rounded-xl ${author.gradientClass} flex items-center justify-center font-heading font-black text-sm flex-shrink-0`}>
+              <span className={author.initialsColor ?? "text-black"}>{author.initials}</span>
+            </div>
+          )}
           <div>
             <p className="text-white font-semibold text-sm">{author.name}</p>
             <p className="text-white/40 text-xs">{author.role}</p>

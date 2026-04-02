@@ -16,6 +16,8 @@ export async function RecommendationsSection() {
     authorName: string;
     authorRole: string;
     authorInitials: string;
+    authorPhoto?: string;
+    linkedinUrl?: string;
   }[];
 
   return (
@@ -36,8 +38,9 @@ export async function RecommendationsSection() {
                 initials: item.authorInitials,
                 gradientClass: GRADIENT_CLASSES[i],
                 initialsColor: INITIALS_COLORS[i],
+                photoUrl: item.authorPhoto,
               }}
-              linkedinUrl="#"
+              linkedinUrl={item.linkedinUrl ?? "#"}
               delay={i > 0 ? `${i * 0.1}s` : undefined}
               viewOnLinkedInLabel={t("viewOnLinkedIn")}
             />
