@@ -152,9 +152,12 @@
     "sectionNumber": "04.",
     "sectionTitle": "What people say",
     "viewOnLinkedIn": "View on LinkedIn",
+    "readMore": "Read more",
+    "readLess": "Read less",
     "items": [
       {
-        "quote": "I can definitely recommend Oleksii as a results-oriented, experienced software developer/lead who consistently seeks optimal solutions and takes ownership at the project/company levels.",
+        "quotePreview": "TLDR: Oleksii owns and delivers. Under pressure, at scale, and in the unknown. Vast experience in Mobile, Web, and Backend within FinTech & SaaS.\n\nI've worked with Oleksii for eight years across multiple products and industries, where",
+        "quoteRest": " he was performing different types of work - rapidly prototyping, designing scalable architectures for multi-layered systems, leading dev teams, and setting up the best tools and dev practices.\n\nIf he is on the project, he monitors all the problems, even if they are outside of his zone. He sees them coming, communicates with them, and takes care of them or guides the responsible person. You never had to explain the task twice - he absorbed it, asked sharp questions, and moved on.\n\nWithin our company, he grew from a pure dev role to a lead role. This growth was fueled by his initiatives, continuous personal development, knowledge gathering, and a commitment to establishing a quality-oriented development culture.\n\nI can definitely recommend Oleksii as a results-oriented, experienced software developer/lead who consistently seeks optimal solutions and takes ownership at the project/company levels.",
         "authorName": "Andrii Grygorenko",
         "authorRole": "Senior Project manager · Allsquare Golf",
         "authorInitials": "AG",

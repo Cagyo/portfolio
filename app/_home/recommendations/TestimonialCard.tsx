@@ -1,31 +1,77 @@
+"use client";
+
+import { useState } from "react";
 import Image from "next/image";
 import { ExternalLinkIcon } from "../../../assets/icons/ExternalLinkIcon";
 import { QuoteMarkIcon } from "../../../assets/icons/QuoteMarkIcon";
 import { LinkedInLogo } from "../../../assets/logos/LinkedInLogo";
 
 type TestimonialCardProps = {
-  quote: string
+  quotePreview: string;
+  quoteRest?: string;
+  readMoreLabel?: string;
+  readLessLabel?: string;
   author: {
-    name: string
-    role: string
-    initials: string
-    gradientClass: string
-    initialsColor?: string
-    photoUrl?: string
-  }
-  linkedinUrl?: string
-  delay?: string
-  viewOnLinkedInLabel: string
-}
+    name: string;
+    role: string;
+    initials: string;
+    gradientClass: string;
+    initialsColor?: string;
+    photoUrl?: string;
+  };
+  linkedinUrl?: string;
+  delay?: string;
+  viewOnLinkedInLabel: string;
+};
 
-export function TestimonialCard({ quote, author, linkedinUrl, delay, viewOnLinkedInLabel }: TestimonialCardProps) {
+export function TestimonialCard({ quotePreview, quoteRest, readMoreLabel, readLessLabel, author, linkedinUrl, delay, viewOnLinkedInLabel }: TestimonialCardProps) {
+  const [expanded, setExpanded] = useState(false);
+  const hasMore = !!quoteRest;
+
+  const previewParagraphs = quotePreview.split("\n\n");
+  const fullParagraphs = hasMore ? (quotePreview + quoteRest).split("\n\n") : previewParagraphs;
+  const paragraphs = expanded ? fullParagraphs : previewParagraphs;
+
   return (
     <div
       className="reveal glass rounded-2xl p-7 flex flex-col gap-6 hover:border-amber-500/20 transition-colors duration-300 cursor-default"
       style={delay ? { transitionDelay: delay } : undefined}
     >
       <QuoteMarkIcon className="w-8 h-8 text-amber-500/30 flex-shrink-0" />
-      <p className="text-white/70 text-base leading-relaxed flex-1 italic">&ldquo;{quote}&rdquo;</p>
+      <div className="text-white/70 text-base leading-relaxed flex-1 italic flex flex-col gap-3">
+        {paragraphs.map((paragraph, index) => {
+          const isFirst = index === 0;
+          const isLast = index === paragraphs.length - 1;
+
+          if (!expanded && hasMore && isLast) {
+            return (
+              <p key={index}>
+                {isFirst && "\u201C"}{paragraph}{" "}
+                <button
+                  onClick={() => setExpanded(true)}
+                  className="not-italic text-amber-400 hover:text-amber-300 transition-colors duration-200 underline underline-offset-2 cursor-pointer"
+                >
+                  {readMoreLabel ?? "Read more"}
+                </button>
+              </p>
+            );
+          }
+
+          return (
+            <p key={index}>
+              {isFirst && "\u201C"}{paragraph}{isLast && "\u201D"}
+            </p>
+          );
+        })}
+        {expanded && hasMore && (
+          <button
+            onClick={() => setExpanded(false)}
+            className="not-italic text-white/30 hover:text-amber-400 transition-colors duration-200 text-sm cursor-pointer self-start"
+          >
+            {readLessLabel ?? "Read less"}
+          </button>
+        )}
+      </div>
       <div className="h-px bg-white/6" />
       <div className="flex items-center justify-between gap-4">
         <div className="flex items-center gap-3">

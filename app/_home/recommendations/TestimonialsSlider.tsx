@@ -7,7 +7,8 @@ import styles from "./TestimonialsSlider.module.css";
 import { TestimonialCard } from "./TestimonialCard";
 
 type SliderItem = {
-  quote: string;
+  quotePreview: string;
+  quoteRest?: string;
   authorName: string;
   authorRole: string;
   authorInitials: string;
@@ -16,6 +17,8 @@ type SliderItem = {
   photoUrl?: string;
   linkedinUrl?: string;
   viewOnLinkedInLabel: string;
+  readMoreLabel: string;
+  readLessLabel: string;
 };
 
 type TestimonialsSliderProps = {
@@ -52,7 +55,10 @@ export function TestimonialsSlider({ items }: TestimonialsSliderProps) {
         {/* Card — key forces remount → triggers CSS animation */}
         <div className={`max-w-2xl mx-auto ${styles.cardTransition}`} key={currentIndex}>
           <TestimonialCard
-            quote={item.quote}
+            quotePreview={item.quotePreview}
+            quoteRest={item.quoteRest}
+            readMoreLabel={item.readMoreLabel}
+            readLessLabel={item.readLessLabel}
             author={{
               name: item.authorName,
               role: item.authorRole,

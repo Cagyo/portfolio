@@ -12,7 +12,8 @@ const INITIALS_COLORS: (string | undefined)[] = [undefined, "text-white"];
 export async function RecommendationsSection() {
   const t = await getTranslations("recommendations");
   const items = t.raw("items") as {
-    quote: string;
+    quotePreview: string;
+    quoteRest?: string;
     authorName: string;
     authorRole: string;
     authorInitials: string;
@@ -21,9 +22,12 @@ export async function RecommendationsSection() {
   }[];
 
   const viewOnLinkedInLabel = t("viewOnLinkedIn");
+  const readMoreLabel = t("readMore");
+  const readLessLabel = t("readLess");
 
   const sliderItems = items.map((item, index) => ({
-    quote: item.quote,
+    quotePreview: item.quotePreview,
+    quoteRest: item.quoteRest,
     authorName: item.authorName,
     authorRole: item.authorRole,
     authorInitials: item.authorInitials,
@@ -32,6 +36,8 @@ export async function RecommendationsSection() {
     photoUrl: item.authorPhoto,
     linkedinUrl: item.linkedinUrl,
     viewOnLinkedInLabel,
+    readMoreLabel,
+    readLessLabel,
   }));
 
   return (
