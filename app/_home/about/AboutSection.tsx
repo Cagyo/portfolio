@@ -1,6 +1,5 @@
 import { getTranslations } from "next-intl/server";
-import { StripeLogo } from "../../../assets/logos/StripeLogo";
-import { VercelLogo } from "../../../assets/logos/VercelLogo";
+import Image from "next/image";
 import { BlobBackground } from "../../_components/BlobBackground";
 import { SectionHeader } from "../../_components/SectionHeader";
 import { BusinessImpact } from "./BusinessImpact";
@@ -12,16 +11,22 @@ import styles from "./AboutSection.module.css";
 
 // Companies with known logos — anything not listed here gets the monogram fallback
 const COMPANY_LOGOS: Record<string, React.ReactNode> = {
-  Stripe: (
-    <div className={`w-9 h-9 rounded-xl flex items-center justify-center ${styles.stripeIcon}`}>
-      <StripeLogo className="w-5 h-5" />
+  "All Square": (
+    <div className="w-9 h-9 rounded-xl overflow-hidden flex-shrink-0">
+      <Image src="/assets/companies/allsquare.jpg" alt="All Square" width={36} height={36} className="w-full h-full object-cover" />
     </div>
   ),
-  Vercel: (
-    <div className="w-9 h-9 rounded-xl flex items-center justify-center bg-black border border-white/10">
-      <VercelLogo className="w-4 h-4" />
+  "Avocado Technology": (
+    <div className="w-9 h-9 rounded-xl overflow-hidden flex-shrink-0">
+      <Image src="/assets/companies/avocado_tech_logo.jpg" alt="Avocado Technology" width={36} height={36} className="w-full h-full object-cover" />
     </div>
   ),
+  "EngagePoint, Inc.": (
+    <div className="w-9 h-9 rounded-xl overflow-hidden flex-shrink-0">
+      <Image src="/assets/companies/engagepoint.jpg" alt="EngagePoint" width={36} height={36} className="w-full h-full object-cover" />
+    </div>
+  ),
+  // Geonix Company — no image, monogram fallback used automatically
 };
 
 export async function AboutSection() {
