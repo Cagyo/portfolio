@@ -1,8 +1,6 @@
-'use client'
-
-import { useState } from "react";
 import Link from "next/link";
 import { Tag } from "../../_components/tag/Tag";
+import { ShowMoreText } from "../../_components/show-more/ShowMoreText";
 import styles from "./ExperienceCard.module.css";
 
 type ExperiencePosition = {
@@ -38,16 +36,6 @@ export function ExperienceCard({
   projectsHref,
   positions,
 }: ExperienceCardProps) {
-  const [expandedSet, setExpandedSet] = useState<Set<number>>(new Set());
-
-  function togglePosition(index: number) {
-    setExpandedSet((prev) => {
-      const next = new Set(prev);
-      next.has(index) ? next.delete(index) : next.add(index);
-      return next;
-    });
-  }
-
   const logoNode = logo ?? (
     <div className="glass w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0">
       <span className="text-amber-400 text-xs font-bold tracking-wider leading-none">
@@ -85,33 +73,24 @@ export function ExperienceCard({
 
           {/* Positions timeline */}
           <div className="mt-4">
-            {positions.map((pos, posIndex) => {
-              const isExpanded = expandedSet.has(posIndex);
-              return (
-                <div key={posIndex} className={styles.positionItem}>
-                  <div className={styles.track}>
-                    <div className={styles.dot} />
-                    {posIndex < positions.length - 1 && <div className={styles.connector} />}
-                  </div>
-                  <div className={posIndex < positions.length - 1 ? "pb-4" : ""}>
-                    <div className="flex items-baseline justify-between gap-3">
-                      <p className="text-white/90 font-medium text-sm">{pos.title}</p>
-                      <span className="text-white/30 text-xs whitespace-nowrap">{pos.period}</span>
-                    </div>
-                    <p className={`text-white/50 text-sm mt-1 leading-relaxed ${isExpanded ? "" : "line-clamp-2"}`}>
-                      {pos.description}
-                    </p>
-                    <button
-                      type="button"
-                      onClick={() => togglePosition(posIndex)}
-                      className="text-amber-500/70 text-xs mt-1 hover:text-amber-400 transition-colors cursor-pointer"
-                    >
-                      {isExpanded ? "Show less" : "Show more"}
-                    </button>
-                  </div>
+            {positions.map((pos, posIndex) => (
+              <div key={posIndex} className={styles.positionItem}>
+                <div className={styles.track}>
+                  <div className={styles.dot} />
+                  {posIndex < positions.length - 1 && <div className={styles.connector} />}
                 </div>
-              );
-            })}
+                <div className={posIndex < positions.length - 1 ? "pb-4" : ""}>
+                  <div className="flex items-baseline justify-between gap-3">
+                    <p className="text-white/90 font-medium text-sm">{pos.title}</p>
+                    <span className="text-white/30 text-xs whitespace-nowrap">{pos.period}</span>
+                  </div>
+                  <ShowMoreText
+                    text={pos.description}
+                    textClassName="text-white/50 text-sm mt-1 leading-relaxed"
+                  />
+                </div>
+              </div>
+            ))}
           </div>
         </>
 

@@ -1,7 +1,7 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { ChevronDownIcon } from "../../../../assets/icons/ChevronDownIcon";
+import { ExpandSection } from "../../../_components/expand-section/ExpandSection";
 import { ExternalLinkIcon } from "../../../../assets/icons/ExternalLinkIcon";
 import { LockIcon } from "../../../../assets/icons/LockIcon";
 import { LightningIcon } from "../../../../assets/icons/LightningIcon";
@@ -28,7 +28,7 @@ export function ProjectCard({ project, expanded, onToggleExpand, animationDelay 
       style={{ animationDelay: `${animationDelay}s` }}
     >
       {/* Card header */}
-      <div className="p-6 pb-5">
+      <div className="p-6 pb-2">
         <div className="flex flex-wrap items-start justify-between gap-3 mb-4">
           <div className="flex-1 min-w-0">
             <div className="flex flex-wrap items-center gap-2 mb-1.5">
@@ -91,24 +91,15 @@ export function ProjectCard({ project, expanded, onToggleExpand, animationDelay 
           </div>
         )}
 
-        {/* Expand toggle */}
-        <button
-          type="button"
-          onClick={() => onToggleExpand(project.id)}
-          className="mt-4 flex items-center gap-2 text-amber-500 text-xs font-semibold hover:text-amber-400 transition-colors cursor-pointer"
-          aria-expanded={expanded}
-        >
-          <ChevronDownIcon
-            className={`${styles.expandIcon} ${expanded ? styles.expandIconOpen : ""} w-4 h-4`}
-          />
-          {expanded ? t("hideDetails") : t("showDetails")}
-        </button>
       </div>
 
-      {/* Expandable details */}
-      <div
-        className={styles.details}
-        style={{ maxHeight: expanded ? 1000 : 0 }}
+      {/* Expand toggle + animated details */}
+      <ExpandSection
+        isExpanded={expanded}
+        onToggle={() => onToggleExpand(project.id)}
+        expandLabel={t("showDetails")}
+        collapseLabel={t("hideDetails")}
+        buttonClassName="px-6 pb-4 flex items-center gap-2 text-amber-500 text-xs font-semibold hover:text-amber-400 transition-colors cursor-pointer"
       >
         <div className="border-t border-white/5 p-6 pt-5 grid sm:grid-cols-2 gap-6">
           {/* Duties */}
@@ -146,7 +137,7 @@ export function ProjectCard({ project, expanded, onToggleExpand, animationDelay 
             </div>
           </div>
         </div>
-      </div>
+      </ExpandSection>
 
       {/* Link strip */}
       <LinkStrip link={project.link} t={t} />
