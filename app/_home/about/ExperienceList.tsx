@@ -1,41 +1,35 @@
 'use client'
 
-import React from "react";
+import { useState } from "react";
 import { ChevronDownIcon } from "../../../assets/icons/ChevronDownIcon";
-import { useShowMore } from "../../_components/show-more/use-show-more";
-
-const INITIAL_VISIBLE = 2
+import styles from "./ExperienceList.module.css";
 
 type ExperienceListProps = {
-  children: React.ReactNode
-  total: number
+  initialSlice: React.ReactNode
+  extraSlice?: React.ReactNode
+  hiddenCount: number
 }
 
-export function ExperienceList({ children, total }: ExperienceListProps) {
-  const { expanded, toggle, hiddenCount } = useShowMore(total, INITIAL_VISIBLE);
-  const allItems = React.Children.toArray(children);
-  const initialItems = allItems.slice(0, INITIAL_VISIBLE);
-  const extraItems = allItems.slice(INITIAL_VISIBLE);
+export function ExperienceList({ initialSlice, extraSlice, hiddenCount }: ExperienceListProps) {
+  const [expanded, setExpanded] = useState(false);
+
   return (
     <div className="space-y-4">
-      {initialItems}
-      {extraItems.length > 0 && (
+      {initialSlice}
+      {hiddenCount > 0 && extraSlice && (
         <div
-          style={{
-            display: "grid",
-            gridTemplateRows: expanded ? "1fr" : "0fr",
-            transition: "grid-template-rows 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
-          }}
+          className={styles.expandGrid}
+          style={{ gridTemplateRows: expanded ? "1fr" : "0fr" }}
         >
-          <div style={{ overflow: "hidden", minHeight: 0 }} className="space-y-4 pt-4">
-            {extraItems}
+          <div className={`${styles.expandInner} space-y-4 pt-4`}>
+            {extraSlice}
           </div>
         </div>
       )}
       {hiddenCount > 0 && (
         <button
           type="button"
-          onClick={toggle}
+          onClick={() => setExpanded((prev) => !prev)}
           className="w-full flex items-center gap-3 text-white/25 hover:text-white/50 transition-colors duration-200 cursor-pointer group py-1"
         >
           <div className="flex-1 border-t border-dashed border-white/10 group-hover:border-white/20 transition-colors duration-200" />

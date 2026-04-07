@@ -13,7 +13,7 @@ type ShowMoreTextProps = {
 export function ShowMoreText({ text, textClassName, collapsedLines = 2 }: ShowMoreTextProps) {
   const [isExpanded, setIsExpanded] = useState(false)
   const [fullHeight, setFullHeight] = useState<number | null>(null)
-  const [collapsedHeight, setCollapsedHeight] = useState(44)
+  const [collapsedHeight, setCollapsedHeight] = useState(0)
   const ref = useRef<HTMLParagraphElement>(null)
 
   useLayoutEffect(() => {

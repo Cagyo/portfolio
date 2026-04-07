@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ArrowRightIcon } from "../../../assets/icons/ArrowRightIcon";
 import { Tag } from "../../_components/tag/Tag";
 import { ShowMoreText } from "../../_components/show-more/ShowMoreText";
 import styles from "./ExperienceCard.module.css";
@@ -51,7 +52,6 @@ export function ExperienceCard({
         style={{ opacity: accentOpacity }}
       />
       <div className="pl-4">
-        <>
           {/* Company header */}
           <div className="flex items-start gap-3">
             <div className="flex-shrink-0 mt-0.5">{logoNode}</div>
@@ -63,9 +63,9 @@ export function ExperienceCard({
               {projectsHref && (
                 <Link
                   href={projectsHref}
-                  className="text-amber-500/60 text-xs whitespace-nowrap hover:text-amber-400 transition-colors flex-shrink-0 mt-0.5"
+                  className="text-amber-500/60 text-xs whitespace-nowrap hover:text-amber-400 transition-colors flex-shrink-0 mt-0.5 flex items-center gap-1"
                 >
-                  View projects →
+                  View projects <ArrowRightIcon className="w-3 h-3" />
                 </Link>
               )}
             </div>
@@ -74,7 +74,7 @@ export function ExperienceCard({
           {/* Positions timeline */}
           <div className="mt-4">
             {positions.map((pos, posIndex) => (
-              <div key={posIndex} className={styles.positionItem}>
+              <div key={pos.title} className={styles.positionItem}>
                 <div className={styles.track}>
                   <div className={styles.dot} />
                   {posIndex < positions.length - 1 && <div className={styles.connector} />}
@@ -92,7 +92,6 @@ export function ExperienceCard({
               </div>
             ))}
           </div>
-        </>
 
         <div className="flex flex-wrap gap-1.5 mt-3">
           {tags.map((tag) => (

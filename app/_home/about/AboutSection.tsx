@@ -9,28 +9,71 @@ import { InfoGrid } from "./InfoGrid";
 import { SocialLinks } from "./SocialLinks";
 import styles from "./AboutSection.module.css";
 
-// Companies with known logos — anything not listed here gets the monogram fallback
-const COMPANY_LOGOS: Record<string, React.ReactNode> = {
-  "All Square": (
-    <div className="w-9 h-9 rounded-xl overflow-hidden flex-shrink-0">
-      <Image src="/assets/companies/allsquare.jpg" alt="All Square" width={36} height={36} className="w-full h-full object-cover" />
-    </div>
-  ),
-  "Avocado Technology": (
-    <div className="w-9 h-9 rounded-xl overflow-hidden flex-shrink-0">
-      <Image src="/assets/companies/avocado_tech_logo.jpg" alt="Avocado Technology" width={36} height={36} className="w-full h-full object-cover" />
-    </div>
-  ),
-  "EngagePoint, Inc.": (
-    <div className="w-9 h-9 rounded-xl overflow-hidden flex-shrink-0">
-      <Image src="/assets/companies/engagepoint.jpg" alt="EngagePoint" width={36} height={36} className="w-full h-full object-cover" />
-    </div>
-  ),
-  // Geonix Company — no image, monogram fallback used automatically
-};
+function getCompanyLogo(company: string): React.ReactNode {
+  switch (company) {
+    case "All Square":
+      return (
+        <div className="w-9 h-9 rounded-xl overflow-hidden flex-shrink-0">
+          <Image src="/assets/companies/allsquare.jpg" alt="All Square" width={36} height={36} className="w-full h-full object-cover" />
+        </div>
+      )
+    case "Avocado Technology":
+      return (
+        <div className="w-9 h-9 rounded-xl overflow-hidden flex-shrink-0">
+          <Image src="/assets/companies/avocado_tech_logo.jpg" alt="Avocado Technology" width={36} height={36} className="w-full h-full object-cover" />
+        </div>
+      )
+    case "EngagePoint, Inc.":
+      return (
+        <div className="w-9 h-9 rounded-xl overflow-hidden flex-shrink-0">
+          <Image src="/assets/companies/engagepoint.jpg" alt="EngagePoint" width={36} height={36} className="w-full h-full object-cover" />
+        </div>
+      )
+    default:
+      return undefined
+  }
+}
 
 export async function AboutSection() {
   const t = await getTranslations("about");
+
+  const items = t.raw("experience") as {
+    company: string
+    period: string
+    tags: string[]
+    positions: { title: string; period: string; description: string }[]
+  }[]
+
+  const INITIAL_VISIBLE = 2
+  const accentOpacities = ["1", "0.7", "0.45", "0.25"]
+
+  const initialSlice = items.slice(0, INITIAL_VISIBLE).map((exp, expIndex) => (
+    <ExperienceCard
+      key={exp.company}
+      company={exp.company}
+      period={exp.period}
+      tags={exp.tags}
+      positions={exp.positions}
+      logo={getCompanyLogo(exp.company)}
+      accentOpacity={accentOpacities[expIndex]}
+      projectsHref={`/projects?company=${encodeURIComponent(exp.company)}`}
+    />
+  ))
+
+  const extraSlice = items.slice(INITIAL_VISIBLE).map((exp, expIndex) => (
+    <ExperienceCard
+      key={exp.company}
+      company={exp.company}
+      period={exp.period}
+      tags={exp.tags}
+      positions={exp.positions}
+      logo={getCompanyLogo(exp.company)}
+      accentOpacity={accentOpacities[INITIAL_VISIBLE + expIndex]}
+      projectsHref={`/projects?company=${encodeURIComponent(exp.company)}`}
+    />
+  ))
+
+  const hiddenCount = Math.max(0, items.length - INITIAL_VISIBLE)
 
   return (
     <section id="about" className="py-16 relative overflow-hidden">
@@ -58,30 +101,7 @@ export async function AboutSection() {
           {/* Timeline */}
           <div className={`lg:col-span-2 reveal ${styles.bioContent}`}>
             <h3 className="text-white/40 text-xs uppercase tracking-widest mb-6">{t("experienceHeading")}</h3>
-            {(() => {
-              const items = t.raw("experience") as {
-                company: string
-                period: string
-                tags: string[]
-                positions: { title: string; period: string; description: string }[]
-              }[];
-              return (
-                <ExperienceList total={items.length}>
-                  {items.map((exp, i) => (
-                    <ExperienceCard
-                      key={exp.company}
-                      company={exp.company}
-                      period={exp.period}
-                      tags={exp.tags}
-                      positions={exp.positions}
-                      logo={COMPANY_LOGOS[exp.company]}
-                      accentOpacity={["1", "0.7", "0.45", "0.25"][i]}
-                      projectsHref={`/projects?company=${encodeURIComponent(exp.company)}`}
-                    />
-                  ))}
-                </ExperienceList>
-              );
-            })()}
+            <ExperienceList initialSlice={initialSlice} extraSlice={extraSlice} hiddenCount={hiddenCount} />
           </div>
         </div>
 
