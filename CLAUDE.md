@@ -30,6 +30,8 @@
 | Schema files | `kebab-case.ts` | `post-schema.ts` |
 | Constants | `kebab-case.ts` | `site-config.ts` |
 
+**Config directory**: `app/_config/` — app-wide structural config (URLs, social handles, feature flags). See `## Application Config`.
+
 ### Component Subdirectory Grouping
 
 Within `_components/` and feature folders, group logically related files into `kebab-case` subdirectories. A component file, its CSS module, co-located hooks, and data files all move together.
@@ -134,6 +136,39 @@ setCollapsed((c) => !c)
 // ✅
 setOpen((prev) => !prev)
 setCollapsed((prev) => !prev)
+```
+
+---
+
+## Application Config
+
+Single source of truth for all URLs, social handles, email, resume path, and feature flags.
+
+- **File**: `app/_config/site-config.ts`
+- **Exported as**: `siteConfig` (camelCase object, `as const`)
+- **Contains**: external URLs, social handles, email, resume path, feature flags
+- **Does NOT contain**: i18n strings (→ `messages/en.json`), visual/styling data (→ component data arrays), feature data (→ `_data/`)
+
+All external `href` values in the app must come from `siteConfig`. Never hardcode URL strings in components.
+
+Import directly (no barrel):
+
+```ts
+import { siteConfig } from '../../_config/site-config'
+```
+
+Shape:
+
+```ts
+export const siteConfig = {
+  social: {
+    github:   { url: 'https://github.com/...', handle: '...' },
+    linkedin: { url: 'https://linkedin.com/in/...', handle: '...' },
+    twitter:  { url: 'https://twitter.com/...', handle: '...' },
+  },
+  resume: { url: '/assets/resume.pdf' },
+  author: { name: 'Oleksii Berliziev', email: '' },
+} as const
 ```
 
 ---
@@ -409,6 +444,17 @@ Current UI primitives: `<Button>` — `variant?: "primary" | "outline"`, renders
 - **Exception**: JS-computed or runtime-derived values only — e.g. `style={{ opacity: value }}`, `style={{ maxHeight: open ? 1000 : 0 }}`, `style={{ animationDelay: \`${delay}s\` }}` (prop-driven), data-driven colors from a data array (e.g. `style={{ color: item.iconColor }}`).
 - Do not use Tailwind `arbitrary values` (`w-[123px]`) for values that belong in a token
 - Do not add `position: relative; z-index: N` to individual child elements — let the component wrapper handle stacking context
+- CSS modules must use design tokens (`var(--amber)`, `var(--border)`, etc.) — never raw RGBA values that duplicate a token. Use `color-mix(in srgb, var(--token) N%, transparent)` for opacity variants:
+  ```css
+  /* ❌ */  background: rgba(245, 158, 11, 0.4);
+  /* ✅ */  background: color-mix(in srgb, var(--amber) 40%, transparent);
+  ```
+
+- In `style={{}}`, include only the runtime-derived property. Co-locate static values (`display`, `transition`, `overflow`, `min-height`) in a CSS module class, then merge:
+  ```tsx
+  /* ❌ */  style={{ display: 'grid', gridTemplateRows: expanded ? '1fr' : '0fr', transition: '...' }}
+  /* ✅ */  <div className={styles.expandGrid} style={{ gridTemplateRows: expanded ? '1fr' : '0fr' }}>
+  ```
 
 ---
 
@@ -492,6 +538,87 @@ Never put server data in context. Keep providers as deep as possible, not everyt
 ```ts
 // editor-store.ts — not a global app store
 export const useEditorStore = create<EditorState>(...)
+```
+
+---
+
+## Component Patterns
+
+### No IIFE in JSX
+
+Extract variables above the `return` statement. Never use an immediately-invoked function inside JSX.
+
+```tsx
+// ❌
+return (
+  <div>
+    {(() => {
+      const items = t.raw('experience') as Item[]
+      return <ExperienceList items={items} ... />
+    })()}
+  </div>
+)
+
+// ✅
+const items = t.raw('experience') as Item[]
+return (
+  <div>
+    <ExperienceList items={items} ... />
+  </div>
+)
+```
+
+### No JSX in module-level constants
+
+Module-level constants with JSX values are evaluated at module load, not per-render. Use a function.
+
+```ts
+// ❌
+const ICONS: Record<string, React.ReactNode> = { Stripe: <StripeIcon /> }
+
+// ✅
+function getIcon(name: string): React.ReactNode {
+  switch (name) {
+    case 'Stripe': return <StripeIcon />
+    default: return undefined
+  }
+}
+```
+
+### No `React.Children` manipulation
+
+Pass data and a `renderItem` callback instead of slicing children. `React.Children.toArray` destroys keys and breaks identity on rerender.
+
+```tsx
+// ❌
+type Props = { children: React.ReactNode; total: number }
+const all = React.Children.toArray(children)
+
+// ✅
+type Props<T> = { items: T[]; renderItem: (item: T, index: number) => React.ReactNode }
+<List items={data} renderItem={(item) => <Card key={item.id} {...item} />} />
+```
+
+### No copy-pasted JSX structures
+
+When 3 or more JSX blocks share the same structure, extract a local component and map over a data array. Two repetitions may be acceptable; three or more always require extraction.
+
+### Stable list keys
+
+Never use array index as `key` when a stable unique identifier exists (id, slug, name, title).
+
+```tsx
+// ❌  positions.map((pos, i) => <div key={i}>)
+// ✅  positions.map((pos) => <div key={pos.title}>)
+```
+
+### Honest initial state
+
+Never use a magic number as initial `useState` value to approximate a pre-measurement layout. Use `0` or `null`; `useLayoutEffect` sets the correct value synchronously before paint.
+
+```ts
+// ❌  const [height, setHeight] = useState(44)
+// ✅  const [height, setHeight] = useState(0)
 ```
 
 ---
