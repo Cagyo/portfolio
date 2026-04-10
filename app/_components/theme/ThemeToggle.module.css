@@ -14,8 +14,8 @@
   flex-shrink: 0;
 
   &:hover {
-    background: rgba(245,158,11,0.08);
-    border-color: rgba(245,158,11,0.3);
+    background: color-mix(in srgb, var(--amber) 8%, transparent);
+    border-color: var(--border-amber);
     color: var(--amber);
   }
 }

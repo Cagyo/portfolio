@@ -1,10 +1,10 @@
 .profileFrame {
   aspect-ratio: 4 / 5;
   max-height: 300px;
-  border: 1px solid rgba(245, 158, 11, 0.2);
-  box-shadow: 0 0 50px rgba(245, 158, 11, 0.12);
+  border: 1px solid color-mix(in srgb, var(--amber) 20%, transparent);
+  box-shadow: 0 0 50px color-mix(in srgb, var(--amber) 12%, transparent);
 }
 
 .cardGlow {
-  box-shadow: 0 0 36px rgba(245, 158, 11, 0.18);
+  box-shadow: 0 0 36px color-mix(in srgb, var(--amber) 18%, transparent);
 }

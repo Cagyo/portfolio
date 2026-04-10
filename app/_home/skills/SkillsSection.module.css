@@ -14,15 +14,15 @@
   letter-spacing: 0.02em;
 
   &:hover {
-    background: rgba(245,158,11,0.08);
-    border-color: rgba(245,158,11,0.3);
+    background: color-mix(in srgb, var(--amber) 8%, transparent);
+    border-color: var(--border-amber);
     color: var(--tag-color);
   }
 }
 
 .toggleCount {
-  background: rgba(245,158,11,0.15);
-  color: #F59E0B;
+  background: color-mix(in srgb, var(--amber) 15%, transparent);
+  color: var(--amber);
   font-size: 0.65rem;
   font-weight: 700;
   padding: 1px 6px;

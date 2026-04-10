@@ -15,7 +15,7 @@
   &:hover {
     background: var(--chip-top-bg-hover);
     border-color: var(--chip-top-border-hover);
-    box-shadow: 0 0 16px rgba(245,158,11,0.15);
+    box-shadow: 0 0 16px color-mix(in srgb, var(--amber) 15%, transparent);
   }
 }
 

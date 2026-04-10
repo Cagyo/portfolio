@@ -13,14 +13,14 @@
   white-space: nowrap;
 
   &:hover {
-    background: rgba(245,158,11,0.08);
-    border-color: rgba(245,158,11,0.25);
+    background: color-mix(in srgb, var(--amber) 8%, transparent);
+    border-color: color-mix(in srgb, var(--amber) 25%, transparent);
     color: var(--tag-color);
   }
 
   &.active {
-    background: rgba(245,158,11,0.12);
-    border-color: rgba(245,158,11,0.4);
+    background: color-mix(in srgb, var(--amber) 12%, transparent);
+    border-color: color-mix(in srgb, var(--amber) 40%, transparent);
     color: var(--amber);
   }
 }

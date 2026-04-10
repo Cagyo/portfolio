@@ -2,7 +2,7 @@
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  color: rgb(245 158 11);
+  color: var(--amber);
   font-size: 0.75rem;
   font-weight: 600;
   cursor: pointer;
@@ -10,7 +10,7 @@
 }
 
 .toggle:hover {
-  color: rgb(251 191 36);
+  color: var(--amber-light);
 }
 
 .chevron {
