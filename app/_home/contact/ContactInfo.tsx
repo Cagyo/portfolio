@@ -1,11 +1,20 @@
 import { getTranslations } from "next-intl/server";
-import { CalendlyLink } from "../../_components/CalendlyLink";
+import { CalendlyLink } from "../../_components/calendly-link/CalendlyLink";
 import { ClockIcon } from "../../../assets/icons/ClockIcon";
 import { EnvelopeIcon } from "../../../assets/icons/EnvelopeIcon";
 import { MapPinIcon } from "../../../assets/icons/MapPinIcon";
+import { ContactInfoCard } from "./ContactInfoCard";
+
+type ContactCard = { icon: React.ReactNode; label: string; value: string; href?: string }
 
 export async function ContactInfo() {
   const t = await getTranslations("contact");
+
+  const cards: ContactCard[] = [
+    { icon: <EnvelopeIcon className="w-5 h-5 text-amber-400" />, label: t("emailLabel"),        value: t("emailValue"),        href: `mailto:${t("emailValue")}` },
+    { icon: <MapPinIcon   className="w-5 h-5 text-amber-400" />, label: t("locationLabel"),     value: t("locationValue") },
+    { icon: <ClockIcon    className="w-5 h-5 text-amber-400" />, label: t("responseTimeLabel"), value: t("responseTimeValue") },
+  ]
 
   return (
     <div className="lg:col-span-2 reveal space-y-8">
@@ -19,38 +28,9 @@ export async function ContactInfo() {
       </div>
 
       <div className="space-y-4">
-        <a
-          href={`mailto:${t("emailValue")}`}
-          className="glass rounded-2xl p-4 flex items-center gap-4 hover:border-amber-500/30 transition-colors duration-200 cursor-pointer group"
-        >
-          <div className="w-10 h-10 glass-amber rounded-xl flex items-center justify-center flex-shrink-0">
-            <EnvelopeIcon className="w-5 h-5 text-amber-400" />
-          </div>
-          <div>
-            <p className="text-white/40 text-xs uppercase tracking-wider">{t("emailLabel")}</p>
-            <p className="text-white font-medium group-hover:text-amber-400 transition-colors">{t("emailValue")}</p>
-          </div>
-        </a>
-
-        <div className="glass rounded-2xl p-4 flex items-center gap-4 cursor-default">
-          <div className="w-10 h-10 glass-amber rounded-xl flex items-center justify-center flex-shrink-0">
-            <MapPinIcon className="w-5 h-5 text-amber-400" />
-          </div>
-          <div>
-            <p className="text-white/40 text-xs uppercase tracking-wider">{t("locationLabel")}</p>
-            <p className="text-white font-medium">{t("locationValue")}</p>
-          </div>
-        </div>
-
-        <div className="glass rounded-2xl p-4 flex items-center gap-4 cursor-default">
-          <div className="w-10 h-10 glass-amber rounded-xl flex items-center justify-center flex-shrink-0">
-            <ClockIcon className="w-5 h-5 text-amber-400" />
-          </div>
-          <div>
-            <p className="text-white/40 text-xs uppercase tracking-wider">{t("responseTimeLabel")}</p>
-            <p className="text-white font-medium">{t("responseTimeValue")}</p>
-          </div>
-        </div>
+        {cards.map((card) => (
+          <ContactInfoCard key={card.label} {...card} />
+        ))}
       </div>
 
       <div className="glass-amber rounded-2xl p-5">

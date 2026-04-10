@@ -10,6 +10,7 @@ import { ScrollIndicator } from "../../_components/ScrollIndicator";
 import { StatRow } from "../../_components/StatRow";
 import { PhotoCard } from "./PhotoCard";
 import { Typewriter } from "./Typewriter";
+import { TestimonialSnippet, type SnippetTestimonial } from "../recommendations/TestimonialSnippet";
 
 export async function HeroSection() {
   const [t, tRecs] = await Promise.all([
@@ -18,13 +19,7 @@ export async function HeroSection() {
   ]);
   const stats = t.raw("stats") as { value: string; label: string }[];
   const typewriterRoles = t.raw("typewriterRoles") as string[];
-  const recItems = tRecs.raw("items") as {
-    quotePreview: string;
-    authorName: string;
-    authorRole: string;
-    authorInitials: string;
-    authorPhoto?: string;
-  }[];
+  const recItems = tRecs.raw("items") as SnippetTestimonial[];
   const firstRec = recItems[0];
 
   return (
@@ -102,44 +97,11 @@ export async function HeroSection() {
 
           {/* Mobile testimonial snippet — mirrors the floating card on desktop */}
           {firstRec && (
-            <a
-              href="#recommendations"
-              className="block lg:hidden glass rounded-2xl p-4 hover:border-amber-500/20 transition-colors duration-200 cursor-pointer"
-            >
-              <p className="text-white/65 text-sm leading-relaxed italic line-clamp-2 mb-3">
-                &ldquo;{firstRec.quotePreview}&rdquo;
-              </p>
-              <div className="flex items-center justify-between gap-2">
-                <div className="flex items-center gap-2.5 min-w-0">
-                  {firstRec.authorPhoto ? (
-                    <div className="w-7 h-7 rounded-lg overflow-hidden flex-shrink-0 relative">
-                      <Image
-                        src={firstRec.authorPhoto}
-                        alt={firstRec.authorName}
-                        fill
-                        className="object-cover"
-                        sizes="28px"
-                      />
-                    </div>
-                  ) : (
-                    <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-amber-500 to-amber-700 flex items-center justify-center text-[10px] font-black text-black flex-shrink-0">
-                      {firstRec.authorInitials}
-                    </div>
-                  )}
-                  <div className="min-w-0">
-                    <p className="text-white/60 text-xs font-semibold leading-none truncate">{firstRec.authorName}</p>
-                    <p className="text-white/35 text-[10px] mt-0.5 leading-none truncate">{firstRec.authorRole.split("·")[1]?.trim()}</p>
-                  </div>
-                </div>
-                <div className="flex gap-0.5 flex-shrink-0">
-                  {[0, 1, 2, 3, 4].map((index) => (
-                    <svg key={index} className="w-3.5 h-3.5 text-amber-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                    </svg>
-                  ))}
-                </div>
-              </div>
-            </a>
+            <TestimonialSnippet
+              testimonial={firstRec}
+              size="md"
+              className="block lg:hidden"
+            />
           )}
         </div>
 

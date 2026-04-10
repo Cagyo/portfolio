@@ -3,15 +3,11 @@ import { PROJECTS, getProjectTitle } from "../../_data/projects-data";
 import { BlobBackground } from "../../_components/BlobBackground";
 import { SectionHeader } from "../../_components/SectionHeader";
 import { ArrowLeftIcon } from "../../../assets/icons/ArrowLeftIcon";
-import { ExternalLinkIcon } from "../../../assets/icons/ExternalLinkIcon";
-import { LockIcon } from "../../../assets/icons/LockIcon";
 import { GolfFlagIcon } from "../../../assets/icons/GolfFlagIcon";
 import { GolfersIcon } from "../../../assets/icons/GolfersIcon";
 import { MapPinIcon } from "../../../assets/icons/MapPinIcon";
 import { SmartphoneWithFlagIcon } from "../../../assets/icons/SmartphoneWithFlagIcon";
 import { MoneyExchangeIcon } from "../../../assets/icons/MoneyExchangeIcon";
-import { AppStoreLogo } from "../../../assets/logos/AppStoreLogo";
-import { GooglePlayLogo } from "../../../assets/logos/GooglePlayLogo";
 import { Button } from "../../_components/button/Button";
 import { ProjectCard } from "./ProjectCard";
 import { GolfTournamentIcon } from "../../../assets/icons/GolfTournamentIcon";
@@ -19,6 +15,7 @@ import { GolfSocialIcon } from "../../../assets/icons/GolfSocialIcon";
 import { GolfBookingIcon } from "../../../assets/icons/GolfBookingIcon";
 import { CurrencyExchangeIcon } from "../../../assets/icons/CurrencyExchangeIcon";
 import { CarWashIcon } from "../../../assets/icons/CarWashIcon";
+import { ProjectLinkOverlay } from "./ProjectLinkOverlay";
 
 type OverlayType = "live-lg" | "live-stores" | "stores" | "private"
 
@@ -121,18 +118,6 @@ export async function ProjectsSection() {
 
   const projects = HOME_PROJECT_IDS.map((id) => PROJECTS.find((project) => project.id === id)!)
 
-  const privateOverlay = (
-    <div className="relative group/stub">
-      <div className="glass px-4 py-2.5 rounded-xl text-sm font-medium text-white/30 cursor-not-allowed flex items-center gap-2 select-none">
-        <LockIcon className="w-4 h-4" />
-        {t("privateBuild")}
-      </div>
-      <div className="absolute -top-10 left-1/2 -translate-x-1/2 bg-zinc-900 border border-white/10 text-white/50 text-xs rounded-lg px-3 py-1.5 whitespace-nowrap opacity-0 group-hover/stub:opacity-100 transition-opacity duration-200 pointer-events-none">
-        {t("nda")}
-      </div>
-    </div>
-  );
-
   return (
     <section id="projects" className="py-16 relative overflow-hidden">
       <BlobBackground size="w-96 h-96" color="bg-amber-500" position="top-0 right-0" opacity="0.1" />
@@ -144,52 +129,8 @@ export async function ProjectsSection() {
         </p>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {projects.map((project, i) => {
-            const meta = PROJECT_META[i];
-
-            let linkOverlay: React.ReactNode;
-
-            if (meta.overlayType === "private") {
-              linkOverlay = privateOverlay;
-            } else if (meta.overlayType === "stores") {
-              linkOverlay = (
-                <div className="flex flex-col items-center justify-center gap-2">
-                  <a href={meta.appStoreUrl} target="_blank" rel="noopener noreferrer" className="glass px-4 py-1.5 rounded-lg text-xs font-semibold text-white/80 hover:text-amber-400 transition-colors cursor-pointer flex items-center gap-1.5 w-36 justify-center">
-                    <AppStoreLogo className="w-3.5 h-3.5 flex-shrink-0" />
-                    {t("appStore")}
-                  </a>
-                  <a href={meta.playStoreUrl} target="_blank" rel="noopener noreferrer" className="glass px-4 py-1.5 rounded-lg text-xs font-semibold text-white/80 hover:text-amber-400 transition-colors cursor-pointer flex items-center gap-1.5 w-36 justify-center">
-                    <GooglePlayLogo className="w-3.5 h-3.5 flex-shrink-0" />
-                    {t("googlePlay")}
-                  </a>
-                </div>
-              );
-            } else if (meta.overlayType === "live-stores") {
-              linkOverlay = (
-                <div className="flex flex-col items-center justify-center gap-2">
-                  <a href={meta.url} target="_blank" rel="noopener noreferrer" className="glass px-4 py-1.5 rounded-lg text-xs font-semibold text-white/80 hover:text-amber-400 transition-colors cursor-pointer flex items-center gap-1.5 w-36 justify-center">
-                    <ExternalLinkIcon className="w-3.5 h-3.5 flex-shrink-0" />
-                    {t("viewLive")}
-                  </a>
-                  <a href={meta.appStoreUrl} target="_blank" rel="noopener noreferrer" className="glass px-4 py-1.5 rounded-lg text-xs font-semibold text-white/80 hover:text-amber-400 transition-colors cursor-pointer flex items-center gap-1.5 w-36 justify-center">
-                    <AppStoreLogo className="w-3.5 h-3.5 flex-shrink-0" />
-                    {t("appStore")}
-                  </a>
-                  <a href={meta.playStoreUrl} target="_blank" rel="noopener noreferrer" className="glass px-4 py-1.5 rounded-lg text-xs font-semibold text-white/80 hover:text-amber-400 transition-colors cursor-pointer flex items-center gap-1.5 w-36 justify-center">
-                    <GooglePlayLogo className="w-3.5 h-3.5 flex-shrink-0" />
-                    {t("googlePlay")}
-                  </a>
-                </div>
-              );
-            } else {
-              // live-lg (fallback)
-              linkOverlay = (
-                <a href={meta.url} target="_blank" rel="noopener noreferrer" className="glass px-5 py-2.5 rounded-xl text-sm font-semibold text-white hover:text-amber-400 transition-colors cursor-pointer flex items-center gap-2">
-                  <ExternalLinkIcon className="w-4 h-4" />
-                  {t("viewLive")}
-                </a>
-              );
-            }
+          {projects.map((project, index) => {
+            const meta = PROJECT_META[index];
 
             return (
               <ProjectCard
@@ -201,7 +142,14 @@ export async function ProjectsSection() {
                 tags={project.stackFilters}
                 imageBg={meta.imageBg}
                 imageContent={meta.imageContent}
-                linkOverlay={linkOverlay}
+                linkOverlay={
+                  <ProjectLinkOverlay
+                    overlayType={meta.overlayType}
+                    url={meta.url}
+                    appStoreUrl={meta.appStoreUrl}
+                    playStoreUrl={meta.playStoreUrl}
+                  />
+                }
                 featured={meta.featured}
               />
             );

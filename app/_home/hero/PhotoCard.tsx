@@ -1,36 +1,18 @@
 import Image from "next/image";
 import styles from "./PhotoCard.module.css";
 import { Tag } from "../../_components/tag/Tag";
+import { TestimonialSnippet, type SnippetTestimonial } from "../recommendations/TestimonialSnippet";
 
 const ENABLE_FLOAT_ANIMATION = false;
 
-type TestimonialSnippet = {
-  quotePreview: string;
-  authorName: string;
-  authorRole: string;
-  authorInitials: string;
-  authorPhoto?: string;
-};
-
 type PhotoCardProps = {
   availableLabel: string;
-  testimonial?: TestimonialSnippet;
+  testimonial?: SnippetTestimonial;
 };
 
 const TAGS = ["React", "Node.js", "TypeScript", "AWS"];
 
-const STAR_PATH =
-  "M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z";
-
 export function PhotoCard({ availableLabel, testimonial }: PhotoCardProps) {
-  const authorInitials = testimonial?.authorInitials ?? "";
-
-  const authorShort = testimonial
-    ? `${testimonial.authorName.split(" ")[0]} ${testimonial.authorName.split(" ")[1]?.[0] ?? ""}.`
-    : "";
-
-  const authorCompany = testimonial?.authorRole.split("·")[1]?.trim() ?? "";
-
   return (
     <div className={styles.wrapper}>
       {/* ── Floating "Available" badge ─── */}
@@ -65,57 +47,11 @@ export function PhotoCard({ availableLabel, testimonial }: PhotoCardProps) {
 
       {/* ── Floating mini testimonial ─── */}
       {testimonial && (
-        <a
-          href="#recommendations"
-          className={`absolute bottom-3 left-2 right-2 z-20 ${ENABLE_FLOAT_ANIMATION ? "animate-float" : ""} glass rounded-2xl p-4 hover:border-amber-500/20 transition-colors duration-200 cursor-pointer ${styles.miniReview}`}
-        >
-          {/* Quote snippet */}
-          <p className="text-white/65 text-[11px] leading-relaxed italic line-clamp-2 mb-3">
-            &ldquo;{testimonial.quotePreview}&rdquo;
-          </p>
-
-          {/* Author + stars row */}
-          <div className="flex items-center justify-between gap-2">
-            <div className="flex items-center gap-2 min-w-0">
-              {testimonial.authorPhoto ? (
-                <div className="w-6 h-6 rounded-md overflow-hidden flex-shrink-0 relative">
-                  <Image
-                    src={testimonial.authorPhoto}
-                    alt={testimonial.authorName}
-                    fill
-                    className="object-cover"
-                    sizes="24px"
-                  />
-                </div>
-              ) : (
-                <div className="w-6 h-6 rounded-md bg-gradient-to-br from-amber-500 to-amber-700 flex items-center justify-center text-[9px] font-black text-black flex-shrink-0">
-                  {authorInitials}
-                </div>
-              )}
-              <div className="min-w-0">
-                <p className="text-white/60 text-[10px] font-semibold leading-none truncate">{authorShort}</p>
-                {authorCompany && (
-                  <p className="text-white/35 text-[9px] mt-0.5 leading-none truncate">{authorCompany}</p>
-                )}
-              </div>
-            </div>
-
-            {/* Stars */}
-            <div className="flex gap-0.5 flex-shrink-0">
-              {[0, 1, 2, 3, 4].map((index) => (
-                <svg
-                  key={index}
-                  className="w-3 h-3 text-amber-400"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                  aria-hidden="true"
-                >
-                  <path d={STAR_PATH} />
-                </svg>
-              ))}
-            </div>
-          </div>
-        </a>
+        <TestimonialSnippet
+          testimonial={testimonial}
+          size="sm"
+          className={`absolute bottom-3 left-2 right-2 z-20 ${ENABLE_FLOAT_ANIMATION ? "animate-float" : ""} ${styles.miniReview}`}
+        />
       )}
 
       {/* ── Decorative dot grid ─── */}
