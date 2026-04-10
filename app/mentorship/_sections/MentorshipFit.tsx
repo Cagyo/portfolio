@@ -1,5 +1,5 @@
 import { getTranslations } from "next-intl/server";
-import { FitList } from "../../_components/FitList";
+import { FitList } from "../../_components/fit-list/FitList";
 import { SectionHeader } from "../../_components/SectionHeader";
 
 export async function MentorshipFit() {

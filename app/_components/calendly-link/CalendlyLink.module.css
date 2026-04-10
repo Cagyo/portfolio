@@ -1,0 +1,4 @@
+.btn {
+  /* Calendly brand color — intentional brand override, not a design token */
+  background: #006BFF;
+}

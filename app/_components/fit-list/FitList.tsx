@@ -1,5 +1,5 @@
-import { CheckIcon } from "../../assets/icons/CheckIcon";
-import { XMarkIcon } from "../../assets/icons/XMarkIcon";
+import { CheckIcon } from "../../../assets/icons/CheckIcon";
+import { XMarkIcon } from "../../../assets/icons/XMarkIcon";
 import styles from "./FitList.module.css";
 
 type FitItem = { text: string }

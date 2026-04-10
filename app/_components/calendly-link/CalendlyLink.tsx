@@ -1,6 +1,6 @@
 import { getTranslations } from "next-intl/server";
-import { CalendarIcon } from "../../assets/icons/CalendarIcon";
-import { ExternalLinkIcon } from "../../assets/icons/ExternalLinkIcon";
+import { CalendarIcon } from "../../../assets/icons/CalendarIcon";
+import { ExternalLinkIcon } from "../../../assets/icons/ExternalLinkIcon";
 import styles from "./CalendlyLink.module.css";
 
 type CalendlyLinkProps = {
