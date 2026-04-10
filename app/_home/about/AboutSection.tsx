@@ -1,5 +1,6 @@
 import { getTranslations } from "next-intl/server";
 import Image from "next/image";
+import { siteConfig } from "../../_config/site-config";
 import { BlobBackground } from "../../_components/BlobBackground";
 import { SectionHeader } from "../../_components/SectionHeader";
 import { BusinessImpact } from "./BusinessImpact";
@@ -44,10 +45,9 @@ export async function AboutSection() {
     positions: { title: string; period: string; description: string }[]
   }[]
 
-  const INITIAL_VISIBLE = 2
   const accentOpacities = ["1", "0.7", "0.45", "0.25"]
 
-  const initialSlice = items.slice(0, INITIAL_VISIBLE).map((exp, expIndex) => (
+  const initialSlice = items.slice(0, siteConfig.ui.experienceInitialVisible).map((exp, expIndex) => (
     <ExperienceCard
       key={exp.company}
       company={exp.company}
@@ -60,7 +60,7 @@ export async function AboutSection() {
     />
   ))
 
-  const extraSlice = items.slice(INITIAL_VISIBLE).map((exp, expIndex) => (
+  const extraSlice = items.slice(siteConfig.ui.experienceInitialVisible).map((exp, expIndex) => (
     <ExperienceCard
       key={exp.company}
       company={exp.company}
@@ -68,12 +68,12 @@ export async function AboutSection() {
       tags={exp.tags}
       positions={exp.positions}
       logo={getCompanyLogo(exp.company)}
-      accentOpacity={accentOpacities[INITIAL_VISIBLE + expIndex]}
+      accentOpacity={accentOpacities[siteConfig.ui.experienceInitialVisible + expIndex]}
       projectsHref={`/projects?company=${encodeURIComponent(exp.company)}`}
     />
   ))
 
-  const hiddenCount = Math.max(0, items.length - INITIAL_VISIBLE)
+  const hiddenCount = Math.max(0, items.length - siteConfig.ui.experienceInitialVisible)
 
   return (
     <section id="about" className="py-16 relative overflow-hidden">

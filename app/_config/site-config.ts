@@ -11,4 +11,7 @@ export const siteConfig = {
     name: 'Oleksii Berliziev',
     email: '',
   },
+  ui: {
+    experienceInitialVisible: 2,
+  },
 } as const
