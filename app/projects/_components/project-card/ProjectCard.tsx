@@ -2,15 +2,27 @@
 
 import { useTranslations } from "next-intl";
 import { ExpandSection } from "../../../_components/expand-section/ExpandSection";
+import { BuildingOfficeIcon } from "../../../../assets/icons/BuildingOfficeIcon";
 import { ExternalLinkIcon } from "../../../../assets/icons/ExternalLinkIcon";
-import { LockIcon } from "../../../../assets/icons/LockIcon";
 import { LightningIcon } from "../../../../assets/icons/LightningIcon";
+import { LockIcon } from "../../../../assets/icons/LockIcon";
+import { UserIcon } from "../../../../assets/icons/UserIcon";
+import { UsersIcon } from "../../../../assets/icons/UsersIcon";
 import { AppStoreLogo } from "../../../../assets/logos/AppStoreLogo";
 import { GooglePlayLogo } from "../../../../assets/logos/GooglePlayLogo";
 import { Tag } from "../../../_components/tag/Tag";
 import type { ProjectData, ProjectPageLink } from "../projects-data";
 import { getProjectTitle } from "../../../_data/projects-data";
 import styles from "./ProjectCard.module.css";
+
+function MetaRow({ icon, value }: { icon: React.ReactNode; value: string }) {
+  return (
+    <div className="flex items-center gap-1.5">
+      {icon}
+      <span className="text-white/60 text-sm">{value}</span>
+    </div>
+  );
+}
 
 type ProjectCardProps = {
   project: ProjectData
@@ -35,12 +47,8 @@ export function ProjectCard({ project, expanded, onToggleExpand, animationDelay 
               {project.devTypes.map((devType) => (
                 <Tag key={devType}>{devType}</Tag>
               ))}
-              <span className="bg-white/5 border border-white/10 text-white/50 text-[0.65rem] font-semibold tracking-[0.04em] uppercase px-1.5 py-0.5 rounded">
-                {project.productType}
-              </span>
-              <span className="bg-white/5 border border-white/10 text-white/50 text-[0.65rem] font-semibold tracking-[0.04em] uppercase px-1.5 py-0.5 rounded">
-                {project.industry}
-              </span>
+              <span className={styles.metaBadge}>{project.productType}</span>
+              <span className={styles.metaBadge}>{project.industry}</span>
               {project.year && (
                 <span className="text-white/25 text-xs font-mono">{project.year}</span>
               )}
@@ -50,24 +58,9 @@ export function ProjectCard({ project, expanded, onToggleExpand, animationDelay 
 
           {/* Meta column */}
           <div className="flex flex-col items-end gap-1.5 flex-shrink-0">
-            <div className="flex items-center gap-1.5">
-              <svg className="w-3.5 h-3.5 text-amber-500/60 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-2 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-              </svg>
-              <span className="text-white/60 text-sm font-medium">{project.company}</span>
-            </div>
-            <div className="flex items-center gap-1.5">
-              <svg className="w-3.5 h-3.5 text-amber-500/60 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-              </svg>
-              <span className="text-white/60 text-sm">{project.role}</span>
-            </div>
-            <div className="flex items-center gap-1.5">
-              <svg className="w-3.5 h-3.5 text-amber-500/60 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" />
-              </svg>
-              <span className="text-white/60 text-sm">Team {project.teamLabel}</span>
-            </div>
+            <MetaRow icon={<BuildingOfficeIcon className="w-3.5 h-3.5 text-amber-500/60 flex-shrink-0" />} value={project.company} />
+            <MetaRow icon={<UserIcon className="w-3.5 h-3.5 text-amber-500/60 flex-shrink-0" />} value={project.role} />
+            <MetaRow icon={<UsersIcon className="w-3.5 h-3.5 text-amber-500/60 flex-shrink-0" />} value={`Team ${project.teamLabel}`} />
           </div>
         </div>
 

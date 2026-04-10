@@ -3,6 +3,7 @@
 import { useLayoutEffect, useMemo, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { useTranslations } from "next-intl";
+import { EmptyState } from "../../_components/EmptyState";
 import { SearchInput } from "../../_components/SearchInput";
 import { ActiveChips } from "./filter/ActiveChips";
 import { FilterPanelMobile } from "./filter/FilterPanelMobile";
@@ -162,20 +163,12 @@ export function ProjectsPage() {
                 ))}
               </div>
             ) : (
-              <div className="py-24 text-center">
-                <svg className="w-12 h-12 text-white/10 mx-auto mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-                <p className="text-white/30 text-base mb-1">{t("noResultsTitle")}</p>
-                <p className="text-white/20 text-sm">{t("noResultsHint")}</p>
-                <button
-                  type="button"
-                  onClick={clearAll}
-                  className="mt-4 text-amber-500 text-sm hover:text-amber-400 cursor-pointer underline underline-offset-2"
-                >
-                  {t("clearAllFilters")}
-                </button>
-              </div>
+              <EmptyState
+                message={t("noResultsTitle")}
+                hint={t("noResultsHint")}
+                clearLabel={t("clearAllFilters")}
+                onClear={clearAll}
+              />
             )}
           </div>
         </div>

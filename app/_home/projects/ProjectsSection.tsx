@@ -12,6 +12,7 @@ import { SmartphoneWithFlagIcon } from "../../../assets/icons/SmartphoneWithFlag
 import { MoneyExchangeIcon } from "../../../assets/icons/MoneyExchangeIcon";
 import { AppStoreLogo } from "../../../assets/logos/AppStoreLogo";
 import { GooglePlayLogo } from "../../../assets/logos/GooglePlayLogo";
+import { Button } from "../../_components/button/Button";
 import { ProjectCard } from "./ProjectCard";
 import { GolfTournamentIcon } from "../../../assets/icons/GolfTournamentIcon";
 import { GolfSocialIcon } from "../../../assets/icons/GolfSocialIcon";
@@ -81,7 +82,7 @@ const PROJECT_META: ProjectMeta[] = [
     imageContent: (
       <>
         <div className="w-44 h-44 rounded-full bg-emerald-500/15 blur-3xl" />
-        <SmartphoneWithFlagIcon className="absolute w-20 h-20 text-emerald-400/60 rotate-12" strokeWidth={1.5} fillOpacity={0.4} />
+        <SmartphoneWithFlagIcon className="absolute w-20 h-20 text-emerald-400/60 rotate-12" strokeWidth={1.5} />
       </>
     ),
   },
@@ -208,10 +209,10 @@ export async function ProjectsSection() {
         </div>
 
         <div className="text-center mt-12 reveal">
-          <a href="/projects" className="btn-outline px-8 py-3.5 rounded-xl text-sm cursor-pointer inline-flex items-center gap-2">
+          <Button href="/projects" variant="outline" className="px-8 py-3.5 rounded-xl text-sm gap-2">
             <ArrowLeftIcon className="w-4 h-4" />
             {t("viewAll")}
-          </a>
+          </Button>
         </div>
       </div>
     </section>

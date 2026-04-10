@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { CheckIcon } from "../../../../assets/icons/CheckIcon";
 import { ChevronDownIcon } from "../../../../assets/icons/ChevronDownIcon";
 import styles from "./FilterSidebar.module.css";
 
@@ -40,14 +41,7 @@ export function FilterGroup({ label, options, active, onToggle }: FilterGroupPro
               onClick={() => onToggle(opt)}
               className={`${styles.pill} ${active.has(opt) ? styles.pillActive : ""}`}
             >
-              <svg
-                className={`${styles.pillCheck} w-3 h-3 flex-shrink-0`}
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
-              </svg>
+              <CheckIcon className={`${styles.pillCheck} w-3 h-3 flex-shrink-0`} strokeWidth={3} />
               {opt}
             </button>
           ))}

@@ -3,7 +3,7 @@
 }
 
 .card:hover {
-  border-color: rgba(245, 158, 11, 0.2);
+  border-color: color-mix(in srgb, var(--amber) 20%, transparent);
 }
 
 .cardEntrance {
@@ -34,14 +34,26 @@
   transform: rotate(180deg);
 }
 
+.metaBadge {
+  background: color-mix(in srgb, white 5%, transparent);
+  border: 1px solid color-mix(in srgb, white 10%, transparent);
+  color: color-mix(in srgb, white 50%, transparent);
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
 .stackChip {
   padding: 4px 10px;
   border-radius: 7px;
   font-size: 0.7rem;
   font-weight: 500;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.09);
-  color: rgba(255, 255, 255, 0.6);
+  background: color-mix(in srgb, white 5%, transparent);
+  border: 1px solid color-mix(in srgb, white 9%, transparent);
+  color: color-mix(in srgb, white 60%, transparent);
 }
 
 /* Link strip */
@@ -51,7 +63,7 @@
   align-items: center;
   gap: 8px;
   padding: 14px 24px;
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  border-top: 1px solid color-mix(in srgb, white 5%, transparent);
 }
 
 @media (max-width: 640px) {
@@ -66,7 +78,7 @@
   font-weight: 600;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.18);
+  color: color-mix(in srgb, white 18%, transparent);
   margin-right: 2px;
 }
 
@@ -79,9 +91,9 @@
   border-radius: 10px;
   font-size: 0.8rem;
   font-weight: 600;
-  background: rgba(245, 158, 11, 0.08);
-  border: 1px solid rgba(245, 158, 11, 0.22);
-  color: #fbbf24;
+  background: color-mix(in srgb, var(--amber) 8%, transparent);
+  border: 1px solid color-mix(in srgb, var(--amber) 22%, transparent);
+  color: var(--amber);
   text-decoration: none;
   transition: background 0.2s, border-color 0.2s, transform 0.2s;
   cursor: pointer;
@@ -89,8 +101,8 @@
 }
 
 .linkWeb:hover {
-  background: rgba(245, 158, 11, 0.15);
-  border-color: rgba(245, 158, 11, 0.45);
+  background: color-mix(in srgb, var(--amber) 15%, transparent);
+  border-color: color-mix(in srgb, var(--amber) 45%, transparent);
   transform: translateY(-1px);
 }
 
@@ -101,8 +113,8 @@
   gap: 9px;
   padding: 7px 14px;
   border-radius: 10px;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.09);
+  background: color-mix(in srgb, white 4%, transparent);
+  border: 1px solid color-mix(in srgb, white 9%, transparent);
   text-decoration: none;
   transition: background 0.2s, border-color 0.2s, transform 0.2s;
   cursor: pointer;
@@ -110,14 +122,14 @@
 }
 
 .linkStore:hover {
-  background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(255, 255, 255, 0.18);
+  background: color-mix(in srgb, white 8%, transparent);
+  border-color: color-mix(in srgb, white 18%, transparent);
   transform: translateY(-1px);
 }
 
 .storeLabelTop {
   font-size: 0.6rem;
-  color: rgba(255, 255, 255, 0.3);
+  color: color-mix(in srgb, white 30%, transparent);
   line-height: 1;
   margin-bottom: 1px;
   display: block;
@@ -126,7 +138,7 @@
 .storeLabelMain {
   font-size: 0.78rem;
   font-weight: 600;
-  color: rgba(255, 255, 255, 0.75);
+  color: color-mix(in srgb, white 75%, transparent);
   line-height: 1;
   display: block;
 }
@@ -142,9 +154,9 @@
   gap: 7px;
   padding: 7px 14px;
   border-radius: 10px;
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  color: rgba(255, 255, 255, 0.28);
+  background: color-mix(in srgb, white 2%, transparent);
+  border: 1px solid color-mix(in srgb, white 6%, transparent);
+  color: color-mix(in srgb, white 28%, transparent);
   font-size: 0.8rem;
   font-weight: 500;
   cursor: not-allowed;
@@ -157,8 +169,8 @@
   left: 50%;
   transform: translateX(-50%);
   background: #16162a;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  color: rgba(255, 255, 255, 0.45);
+  border: 1px solid color-mix(in srgb, white 10%, transparent);
+  color: color-mix(in srgb, white 45%, transparent);
   font-size: 0.68rem;
   font-weight: 500;
   padding: 6px 12px;

@@ -1,7 +1,7 @@
 .overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.6);
+  background: color-mix(in srgb, black 60%, transparent);
   backdrop-filter: blur(4px);
   z-index: 40;
   opacity: 0;
@@ -25,9 +25,9 @@
   transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   overflow-y: auto;
   background: #0d0d18;
-  border-right: 1px solid rgba(255, 255, 255, 0.06);
+  border-right: 1px solid color-mix(in srgb, white 6%, transparent);
   scrollbar-width: thin;
-  scrollbar-color: rgba(245, 158, 11, 0.2) transparent;
+  scrollbar-color: color-mix(in srgb, var(--amber) 20%, transparent) transparent;
 }
 
 .panel::-webkit-scrollbar {
@@ -35,7 +35,7 @@
 }
 
 .panel::-webkit-scrollbar-thumb {
-  background: rgba(245, 158, 11, 0.2);
+  background: color-mix(in srgb, var(--amber) 20%, transparent);
 }
 
 .panelOpen {

@@ -1,6 +1,7 @@
 "use client";
 
 import { useTranslations } from "next-intl";
+import { XMarkIcon } from "../../../../assets/icons/XMarkIcon";
 import type { FilterGroupConfig } from "../projects-data";
 import { FilterGroup } from "./FilterGroup";
 import styles from "./FilterPanelMobile.module.css";
@@ -43,9 +44,7 @@ export function FilterPanelMobile({
             className="text-white/40 hover:text-white cursor-pointer transition-colors"
             aria-label="Close filters"
           >
-            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-            </svg>
+            <XMarkIcon className="w-5 h-5" />
           </button>
         </div>
 

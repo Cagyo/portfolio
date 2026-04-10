@@ -68,7 +68,11 @@ export function SkillsSection() {
 
         <div className="reveal">
           {filtered.length === 0 ? (
-            <EmptyState query={search} onClear={() => { setSearch(""); setActiveCat(0); }} />
+            <EmptyState
+              message={t("noResults", { query: search })}
+              clearLabel={t("clearSearch")}
+              onClear={() => { setSearch(""); setActiveCat(0); }}
+            />
           ) : (
             <>
               {topSkills.length > 0 && (

@@ -2,6 +2,7 @@
 
 import { useTranslations } from "next-intl";
 import { siteConfig } from "../../_config/site-config";
+import { Button } from "../../_components/button/Button";
 import { DownloadIcon } from "../../../assets/icons/DownloadIcon";
 import { GitHubLogo } from "../../../assets/logos/GitHubLogo";
 import { LinkedInLogo } from "../../../assets/logos/LinkedInLogo";
@@ -33,14 +34,15 @@ export function SocialLinks() {
       >
         <XLogo className="w-5 h-5" />
       </a>
-      <a
+      <Button
         href={siteConfig.resume.url}
         aria-label={t("downloadResume")}
-        className="btn-outline px-4 py-2 rounded-xl text-sm cursor-pointer inline-flex items-center gap-2"
+        variant="outline"
+        className="px-4 py-2 rounded-xl text-sm gap-2"
       >
         <DownloadIcon className="w-4 h-4" />
         {t("resume")}
-      </a>
+      </Button>
     </div>
   );
 }

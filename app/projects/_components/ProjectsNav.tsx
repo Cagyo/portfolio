@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useTranslations } from "next-intl";
 import { ArrowLeftIcon } from "../../../assets/icons/ArrowLeftIcon";
+import { FunnelIcon } from "../../../assets/icons/FunnelIcon";
 
 type ProjectsNavProps = {
   count: number
@@ -34,9 +35,7 @@ export function ProjectsNav({ count, onFilterOpen }: ProjectsNavProps) {
             className="lg:hidden glass px-3 py-2 rounded-xl text-sm text-white/60 hover:text-amber-400 transition-colors cursor-pointer flex items-center gap-2"
             aria-label={t("filters")}
           >
-            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2a1 1 0 01-.293.707L13 13.414V19a1 1 0 01-.553.894l-4 2A1 1 0 017 21v-7.586L3.293 6.707A1 1 0 013 6V4z" />
-            </svg>
+            <FunnelIcon className="w-4 h-4" />
             {t("filters")}
           </button>
 
