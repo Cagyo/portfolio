@@ -3,6 +3,7 @@ import { SparkleIcon } from "../../assets/icons/SparkleIcon";
 import { GitHubLogo } from "../../assets/logos/GitHubLogo";
 import { LinkedInLogo } from "../../assets/logos/LinkedInLogo";
 import { XLogo } from "../../assets/logos/XLogo";
+import { siteConfig } from "../_config/site-config";
 import styles from "./Footer.module.css";
 
 export async function Footer() {
@@ -28,13 +29,31 @@ export async function Footer() {
             {t("backToTop")}
           </a>
           <div className="flex gap-3">
-            <a href="#" aria-label={t("githubAriaLabel")} className="text-white/30 hover:text-amber-400 transition-colors cursor-pointer">
+            <a
+              href={siteConfig.social.github.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={t("githubAriaLabel")}
+              className="text-white/30 hover:text-amber-400 transition-colors cursor-pointer"
+            >
               <GitHubLogo className="w-4 h-4" />
             </a>
-            <a href="#" aria-label={t("linkedinAriaLabel")} className="text-white/30 hover:text-amber-400 transition-colors cursor-pointer">
+            <a
+              href={siteConfig.social.linkedin.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={t("linkedinAriaLabel")}
+              className="text-white/30 hover:text-amber-400 transition-colors cursor-pointer"
+            >
               <LinkedInLogo className="w-4 h-4" />
             </a>
-            <a href="#" aria-label={t("twitterAriaLabel")} className="text-white/30 hover:text-amber-400 transition-colors cursor-pointer">
+            <a
+              href={siteConfig.social.twitter.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={t("twitterAriaLabel")}
+              className="text-white/30 hover:text-amber-400 transition-colors cursor-pointer"
+            >
               <XLogo className="w-4 h-4" />
             </a>
           </div>

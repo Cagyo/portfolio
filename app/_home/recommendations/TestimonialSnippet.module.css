@@ -1,0 +1,15 @@
+.snippet {
+  display: block;
+}
+
+.quoteSm { font-size: 11px; }
+.quoteMd { font-size: 0.875rem; } /* text-sm */
+
+.nameSm { font-size: 10px; }
+.nameMd { font-size: 0.75rem; } /* text-xs */
+
+.companySm { font-size: 9px; }
+.companyMd { font-size: 10px; }
+
+.initialSm { font-size: 9px; }
+.initialMd { font-size: 10px; }

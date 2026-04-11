@@ -159,55 +159,40 @@ function StoreLinks({ link, t }: { link: { appStore: string; playStore: string }
   );
 }
 
+function WebLink({ url, label }: { url: string; label: string }) {
+  return (
+    <a href={url} target="_blank" rel="noopener noreferrer" className={styles.linkWeb}>
+      <ExternalLinkIcon className="w-3.5 h-3.5 flex-shrink-0" />
+      {label}
+    </a>
+  );
+}
+
+function PrivateBadge({ label, tooltip }: { label: string; tooltip: string }) {
+  return (
+    <div className={styles.linkPrivateWrap}>
+      <span className={styles.linkPrivate}>
+        <LockIcon className="w-3.5 h-3.5 flex-shrink-0" />
+        {label}
+      </span>
+      <div className={styles.linkPrivateTooltip}>{tooltip}</div>
+    </div>
+  );
+}
+
 function LinkStrip({ link, t }: { link: ProjectPageLink; t: ReturnType<typeof useTranslations<"projectsPage">> }) {
-  if (link.type === "private") {
-    return (
-      <div className={styles.linkStrip}>
-        <span className={styles.linkTypeLabel}>{t("links")}</span>
-        <div className={styles.linkPrivateWrap}>
-          <span className={styles.linkPrivate}>
-            <LockIcon className="w-3.5 h-3.5 flex-shrink-0" />
-            {t("privateLabel")}
-          </span>
-          <div className={styles.linkPrivateTooltip}>{t("privateTooltip")}</div>
-        </div>
-      </div>
-    );
-  }
-
-  if (link.type === "mobile") {
-    return (
-      <div className={styles.linkStrip}>
-        <span className={styles.linkTypeLabel}>{t("links")}</span>
+  return (
+    <div className={styles.linkStrip}>
+      <span className={styles.linkTypeLabel}>{t("links")}</span>
+      {link.type === "private" && (
+        <PrivateBadge label={t("privateLabel")} tooltip={t("privateTooltip")} />
+      )}
+      {(link.type === "web" || link.type === "web+mobile") && (
+        <WebLink url={link.url} label={t("liveApp")} />
+      )}
+      {(link.type === "mobile" || link.type === "web+mobile") && (
         <StoreLinks link={link} t={t} />
-      </div>
-    );
-  }
-
-  if (link.type === "web") {
-    return (
-      <div className={styles.linkStrip}>
-        <span className={styles.linkTypeLabel}>{t("links")}</span>
-        <a href={link.url} target="_blank" rel="noopener noreferrer" className={styles.linkWeb}>
-          <ExternalLinkIcon className="w-3.5 h-3.5 flex-shrink-0" />
-          {t("liveApp")}
-        </a>
-      </div>
-    );
-  }
-
-  if (link.type === "web+mobile") {
-    return (
-      <div className={styles.linkStrip}>
-        <span className={styles.linkTypeLabel}>{t("links")}</span>
-        <a href={link.url} target="_blank" rel="noopener noreferrer" className={styles.linkWeb}>
-          <ExternalLinkIcon className="w-3.5 h-3.5 flex-shrink-0" />
-          {t("liveApp")}
-        </a>
-        <StoreLinks link={link} t={t} />
-      </div>
-    );
-  }
-
-  return null;
+      )}
+    </div>
+  );
 }

@@ -3,6 +3,7 @@ import { ArrowRightIcon } from "../../../assets/icons/ArrowRightIcon";
 import { CalendarIcon } from "../../../assets/icons/CalendarIcon";
 import { BlobBackground } from "../../_components/BlobBackground";
 import { Button } from "../../_components/button/Button";
+import { siteConfig } from "../../_config/site-config";
 import styles from "./MentorshipHero.module.css";
 
 type HeroStat = { value: string; label: string }
@@ -75,7 +76,7 @@ export async function MentorshipHero() {
             <ArrowRightIcon className="w-4 h-4" />
           </Button>
           <a
-            href="https://calendly.com/"
+            href={siteConfig.calendly.url}
             target="_blank"
             rel="noopener noreferrer"
             className="border border-violet-400/50 text-violet-400 hover:bg-violet-400/10 hover:border-violet-400 hover:-translate-y-0.5 transition-all duration-200 px-7 py-3.5 rounded-xl text-base cursor-pointer inline-flex items-center gap-2 font-semibold"

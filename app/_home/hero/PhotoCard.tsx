@@ -3,8 +3,6 @@ import styles from "./PhotoCard.module.css";
 import { Tag } from "../../_components/tag/Tag";
 import { TestimonialSnippet, type SnippetTestimonial } from "../recommendations/TestimonialSnippet";
 
-const ENABLE_FLOAT_ANIMATION = false;
-
 type PhotoCardProps = {
   availableLabel: string;
   testimonial?: SnippetTestimonial;
@@ -17,14 +15,14 @@ export function PhotoCard({ availableLabel, testimonial }: PhotoCardProps) {
     <div className={styles.wrapper}>
       {/* ── Floating "Available" badge ─── */}
       <div
-        className={`absolute top-0 left-1/2 -translate-x-1/2 z-20 whitespace-nowrap ${ENABLE_FLOAT_ANIMATION ? "animate-float" : ""} flex items-center gap-2 glass rounded-full px-3.5 py-2 text-xs font-medium text-white/80 ${styles.badge}`}
+        className={`absolute top-0 left-1/2 -translate-x-1/2 z-20 whitespace-nowrap flex items-center gap-2 glass rounded-full px-3.5 py-2 text-xs font-medium text-white/80 ${styles.badge}`}
       >
         <span className={`w-2 h-2 rounded-full bg-emerald-400 flex-shrink-0 ${styles.availableDot}`} />
         {availableLabel}
       </div>
 
       {/* ── Main card ─── */}
-      <div className={`${ENABLE_FLOAT_ANIMATION ? "animate-float" : ""} glass-amber rounded-3xl overflow-hidden ${styles.mainCard}`}>
+      <div className={`glass-amber rounded-3xl overflow-hidden ${styles.mainCard}`}>
         {/* Photo */}
         <div className={styles.photoArea}>
           <Image
@@ -50,7 +48,7 @@ export function PhotoCard({ availableLabel, testimonial }: PhotoCardProps) {
         <TestimonialSnippet
           testimonial={testimonial}
           size="sm"
-          className={`absolute bottom-3 left-2 right-2 z-20 ${ENABLE_FLOAT_ANIMATION ? "animate-float" : ""} ${styles.miniReview}`}
+          className={`absolute bottom-3 left-2 right-2 z-20 ${styles.miniReview}`}
         />
       )}
 

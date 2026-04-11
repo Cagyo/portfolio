@@ -35,6 +35,8 @@
     "bio2": "Most of my career has involved switching between two modes: being the sole engineer with full ownership, and being the person others looked to for architectural direction within a team. Both shaped how I think. Working solo teaches you to make decisions fast and own the consequences. Working with teams teaches you when to lead, when to listen, and when the right answer isn't your answer. I've learned to value both — and to show up the same way in either.",
     "bio3": "My stack is TypeScript through and through — React Native, NestJS, Next.js, GraphQL. The stack matters less to me than the quality of the product. I've shipped products used by thousands of people — and I know what dancing on the edge of the abyss feels like.\r\n\r\nI want to understand the product, influence the direction, and build something I'd actually want to use.",
     "experienceHeading": "Experience",
+    "showLess": "Show less",
+    "showNMore": "{count, plural, one {# more} other {# more}}",
     "infoGrid": {
       "locationLabel": "Location",
       "locationValue": "Kyiv, Ukraine",
@@ -298,7 +300,9 @@
     "githubProfile": "GitHub profile",
     "linkedinProfile": "LinkedIn profile",
     "twitterProfile": "Twitter profile",
-    "scroll": "Scroll"
+    "scroll": "Scroll",
+    "showMore": "Show more",
+    "showLess": "Show less"
   },
   "projectsPage": {
     "title": "Projects",

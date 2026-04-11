@@ -1,12 +1,12 @@
 .amberPrice {
-  background: linear-gradient(135deg, #FBBF24 0%, #F59E0B 50%, #D97706 100%);
+  background: var(--gradient-amber);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
 .violetPrice {
-  background: linear-gradient(135deg, #a78bfa, #7c3aed);
+  background: var(--gradient-violet);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -21,5 +21,5 @@
 }
 
 .bookBtn {
-  background: linear-gradient(135deg, #8B5CF6, #7C3AED);
+  background: var(--gradient-purple);
 }

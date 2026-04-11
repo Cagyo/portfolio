@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useRef, useLayoutEffect } from 'react'
+import { useTranslations } from 'next-intl'
 import { ChevronDownIcon } from '../../../assets/icons/ChevronDownIcon'
 import styles from './ShowMoreText.module.css'
 
@@ -11,6 +12,7 @@ type ShowMoreTextProps = {
 }
 
 export function ShowMoreText({ text, textClassName, collapsedLines = 2 }: ShowMoreTextProps) {
+  const t = useTranslations('common')
   const [isExpanded, setIsExpanded] = useState(false)
   const [fullHeight, setFullHeight] = useState<number | null>(null)
   const [collapsedHeight, setCollapsedHeight] = useState(0)
@@ -48,7 +50,7 @@ export function ShowMoreText({ text, textClassName, collapsedLines = 2 }: ShowMo
           onClick={() => setIsExpanded((prev) => !prev)}
           className={styles.toggle}
         >
-          <span>{isExpanded ? 'Show less' : 'Show more'}</span>
+          <span>{isExpanded ? t('showLess') : t('showMore')}</span>
           <ChevronDownIcon className={`${styles.chevron} ${isExpanded ? styles.chevronUp : ''}`} />
         </button>
       )}

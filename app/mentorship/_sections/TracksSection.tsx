@@ -5,7 +5,39 @@ import { CheckIcon } from "../../../assets/icons/CheckIcon";
 import { BlobBackground } from "../../_components/BlobBackground";
 import { Button } from "../../_components/button/Button";
 import { SectionHeader } from "../../_components/SectionHeader";
+import { siteConfig } from "../../_config/site-config";
 import styles from "./TracksSection.module.css";
+
+type TrackAccent = "amber" | "violet"
+
+function DeliverablesList({ items, accent }: { items: string[]; accent: TrackAccent }) {
+  const checkColor = accent === "amber" ? "text-amber-500" : "text-violet-400";
+  return (
+    <>
+      {items.map((item) => (
+        <div key={item} className="flex items-start gap-3">
+          <CheckIcon className={`w-4 h-4 ${checkColor} mt-0.5 flex-shrink-0`} strokeWidth={2.5} />
+          <span className="text-white/60 text-sm">{item}</span>
+        </div>
+      ))}
+    </>
+  );
+}
+
+function ScopeTags({ items, accent }: { items: string[]; accent: TrackAccent }) {
+  const tagClass = accent === "amber"
+    ? "bg-white/5 text-white/40 border border-white/8"
+    : "bg-violet-500/10 text-violet-400/70 border border-violet-500/20";
+  return (
+    <div className="flex flex-wrap gap-1.5">
+      {items.map((tag) => (
+        <span key={tag} className={`text-xs px-2 py-0.5 rounded ${tagClass}`}>
+          {tag}
+        </span>
+      ))}
+    </div>
+  );
+}
 
 export async function TracksSection() {
   const t = await getTranslations("mentorshipPage.tracks");
@@ -53,23 +85,12 @@ export async function TracksSection() {
 
             <div className="px-6 py-5 flex-1 space-y-3">
               <p className="text-white/40 text-xs uppercase tracking-widest font-bold mb-4">{t("deliverableLabel")}</p>
-              {fastDeliverables.map((item) => (
-                <div key={item} className="flex items-start gap-3">
-                  <CheckIcon className="w-4 h-4 text-amber-500 mt-0.5 flex-shrink-0" strokeWidth={2.5} />
-                  <span className="text-white/60 text-sm">{item}</span>
-                </div>
-              ))}
+              <DeliverablesList items={fastDeliverables} accent="amber" />
             </div>
 
             <div className="px-6 pb-5">
               <p className="text-white/25 text-xs uppercase tracking-widest font-bold mb-3">{t("scopeLabel")}</p>
-              <div className="flex flex-wrap gap-1.5">
-                {fastScope.map((tag) => (
-                  <span key={tag} className="text-xs px-2 py-0.5 rounded bg-white/5 text-white/40 border border-white/8">
-                    {tag}
-                  </span>
-                ))}
-              </div>
+              <ScopeTags items={fastScope} accent="amber" />
             </div>
 
             <div className="px-6 pb-6">
@@ -109,23 +130,12 @@ export async function TracksSection() {
 
             <div className="px-6 py-5 flex-1 space-y-3">
               <p className="text-white/40 text-xs uppercase tracking-widest font-bold mb-4">{t("deliverableLabel")}</p>
-              {deepDeliverables.map((item) => (
-                <div key={item} className="flex items-start gap-3">
-                  <CheckIcon className="w-4 h-4 text-violet-400 mt-0.5 flex-shrink-0" strokeWidth={2.5} />
-                  <span className="text-white/60 text-sm">{item}</span>
-                </div>
-              ))}
+              <DeliverablesList items={deepDeliverables} accent="violet" />
             </div>
 
             <div className="px-6 pb-5">
               <p className="text-white/25 text-xs uppercase tracking-widest font-bold mb-3">{t("scopeLabel")}</p>
-              <div className="flex flex-wrap gap-1.5">
-                {deepScope.map((tag) => (
-                  <span key={tag} className="text-xs px-2 py-0.5 rounded bg-violet-500/10 text-violet-400/70 border border-violet-500/20">
-                    {tag}
-                  </span>
-                ))}
-              </div>
+              <ScopeTags items={deepScope} accent="violet" />
             </div>
 
             <div className="px-6 pb-6">
@@ -149,7 +159,7 @@ export async function TracksSection() {
             </div>
           </div>
           <a
-            href="https://calendly.com/"
+            href={siteConfig.calendly.url}
             target="_blank"
             rel="noopener noreferrer"
             className={`flex-shrink-0 inline-flex items-center gap-2 px-6 py-2.5 rounded-xl text-sm font-semibold cursor-pointer text-white ${styles.bookBtn}`}

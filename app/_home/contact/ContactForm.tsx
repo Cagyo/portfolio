@@ -56,6 +56,7 @@ export function ContactForm() {
             onClick={() => setMode("text")}
             className={`${styles.modeTab} ${mode === "text" ? styles.modeTabActive : ""}`}
             aria-pressed={mode === "text"}
+            aria-controls="contact-text-panel"
           >
             <PenLineIcon className="w-4 h-4" strokeWidth={2} />
             <span>{t("form.modeTabs.typeLabel")}</span>
@@ -65,6 +66,7 @@ export function ContactForm() {
             onClick={() => setMode("voice")}
             className={`${styles.modeTab} ${mode === "voice" ? styles.modeTabActive : ""}`}
             aria-pressed={mode === "voice"}
+            aria-controls="contact-voice-panel"
           >
             <MicrophoneIcon className="w-4 h-4" strokeWidth={2} />
             <span>{t("form.modeTabs.voiceLabel")}</span>
@@ -73,7 +75,7 @@ export function ContactForm() {
 
         {/* ── Text fields ── */}
         {mode === "text" && (
-          <div className={`${styles.modePanel} space-y-5`}>
+          <div id="contact-text-panel" className={`${styles.modePanel} space-y-5`}>
             <div>
               <label htmlFor="subject" className="block text-white/60 text-sm font-medium mb-2">{t("form.subjectLabel")}</label>
               <input
@@ -108,7 +110,7 @@ export function ContactForm() {
 
         {/* ── Voice recorder ── */}
         {mode === "voice" && (
-          <div className={styles.modePanel}>
+          <div id="contact-voice-panel" className={styles.modePanel}>
             <VoiceRecorder onRecordingsChange={setVoiceBlobs} />
           </div>
         )}

@@ -4,6 +4,7 @@ import { CalendarIcon } from "../../../assets/icons/CalendarIcon";
 import { ExternalLinkIcon } from "../../../assets/icons/ExternalLinkIcon";
 import { BlobBackground } from "../../_components/BlobBackground";
 import { Button } from "../../_components/button/Button";
+import { siteConfig } from "../../_config/site-config";
 import styles from "./ApplySection.module.css";
 
 export async function ApplySection() {
@@ -43,7 +44,7 @@ export async function ApplySection() {
         >
           {/* Calendly card */}
           <a
-            href="https://calendly.com/"
+            href={siteConfig.calendly.url}
             target="_blank"
             rel="noopener noreferrer"
             className="group flex items-center gap-4 glass rounded-2xl p-4 hover:border-violet-500/40 transition-all duration-200 cursor-pointer w-full sm:w-auto"

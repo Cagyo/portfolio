@@ -16,6 +16,7 @@ export function EmptyState({ message, clearLabel, hint, onClear }: EmptyStatePro
       <p className="text-white/30 text-sm">{message}</p>
       {hint && <p className="text-white/20 text-sm">{hint}</p>}
       <button
+        type="button"
         onClick={onClear}
         className="mt-3 text-amber-500 text-xs hover:text-amber-400 cursor-pointer underline underline-offset-2"
       >

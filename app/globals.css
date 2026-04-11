@@ -27,6 +27,11 @@
   --purple: #A855F7;
   --teal: #14B8A6;
 
+  --gradient-amber: linear-gradient(135deg, var(--amber-light) 0%, var(--amber) 50%, var(--amber-dark) 100%);
+  --gradient-amber-text: linear-gradient(135deg, var(--amber-light) 0%, var(--amber) 50%, var(--amber-dark) 100%);
+  --gradient-violet: linear-gradient(135deg, var(--violet), #7C3AED);
+  --gradient-purple: linear-gradient(135deg, #8B5CF6, #7C3AED);
+
   --bg: #080810;
   --bg-secondary: #0c0c18;
   --surface: rgba(255,255,255,0.04);
@@ -120,6 +125,8 @@ html[data-theme="light"] {
 
   --scrollbar-track: #F8F9FB;
   --dot-grid-color: rgba(180,120,0,0.12);
+
+  --gradient-amber-text: linear-gradient(135deg, #D97706 0%, #B45309 50%, #92400E 100%);
 }
 
 /* ── Light mode Tailwind overrides ──────────────────────── */
@@ -145,13 +152,6 @@ html[data-theme="light"] .bg-white\/6 { background-color: var(--surface) !import
 
 html[data-theme="light"] .hover\:text-white:hover { color: var(--text-primary) !important; }
 html[data-theme="light"] .group-hover\:text-white:hover { color: var(--text-primary) !important; }
-
-html[data-theme="light"] .text-gradient {
-  background: linear-gradient(135deg, #D97706 0%, #B45309 50%, #92400E 100%) !important;
-  -webkit-background-clip: text !important;
-  background-clip: text !important;
-  -webkit-text-fill-color: transparent !important;
-}
 
 html[data-theme="light"] .text-amber-400 { color: #B45309 !important; }
 html[data-theme="light"] .text-amber-500 { color: #92400E !important; }
@@ -257,7 +257,7 @@ section[id] { scroll-margin-top: 3rem; }
 }
 
 @utility text-gradient {
-  background: linear-gradient(135deg, #FBBF24 0%, #F59E0B 50%, #D97706 100%);
+  background: var(--gradient-amber-text);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;

@@ -1,13 +1,14 @@
 import { getTranslations } from "next-intl/server";
 import { CalendarIcon } from "../../../assets/icons/CalendarIcon";
 import { ExternalLinkIcon } from "../../../assets/icons/ExternalLinkIcon";
+import { siteConfig } from "../../_config/site-config";
 import styles from "./CalendlyLink.module.css";
 
 type CalendlyLinkProps = {
   href?: string
 }
 
-export async function CalendlyLink({ href = "https://calendly.com/" }: CalendlyLinkProps) {
+export async function CalendlyLink({ href = siteConfig.calendly.url }: CalendlyLinkProps) {
   const t = await getTranslations("contact");
 
   return (
