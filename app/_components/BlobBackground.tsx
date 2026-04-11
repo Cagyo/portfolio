@@ -17,8 +17,8 @@ export function BlobBackground({
     <div
       className={`blob ${size} ${color} ${position}`}
       style={{
-        animationDelay: delay ?? "0s",
-        opacity: opacity ? parseFloat(opacity) : undefined,
+        ...(delay !== undefined ? { animationDelay: delay } : {}),
+        ...(opacity !== undefined ? { opacity: parseFloat(opacity) } : {}),
       }}
     />
   );
