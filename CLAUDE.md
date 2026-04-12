@@ -456,6 +456,8 @@ Current UI primitives: `<Button>` — `variant?: "primary" | "outline"`, renders
   /* ✅ */  <div className={styles.expandGrid} style={{ gridTemplateRows: expanded ? '1fr' : '0fr' }}>
   ```
 
+- **Light mode support is mandatory**: every CSS module must include `html[data-theme="light"]` overrides for any property that uses white-based opacity colors (`oklch(from white ...)`, `color-mix(in srgb, white ...)`) or hardcoded dark backgrounds (`#080810`, `#0d0d18`, `#16162a`, etc.). Use design tokens (`var(--text-primary)`, `var(--surface)`, `var(--border)`, etc.) in light mode overrides. Similarly, any new Tailwind utility class using white opacity (`text-white/N`, `border-white/N`, `bg-white/N`) or amber hover variants must have a corresponding `html[data-theme="light"]` override in `globals.css`.
+
 ---
 
 ## SVG Icons & Logos
