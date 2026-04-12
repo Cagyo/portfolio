@@ -78,6 +78,26 @@ html[data-theme="light"] .modeTab:hover {
   color: var(--text-secondary);
 }
 
+/* ── Honeypot (off-viewport, not display:none — bots skip those) ── */
+.honeypot {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+/* ── Error banner ── */
+.errorBanner {
+  color: var(--red);
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  padding: 0.75rem 1rem;
+  border-radius: 0.75rem;
+  background: color-mix(in srgb, var(--red) 10%, transparent);
+  border: 1px solid color-mix(in srgb, var(--red) 25%, transparent);
+}
+
 @media (prefers-reduced-motion: reduce) {
   .modePanel {
     animation: none;

@@ -258,6 +258,22 @@
       "submit": "Send Message",
       "sending": "Sending…",
       "successMessage": "Message sent! I'll get back to you within 24 hours.",
+      "honeypotLabel": "Leave this field empty",
+      "turnstileLabel": "Verifying you're human…",
+      "errors": {
+        "nameInvalid": "Please enter your name (2–80 characters).",
+        "emailInvalid": "Please enter a valid email address.",
+        "subjectInvalid": "Subject must be 2–150 characters.",
+        "messageInvalid": "Message must be 10–5,000 characters.",
+        "budgetInvalid": "Please pick a valid budget range.",
+        "voiceMissing": "Please record at least one voice message.",
+        "voiceTooLarge": "Your recordings exceed the 20 MB limit. Please record less.",
+        "voiceTooMany": "You can attach at most 5 recordings.",
+        "turnstile": "Human verification failed. Please try again.",
+        "rateLimited": "Too many submissions. Please try again in an hour.",
+        "sendFailed": "Something went wrong sending your message. Please try again.",
+        "unknown": "Something went wrong. Please try again."
+      },
       "voice": {
         "hint": "Describe your project, timeline, and budget in your own words.",
         "readyLabel": "Tap to record",
