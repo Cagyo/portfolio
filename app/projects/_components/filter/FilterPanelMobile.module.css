@@ -41,3 +41,9 @@
 .panelOpen {
   transform: translateX(0);
 }
+
+/* ── Light mode overrides ── */
+html[data-theme="light"] .panel {
+  background: var(--bg);
+  border-right-color: var(--border);
+}

@@ -201,3 +201,54 @@
     width: 100%;
   }
 }
+
+/* ── Light mode overrides ── */
+html[data-theme="light"] .metaBadge {
+  background: var(--surface);
+  border-color: var(--border);
+  color: var(--text-muted);
+}
+
+html[data-theme="light"] .stackChip {
+  background: var(--surface);
+  border-color: var(--border);
+  color: var(--text-muted);
+}
+
+html[data-theme="light"] .linkStrip {
+  border-top-color: var(--border);
+}
+
+html[data-theme="light"] .linkTypeLabel {
+  color: var(--text-ghost);
+}
+
+html[data-theme="light"] .linkStore {
+  background: var(--surface);
+  border-color: var(--border);
+}
+
+html[data-theme="light"] .linkStore:hover {
+  background: var(--surface-hover);
+  border-color: rgba(0, 0, 0, 0.12);
+}
+
+html[data-theme="light"] .storeLabelTop {
+  color: var(--text-ghost);
+}
+
+html[data-theme="light"] .storeLabelMain {
+  color: var(--text-secondary);
+}
+
+html[data-theme="light"] .linkPrivate {
+  background: var(--surface);
+  border-color: var(--border);
+  color: var(--text-ghost);
+}
+
+html[data-theme="light"] .linkPrivateTooltip {
+  background: #fff;
+  border-color: var(--border);
+  color: var(--text-faint);
+}

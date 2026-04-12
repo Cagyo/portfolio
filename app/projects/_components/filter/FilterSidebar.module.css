@@ -99,3 +99,14 @@
 .activeChip:hover {
   background: color-mix(in srgb, var(--amber) 20%, transparent);
 }
+
+/* ── Light mode overrides ── */
+html[data-theme="light"] .groupChevron {
+  color: var(--text-ghost);
+}
+
+html[data-theme="light"] .pill {
+  background: var(--surface);
+  border-color: var(--border);
+  color: var(--text-muted);
+}

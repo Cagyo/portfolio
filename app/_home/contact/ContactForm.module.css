@@ -64,6 +64,20 @@
   }
 }
 
+/* ── Light mode overrides ── */
+html[data-theme="light"] .modeToggle {
+  background: var(--surface);
+  border-color: var(--border);
+}
+
+html[data-theme="light"] .modeTab {
+  color: var(--text-faint);
+}
+
+html[data-theme="light"] .modeTab:hover {
+  color: var(--text-secondary);
+}
+
 @media (prefers-reduced-motion: reduce) {
   .modePanel {
     animation: none;

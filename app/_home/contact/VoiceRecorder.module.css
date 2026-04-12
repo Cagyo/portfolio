@@ -332,6 +332,41 @@
   text-align: center;
 }
 
+/* ── Light mode overrides ── */
+html[data-theme="light"] .hint {
+  color: var(--text-faint);
+}
+
+html[data-theme="light"] .idleLabel {
+  color: var(--text-ghost);
+}
+
+html[data-theme="light"] .recordingItem {
+  background: var(--surface);
+  border-color: var(--border);
+}
+
+html[data-theme="light"] .itemTime {
+  color: var(--text-faint);
+}
+
+html[data-theme="light"] .deleteBtn {
+  color: var(--text-ghost);
+  border-color: var(--border);
+}
+
+html[data-theme="light"] .recordingLabel {
+  color: var(--text-secondary);
+}
+
+html[data-theme="light"] .addAnotherBtn {
+  color: var(--text-faint);
+}
+
+html[data-theme="light"] .maxReachedLabel {
+  color: var(--text-ghost);
+}
+
 /* ── Reduced motion ── */
 @media (prefers-reduced-motion: reduce) {
   .waveBar           { animation: none; height: 14px; }
