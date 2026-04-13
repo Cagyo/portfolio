@@ -3,7 +3,7 @@
 import { useTranslations } from "next-intl";
 
 export function NavLogo() {
-  const t = useTranslations("footer");
+  const t = useTranslations("common");
 
   return (
     <a href="#hero" className="flex items-center gap-3 cursor-pointer group">

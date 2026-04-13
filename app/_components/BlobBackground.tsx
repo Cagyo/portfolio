@@ -2,7 +2,7 @@ type BlobBackgroundProps = {
   size?: string
   color?: string
   position?: string
-  opacity?: string
+  opacity?: number
   delay?: string
 }
 
@@ -18,7 +18,7 @@ export function BlobBackground({
       className={`blob ${size} ${color} ${position}`}
       style={{
         ...(delay !== undefined ? { animationDelay: delay } : {}),
-        ...(opacity !== undefined ? { opacity: parseFloat(opacity) } : {}),
+        ...(opacity !== undefined ? { opacity } : {}),
       }}
     />
   );

@@ -219,8 +219,7 @@
   "contact": {
     "sectionNumber": "06.",
     "sectionTitle": "Contact",
-    "heading": "Let's build something {gradient} together.",
-    "headingGradient": "amazing",
+    "heading": "Let's build something <gradient>amazing</gradient> together.",
     "subheading": "Whether you have a product idea, need a technical partner, or just want to say hi — my inbox is always open.",
     "emailLabel": "Email",
     "emailValue": "oleksii.berliziev@gmail.com",
@@ -316,6 +315,7 @@
     "githubProfile": "GitHub profile",
     "linkedinProfile": "LinkedIn profile",
     "twitterProfile": "Twitter profile",
+    "author": "Oleksii Berliziev",
     "scroll": "Scroll",
     "showMore": "Show more",
     "showLess": "Show less"
@@ -345,6 +345,11 @@
     "links": "Links",
     "noResultsTitle": "No projects match your filters",
     "noResultsHint": "Try adjusting or clearing your filters"
+  },
+  "notFound": {
+    "title": "Page not found",
+    "body": "The page you're looking for doesn't exist or has been moved.",
+    "backHome": "Back to home"
   },
   "metadata": {
     "title": "Oleksii Berliziev — Product Designer & Creative Developer",

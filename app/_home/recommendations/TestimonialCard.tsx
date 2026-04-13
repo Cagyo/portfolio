@@ -5,6 +5,7 @@ import Image from "next/image";
 import { ExternalLinkIcon } from "../../../assets/icons/ExternalLinkIcon";
 import { QuoteMarkIcon } from "../../../assets/icons/QuoteMarkIcon";
 import { LinkedInLogo } from "../../../assets/logos/LinkedInLogo";
+import styles from "./TestimonialCard.module.css";
 
 type TestimonialCardProps = {
   quotePreview: string;
@@ -42,24 +43,25 @@ export function TestimonialCard({ quotePreview, quoteRest, readMoreLabel, readLe
         {paragraphs.map((paragraph, index) => {
           const isFirst = index === 0;
           const isLast = index === paragraphs.length - 1;
-
-          if (!expanded && hasMore && isLast) {
-            return (
-              <p key={index}>
-                {isFirst && "\u201C"}{paragraph}{" "}
-                <button
-                  onClick={() => setExpanded(true)}
-                  className="not-italic text-amber-400 hover:text-amber-300 transition-colors duration-200 underline underline-offset-2 cursor-pointer"
-                >
-                  {readMoreLabel ?? "Read more"}
-                </button>
-              </p>
-            );
-          }
+          const stableKey = paragraph.slice(0, 40);
+          const showReadMore = !expanded && hasMore && isLast;
 
           return (
-            <p key={index}>
-              {isFirst && "\u201C"}{paragraph}{isLast && "\u201D"}
+            <p key={stableKey}>
+              {isFirst && "\u201C"}
+              {paragraph}
+              {showReadMore && (
+                <>
+                  {" "}
+                  <button
+                    onClick={() => setExpanded(true)}
+                    className="not-italic text-amber-400 hover:text-amber-300 transition-colors duration-200 underline underline-offset-2 cursor-pointer"
+                  >
+                    {readMoreLabel ?? "Read more"}
+                  </button>
+                </>
+              )}
+              {!showReadMore && isLast && "\u201D"}
             </p>
           );
         })}
@@ -99,9 +101,11 @@ export function TestimonialCard({ quotePreview, quoteRest, readMoreLabel, readLe
           <a
             href={linkedinUrl}
             aria-label={viewOnLinkedInLabel}
-            className="flex items-center gap-1.5 text-xs text-white/30 hover:text-[#0A66C2] transition-colors duration-200 cursor-pointer flex-shrink-0 group"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={`flex items-center gap-1.5 text-xs text-white/30 transition-colors duration-200 cursor-pointer flex-shrink-0 ${styles.linkedinLink}`}
           >
-            <LinkedInLogo className="w-4 h-4 text-[#0A66C2]/50 group-hover:text-[#0A66C2] transition-colors" />
+            <LinkedInLogo className={`w-4 h-4 transition-colors ${styles.linkedinIcon}`} />
             <span className="hidden sm:inline">{viewOnLinkedInLabel}</span>
             <ExternalLinkIcon className="w-3 h-3" />
           </a>

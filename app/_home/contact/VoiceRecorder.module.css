@@ -173,13 +173,13 @@
 }
 
 .deleteBtn:hover {
-  color: #fca5a5;
-  border-color: color-mix(in srgb, #f87171 40%, transparent);
-  background: color-mix(in srgb, #f87171 10%, transparent);
+  color: color-mix(in srgb, var(--red) 65%, white);
+  border-color: color-mix(in srgb, var(--red) 40%, transparent);
+  background: color-mix(in srgb, var(--red) 10%, transparent);
 }
 
 .deleteBtn:focus-visible {
-  outline: 2px solid #f87171;
+  outline: 2px solid var(--red);
   outline-offset: 3px;
 }
 
@@ -207,8 +207,8 @@
   gap: 1rem;
   padding: 0.875rem 0.75rem;
   border-radius: 0.625rem;
-  background: color-mix(in srgb, #f87171 6%, transparent);
-  border: 1px dashed color-mix(in srgb, #f87171 30%, transparent);
+  background: color-mix(in srgb, var(--red) 6%, transparent);
+  border: 1px dashed color-mix(in srgb, var(--red) 30%, transparent);
   animation: itemSlideIn 200ms ease-out both;
 }
 
@@ -222,7 +222,7 @@
   width: 8px;
   height: 8px;
   border-radius: 9999px;
-  background: #f87171;
+  background: var(--red);
   animation: blink 1s step-start infinite;
 }
 
@@ -270,9 +270,9 @@
   gap: 0.5rem;
   padding: 0.5rem 1.25rem;
   border-radius: 9999px;
-  background: color-mix(in srgb, #f87171 18%, transparent);
-  border: 1px solid color-mix(in srgb, #f87171 35%, transparent);
-  color: #fca5a5;
+  background: color-mix(in srgb, var(--red) 18%, transparent);
+  border: 1px solid color-mix(in srgb, var(--red) 35%, transparent);
+  color: color-mix(in srgb, var(--red) 65%, white);
   font-size: 0.8125rem;
   font-weight: 500;
   cursor: pointer;
@@ -280,11 +280,11 @@
 }
 
 .stopBtn:hover {
-  background: color-mix(in srgb, #f87171 28%, transparent);
+  background: color-mix(in srgb, var(--red) 28%, transparent);
 }
 
 .stopBtn:focus-visible {
-  outline: 2px solid #f87171;
+  outline: 2px solid var(--red);
   outline-offset: 3px;
 }
 
@@ -328,7 +328,7 @@
 /* ── Error ── */
 .errorMsg {
   font-size: 0.8125rem;
-  color: #fca5a5;
+  color: color-mix(in srgb, var(--red) 65%, white);
   text-align: center;
 }
 

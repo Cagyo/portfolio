@@ -1,4 +1,16 @@
+/* Calendly brand color — intentional brand override, not a design token */
 .btn {
-  /* Calendly brand color — intentional brand override, not a design token */
-  background: #006BFF;
+  background: var(--calendly-blue);
+}
+
+.link:hover {
+  border-color: color-mix(in srgb, var(--calendly-blue) 40%, transparent);
+}
+
+.externalIcon {
+  color: color-mix(in srgb, white 25%, transparent);
+}
+
+.link:hover .externalIcon {
+  color: var(--calendly-blue);
 }

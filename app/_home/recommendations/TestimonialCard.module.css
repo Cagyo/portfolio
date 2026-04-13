@@ -1,0 +1,11 @@
+.linkedinLink:hover {
+  color: var(--linkedin-blue);
+}
+
+.linkedinIcon {
+  color: color-mix(in srgb, var(--linkedin-blue) 50%, transparent);
+}
+
+.linkedinLink:hover .linkedinIcon {
+  color: var(--linkedin-blue);
+}

@@ -20,7 +20,9 @@ export async function ContactInfo() {
     <div className="lg:col-span-2 reveal space-y-8">
       <div>
         <h3 className="font-heading font-black text-3xl text-white mb-4">
-          {"Let's build something "}<span className="text-gradient">{t("headingGradient")}</span>{" together."}
+          {t.rich("heading", {
+            gradient: (chunks) => <span className="text-gradient">{chunks}</span>,
+          })}
         </h3>
         <p className="text-white/50 leading-relaxed">
           {t("subheading")}

@@ -1,6 +1,4 @@
-"use client";
-
-import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
 import { siteConfig } from "../../_config/site-config";
 import { Button } from "../../_components/button/Button";
 import { DownloadIcon } from "../../../assets/icons/DownloadIcon";
@@ -8,13 +6,15 @@ import { GitHubLogo } from "../../../assets/logos/GitHubLogo";
 import { LinkedInLogo } from "../../../assets/logos/LinkedInLogo";
 import { XLogo } from "../../../assets/logos/XLogo";
 
-export function SocialLinks() {
-  const t = useTranslations("common");
+export async function SocialLinks() {
+  const t = await getTranslations("common");
 
   return (
     <div className="flex gap-4 pt-2">
       <a
         href={siteConfig.social.github.url}
+        target="_blank"
+        rel="noopener noreferrer"
         aria-label={t("githubProfile")}
         className="glass w-10 h-10 rounded-xl flex items-center justify-center text-white/50 hover:text-amber-400 hover:border-amber-500/30 transition-colors duration-200 cursor-pointer"
       >
@@ -22,6 +22,8 @@ export function SocialLinks() {
       </a>
       <a
         href={siteConfig.social.linkedin.url}
+        target="_blank"
+        rel="noopener noreferrer"
         aria-label={t("linkedinProfile")}
         className="glass w-10 h-10 rounded-xl flex items-center justify-center text-white/50 hover:text-amber-400 hover:border-amber-500/30 transition-colors duration-200 cursor-pointer"
       >
@@ -29,6 +31,8 @@ export function SocialLinks() {
       </a>
       <a
         href={siteConfig.social.twitter.url}
+        target="_blank"
+        rel="noopener noreferrer"
         aria-label={t("twitterProfile")}
         className="glass w-10 h-10 rounded-xl flex items-center justify-center text-white/50 hover:text-amber-400 hover:border-amber-500/30 transition-colors duration-200 cursor-pointer"
       >
