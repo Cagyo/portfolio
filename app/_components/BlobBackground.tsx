@@ -3,7 +3,6 @@ type BlobBackgroundProps = {
   color?: string
   position?: string
   opacity?: number
-  delay?: string
 }
 
 export function BlobBackground({
@@ -11,15 +10,11 @@ export function BlobBackground({
   color = "bg-amber-500",
   position = "top-20 -left-32",
   opacity,
-  delay,
 }: BlobBackgroundProps) {
   return (
     <div
       className={`blob ${size} ${color} ${position}`}
-      style={{
-        ...(delay !== undefined ? { animationDelay: delay } : {}),
-        ...(opacity !== undefined ? { opacity } : {}),
-      }}
+      style={opacity !== undefined ? { opacity } : undefined}
     />
   );
 }
