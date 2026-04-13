@@ -1,9 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { useTranslations } from "next-intl";
 import { HamburgerIcon } from "../../../assets/icons/HamburgerIcon";
 import { Button } from "../button/Button";
+import { useActiveSection } from "./use-active-section";
 
 type NavLink = { label: string; href: string }
 
@@ -14,6 +15,8 @@ type MobileMenuProps = {
 export function MobileMenu({ links }: MobileMenuProps) {
   const t = useTranslations("nav");
   const [open, setOpen] = useState(false);
+  const sectionIds = useMemo(() => links.map((link) => link.href.replace('#', '')), [links])
+  const activeId = useActiveSection(sectionIds)
 
   return (
     <>
@@ -33,7 +36,7 @@ export function MobileMenu({ links }: MobileMenuProps) {
               key={link.href}
               href={link.href}
               onClick={() => setOpen(false)}
-              className="text-white/70 hover:text-white font-medium cursor-pointer py-1"
+              className={`font-medium cursor-pointer py-1 ${link.href === `#${activeId}` ? 'text-amber-400' : 'text-white/70 hover:text-white'}`}
             >
               {link.label}
             </a>

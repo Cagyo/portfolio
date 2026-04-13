@@ -13,7 +13,7 @@ import { SkillsSection } from "./_home/skills/SkillsSection";
 
 export default function Page() {
   return (
-    <div className="min-h-screen bg-[var(--bg)] font-body text-[var(--text-primary)] scroll-smooth">
+    <div className="min-h-screen bg-[var(--bg)] font-body text-[var(--text-primary)]">
       <RevealProvider />
       <Nav />
       <HeroSection />
