@@ -248,13 +248,13 @@ section[id] { scroll-margin-top: 3rem; }
 ══════════════════════════════════════════════ */
 @utility glass {
   background: var(--surface);
-  @apply backdrop-blur-[16px];
+  @apply backdrop-blur-[8px];
   border: 1px solid var(--border);
 }
 
 @utility glass-amber {
   background: var(--glass-amber-bg);
-  @apply backdrop-blur-[16px];
+  @apply backdrop-blur-[8px];
   border: 1px solid var(--border-amber);
 }
 
@@ -282,9 +282,11 @@ section[id] { scroll-margin-top: 3rem; }
   opacity: 0;
   transform: translateY(40px);
   transition: opacity 0.7s ease, transform 0.7s ease;
+  will-change: opacity, transform;
   &.visible {
     opacity: 1;
     transform: translateY(0);
+    will-change: auto;
   }
 }
 
