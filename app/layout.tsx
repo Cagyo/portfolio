@@ -1,7 +1,7 @@
 import { getLocale, getMessages } from "next-intl/server";
 import { NextIntlClientProvider } from "next-intl";
 import { Archivo, Space_Grotesk } from "next/font/google";
-import { ThemeScript } from "./_components/theme/ThemeScript";
+import { cookies } from "next/headers";
 import "./globals.css";
 
 const archivo = Archivo({
@@ -31,15 +31,16 @@ export default async function RootLayout({
 }>) {
   const locale = await getLocale();
   const messages = await getMessages();
+  const cookieStore = await cookies();
+  const theme = cookieStore.get("theme")?.value;
 
   return (
     <html
       lang={locale}
       className={`${archivo.variable} ${spaceGrotesk.variable} h-full antialiased`}
+      data-theme={theme === "light" ? "light" : undefined}
     >
-      <head>
-        <ThemeScript />
-      </head>
+      <head />
       <body className="min-h-full flex flex-col">
         <NextIntlClientProvider messages={messages}>
           {children}

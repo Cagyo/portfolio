@@ -11,8 +11,8 @@ export function ThemeToggle() {
   const [isDark, setIsDark] = useState(true);
 
   useEffect(() => {
-    const stored = localStorage.getItem("theme");
-    setIsDark(stored !== "light");
+    const match = document.cookie.match(/(?:^|;\s*)theme=([^;]+)/);
+    setIsDark(match?.[1] !== "light");
   }, []);
 
   function toggle() {
@@ -20,10 +20,10 @@ export function ThemeToggle() {
     setIsDark(!isDark);
     if (next === "light") {
       document.documentElement.setAttribute("data-theme", "light");
-      localStorage.setItem("theme", "light");
+      document.cookie = "theme=light; path=/; max-age=31536000; SameSite=Lax";
     } else {
       document.documentElement.removeAttribute("data-theme");
-      localStorage.removeItem("theme");
+      document.cookie = "theme=; path=/; max-age=0; SameSite=Lax";
     }
   }
 
