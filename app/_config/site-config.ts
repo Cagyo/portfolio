@@ -41,5 +41,14 @@ export const siteConfig = {
   ui: {
     experienceInitialVisible: 2,
   },
+  turnstile: {
+    /**
+     * Controls the Cloudflare Turnstile widget rendering mode.
+     * 'invisible' — silent background challenge (no visible widget)
+     * 'compact'   — small visible checkbox
+     * 'normal'    — full-size "I'm not a robot" checkbox
+     */
+    size: 'normal' as 'invisible' | 'compact' | 'normal',
+  },
   sections,
 } as const

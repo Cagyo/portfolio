@@ -87,6 +87,13 @@ html[data-theme="light"] .modeTab:hover {
   overflow: hidden;
 }
 
+/* ── Turnstile wrapper (visible modes only) ── */
+.turnstileWrapper {
+  display: flex;
+  justify-content: center;
+  padding-top: 0.25rem;
+}
+
 /* ── Error banner ── */
 .errorBanner {
   color: var(--red);

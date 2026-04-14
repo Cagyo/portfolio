@@ -19,6 +19,7 @@ import { VoiceRecorder } from "./VoiceRecorder";
 import { TurnstileWidget } from "./TurnstileWidget";
 import { sendContactMessage } from "./contact-actions";
 import type { ActionResult, ContactErrorKey } from "./contact-types";
+import { siteConfig } from "../../_config/site-config";
 import styles from "./ContactForm.module.css";
 
 type InputMode = "text" | "voice";
@@ -226,11 +227,14 @@ export function ContactForm() {
         <input type="hidden" name="mode" value={mode} />
 
         {/* ── Turnstile ── */}
-        <TurnstileWidget
-          ref={turnstileRef}
-          siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY!}
-          onVerify={setTurnstileToken}
-        />
+        <div className={siteConfig.turnstile.size !== 'invisible' ? styles.turnstileWrapper : undefined}>
+          <TurnstileWidget
+            ref={turnstileRef}
+            siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY!}
+            size={siteConfig.turnstile.size}
+            onVerify={setTurnstileToken}
+          />
+        </div>
 
         {/* ── Error banner ── */}
         {errorKey && (
