@@ -10,7 +10,8 @@
       "contact": "Contact"
     },
     "cta": "Hire Me",
-    "mobileMenuAriaLabel": "Open navigation menu"
+    "mobileMenuAriaLabel": "Site navigation",
+    "mobileMenuOpenAriaLabel": "Open navigation menu"
   },
   "hero": {
     "badge": "Available for work",
