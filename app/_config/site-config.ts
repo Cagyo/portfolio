@@ -1,3 +1,25 @@
+/**
+ * sections — single source of truth for page render order and nav visibility.
+ *
+ * id        — matches the HTML `id` on the section element
+ * enabled   — false hides the section from the page AND from the nav
+ * navKey    — translation key under `nav.links.*`; omit for sections with no nav link
+ */
+type SectionEntry =
+  | { id: string; enabled: boolean; navKey: string }
+  | { id: string; enabled: boolean }
+
+const sections: SectionEntry[] = [
+  { id: 'about',           enabled: true,  navKey: 'about' },
+  { id: 'projects',        enabled: true,  navKey: 'projects' },
+  { id: 'skills',          enabled: true,  navKey: 'skills' },
+  { id: 'recommendations', enabled: true,  navKey: 'reviews' },
+  { id: 'engagement',      enabled: true,  navKey: 'services' },
+  { id: 'fit',             enabled: true,  navKey: 'fit' },
+  { id: 'contact',         enabled: true,  navKey: 'contact' },
+  { id: 'mentorship-teaser', enabled: true },
+]
+
 export const siteConfig = {
   social: {
     github:   { url: 'https://github.com/cagyo', handle: 'cagyo' },
@@ -10,7 +32,7 @@ export const siteConfig = {
     url: '#',
   },
   resume: {
-    url: '/assets/resume.pdf',
+    url: '/cv/Oleksii_Berliziev_CV.pdf',
   },
   author: {
     name: 'Oleksii Berliziev',
@@ -19,4 +41,5 @@ export const siteConfig = {
   ui: {
     experienceInitialVisible: 2,
   },
+  sections,
 } as const

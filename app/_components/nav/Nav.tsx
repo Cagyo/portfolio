@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
+import { siteConfig } from "../../_config/site-config";
 import { NavLogo } from "./NavLogo";
 import { NavLinks } from "./NavLinks";
 import { MobileMenu } from "./MobileMenu";
@@ -17,15 +18,14 @@ type NavProps = {
 export function Nav({ links: linksProp, ctaHref = "#contact", ctaLabel }: NavProps) {
   const t = useTranslations("nav");
 
-  const defaultLinks = [
-    { label: t("links.about"), href: "#about" },
-    { label: t("links.skills"), href: "#skills" },
-    { label: t("links.projects"), href: "#projects" },
-    { label: t("links.reviews"), href: "#recommendations" },
-    { label: t("links.services"), href: "#engagement" },
-    { label: t("links.fit"), href: "#fit" },
-    { label: t("links.contact"), href: "#contact" },
-  ];
+  const defaultLinks = siteConfig.sections
+    .filter((section): section is typeof section & { navKey: string } =>
+      section.enabled && 'navKey' in section
+    )
+    .map((section) => ({
+      label: t(`links.${section.navKey}`),
+      href: `#${section.id}`,
+    }));
 
   const links = linksProp ?? defaultLinks;
   const cta = ctaLabel ?? t("cta");
