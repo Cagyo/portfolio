@@ -1,10 +1,10 @@
 import { getTranslations } from "next-intl/server";
-import { SparkleIcon } from "../../assets/icons/SparkleIcon";
+// import { SparkleIcon } from "../../assets/icons/SparkleIcon";
 import { GitHubLogo } from "../../assets/logos/GitHubLogo";
 import { LinkedInLogo } from "../../assets/logos/LinkedInLogo";
 import { XLogo } from "../../assets/logos/XLogo";
 import { siteConfig } from "../_config/site-config";
-import styles from "./Footer.module.css";
+// import styles from "./Footer.module.css";
 
 export async function Footer() {
   const t = await getTranslations("footer");
@@ -14,7 +14,7 @@ export async function Footer() {
         <p className="text-white/30 text-sm">
           {t("copyright")}{" "}
           <span className="text-gradient font-semibold">{t("author")}</span>. {t("crafted")}
-          <span className="text-white/15 mx-1.5">&middot;</span>
+          {/* <span className="text-white/15 mx-1.5">&middot;</span>
           <span className="inline-flex items-center gap-1.5">
             <span
               className={`inline-flex items-center gap-1.5 px-2 py-0.5 rounded-md text-xs font-semibold tracking-wide ${styles.statusBadge}`}
@@ -22,7 +22,7 @@ export async function Footer() {
               <SparkleIcon className="w-3 h-3 flex-shrink-0" />
               {t("builtWithAI")}
             </span>
-          </span>
+          </span> */}
         </p>
         <div className="flex items-center gap-6">
           <a href="#hero" className="text-white/30 hover:text-amber-400 text-sm transition-colors cursor-pointer">
@@ -47,15 +47,17 @@ export async function Footer() {
             >
               <LinkedInLogo className="w-4 h-4" />
             </a>
-            <a
-              href={siteConfig.social.twitter.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={t("twitterAriaLabel")}
-              className="text-white/30 hover:text-amber-400 transition-colors cursor-pointer"
-            >
-              <XLogo className="w-4 h-4" />
-            </a>
+            {siteConfig.social.twitter.url && (
+              <a
+                href={siteConfig.social.twitter.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={t("twitterAriaLabel")}
+                className="text-white/30 hover:text-amber-400 transition-colors cursor-pointer"
+              >
+                <XLogo className="w-4 h-4" />
+              </a>
+            )}
           </div>
         </div>
       </div>

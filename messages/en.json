@@ -68,12 +68,12 @@
         "positions": [
           {
             "title": "Senior Full-Stack Engineer / Tech Lead",
-            "period": "Sep 2019 – Dec 2022",
+            "period": "June 2018 – Dec 2022",
             "description": "Led architecture and end-to-end delivery of mobile and backend products as tech lead. Set up automated CI/CD to App Store & Google Play. Managed AWS & standalone infrastructure. Conducted code reviews, interviews, and pre-sale estimations."
           },
           {
             "title": "React Native / Node.js Developer",
-            "period": "Sep 2017 – Sep 2019",
+            "period": "Sep 2017 – June 2018",
             "description": "Built cross-platform iOS & Android apps with React Native. Developed GraphQL APIs using Apollo Server and Node.js. Maintained MongoDB and PostgreSQL databases. Contributed to unit testing and code review."
           }
         ]
@@ -112,7 +112,7 @@
     "metrics": [
       { "value": "10+", "label": "Years of\nprofessional experience" },
       { "value": "10+", "label": "Products\nshipped to production" },
-      { "value": "5+", "label": "iOS & Android\napps delivered" },
+      { "value": "10+", "label": "iOS & Android\napps delivered" },
       { "value": "8+", "label": "Years in tech lead\n& senior roles" }
     ]
   },
@@ -311,8 +311,8 @@
   "common": {
     "toggleTheme": "Toggle theme",
     "searchPlaceholder": "Search…",
-    "downloadResume": "Download resume",
-    "resume": "Resume",
+    "downloadResume": "Download CV",
+    "resume": "Download CV",
     "githubProfile": "GitHub profile",
     "linkedinProfile": "LinkedIn profile",
     "twitterProfile": "Twitter profile",

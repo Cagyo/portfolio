@@ -1,9 +1,9 @@
 export const siteConfig = {
   social: {
-    github:   { url: 'https://github.com/berlizev', handle: 'berlizev' },
-    linkedin: { url: 'https://linkedin.com/in/berlizev', handle: 'berlizev' },
+    github:   { url: 'https://github.com/cagyo', handle: 'cagyo' },
+    linkedin: { url: 'https://www.linkedin.com/in/oleksii-berliziev/', handle: 'oleksii-berliziev' },
     // TODO: populate real X/Twitter URL
-    twitter:  { url: '#', handle: '' },
+    twitter:  { url: '', handle: '' },
   },
   // TODO: populate real Calendly URL
   calendly: {
