@@ -261,8 +261,13 @@
       "honeypotLabel": "Leave this field empty",
       "turnstileLabel": "Verifying you're human…",
       "errors": {
+        "nameRequired": "Please enter your name.",
+        "nameTooShort": "Your name must be at least 2 characters.",
         "nameInvalid": "Please enter your name (2–80 characters).",
+        "emailRequired": "Please enter your email address.",
         "emailInvalid": "Please enter a valid email address.",
+        "subjectRequired": "Please enter a subject (at least 2 characters).",
+        "messageRequired": "Please write a message (at least 10 characters).",
         "subjectInvalid": "Subject must be 2–150 characters.",
         "messageInvalid": "Message must be 10–5,000 characters.",
         "budgetInvalid": "Please pick a valid budget range.",
