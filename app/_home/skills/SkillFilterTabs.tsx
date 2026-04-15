@@ -1,7 +1,7 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { CATEGORIES } from "./skills-data";
+import { CATEGORIES } from "../../_data/skills-data";
 import styles from "./SkillFilterTabs.module.css";
 
 type SkillFilterTabsProps = {

@@ -9,7 +9,7 @@ import { SearchInput } from "../../_components/SearchInput";
 import { SectionHeader } from "../../_components/SectionHeader";
 import { SkillChip } from "./SkillChip";
 import { SkillFilterTabs } from "./SkillFilterTabs";
-import { CATEGORIES, SKILLS } from "./skills-data";
+import { CATEGORIES, SKILLS } from "../../_data/skills-data";
 import styles from "./SkillsSection.module.css";
 
 const INITIAL_REST = 10;

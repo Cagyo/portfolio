@@ -10,15 +10,15 @@ export type Skill = {
 }
 
 export const SKILLS: Skill[] = [
-  // Top 7 (highlighted)
+  // Top 6 (highlighted)
   { name: "TypeScript", cat: 3, top: true },
-  { name: "React", cat: 1, top: true },
+  { name: "React Native", cat: 1, top: true },
   { name: "Next.js", cat: 1, top: true },
-  { name: "Node.js", cat: 2, top: true },
-  { name: "PostgreSQL", cat: 4, top: true },
-  { name: "Docker", cat: 5, top: true },
+  { name: "NestJS", cat: 2, top: true },
+  { name: "GraphQL", cat: 2, top: true },
   { name: "AWS", cat: 6, top: true },
   // Frontend
+  { name: "React", cat: 1 },
   { name: "Vue.js", cat: 1 },
   { name: "Svelte", cat: 1 },
   { name: "Tailwind CSS", cat: 1 },
@@ -29,9 +29,9 @@ export const SKILLS: Skill[] = [
   { name: "Vite", cat: 1 },
   { name: "Webpack", cat: 1 },
   // Backend
+  { name: "Node.js", cat: 2 },
   { name: "Express", cat: 2 },
   { name: "Fastify", cat: 2 },
-  { name: "GraphQL", cat: 2 },
   { name: "REST APIs", cat: 2 },
   { name: "tRPC", cat: 2 },
   { name: "WebSockets", cat: 2 },
@@ -44,12 +44,14 @@ export const SKILLS: Skill[] = [
   { name: "Rust", cat: 3 },
   { name: "SQL", cat: 3 },
   // Database
+  { name: "PostgreSQL", cat: 4 },
   { name: "MongoDB", cat: 4 },
   { name: "MySQL", cat: 4 },
   { name: "Supabase", cat: 4 },
   { name: "Drizzle ORM", cat: 4 },
   { name: "SQLite", cat: 4 },
   // DevOps
+  { name: "Docker", cat: 5 },
   { name: "Kubernetes", cat: 5 },
   { name: "GitHub Actions", cat: 5 },
   { name: "Terraform", cat: 5 },

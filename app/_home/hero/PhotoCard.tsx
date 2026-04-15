@@ -2,13 +2,14 @@ import Image from "next/image";
 import styles from "./PhotoCard.module.css";
 import { Tag } from "../../_components/tag/Tag";
 import { TestimonialSnippet, type SnippetTestimonial } from "../recommendations/TestimonialSnippet";
+import { SKILLS } from "../../_data/skills-data";
 
 type PhotoCardProps = {
   availableLabel: string;
   testimonial?: SnippetTestimonial;
 };
 
-const TAGS = ["React", "Node.js", "TypeScript", "AWS"];
+const TOP_SKILL_NAMES = SKILLS.filter((skill) => skill.top).map((skill) => skill.name);
 
 export function PhotoCard({ availableLabel, testimonial }: PhotoCardProps) {
   return (
@@ -37,7 +38,7 @@ export function PhotoCard({ availableLabel, testimonial }: PhotoCardProps) {
 
         {/* Tags */}
         <div className="px-6 py-4 flex flex-wrap gap-1.5">
-          {TAGS.map((tag) => (
+          {TOP_SKILL_NAMES.map((tag) => (
             <Tag key={tag}>{tag}</Tag>
           ))}
         </div>
