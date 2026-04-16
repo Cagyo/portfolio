@@ -3,7 +3,21 @@ import react from '@vitejs/plugin-react'
 import path from 'node:path'
 
 export default defineConfig({
-  plugins: [react()],
+  plugins: [
+    react(),
+    // Resolve 'server-only' to an empty virtual module so server-side
+    // guard imports don't fail during Vite transforms in the test environment.
+    {
+      name: 'vitest-server-only',
+      enforce: 'pre' as const,
+      resolveId(id: string) {
+        if (id === 'server-only') return '\0virtual:server-only'
+      },
+      load(id: string) {
+        if (id === '\0virtual:server-only') return ''
+      },
+    },
+  ],
   test: {
     environment: 'jsdom',
     setupFiles: ['./vitest.setup.ts'],
