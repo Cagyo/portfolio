@@ -1,7 +1,4 @@
-export type { ProjectData, ProjectPageLink } from "../../_data/projects-data"
-export { PROJECTS, getProjectTitle } from "../../_data/projects-data"
-
-import type { ProjectData } from "../../_data/projects-data"
+import type { ProjectData } from "./projects-data"
 
 export type FilterGroupConfig = {
   key: string
@@ -47,4 +44,4 @@ export const FILTER_GROUPS: FilterGroupConfig[] = [
     options: ["Personal", "Avocado Technology", "Allsquare", "EngagePoint"],
     match: (project, values) => values.includes(project.company),
   },
-];
+]

@@ -1,6 +1,6 @@
 "use client";
 
-import { useLayoutEffect, useMemo, useState } from "react";
+import { useEffect, useLayoutEffect, useMemo, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { EmptyState } from "../../_components/EmptyState";
@@ -10,11 +10,26 @@ import { FilterPanelMobile } from "./filter/FilterPanelMobile";
 import { FilterSidebar } from "./filter/FilterSidebar";
 import { ProjectCard } from "./project-card/ProjectCard";
 import { ProjectsNav } from "./ProjectsNav";
-import { FILTER_GROUPS, PROJECTS, getProjectTitle } from "./projects-data";
+import { PROJECTS, getProjectTitle } from "../../_data/projects-data";
+import type { ProjectData } from "../../_data/projects-data";
+import { FILTER_GROUPS } from "../../_data/projects-filters";
+
+function matchesSearch(project: ProjectData, query: string): boolean {
+  const haystack = [
+    getProjectTitle(project),
+    project.description,
+    project.company,
+    project.industry,
+    ...project.stack,
+    ...project.duties,
+  ]
+    .join(" ")
+    .toLowerCase();
+  return haystack.includes(query);
+}
 
 export function ProjectsPage() {
   const t = useTranslations("projectsPage");
-
   const searchParams = useSearchParams();
 
   const [search, setSearch] = useState("");
@@ -34,15 +49,42 @@ export function ProjectsPage() {
     return () => setMobileOpen(false);
   }, []);
 
+  // Scroll to hashed project card on load and re-activation; support same-page hash re-navigation
+  useEffect(() => {
+    let activeTimer: ReturnType<typeof setTimeout> | undefined;
+
+    function scrollToHash() {
+      const hash = window.location.hash;
+      if (!hash) return;
+      const el = document.querySelector(hash) as HTMLElement | null;
+      if (!el) return;
+
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+
+      // Reset before re-applying so the animation always replays
+      delete el.dataset.highlighted;
+      void el.offsetHeight; // force reflow
+      el.dataset.highlighted = "true";
+
+      clearTimeout(activeTimer);
+      activeTimer = setTimeout(() => {
+        delete el.dataset.highlighted;
+      }, 2500);
+    }
+
+    scrollToHash();
+
+    window.addEventListener("hashchange", scrollToHash);
+    return () => {
+      window.removeEventListener("hashchange", scrollToHash);
+      clearTimeout(activeTimer);
+    };
+  }, []);
+
   const filtered = useMemo(() => {
+    const query = search.toLowerCase();
     return PROJECTS.filter((project) => {
-      if (search) {
-        const query = search.toLowerCase();
-        const haystack = [getProjectTitle(project), project.description, project.company, project.industry, ...project.stack, ...project.duties]
-          .join(" ")
-          .toLowerCase();
-        if (!haystack.includes(query)) return false;
-      }
+      if (search && !matchesSearch(project, query)) return false;
       for (const filterGroup of FILTER_GROUPS) {
         const active = activeFilters[filterGroup.key];
         if (active.size === 0) continue;

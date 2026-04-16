@@ -16,3 +16,25 @@
   transition: opacity 0.3s ease;
   background: var(--overlay-bg);
 }
+
+.viewInProjectsLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--amber);
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: var(--amber-light);
+  }
+}
+
+html[data-theme="light"] .viewInProjectsLink {
+  color: var(--amber-dark);
+
+  &:hover {
+    color: var(--amber);
+  }
+}

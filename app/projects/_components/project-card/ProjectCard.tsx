@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { ExpandSection } from "../../../_components/expand-section/ExpandSection";
 import { BuildingOfficeIcon } from "../../../../assets/icons/BuildingOfficeIcon";
@@ -11,7 +12,7 @@ import { UsersIcon } from "../../../../assets/icons/UsersIcon";
 import { AppStoreLogo } from "../../../../assets/logos/AppStoreLogo";
 import { GooglePlayLogo } from "../../../../assets/logos/GooglePlayLogo";
 import { Tag } from "../../../_components/tag/Tag";
-import type { ProjectData, ProjectPageLink } from "../projects-data";
+import type { ProjectData, ProjectPageLink } from "../../../_data/projects-data";
 import { getProjectTitle } from "../../../_data/projects-data";
 import styles from "./ProjectCard.module.css";
 
@@ -33,11 +34,16 @@ type ProjectCardProps = {
 
 export function ProjectCard({ project, expanded, onToggleExpand, animationDelay = 0 }: ProjectCardProps) {
   const t = useTranslations("projectsPage");
+  const [entered, setEntered] = useState(false);
 
   return (
     <article
-      className={`${styles.card} ${styles.cardEntrance} glass rounded-2xl overflow-hidden`}
-      style={{ animationDelay: `${animationDelay}s` }}
+      id={`project-${project.id}`}
+      className={`${styles.card} ${entered ? "" : styles.cardEntrance} glass rounded-2xl overflow-hidden scroll-mt-28`}
+      style={entered ? undefined : { animationDelay: `${animationDelay}s` }}
+      onAnimationEnd={(e) => {
+        if (e.target === e.currentTarget && !entered) setEntered(true);
+      }}
     >
       {/* Card header */}
       <div className="p-6 pb-2">

@@ -2,7 +2,7 @@
 
 import { useTranslations } from "next-intl";
 import { XMarkIcon } from "../../../../assets/icons/XMarkIcon";
-import type { FilterGroupConfig } from "../projects-data";
+import type { FilterGroupConfig } from "../../../_data/projects-filters";
 import { FilterGroup } from "./FilterGroup";
 import styles from "./FilterPanelMobile.module.css";
 

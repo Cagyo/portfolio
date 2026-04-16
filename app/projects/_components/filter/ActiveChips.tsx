@@ -1,7 +1,7 @@
 "use client";
 
-import type { FilterGroupConfig } from "../projects-data";
-import styles from "./FilterSidebar.module.css";
+import { XMarkIcon } from "../../../../assets/icons/XMarkIcon";
+import type { FilterGroupConfig } from "../../../_data/projects-filters";
 
 type ActiveChipsProps = {
   activeFilters: Record<string, Set<string>>
@@ -27,13 +27,11 @@ export function ActiveChips({ activeFilters, groups, onRemove }: ActiveChipsProp
           key={`${groupKey}:${value}`}
           type="button"
           onClick={() => onRemove(groupKey, value)}
-          className={styles.activeChip}
+          className="active-chip"
         >
           <span className="text-white/40 text-xs">{groupLabel}:</span>
           {value}
-          <svg className="w-3 h-3 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M6 18L18 6M6 6l12 12" />
-          </svg>
+          <XMarkIcon className="w-3 h-3 flex-shrink-0" />
         </button>
       ))}
     </div>

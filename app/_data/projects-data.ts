@@ -6,6 +6,17 @@ export type ProjectPageLink =
   | { type: "mobile"; appStore: string; playStore: string }
   | { type: "private" }
 
+export type OverlayType = "live-lg" | "live-stores" | "stores" | "private"
+
+export function overlayTypeFor(link: ProjectPageLink): OverlayType {
+  switch (link.type) {
+    case "web": return "live-lg"
+    case "web+mobile": return "live-stores"
+    case "mobile": return "stores"
+    case "private": return "private"
+  }
+}
+
 export type ProjectData = {
   id: number
   title: string
@@ -26,6 +37,9 @@ export type ProjectData = {
   stackFilters: string[]
   year: string
   link: ProjectPageLink
+  featured?: boolean
+  badgeLabel?: string
+  imageBg?: string
 }
 
 /**

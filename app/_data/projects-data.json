@@ -32,7 +32,10 @@
       "url": "https://www.omegaeuropeanmasters.com/",
       "appStore": "https://itunes.apple.com/us/app/omega-european-masters/id440218156",
       "playStore": "https://market.android.com/details?id=ch.iomedia.oem2011"
-    }
+    },
+    "featured": true,
+    "badgeLabel": "High-load · no-code page builder · ticket system",
+    "imageBg": "bg-gradient-to-br from-red-900/40 via-red-800/20 to-transparent"
   },
   {
     "id": 2,
@@ -63,7 +66,9 @@
       "url": "https://www.allsquaregolf.com/",
       "appStore": "https://apps.apple.com/lu/app/all-square-golf/id793801635",
       "playStore": "https://play.google.com/store/apps/details?id=com.allsquaregolf.rnapp"
-    }
+    },
+    "badgeLabel": "Mature · Legacy",
+    "imageBg": "bg-gradient-to-br from-green-900/30 to-transparent"
   },
   {
     "id": 3,
@@ -92,7 +97,9 @@
       "type": "mobile",
       "appStore": "https://apps.apple.com/us/app/golf-club-crans-sur-sierre/id1382210998",
       "playStore": "https://play.google.com/store/apps/details?id=ch.iomedia.golfcrans"
-    }
+    },
+    "badgeLabel": "Mobile App Lead · payments",
+    "imageBg": "bg-gradient-to-br from-emerald-900/30 to-transparent"
   },
   {
     "id": 4,
@@ -119,7 +126,9 @@
     "stack": ["React", "React Native", "Apollo Client/Server", "TypeScript", "MongoDB", "Express", "AWS EC2", "CircleCI", "Google Maps", "Redux + Saga"],
     "stackFilters": ["React Native", "GraphQL", "AWS"],
     "year": "2017–2022",
-    "link": { "type": "private" }
+    "link": { "type": "private" },
+    "badgeLabel": "Full stack · Google Maps",
+    "imageBg": "bg-gradient-to-br from-sky-900/30 to-transparent"
   },
   {
     "id": 5,
@@ -180,7 +189,9 @@
       "type": "mobile",
       "appStore": "https://apps.apple.com/ch/app/b-sharpe-currency-exchange/id1499627995",
       "playStore": "https://play.google.com/store/apps/details?id=com.bsharpe.app"
-    }
+    },
+    "badgeLabel": "Mobile App Lead · Swiss Fintech",
+    "imageBg": "bg-gradient-to-br from-indigo-900/30 to-transparent"
   },
   {
     "id": 7,

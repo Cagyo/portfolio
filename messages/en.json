@@ -149,7 +149,8 @@
     "googlePlay": "Google Play",
     "privateBuild": "Private Build",
     "nda": "Internal project · NDA",
-    "viewAll": "View All Projects"
+    "viewAll": "View All Projects",
+    "viewInProjects": "View in projects"
   },
   "recommendations": {
     "sectionNumber": "04.",
