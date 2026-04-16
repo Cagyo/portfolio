@@ -36,7 +36,9 @@ export function installMediaRecorderMock(): MediaRecorderMockControls {
     start = vi.fn()
     stop = vi.fn()
 
-    constructor(_stream: MediaStream) {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    constructor(_: MediaStream) {
+      // eslint-disable-next-line @typescript-eslint/no-this-alias
       currentInstance = this
     }
   }
@@ -71,7 +73,7 @@ export function installMediaRecorderMock(): MediaRecorderMockControls {
 
   vi.stubGlobal('URL', {
     ...globalThis.URL,
-    createObjectURL: vi.fn((_blob: Blob) => {
+    createObjectURL: vi.fn(() => {
       const url = `blob:test-${++urlCounter}`
       createdUrls.push(url)
       return url

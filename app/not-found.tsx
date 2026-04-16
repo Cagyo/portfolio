@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { getTranslations } from "next-intl/server";
 import { ArrowLeftIcon } from "../assets/icons/ArrowLeftIcon";
 
@@ -14,13 +15,13 @@ export default async function NotFound() {
         <p className="text-white/50 mb-8 leading-relaxed">
           {t("body")}
         </p>
-        <a
+        <Link
           href="/"
           className="inline-flex items-center gap-2 text-amber-400 hover:text-amber-300 transition-colors font-medium"
         >
           <ArrowLeftIcon className="w-4 h-4" />
           {t("backHome")}
-        </a>
+        </Link>
       </div>
     </main>
   );

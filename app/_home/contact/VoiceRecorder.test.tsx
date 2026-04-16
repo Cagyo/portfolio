@@ -9,9 +9,6 @@ import { VoiceRecorder } from './VoiceRecorder'
 
 const voiceMessages = messages.contact.form.voice
 
-// Flush all pending microtasks + React state batches
-const flushAll = () => act(async () => { await Promise.resolve() })
-
 describe('VoiceRecorder', () => {
   let mrMock: ReturnType<typeof installMediaRecorderMock>
   let audioInstances: AudioMockInstance[]

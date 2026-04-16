@@ -5,7 +5,6 @@ import { ArrowRightIcon } from "../../../assets/icons/ArrowRightIcon";
 import { EnvelopeIcon } from "../../../assets/icons/EnvelopeIcon";
 import { BlobBackground } from "../../_components/BlobBackground";
 import { Button } from "../../_components/button/Button";
-import { PulseBadge } from "../../_components/PulseBadge";
 import { ScrollIndicator } from "../../_components/ScrollIndicator";
 import { StatRow } from "../../_components/StatRow";
 import { PhotoCard } from "./PhotoCard";

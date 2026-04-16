@@ -32,28 +32,24 @@ export function installAudioMock(): AudioMockInstance[] {
     get onended() { return this._onended }
     set onended(cb) { this._onended = cb }
 
+    fireLoadedMetadata(duration = 5) {
+      this.duration = duration
+      this._onloadedmetadata?.()
+    }
+
+    fireTimeUpdate(currentTime: number, duration: number) {
+      this.currentTime = currentTime
+      this.duration = duration
+      this._ontimeupdate?.()
+    }
+
+    fireEnded() {
+      this._onended?.()
+    }
+
     constructor(src = '') {
       this.src = src
-      const self = this
-      instances.push({
-        get play() { return self.play },
-        get pause() { return self.pause },
-        get src() { return self.src },
-        get duration() { return self.duration },
-        get currentTime() { return self.currentTime },
-        fireLoadedMetadata: (duration = 5) => {
-          self.duration = duration
-          self._onloadedmetadata?.()
-        },
-        fireTimeUpdate: (currentTime, dur) => {
-          self.currentTime = currentTime
-          self.duration = dur
-          self._ontimeupdate?.()
-        },
-        fireEnded: () => {
-          self._onended?.()
-        },
-      })
+      instances.push(this as unknown as AudioMockInstance)
     }
   }
 

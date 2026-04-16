@@ -77,7 +77,7 @@ describe('verifyTurnstile', () => {
     await verifyTurnstile('user-token', '5.6.7.8')
 
     expect(fetchSpy).toHaveBeenCalledOnce()
-    const [_url, init] = fetchSpy.mock.calls[0] as [string, RequestInit]
+    const [, init] = fetchSpy.mock.calls[0] as [string, RequestInit]
     const body = init.body as URLSearchParams
     expect(body.get('secret')).toBe('test-secret')
     expect(body.get('response')).toBe('user-token')

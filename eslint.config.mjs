@@ -12,6 +12,10 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Auto-generated files — do not lint
+    "types/**",
+    // Coverage output — do not lint
+    "coverage/**",
   ]),
 ]);
 

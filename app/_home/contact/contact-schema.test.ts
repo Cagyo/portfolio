@@ -129,13 +129,13 @@ describe('contactSchema (server)', () => {
 
   // 9. Voice mode with subject/budget/message absent → passes
   it('case 9: voice mode without optional fields → still passes', () => {
-    const { subject: _s, budget: _b, message: _m, ...baseVoice } = {
+    const { subject: _s, budget: _b, message: _m, ..._baseVoice } = {
       ...validVoicePayload,
       subject: undefined as unknown,
       budget: undefined as unknown,
       message: undefined as unknown,
     }
-    void _s; void _b; void _m
+    void _s; void _b; void _m; void _baseVoice
     const result = contactSchema.safeParse(validVoicePayload)
     expect(result.success).toBe(true)
   })

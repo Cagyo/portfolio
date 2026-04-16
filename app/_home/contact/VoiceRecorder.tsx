@@ -131,6 +131,7 @@ export function VoiceRecorder({ onRecordingsChange }: VoiceRecorderProps) {
     return () => {
       clearTimer();
       streamRef.current?.getTracks().forEach((track) => track.stop());
+      // eslint-disable-next-line react-hooks/exhaustive-deps
       audioMapRef.current.forEach((audio) => audio.pause());
       recordingsRef.current.forEach((entry) => URL.revokeObjectURL(entry.url));
     };

@@ -4,6 +4,7 @@
     "types": ["vitest/globals", "@testing-library/jest-dom"]
   },
   "include": [
+    "env.d.ts",
     "next-env.d.ts",
     "vitest.config.ts",
     "vitest.setup.ts",

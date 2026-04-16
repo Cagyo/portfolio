@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { MoonIcon } from "../../../assets/icons/MoonIcon";
 import { SunIcon } from "../../../assets/icons/SunIcon";
@@ -8,12 +8,11 @@ import styles from "./ThemeToggle.module.css";
 
 export function ThemeToggle() {
   const t = useTranslations("common");
-  const [isDark, setIsDark] = useState(true);
-
-  useEffect(() => {
+  const [isDark, setIsDark] = useState(() => {
+    if (typeof document === "undefined") return true;
     const match = document.cookie.match(/(?:^|;\s*)theme=([^;]+)/);
-    setIsDark(match?.[1] !== "light");
-  }, []);
+    return match?.[1] !== "light";
+  });
 
   function toggle() {
     const next = isDark ? "light" : "dark";

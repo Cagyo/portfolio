@@ -60,6 +60,7 @@ export function ContactForm() {
     mode: 'onBlur',
   })
 
+  // eslint-disable-next-line react-hooks/incompatible-library
   const mode = watch('mode')
 
   const errorKey: ContactErrorKey | null = result && !result.success ? result.error : null
