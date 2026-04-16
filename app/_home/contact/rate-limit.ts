@@ -32,3 +32,6 @@ export function checkRateLimit(ip: string): { ok: boolean } {
 
   return { ok: true }
 }
+
+/** Exposed for tests only — do not call in production code. */
+export const _getStoreSize = (): number => store.size

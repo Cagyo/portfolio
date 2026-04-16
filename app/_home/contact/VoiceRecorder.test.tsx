@@ -15,7 +15,7 @@ const flushAll = () => act(async () => { await Promise.resolve() })
 describe('VoiceRecorder', () => {
   let mrMock: ReturnType<typeof installMediaRecorderMock>
   let audioInstances: AudioMockInstance[]
-  let onRecordingsChange: ReturnType<typeof vi.fn>
+  let onRecordingsChange: ReturnType<typeof vi.fn<(blobs: Blob[]) => void>>
 
   // Restore real timers after every test even if it times out unexpectedly
   afterEach(() => { vi.useRealTimers() })
@@ -263,9 +263,8 @@ describe('VoiceRecorder', () => {
 
     await waitFor(() => {
       const fill = container.querySelector('[class*="progressFill"]') as HTMLElement | null
-      if (fill) {
-        expect(fill.style.width).toBe('50%')
-      }
+      expect(fill).not.toBeNull()
+      expect(fill!.style.width).toBe('50%')
     })
   })
 
@@ -285,9 +284,8 @@ describe('VoiceRecorder', () => {
     })
 
     const fill = container.querySelector('[class*="progressFill"]') as HTMLElement | null
-    if (fill) {
-      expect(fill.style.width).toBe('0%')
-    }
+    expect(fill).not.toBeNull()
+    expect(fill!.style.width).toBe('0%')
   })
 
   // ─── Delete ──────────────────────────────────────────────────────────────

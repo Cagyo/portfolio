@@ -67,10 +67,10 @@ describe('checkRateLimit', () => {
 
   // 6. Self-cleaning when store > 5000 entries
   it('case 6: prunes stale IPs when store exceeds 5000 entries', async () => {
-    const checkRateLimit = await getCheckRateLimit()
+    const mod = await import('./rate-limit')
+    const { checkRateLimit, _getStoreSize } = mod
 
     // Fill 5000 unique IPs, each hitting once — all within current window
-    const startTime = Date.now()
     for (let ipIndex = 0; ipIndex < 5000; ipIndex++) {
       checkRateLimit(`10.0.${Math.floor(ipIndex / 256)}.${ipIndex % 256}`)
     }
@@ -78,11 +78,11 @@ describe('checkRateLimit', () => {
     // Advance past the window so all those entries are stale
     vi.advanceTimersByTime(61 * 60 * 1000)
 
-    // The 5001st unique IP triggers cleanup
+    // The 5001st unique IP triggers cleanup of all 5000 stale entries
     const cleanupIp = '192.168.1.1'
-    const result = checkRateLimit(cleanupIp)
-    expect(result).toEqual({ ok: true })
+    checkRateLimit(cleanupIp)
 
-    void startTime // used to establish the "stale" condition
+    // Only cleanupIp's fresh bucket remains — proves stale entries were actually deleted
+    expect(_getStoreSize()).toBe(1)
   })
 })

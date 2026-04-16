@@ -21,6 +21,8 @@ vi.mock('./TurnstileWidget', async () => {
 import { sendContactMessage } from './contact-actions'
 const mockSendContactMessage = sendContactMessage as ReturnType<typeof vi.fn>
 
+import { turnstileResetSpy } from '../../../test/helpers/mocks/turnstile-widget'
+
 // Helper to click the Turnstile mock and supply a valid token
 async function verifyTurnstile(user: ReturnType<typeof userEvent.setup>) {
   const btn = screen.getByTestId('turnstile-mock')
@@ -43,6 +45,7 @@ describe('ContactForm', () => {
     installMediaRecorderMock()
     audioInstances = installAudioMock()
     mockSendContactMessage.mockReset()
+    turnstileResetSpy.mockReset()
     // Default: action returns success
     mockSendContactMessage.mockResolvedValue({ success: true })
   })
@@ -283,10 +286,8 @@ describe('ContactForm', () => {
       expect(screen.getByText(messages.contact.form.errors.turnstile)).toBeInTheDocument()
     })
 
-    // After reset, Turnstile mock button re-appears with its label and token is cleared
-    // (turnstile reset sets token to ''). Re-verifying should allow re-submit.
-    const turnstileBtn = screen.getByTestId('turnstile-mock')
-    expect(turnstileBtn).toBeInTheDocument()
+    // Verify that turnstileRef.current.reset() was actually invoked by the useEffect
+    expect(turnstileResetSpy).toHaveBeenCalledOnce()
   })
 
   it('case 15: server rateLimited error → rateLimited banner visible', async () => {
