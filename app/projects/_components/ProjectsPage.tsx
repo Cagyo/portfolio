@@ -3,16 +3,16 @@
 import { useEffect, useLayoutEffect, useMemo, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { useTranslations } from "next-intl";
-import { EmptyState } from "../../_components/EmptyState";
-import { SearchInput } from "../../_components/SearchInput";
+import { EmptyState } from "@/app/_components/EmptyState";
+import { SearchInput } from "@/app/_components/SearchInput";
 import { ActiveChips } from "./filter/ActiveChips";
 import { FilterPanelMobile } from "./filter/FilterPanelMobile";
 import { FilterSidebar } from "./filter/FilterSidebar";
 import { ProjectCard } from "./project-card/ProjectCard";
 import { ProjectsNav } from "./ProjectsNav";
-import { PROJECTS, getProjectTitle } from "../../_data/projects-data";
-import type { ProjectData } from "../../_data/projects-data";
-import { FILTER_GROUPS } from "../../_data/projects-filters";
+import { PROJECTS, getProjectTitle } from "@/app/_data/projects-data";
+import type { ProjectData } from "@/app/_data/projects-data";
+import { FILTER_GROUPS } from "@/app/_data/projects-filters";
 
 function matchesSearch(project: ProjectData, query: string): boolean {
   const haystack = [

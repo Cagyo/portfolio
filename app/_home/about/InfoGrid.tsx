@@ -1,8 +1,8 @@
 import { getTranslations } from "next-intl/server";
-import { AcademicCapIcon } from "../../../assets/icons/AcademicCapIcon";
-import { BriefcaseIcon } from "../../../assets/icons/BriefcaseIcon";
-import { LightBulbIcon } from "../../../assets/icons/LightBulbIcon";
-import { MapPinIcon } from "../../../assets/icons/MapPinIcon";
+import { AcademicCapIcon } from "@/assets/icons/AcademicCapIcon";
+import { BriefcaseIcon } from "@/assets/icons/BriefcaseIcon";
+import { LightBulbIcon } from "@/assets/icons/LightBulbIcon";
+import { MapPinIcon } from "@/assets/icons/MapPinIcon";
 
 type InfoCellProps = { label: string; value: string; icon: React.ReactNode }
 

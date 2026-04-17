@@ -1,10 +1,10 @@
 import { getTranslations } from "next-intl/server";
-import { ArrowRightIcon } from "../../../assets/icons/ArrowRightIcon";
-import { CalendarIcon } from "../../../assets/icons/CalendarIcon";
-import { ExternalLinkIcon } from "../../../assets/icons/ExternalLinkIcon";
-import { BlobBackground } from "../../_components/BlobBackground";
-import { Button } from "../../_components/button/Button";
-import { siteConfig } from "../../_config/site-config";
+import { ArrowRightIcon } from "@/assets/icons/ArrowRightIcon";
+import { CalendarIcon } from "@/assets/icons/CalendarIcon";
+import { ExternalLinkIcon } from "@/assets/icons/ExternalLinkIcon";
+import { BlobBackground } from "@/app/_components/BlobBackground";
+import { Button } from "@/app/_components/button/Button";
+import { siteConfig } from "@/app/_config/site-config";
 import styles from "./ApplySection.module.css";
 
 export async function ApplySection() {

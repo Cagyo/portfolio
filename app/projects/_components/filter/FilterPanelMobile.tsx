@@ -1,8 +1,8 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { XMarkIcon } from "../../../../assets/icons/XMarkIcon";
-import type { FilterGroupConfig } from "../../../_data/projects-filters";
+import { XMarkIcon } from "@/assets/icons/XMarkIcon";
+import type { FilterGroupConfig } from "@/app/_data/projects-filters";
 import { FilterGroup } from "./FilterGroup";
 import styles from "./FilterPanelMobile.module.css";
 

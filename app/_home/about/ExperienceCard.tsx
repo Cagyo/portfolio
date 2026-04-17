@@ -1,7 +1,7 @@
 import Link from "next/link";
-import { ArrowRightIcon } from "../../../assets/icons/ArrowRightIcon";
-import { Tag } from "../../_components/tag/Tag";
-import { ShowMoreText } from "../../_components/show-more/ShowMoreText";
+import { ArrowRightIcon } from "@/assets/icons/ArrowRightIcon";
+import { Tag } from "@/app/_components/tag/Tag";
+import { ShowMoreText } from "@/app/_components/show-more/ShowMoreText";
 import styles from "./ExperienceCard.module.css";
 
 type ExperiencePosition = {

@@ -1,5 +1,5 @@
 import { getTranslations } from "next-intl/server";
-import { FitList } from "../_components/fit-list/FitList";
+import { FitList } from "@/app/_components/fit-list/FitList";
 
 export async function FitSection() {
   const t = await getTranslations("fit");

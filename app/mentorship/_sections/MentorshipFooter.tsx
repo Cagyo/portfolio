@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { getTranslations } from "next-intl/server";
-import { ArrowLeftIcon } from "../../../assets/icons/ArrowLeftIcon";
+import { ArrowLeftIcon } from "@/assets/icons/ArrowLeftIcon";
 
 export async function MentorshipFooter() {
   const t = await getTranslations("mentorshipPage.footer");

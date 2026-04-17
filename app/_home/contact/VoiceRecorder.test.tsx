@@ -1,10 +1,10 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest'
 import { screen, waitFor, act, fireEvent } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import { renderWithIntl, messages } from '../../../test/helpers/render-with-intl'
-import { installMediaRecorderMock } from '../../../test/helpers/mocks/media-recorder'
-import { installAudioMock } from '../../../test/helpers/mocks/audio'
-import type { AudioMockInstance } from '../../../test/helpers/mocks/audio'
+import { renderWithIntl, messages } from '@/test/helpers/render-with-intl'
+import { installMediaRecorderMock } from '@/test/helpers/mocks/media-recorder'
+import { installAudioMock } from '@/test/helpers/mocks/audio'
+import type { AudioMockInstance } from '@/test/helpers/mocks/audio'
 import { VoiceRecorder } from './VoiceRecorder'
 
 const voiceMessages = messages.contact.form.voice

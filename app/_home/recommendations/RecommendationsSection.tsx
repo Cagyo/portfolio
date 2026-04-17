@@ -1,6 +1,6 @@
 import { getTranslations } from "next-intl/server";
-import { BlobBackground } from "../../_components/BlobBackground";
-import { SectionHeader } from "../../_components/SectionHeader";
+import { BlobBackground } from "@/app/_components/BlobBackground";
+import { SectionHeader } from "@/app/_components/SectionHeader";
 import { TestimonialsSlider } from "./TestimonialsSlider";
 
 const GRADIENT_CLASSES = [

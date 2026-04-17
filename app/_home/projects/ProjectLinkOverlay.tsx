@@ -1,9 +1,9 @@
 import { getTranslations } from "next-intl/server";
-import { ExternalLinkIcon } from "../../../assets/icons/ExternalLinkIcon";
-import { LockIcon } from "../../../assets/icons/LockIcon";
-import { AppStoreLogo } from "../../../assets/logos/AppStoreLogo";
-import { GooglePlayLogo } from "../../../assets/logos/GooglePlayLogo";
-import type { OverlayType, ProjectPageLink } from "../../_data/projects-data";
+import { ExternalLinkIcon } from "@/assets/icons/ExternalLinkIcon";
+import { LockIcon } from "@/assets/icons/LockIcon";
+import { AppStoreLogo } from "@/assets/logos/AppStoreLogo";
+import { GooglePlayLogo } from "@/assets/logos/GooglePlayLogo";
+import type { OverlayType, ProjectPageLink } from "@/app/_data/projects-data";
 
 type ProjectLinkOverlayProps = {
   overlayType: OverlayType

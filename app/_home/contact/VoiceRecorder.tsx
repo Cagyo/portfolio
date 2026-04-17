@@ -2,11 +2,11 @@
 
 import { useRef, useState, useEffect, useCallback } from "react";
 import { useTranslations } from "next-intl";
-import { MicrophoneIcon } from "../../../assets/icons/MicrophoneIcon";
-import { StopIcon } from "../../../assets/icons/StopIcon";
-import { PlayIcon } from "../../../assets/icons/PlayIcon";
-import { PauseIcon } from "../../../assets/icons/PauseIcon";
-import { TrashIcon } from "../../../assets/icons/TrashIcon";
+import { MicrophoneIcon } from "@/assets/icons/MicrophoneIcon";
+import { StopIcon } from "@/assets/icons/StopIcon";
+import { PlayIcon } from "@/assets/icons/PlayIcon";
+import { PauseIcon } from "@/assets/icons/PauseIcon";
+import { TrashIcon } from "@/assets/icons/TrashIcon";
 import styles from "./VoiceRecorder.module.css";
 
 type RecordingEntry = {

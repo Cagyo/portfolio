@@ -2,14 +2,14 @@
 
 import { useMemo, useState } from "react";
 import { useTranslations } from "next-intl";
-import { ChevronDownIcon } from "../../../assets/icons/ChevronDownIcon";
-import { BlobBackground } from "../../_components/BlobBackground";
-import { EmptyState } from "../../_components/EmptyState";
-import { SearchInput } from "../../_components/SearchInput";
-import { SectionHeader } from "../../_components/SectionHeader";
+import { ChevronDownIcon } from "@/assets/icons/ChevronDownIcon";
+import { BlobBackground } from "@/app/_components/BlobBackground";
+import { EmptyState } from "@/app/_components/EmptyState";
+import { SearchInput } from "@/app/_components/SearchInput";
+import { SectionHeader } from "@/app/_components/SectionHeader";
 import { SkillChip } from "./SkillChip";
 import { SkillFilterTabs } from "./SkillFilterTabs";
-import { CATEGORIES, SKILLS } from "../../_data/skills-data";
+import { CATEGORIES, SKILLS } from "@/app/_data/skills-data";
 import styles from "./SkillsSection.module.css";
 
 const INITIAL_REST = 10;

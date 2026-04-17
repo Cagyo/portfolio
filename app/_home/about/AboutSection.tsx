@@ -1,8 +1,8 @@
 import { getTranslations } from "next-intl/server";
 import Image from "next/image";
-import { siteConfig } from "../../_config/site-config";
-import { BlobBackground } from "../../_components/BlobBackground";
-import { SectionHeader } from "../../_components/SectionHeader";
+import { siteConfig } from "@/app/_config/site-config";
+import { BlobBackground } from "@/app/_components/BlobBackground";
+import { SectionHeader } from "@/app/_components/SectionHeader";
 import { BusinessImpact } from "./BusinessImpact";
 import { ExperienceCard } from "./ExperienceCard";
 import { ExperienceList } from "./ExperienceList";

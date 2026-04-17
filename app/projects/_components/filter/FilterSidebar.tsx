@@ -1,7 +1,7 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import type { FilterGroupConfig } from "../../../_data/projects-filters";
+import type { FilterGroupConfig } from "@/app/_data/projects-filters";
 import { FilterGroup } from "./FilterGroup";
 import styles from "./FilterSidebar.module.css";
 

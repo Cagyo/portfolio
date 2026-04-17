@@ -2,18 +2,18 @@
 
 import { useState } from "react";
 import { useTranslations } from "next-intl";
-import { ExpandSection } from "../../../_components/expand-section/ExpandSection";
-import { BuildingOfficeIcon } from "../../../../assets/icons/BuildingOfficeIcon";
-import { ExternalLinkIcon } from "../../../../assets/icons/ExternalLinkIcon";
-import { LightningIcon } from "../../../../assets/icons/LightningIcon";
-import { LockIcon } from "../../../../assets/icons/LockIcon";
-import { UserIcon } from "../../../../assets/icons/UserIcon";
-import { UsersIcon } from "../../../../assets/icons/UsersIcon";
-import { AppStoreLogo } from "../../../../assets/logos/AppStoreLogo";
-import { GooglePlayLogo } from "../../../../assets/logos/GooglePlayLogo";
-import { Tag } from "../../../_components/tag/Tag";
-import type { ProjectData, ProjectPageLink } from "../../../_data/projects-data";
-import { getProjectTitle } from "../../../_data/projects-data";
+import { ExpandSection } from "@/app/_components/expand-section/ExpandSection";
+import { BuildingOfficeIcon } from "@/assets/icons/BuildingOfficeIcon";
+import { ExternalLinkIcon } from "@/assets/icons/ExternalLinkIcon";
+import { LightningIcon } from "@/assets/icons/LightningIcon";
+import { LockIcon } from "@/assets/icons/LockIcon";
+import { UserIcon } from "@/assets/icons/UserIcon";
+import { UsersIcon } from "@/assets/icons/UsersIcon";
+import { AppStoreLogo } from "@/assets/logos/AppStoreLogo";
+import { GooglePlayLogo } from "@/assets/logos/GooglePlayLogo";
+import { Tag } from "@/app/_components/tag/Tag";
+import type { ProjectData, ProjectPageLink } from "@/app/_data/projects-data";
+import { getProjectTitle } from "@/app/_data/projects-data";
 import styles from "./ProjectCard.module.css";
 
 function MetaRow({ icon, value }: { icon: React.ReactNode; value: string }) {

@@ -1,8 +1,8 @@
 import { getTranslations } from "next-intl/server";
-import { CalendlyLink } from "../../_components/calendly-link/CalendlyLink";
-import { ClockIcon } from "../../../assets/icons/ClockIcon";
-import { EnvelopeIcon } from "../../../assets/icons/EnvelopeIcon";
-import { MapPinIcon } from "../../../assets/icons/MapPinIcon";
+import { CalendlyLink } from "@/app/_components/calendly-link/CalendlyLink";
+import { ClockIcon } from "@/assets/icons/ClockIcon";
+import { EnvelopeIcon } from "@/assets/icons/EnvelopeIcon";
+import { MapPinIcon } from "@/assets/icons/MapPinIcon";
 import { ContactInfoCard } from "./ContactInfoCard";
 
 type ContactCard = { icon: React.ReactNode; label: string; value: string; href?: string }

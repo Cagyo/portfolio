@@ -1,6 +1,6 @@
 import { getTranslations } from "next-intl/server";
-import { Nav } from "../_components/nav/Nav";
-import { RevealProvider } from "../_home/RevealProvider";
+import { Nav } from "@/app/_components/nav/Nav";
+import { RevealProvider } from "@/app/_home/RevealProvider";
 import { ApplySection } from "./_sections/ApplySection";
 import { MentorshipFit } from "./_sections/MentorshipFit";
 import { MentorshipFooter } from "./_sections/MentorshipFooter";

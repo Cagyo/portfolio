@@ -1,7 +1,7 @@
 "use client";
 
-import { XMarkIcon } from "../../../../assets/icons/XMarkIcon";
-import type { FilterGroupConfig } from "../../../_data/projects-filters";
+import { XMarkIcon } from "@/assets/icons/XMarkIcon";
+import type { FilterGroupConfig } from "@/app/_data/projects-filters";
 
 type ActiveChipsProps = {
   activeFilters: Record<string, Set<string>>

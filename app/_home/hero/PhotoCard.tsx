@@ -1,8 +1,8 @@
 import Image from "next/image";
 import styles from "./PhotoCard.module.css";
-import { Tag } from "../../_components/tag/Tag";
-import { TestimonialSnippet, type SnippetTestimonial } from "../recommendations/TestimonialSnippet";
-import { SKILLS } from "../../_data/skills-data";
+import { Tag } from "@/app/_components/tag/Tag";
+import { TestimonialSnippet, type SnippetTestimonial } from "@/app/_home/recommendations/TestimonialSnippet";
+import { SKILLS } from "@/app/_data/skills-data";
 
 type PhotoCardProps = {
   availableLabel: string;

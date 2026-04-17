@@ -1,10 +1,10 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest'
 import { screen, waitFor, act } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import { renderWithIntl, messages } from '../../../test/helpers/render-with-intl'
-import { installMediaRecorderMock } from '../../../test/helpers/mocks/media-recorder'
-import { installAudioMock } from '../../../test/helpers/mocks/audio'
-import type { AudioMockInstance } from '../../../test/helpers/mocks/audio'
+import { renderWithIntl, messages } from '@/test/helpers/render-with-intl'
+import { installMediaRecorderMock } from '@/test/helpers/mocks/media-recorder'
+import { installAudioMock } from '@/test/helpers/mocks/audio'
+import type { AudioMockInstance } from '@/test/helpers/mocks/audio'
 import { ContactForm } from './ContactForm'
 
 // Mock the server action
@@ -14,14 +14,14 @@ vi.mock('./contact-actions', () => ({
 
 // Replace TurnstileWidget with the test double from the mocks helper
 vi.mock('./TurnstileWidget', async () => {
-  const mod = await import('../../../test/helpers/mocks/turnstile-widget')
+  const mod = await import('@/test/helpers/mocks/turnstile-widget')
   return { TurnstileWidget: mod.default }
 })
 
 import { sendContactMessage } from './contact-actions'
 const mockSendContactMessage = sendContactMessage as ReturnType<typeof vi.fn>
 
-import { turnstileResetSpy } from '../../../test/helpers/mocks/turnstile-widget'
+import { turnstileResetSpy } from '@/test/helpers/mocks/turnstile-widget'
 
 // Helper to click the Turnstile mock and supply a valid token
 async function verifyTurnstile(user: ReturnType<typeof userEvent.setup>) {

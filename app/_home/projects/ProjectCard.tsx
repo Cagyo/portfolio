@@ -1,6 +1,6 @@
 import Link from "next/link";
-import { ArrowRightIcon } from "../../../assets/icons/ArrowRightIcon";
-import { Tag } from "../../_components/tag/Tag";
+import { ArrowRightIcon } from "@/assets/icons/ArrowRightIcon";
+import { Tag } from "@/app/_components/tag/Tag";
 import { ProjectMeta } from "./ProjectMeta";
 import styles from "./ProjectCard.module.css";
 

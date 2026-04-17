@@ -1,8 +1,8 @@
 import { getTranslations } from "next-intl/server";
-import { ArrowRightIcon } from "../../assets/icons/ArrowRightIcon";
-import { Button } from "../_components/button/Button";
-import { SparkleIcon } from "../../assets/icons/SparkleIcon";
-import { Tag } from "../_components/tag/Tag";
+import { ArrowRightIcon } from "@/assets/icons/ArrowRightIcon";
+import { Button } from "@/app/_components/button/Button";
+import { SparkleIcon } from "@/assets/icons/SparkleIcon";
+import { Tag } from "@/app/_components/tag/Tag";
 import styles from "./MentorshipTeaser.module.css";
 
 export async function MentorshipTeaser() {

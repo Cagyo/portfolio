@@ -1,16 +1,16 @@
 import { getTranslations } from "next-intl/server";
-import { BlobBackground } from "../../_components/BlobBackground";
-import { SectionHeader } from "../../_components/SectionHeader";
-import { TypeScriptLogo } from "../../../assets/logos/TypeScriptLogo";
-import { NestJSLogo } from "../../../assets/logos/NestJSLogo";
-import { NextJSLogo } from "../../../assets/logos/NextJSLogo";
-import { ReactLogo } from "../../../assets/logos/ReactLogo";
-import { DockerLogo } from "../../../assets/logos/DockerLogo";
-import { SparklesIcon } from "../../../assets/icons/SparklesIcon";
-import { CpuChipIcon } from "../../../assets/icons/CpuChipIcon";
-import { PresentationIcon } from "../../../assets/icons/PresentationIcon";
-import { BoltIcon } from "../../../assets/icons/BoltIcon";
-import { LinkIcon } from "../../../assets/icons/LinkIcon";
+import { BlobBackground } from "@/app/_components/BlobBackground";
+import { SectionHeader } from "@/app/_components/SectionHeader";
+import { TypeScriptLogo } from "@/assets/logos/TypeScriptLogo";
+import { NestJSLogo } from "@/assets/logos/NestJSLogo";
+import { NextJSLogo } from "@/assets/logos/NextJSLogo";
+import { ReactLogo } from "@/assets/logos/ReactLogo";
+import { DockerLogo } from "@/assets/logos/DockerLogo";
+import { SparklesIcon } from "@/assets/icons/SparklesIcon";
+import { CpuChipIcon } from "@/assets/icons/CpuChipIcon";
+import { PresentationIcon } from "@/assets/icons/PresentationIcon";
+import { BoltIcon } from "@/assets/icons/BoltIcon";
+import { LinkIcon } from "@/assets/icons/LinkIcon";
 
 type StackItem = {
   label: string

@@ -1,8 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { CheckIcon } from "../../../../assets/icons/CheckIcon";
-import { ChevronDownIcon } from "../../../../assets/icons/ChevronDownIcon";
+import { CheckIcon } from "@/assets/icons/CheckIcon";
+import { ChevronDownIcon } from "@/assets/icons/ChevronDownIcon";
 import styles from "./FilterSidebar.module.css";
 
 type FilterGroupProps = {

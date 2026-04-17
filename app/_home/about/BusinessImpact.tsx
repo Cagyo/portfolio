@@ -1,6 +1,6 @@
 import { getTranslations } from "next-intl/server";
-import { ArrowRightIcon } from "../../../assets/icons/ArrowRightIcon";
-import { Button } from "../../_components/button/Button";
+import { ArrowRightIcon } from "@/assets/icons/ArrowRightIcon";
+import { Button } from "@/app/_components/button/Button";
 import styles from "./BusinessImpact.module.css";
 
 export async function BusinessImpact() {

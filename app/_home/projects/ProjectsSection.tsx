@@ -1,10 +1,10 @@
 import { getTranslations } from "next-intl/server";
-import { PROJECTS, getProjectTitle, overlayTypeFor } from "../../_data/projects-data";
-import { HOME_PROJECT_IDS, getHomeProjectVisual } from "../../_data/home-project-visuals";
-import { BlobBackground } from "../../_components/BlobBackground";
-import { SectionHeader } from "../../_components/SectionHeader";
-import { ArrowLeftIcon } from "../../../assets/icons/ArrowLeftIcon";
-import { Button } from "../../_components/button/Button";
+import { PROJECTS, getProjectTitle, overlayTypeFor } from "@/app/_data/projects-data";
+import { HOME_PROJECT_IDS, getHomeProjectVisual } from "@/app/_data/home-project-visuals";
+import { BlobBackground } from "@/app/_components/BlobBackground";
+import { SectionHeader } from "@/app/_components/SectionHeader";
+import { ArrowLeftIcon } from "@/assets/icons/ArrowLeftIcon";
+import { Button } from "@/app/_components/button/Button";
 import { ProjectCard } from "./ProjectCard";
 import { ProjectLinkOverlay } from "./ProjectLinkOverlay";
 

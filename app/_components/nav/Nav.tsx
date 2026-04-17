@@ -2,12 +2,12 @@
 
 import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
-import { siteConfig } from "../../_config/site-config";
+import { siteConfig } from "@/app/_config/site-config";
 import { NavLogo } from "./NavLogo";
 import { NavLinks } from "./NavLinks";
 import { MobileMenu } from "./MobileMenu";
-import { ThemeToggle } from "../theme/ThemeToggle";
-import { Button } from "../button/Button";
+import { ThemeToggle } from "@/app/_components/theme/ThemeToggle";
+import { Button } from "@/app/_components/button/Button";
 
 type NavProps = {
   links?: { label: string; href: string }[]

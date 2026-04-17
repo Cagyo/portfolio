@@ -1,4 +1,4 @@
-import { StarIcon } from "../../assets/icons/StarIcon";
+import { StarIcon } from "@/assets/icons/StarIcon";
 
 type StarRatingProps = {
   count?: number

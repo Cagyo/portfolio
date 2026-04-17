@@ -1,13 +1,13 @@
-import { GolfTournamentIcon } from "../../assets/icons/GolfTournamentIcon"
-import { GolfFlagIcon } from "../../assets/icons/GolfFlagIcon"
-import { GolfSocialIcon } from "../../assets/icons/GolfSocialIcon"
-import { GolfersIcon } from "../../assets/icons/GolfersIcon"
-import { GolfBookingIcon } from "../../assets/icons/GolfBookingIcon"
-import { SmartphoneWithFlagIcon } from "../../assets/icons/SmartphoneWithFlagIcon"
-import { CurrencyExchangeIcon } from "../../assets/icons/CurrencyExchangeIcon"
-import { MoneyExchangeIcon } from "../../assets/icons/MoneyExchangeIcon"
-import { CarWashIcon } from "../../assets/icons/CarWashIcon"
-import { MapPinIcon } from "../../assets/icons/MapPinIcon"
+import { GolfTournamentIcon } from "@/assets/icons/GolfTournamentIcon"
+import { GolfFlagIcon } from "@/assets/icons/GolfFlagIcon"
+import { GolfSocialIcon } from "@/assets/icons/GolfSocialIcon"
+import { GolfersIcon } from "@/assets/icons/GolfersIcon"
+import { GolfBookingIcon } from "@/assets/icons/GolfBookingIcon"
+import { SmartphoneWithFlagIcon } from "@/assets/icons/SmartphoneWithFlagIcon"
+import { CurrencyExchangeIcon } from "@/assets/icons/CurrencyExchangeIcon"
+import { MoneyExchangeIcon } from "@/assets/icons/MoneyExchangeIcon"
+import { CarWashIcon } from "@/assets/icons/CarWashIcon"
+import { MapPinIcon } from "@/assets/icons/MapPinIcon"
 
 export const HOME_PROJECT_IDS = [1, 2, 3, 6, 4] as const
 

@@ -2,7 +2,7 @@
 
 import { useState, useRef, useLayoutEffect } from 'react'
 import { useTranslations } from 'next-intl'
-import { ChevronDownIcon } from '../../../assets/icons/ChevronDownIcon'
+import { ChevronDownIcon } from '@/assets/icons/ChevronDownIcon'
 import styles from './ShowMoreText.module.css'
 
 type ShowMoreTextProps = {

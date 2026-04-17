@@ -2,8 +2,8 @@
 
 import Link from "next/link";
 import { useTranslations } from "next-intl";
-import { ArrowLeftIcon } from "../../../assets/icons/ArrowLeftIcon";
-import { FunnelIcon } from "../../../assets/icons/FunnelIcon";
+import { ArrowLeftIcon } from "@/assets/icons/ArrowLeftIcon";
+import { FunnelIcon } from "@/assets/icons/FunnelIcon";
 
 type ProjectsNavProps = {
   count: number

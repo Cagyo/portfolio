@@ -1,6 +1,6 @@
 'use client'
 
-import { ChevronDownIcon } from '../../../assets/icons/ChevronDownIcon'
+import { ChevronDownIcon } from '@/assets/icons/ChevronDownIcon'
 import styles from './ExpandSection.module.css'
 
 type ExpandSectionProps = {

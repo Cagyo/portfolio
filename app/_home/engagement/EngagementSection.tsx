@@ -1,10 +1,10 @@
 import { getTranslations } from "next-intl/server";
-import { BlobBackground } from "../../_components/BlobBackground";
-import { SectionHeader } from "../../_components/SectionHeader";
-import { BadgeCheckIcon } from "../../../assets/icons/BadgeCheckIcon";
-import { ExternalLinkIcon } from "../../../assets/icons/ExternalLinkIcon";
-import { LightningIcon } from "../../../assets/icons/LightningIcon";
-import { WarningIcon } from "../../../assets/icons/WarningIcon";
+import { BlobBackground } from "@/app/_components/BlobBackground";
+import { SectionHeader } from "@/app/_components/SectionHeader";
+import { BadgeCheckIcon } from "@/assets/icons/BadgeCheckIcon";
+import { ExternalLinkIcon } from "@/assets/icons/ExternalLinkIcon";
+import { LightningIcon } from "@/assets/icons/LightningIcon";
+import { WarningIcon } from "@/assets/icons/WarningIcon";
 import { EngagementCard } from "./EngagementCard";
 import styles from "./EngagementSection.module.css";
 

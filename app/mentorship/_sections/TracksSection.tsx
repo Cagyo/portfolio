@@ -1,11 +1,11 @@
 import { getTranslations } from "next-intl/server";
-import { ArrowRightIcon } from "../../../assets/icons/ArrowRightIcon";
-import { CalendarIcon } from "../../../assets/icons/CalendarIcon";
-import { CheckIcon } from "../../../assets/icons/CheckIcon";
-import { BlobBackground } from "../../_components/BlobBackground";
-import { Button } from "../../_components/button/Button";
-import { SectionHeader } from "../../_components/SectionHeader";
-import { siteConfig } from "../../_config/site-config";
+import { ArrowRightIcon } from "@/assets/icons/ArrowRightIcon";
+import { CalendarIcon } from "@/assets/icons/CalendarIcon";
+import { CheckIcon } from "@/assets/icons/CheckIcon";
+import { BlobBackground } from "@/app/_components/BlobBackground";
+import { Button } from "@/app/_components/button/Button";
+import { SectionHeader } from "@/app/_components/SectionHeader";
+import { siteConfig } from "@/app/_config/site-config";
 import styles from "./TracksSection.module.css";
 
 type TrackAccent = "amber" | "violet"

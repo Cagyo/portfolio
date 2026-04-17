@@ -1,15 +1,15 @@
 import Image from "next/image";
 import { getTranslations } from "next-intl/server";
 import styles from "./HeroSection.module.css";
-import { ArrowRightIcon } from "../../../assets/icons/ArrowRightIcon";
-import { EnvelopeIcon } from "../../../assets/icons/EnvelopeIcon";
-import { BlobBackground } from "../../_components/BlobBackground";
-import { Button } from "../../_components/button/Button";
-import { ScrollIndicator } from "../../_components/ScrollIndicator";
-import { StatRow } from "../../_components/StatRow";
+import { ArrowRightIcon } from "@/assets/icons/ArrowRightIcon";
+import { EnvelopeIcon } from "@/assets/icons/EnvelopeIcon";
+import { BlobBackground } from "@/app/_components/BlobBackground";
+import { Button } from "@/app/_components/button/Button";
+import { ScrollIndicator } from "@/app/_components/ScrollIndicator";
+import { StatRow } from "@/app/_components/StatRow";
 import { PhotoCard } from "./PhotoCard";
 import { Typewriter } from "./Typewriter";
-import { TestimonialSnippet, type SnippetTestimonial } from "../recommendations/TestimonialSnippet";
+import { TestimonialSnippet, type SnippetTestimonial } from "@/app/_home/recommendations/TestimonialSnippet";
 
 export async function HeroSection() {
   const [t, tRecs] = await Promise.all([

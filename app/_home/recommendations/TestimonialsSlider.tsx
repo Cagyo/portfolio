@@ -1,8 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { ArrowLeftIcon } from "../../../assets/icons/ArrowLeftIcon";
-import { ArrowRightIcon } from "../../../assets/icons/ArrowRightIcon";
+import { ArrowLeftIcon } from "@/assets/icons/ArrowLeftIcon";
+import { ArrowRightIcon } from "@/assets/icons/ArrowRightIcon";
 import styles from "./TestimonialsSlider.module.css";
 import { TestimonialCard } from "./TestimonialCard";
 

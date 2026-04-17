@@ -1,6 +1,6 @@
 "use client";
 
-import { EmptyFaceIcon } from "../../assets/icons/EmptyFaceIcon";
+import { EmptyFaceIcon } from "@/assets/icons/EmptyFaceIcon";
 
 type EmptyStateProps = {
   message: string

@@ -2,9 +2,9 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { ExternalLinkIcon } from "../../../assets/icons/ExternalLinkIcon";
-import { QuoteMarkIcon } from "../../../assets/icons/QuoteMarkIcon";
-import { LinkedInLogo } from "../../../assets/logos/LinkedInLogo";
+import { ExternalLinkIcon } from "@/assets/icons/ExternalLinkIcon";
+import { QuoteMarkIcon } from "@/assets/icons/QuoteMarkIcon";
+import { LinkedInLogo } from "@/assets/logos/LinkedInLogo";
 import styles from "./TestimonialCard.module.css";
 
 type TestimonialCardProps = {

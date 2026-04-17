@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useTranslations } from "next-intl";
-import { ChevronDownIcon } from "../../../assets/icons/ChevronDownIcon";
+import { ChevronDownIcon } from "@/assets/icons/ChevronDownIcon";
 import styles from "./ExperienceList.module.css";
 
 type ExperienceListProps = {

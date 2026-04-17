@@ -1,9 +1,9 @@
 import { getTranslations } from "next-intl/server";
-// import { SparkleIcon } from "../../assets/icons/SparkleIcon";
-import { GitHubLogo } from "../../assets/logos/GitHubLogo";
-import { LinkedInLogo } from "../../assets/logos/LinkedInLogo";
-import { XLogo } from "../../assets/logos/XLogo";
-import { siteConfig } from "../_config/site-config";
+// import { SparkleIcon } from "@/assets/icons/SparkleIcon";
+import { GitHubLogo } from "@/assets/logos/GitHubLogo";
+import { LinkedInLogo } from "@/assets/logos/LinkedInLogo";
+import { XLogo } from "@/assets/logos/XLogo";
+import { siteConfig } from "@/app/_config/site-config";
 // import styles from "./Footer.module.css";
 
 export async function Footer() {

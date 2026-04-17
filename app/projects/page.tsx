@@ -1,6 +1,6 @@
 import { Suspense } from "react";
 import { getTranslations } from "next-intl/server";
-import { BlobBackground } from "../_components/BlobBackground";
+import { BlobBackground } from "@/app/_components/BlobBackground";
 import { ProjectsPage } from "./_components/ProjectsPage";
 
 export async function generateMetadata() {

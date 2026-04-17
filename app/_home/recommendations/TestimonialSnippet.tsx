@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { StarRating } from "../../_components/StarRating";
+import { StarRating } from "@/app/_components/StarRating";
 import styles from "./TestimonialSnippet.module.css";
 
 export type SnippetTestimonial = {

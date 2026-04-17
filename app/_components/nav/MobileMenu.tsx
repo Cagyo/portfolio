@@ -3,9 +3,9 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { useTranslations } from "next-intl";
-import { HamburgerIcon } from "../../../assets/icons/HamburgerIcon";
-import { XMarkIcon } from "../../../assets/icons/XMarkIcon";
-import { Button } from "../button/Button";
+import { HamburgerIcon } from "@/assets/icons/HamburgerIcon";
+import { XMarkIcon } from "@/assets/icons/XMarkIcon";
+import { Button } from "@/app/_components/button/Button";
 import { useActiveSection } from "./use-active-section";
 import styles from "./MobileMenu.module.css";
 

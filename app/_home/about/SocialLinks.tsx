@@ -1,10 +1,10 @@
 import { getTranslations } from "next-intl/server";
-import { siteConfig } from "../../_config/site-config";
-import { Button } from "../../_components/button/Button";
-import { DownloadIcon } from "../../../assets/icons/DownloadIcon";
-import { GitHubLogo } from "../../../assets/logos/GitHubLogo";
-import { LinkedInLogo } from "../../../assets/logos/LinkedInLogo";
-import { XLogo } from "../../../assets/logos/XLogo";
+import { siteConfig } from "@/app/_config/site-config";
+import { Button } from "@/app/_components/button/Button";
+import { DownloadIcon } from "@/assets/icons/DownloadIcon";
+import { GitHubLogo } from "@/assets/logos/GitHubLogo";
+import { LinkedInLogo } from "@/assets/logos/LinkedInLogo";
+import { XLogo } from "@/assets/logos/XLogo";
 
 export async function SocialLinks() {
   const t = await getTranslations("common");
