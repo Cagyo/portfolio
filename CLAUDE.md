@@ -61,6 +61,8 @@ app/projects/_components/
 - Group when 3+ files share a domain/feature and are only consumed together
 - CSS modules always move with their component (never split across directories)
 - No `index.ts` barrel files — import directly from the source file
+- Use `@/` alias for all imports that cross more than one directory level — never write `../../` paths
+- Same-directory imports (`./foo`) stay as-is
 - Shared utilities/data used across groups stay at the parent level (e.g. `projects-data.ts` in `_components/` root)
 
 ### Components
@@ -154,7 +156,7 @@ All external `href` values in the app must come from `siteConfig`. Never hardcod
 Import directly (no barrel):
 
 ```ts
-import { siteConfig } from '../../_config/site-config'
+import { siteConfig } from '@/app/_config/site-config'
 ```
 
 Shape:
@@ -228,6 +230,18 @@ Default to `type`. Use `interface` only when declaration merging is explicitly n
 ### No barrel files (`index.ts`)
 
 Import directly from the source. Barrels break tree-shaking and can leak server modules into client bundles.
+
+### `@/` path alias — always use for cross-directory imports
+
+`tsconfig.json` maps `@/*` → `./`. Use this alias for every import that would otherwise require `../` traversal. Same-directory imports (`./foo`) are the only exception.
+
+```ts
+// ❌
+import { Button } from '../../../_components/button/Button'
+
+// ✅
+import { Button } from '@/app/_components/button/Button'
+```
 
 ### Serializable props across the RSC boundary
 
