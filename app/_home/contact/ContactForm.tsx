@@ -4,6 +4,7 @@ import { useActionState, useRef, useEffect, startTransition } from 'react'
 import { useForm, Controller } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useTranslations } from 'next-intl'
+import { useSearchParams } from 'next/navigation'
 import type { TurnstileInstance } from '@marsidev/react-turnstile'
 import { ArrowRightIcon } from '@/assets/icons/ArrowRightIcon'
 import { CheckIcon } from '@/assets/icons/CheckIcon'
@@ -14,7 +15,7 @@ import { Button } from '@/app/_components/button/Button'
 import { VoiceRecorder } from './VoiceRecorder'
 import { TurnstileWidget } from './TurnstileWidget'
 import { sendContactMessage } from './contact-actions'
-import type { ActionResult, ContactErrorKey } from './contact-types'
+import { INTEREST_VALUES, type ActionResult, type ContactErrorKey, type Interest } from './contact-types'
 import { siteConfig } from '@/app/_config/site-config'
 import { contactFormSchema, contactFormDefaultValues } from './contact-form-schema'
 import type { ContactFormValues } from './contact-form-schema'
@@ -27,6 +28,7 @@ function buildFormData(values: ContactFormValues): FormData {
   fd.set('email', values.email)
   fd.set('website', values.website)
   fd.set('turnstileToken', values.turnstileToken)
+  if (values.interest) fd.set('interest', values.interest)
   if (values.subject) fd.set('subject', values.subject)
   if (values.budget) fd.set('budget', values.budget)
   if (values.message) fd.set('message', values.message)
@@ -39,6 +41,7 @@ function buildFormData(values: ContactFormValues): FormData {
 
 export function ContactForm() {
   const t = useTranslations('contact')
+  const searchParams = useSearchParams()
 
   const [result, formAction, isPending] = useActionState<ActionResult | null, FormData>(
     sendContactMessage,
@@ -72,6 +75,13 @@ export function ContactForm() {
       setValue('turnstileToken', '')
     }
   }, [errorKey, setValue])
+
+  useEffect(() => {
+    const interest = searchParams.get('interest')
+    if (interest && (INTEREST_VALUES as readonly string[]).includes(interest)) {
+      setValue('interest', interest as Interest)
+    }
+  }, [searchParams, setValue])
 
   function onSubmit(values: ContactFormValues) {
     const fd = buildFormData(values)
@@ -139,6 +149,34 @@ export function ContactForm() {
               </p>
             )}
           </div>
+        </div>
+
+        {/* ── Interest ── */}
+        <div>
+          <label
+            htmlFor="interest"
+            className="block text-white/60 text-sm font-medium mb-2"
+          >
+            {t('form.interestLabel')}
+          </label>
+          <select
+            id="interest"
+            className="form-input w-full rounded-xl px-4 py-3 text-white/70 text-sm cursor-pointer"
+            {...register('interest')}
+          >
+            <option value="" className="bg-gray-900">
+              {t('form.interestOptions.figureOut')}
+            </option>
+            <option value="mvp" className="bg-gray-900">
+              {t('form.interestOptions.mvp')}
+            </option>
+            <option value="full-build" className="bg-gray-900">
+              {t('form.interestOptions.fullBuild')}
+            </option>
+            <option value="rescue" className="bg-gray-900">
+              {t('form.interestOptions.rescue')}
+            </option>
+          </select>
         </div>
 
         {/* ── Mode Toggle ── */}

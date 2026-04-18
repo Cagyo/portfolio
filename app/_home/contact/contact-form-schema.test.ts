@@ -19,6 +19,7 @@ const validText = {
   message: 'This is a valid message with enough chars.',
   voiceRecordings: [],
   turnstileToken: 'tok',
+  interest: '' as const,
   website: '',
 }
 
@@ -31,6 +32,7 @@ const validVoice = {
   message: '',
   voiceRecordings: [makeBlob(1024 * 1024)],
   turnstileToken: 'tok',
+  interest: '' as const,
   website: '',
 }
 
@@ -46,6 +48,7 @@ describe('contactFormSchema', () => {
       message: '',
       voiceRecordings: [],
       turnstileToken: '',
+      interest: '',
       website: '',
     })
     expect(result.success).toBe(false)
@@ -251,6 +254,20 @@ describe('contactFormSchema', () => {
       const tokenIssue = result.error.issues.find((issue) => issue.path[0] === 'turnstileToken')
       expect(tokenIssue?.message).toBe('turnstile')
     }
+  })
+
+  // 22. interest enum accepts valid values
+  it('case 22: interest accepts mvp / full-build / rescue', () => {
+    for (const interest of ['mvp', 'full-build', 'rescue'] as const) {
+      const result = contactFormSchema.safeParse({ ...validText, interest })
+      expect(result.success).toBe(true)
+    }
+  })
+
+  // 23. interest enum rejects unknown values
+  it('case 23: unknown interest rejected', () => {
+    const result = contactFormSchema.safeParse({ ...validText, interest: 'other' })
+    expect(result.success).toBe(false)
   })
 
   // 21. trim applied to name/email/subject/message

@@ -1,4 +1,5 @@
 import { z } from 'zod'
+import { INTEREST_VALUES } from './contact-types'
 
 const MAX_FILE_BYTES = 5 * 1024 * 1024
 const MAX_TOTAL_BYTES = 20 * 1024 * 1024
@@ -13,6 +14,7 @@ export const contactFormSchema = z
     message: z.string().trim().max(5000, 'messageInvalid'),
     voiceRecordings: z.array(z.instanceof(Blob)),
     turnstileToken: z.string().min(1, 'turnstile'),
+    interest: z.enum(['', ...INTEREST_VALUES]),
     website: z.string().max(0),
   })
   .superRefine((values, ctx) => {
@@ -45,5 +47,6 @@ export const contactFormDefaultValues: ContactFormValues = {
   message: '',
   voiceRecordings: [],
   turnstileToken: '',
+  interest: '',
   website: '',
 }

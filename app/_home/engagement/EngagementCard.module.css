@@ -32,3 +32,60 @@
   background: color-mix(in srgb, var(--teal) 6%, transparent);
   border: 1px solid color-mix(in srgb, var(--teal) 20%, transparent);
 }
+
+/* Kicker — default (amber/purple) */
+.kicker {
+  font-style: italic;
+  color: var(--text-faint);
+}
+
+/* Kicker — teal variant (Rescue card) */
+.kickerTeal {
+  color: var(--teal);
+}
+
+/* Per-card CTA links */
+.ctaAmber {
+  color: var(--amber);
+}
+
+.ctaAmber:hover {
+  text-decoration: underline;
+}
+
+.ctaPurple {
+  color: var(--purple);
+}
+
+.ctaPurple:hover {
+  text-decoration: underline;
+}
+
+.ctaTeal {
+  color: var(--teal);
+}
+
+.ctaTeal:hover {
+  text-decoration: underline;
+}
+
+/* ── Light mode overrides ── */
+html[data-theme="light"] .kicker {
+  color: var(--text-faint);
+}
+
+html[data-theme="light"] .kickerTeal {
+  color: color-mix(in srgb, var(--teal) 70%, black);
+}
+
+html[data-theme="light"] .ctaAmber {
+  color: color-mix(in srgb, var(--amber) 60%, black);
+}
+
+html[data-theme="light"] .ctaPurple {
+  color: color-mix(in srgb, var(--purple) 70%, black);
+}
+
+html[data-theme="light"] .ctaTeal {
+  color: color-mix(in srgb, var(--teal) 70%, black);
+}

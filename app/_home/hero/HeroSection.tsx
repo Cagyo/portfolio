@@ -57,7 +57,7 @@ export async function HeroSection() {
                 <span className="text-gradient">{t("lastName")}</span>
               </h1>
               <p className="text-xl sm:text-2xl text-white/60 font-light">
-                {t("tagline")} <Typewriter roles={typewriterRoles} />
+                {t("tagline") && <>{t("tagline")} </>}<Typewriter roles={typewriterRoles} />
               </p>
             </div>
             {/* Medium mobile photo */}

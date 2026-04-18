@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { getTranslations } from "next-intl/server";
 import { BlobBackground } from "@/app/_components/BlobBackground";
 import { SectionHeader } from "@/app/_components/SectionHeader";
@@ -16,7 +17,9 @@ export async function ContactSection() {
 
         <div className="grid lg:grid-cols-5 gap-12">
           <ContactInfo />
-          <ContactForm />
+          <Suspense>
+            <ContactForm />
+          </Suspense>
         </div>
       </div>
     </section>

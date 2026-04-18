@@ -17,8 +17,8 @@
     "badge": "Available for work",
     "firstName": "Oleksii",
     "lastName": "Berliziev",
-    "tagline": "Full-Stack",
-    "typewriterRoles": ["Engineer", "Tech Lead", "Problem Solver"],
+    "tagline": "",
+    "typewriterRoles": ["Full-Stack Engineer", "Fractional CTO", "Tech Lead", "Problem Solver"],
     "description": "I build products your business runs on.",
     "ctaWork": "View Work",
     "ctaContact": "Get in Touch",
@@ -181,23 +181,29 @@
       {
         "tag": "Ship fast",
         "title": "MVP & Fast Builds",
-        "body": "This website was built in days using AI-assisted development. That's the pace I bring to your project — a working solution in weeks, not months, without the overhead of a full agency process.",
-        "bestFor": "Founders who need to validate an idea, test a market, or ship something real before committing to a full build.",
-        "note": "Focused scope, no bureaucracy — shipped in weeks, not months."
+        "kicker": "For founders testing an idea fast",
+        "body": "This website was built in days using AI-assisted development. That's the pace I bring to your project. A working solution in weeks, not months, without the overhead of a full agency process. Scope is fixed before we start, so you know what you're paying for and what you're getting. No surprise invoices, no expanding timelines, no rotating team members you've never met.",
+        "bestFor": "Founders who need to validate an idea, test a market, or quickly ship something real before committing to the full build.",
+        "note": "Fast scope. Fixed price. Shipped in weeks.",
+        "cta": "Start a fast build →"
       },
       {
         "tag": "Long-term",
-        "title": "Full Product Build & Support",
-        "body": "Solid architecture from day one, built to scale. I'm embedded in your product long-term — designing, building, leading, and evolving it as your business grows.",
-        "bestFor": "Clients building something serious who want one technical partner for the long haul — not a series of handoffs.",
-        "note": "One partner. Full ownership. Zero handoffs."
+        "title": "Full Build & Support",
+        "kicker": "For products built to run for years",
+        "body": "Solid architecture from day one, built to scale. I'm embedded in your product long-term: designing, building, leading, and evolving it as your business grows. No handoffs, no rotating developers, no context lost between quarters. The same engineer who architects it in month one is the one shipping features in year three. When you hire a team later, I help you hire the right people or step into the tech lead role as you scale.",
+        "bestFor": "Founders building something they intend to run for years, who want one technical partner for the whole arc, not a series of handoffs.",
+        "note": "One partner. Full ownership. Zero handoffs.",
+        "cta": "Start the conversation →"
       },
       {
-        "tag": "Existing project",
-        "title": "Project SOS",
-        "body": "You have an existing product — but it's messy, slow, or needs a senior hand. I come in, review the codebase and architecture, scope what needs fixing, and take ownership of moving it forward.",
-        "bestFor": "Teams with technical debt, founders who inherited a codebase, or products that need stabilising before the next growth phase.",
-        "note": "Rescue, refactor, and scale — without starting over."
+        "tag": "Prototype → Product",
+        "kicker": "For vibe-coded MVPs that outgrew themselves",
+        "title": "Vibe-code Rescue",
+        "body": "You built an MVP with Cursor, Claude Code, or ChatGPT and it proved the idea. But the prototype that gets you to traction isn't the product that scales with you. The codebase gets tangled, features start interfering with each other, and the AI that built it fast can't reason about it anymore. I use the same tools every day, so I know exactly where they run out of road. I keep what works, rebuild what can't, and put real architecture underneath what you've already shipped.",
+        "bestFor": "Founders whose AI-built MVP validated the idea and now needs real engineering underneath it. Before every new feature becomes a risk.",
+        "note": "Keep what works. Rebuild what can't. No rewrite.",
+        "cta": "Audit my codebase →"
       }
     ]
   },
@@ -243,6 +249,13 @@
         "groupLabel": "Message input mode",
         "typeLabel": "Type a message",
         "voiceLabel": "Voice message"
+      },
+      "interestLabel": "What are you looking for?",
+      "interestOptions": {
+        "figureOut": "Need to figure it out",
+        "mvp": "MVP & Fast Builds",
+        "fullBuild": "Full Build & Support",
+        "rescue": "Vibe-code Rescue"
       },
       "subjectLabel": "Subject",
       "subjectPlaceholder": "Project Inquiry",

@@ -1,4 +1,5 @@
 import { z } from 'zod'
+import { INTEREST_VALUES } from './contact-types'
 
 const MAX_FILE_BYTES = 5 * 1024 * 1024
 const MAX_TOTAL_BYTES = 20 * 1024 * 1024
@@ -8,6 +9,7 @@ const baseFields = {
   email: z.string().trim().email().max(200),
   website: z.string().max(0),
   turnstileToken: z.string().min(1),
+  interest: z.enum(INTEREST_VALUES).optional(),
 }
 
 const voiceFileMeta = z.object({

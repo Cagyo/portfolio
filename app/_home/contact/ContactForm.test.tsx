@@ -7,6 +7,11 @@ import { installAudioMock } from '@/test/helpers/mocks/audio'
 import type { AudioMockInstance } from '@/test/helpers/mocks/audio'
 import { ContactForm } from './ContactForm'
 
+// Mock next/navigation — useSearchParams returns empty by default
+vi.mock('next/navigation', () => ({
+  useSearchParams: () => new URLSearchParams(),
+}))
+
 // Mock the server action
 vi.mock('./contact-actions', () => ({
   sendContactMessage: vi.fn(),

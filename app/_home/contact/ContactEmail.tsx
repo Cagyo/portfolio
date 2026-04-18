@@ -9,10 +9,16 @@ import {
   Section,
   Text,
 } from '@react-email/components'
-import type { ContactEmailData } from './contact-types'
+import type { ContactEmailData, Interest } from './contact-types'
 
 type ContactEmailProps = {
   data: ContactEmailData
+}
+
+const INTEREST_LABELS: Record<Interest, string> = {
+  mvp: 'MVP & Fast Builds',
+  'full-build': 'Full Build & Support',
+  rescue: 'Vibe-code Rescue',
 }
 
 export function ContactEmail({ data }: ContactEmailProps) {
@@ -36,6 +42,11 @@ export function ContactEmail({ data }: ContactEmailProps) {
             {data.budget && (
               <Text style={textStyle}>
                 <strong>Budget:</strong> {data.budget}
+              </Text>
+            )}
+            {data.interest && (
+              <Text style={textStyle}>
+                <strong>Interest:</strong> {INTEREST_LABELS[data.interest] ?? data.interest}
               </Text>
             )}
             <Text style={textStyle}>

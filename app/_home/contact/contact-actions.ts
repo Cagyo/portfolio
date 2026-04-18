@@ -78,6 +78,7 @@ export async function sendContactMessage(
     email: formData.get('email') as string ?? '',
     website: formData.get('website') as string ?? '',
     turnstileToken: turnstileToken ?? '',
+    interest: formData.get('interest') as string ?? undefined,
     subject: formData.get('subject') as string ?? undefined,
     budget: formData.get('budget') as string ?? undefined,
     message: formData.get('message') as string ?? undefined,
@@ -116,6 +117,7 @@ export async function sendContactMessage(
     subject: 'subject' in parsed ? parsed.subject : undefined,
     budget: 'budget' in parsed ? parsed.budget : undefined,
     message: 'message' in parsed ? parsed.message : undefined,
+    interest: 'interest' in parsed ? parsed.interest : undefined,
     mode: parsed.mode,
     recordingCount: voiceFiles.length,
   }
