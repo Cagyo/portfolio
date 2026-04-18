@@ -470,6 +470,8 @@ Current UI primitives: `<Button>` — `variant?: "primary" | "outline"`, renders
 
 - **Light mode support is mandatory**: every CSS module must include `html[data-theme="light"]` overrides for any property that uses white-based opacity colors (`oklch(from white ...)`, `color-mix(in srgb, white ...)`) or hardcoded dark backgrounds (`#080810`, `#0d0d18`, `#16162a`, etc.). Use design tokens (`var(--text-primary)`, `var(--surface)`, `var(--border)`, etc.) in light mode overrides. Similarly, any new Tailwind utility class using white opacity (`text-white/N`, `border-white/N`, `bg-white/N`) or amber hover variants must have a corresponding `html[data-theme="light"]` override in `globals.css`.
 
+- Do not combine a CSS-module class and Tailwind utility classes to style the same visual concern on the same element (e.g. `` `${isTeal ? styles.kickerTeal : 'italic text-white/40'}` ``). Either promote both branches to the CSS module (preferred when one branch already lives there) or handle both with Tailwind. Mixing forces readers to cross-reference two styling systems to understand one element.
+
 ---
 
 ## SVG Icons & Logos
@@ -526,6 +528,18 @@ Form state (useActionState)                   ← server-bound forms
 Cross-component (context)                     ← truly global client state
 External store (Zustand/Jotai)                ← last resort, scoped to feature
 ```
+
+### Cross-component communication — pick a tier, never a global event bus
+
+Do not use `window.dispatchEvent` / `window.addEventListener` / `CustomEvent` to pass data between components. It bypasses the type system, couples callers via magic-string event names, and is invisible to React devtools.
+
+When component A in one section needs to talk to component B in another:
+
+- If the signal is shareable or bookmarkable → URL searchParams (`useSearchParams`)
+- If transient and page-local → feature-scoped Zustand store or React context
+- If parent/child in the tree → props, as always
+
+Validate inbound URL params against the zod schema of the consuming field before applying — never `setValue(param as Enum)`.
 
 ### Forms with client-side validation
 
@@ -657,6 +671,28 @@ Never use array index as `key` when a stable unique identifier exists (id, slug,
 // ❌  positions.map((pos, i) => <div key={i}>)
 // ✅  positions.map((pos) => <div key={pos.title}>)
 ```
+
+### No parallel arrays coupled by index
+
+When rendering a list, do not maintain multiple top-level arrays that must stay aligned by index (`VARIANTS[i]`, `ICONS[i]`, `DELAYS[i]`, …). A single array of objects is safer — adding, removing, or reordering items can't silently desync.
+
+```ts
+// ❌
+const VARIANTS = ['amber', 'purple', 'teal']
+const ICONS    = [<A />, <B />, <C />]
+const DELAYS   = [undefined, '0.1s', '0.2s']
+cards.map((card, i) => <Card variant={VARIANTS[i]} icon={ICONS[i]} delay={DELAYS[i]} … />)
+
+// ✅
+const META = [
+  { variant: 'amber',  icon: <A />, delay: undefined },
+  { variant: 'purple', icon: <B />, delay: '0.1s' },
+  { variant: 'teal',   icon: <C />, delay: '0.2s' },
+] as const
+cards.map((card, i) => <Card {...META[i]} {...card} key={card.id} />)
+```
+
+The same rule applies inside a component with variant-dependent class maps: one `VARIANTS[tagVariant]` meta object is easier to scan than three parallel lookups plus inline `variant === 'x'` ternaries.
 
 ### Honest initial state
 
