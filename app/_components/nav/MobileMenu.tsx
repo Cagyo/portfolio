@@ -13,10 +13,13 @@ type NavLink = { label: string; href: string }
 
 type MobileMenuProps = {
   links: NavLink[]
+  cta?: { href: string; label: string }
 }
 
-export function MobileMenu({ links }: MobileMenuProps) {
+export function MobileMenu({ links, cta }: MobileMenuProps) {
   const t = useTranslations("nav");
+  const ctaHref = cta?.href ?? "#contact";
+  const ctaLabel = cta?.label ?? t("cta");
   const [open, setOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
   const triggerRef = useRef<HTMLButtonElement>(null);
@@ -53,22 +56,24 @@ export function MobileMenu({ links }: MobileMenuProps) {
   return (
     <>
       <Button
-        href="#contact"
+        href={ctaHref}
         onClick={() => setOpen(false)}
         className="px-4 py-1.5 rounded-xl text-sm text-center cursor-pointer"
       >
-        {t("cta")}
+        {ctaLabel}
       </Button>
 
-      <button
-        ref={triggerRef}
-        onClick={() => setOpen((prev) => !prev)}
-        className="text-white/70 hover:text-white cursor-pointer focus-visible:ring-2 focus-visible:ring-amber-500 rounded-lg p-1"
-        aria-label={t("mobileMenuOpenAriaLabel")}
-        aria-expanded={open}
-      >
-        {open ? <XMarkIcon className="w-6 h-6" /> : <HamburgerIcon className="w-6 h-6" />}
-      </button>
+      {links.length > 0 && (
+        <button
+          ref={triggerRef}
+          onClick={() => setOpen((prev) => !prev)}
+          className="text-white/70 hover:text-white cursor-pointer focus-visible:ring-2 focus-visible:ring-amber-500 rounded-lg p-1"
+          aria-label={t("mobileMenuOpenAriaLabel")}
+          aria-expanded={open}
+        >
+          {open ? <XMarkIcon className="w-6 h-6" /> : <HamburgerIcon className="w-6 h-6" />}
+        </button>
+      )}
 
       {mounted && createPortal(
         <>

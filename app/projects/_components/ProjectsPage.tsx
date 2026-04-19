@@ -5,11 +5,12 @@ import { useSearchParams } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { EmptyState } from "@/app/_components/EmptyState";
 import { SearchInput } from "@/app/_components/SearchInput";
+import { SubpageNav } from "@/app/_components/nav/SubpageNav";
 import { ActiveChips } from "./filter/ActiveChips";
 import { FilterPanelMobile } from "./filter/FilterPanelMobile";
 import { FilterSidebar } from "./filter/FilterSidebar";
 import { ProjectCard } from "./project-card/ProjectCard";
-import { ProjectsNav } from "./ProjectsNav";
+import { FunnelIcon } from "@/assets/icons/FunnelIcon";
 import { PROJECTS, getProjectTitle } from "@/app/_data/projects-data";
 import type { ProjectData } from "@/app/_data/projects-data";
 import { FILTER_GROUPS } from "@/app/_data/projects-filters";
@@ -26,6 +27,35 @@ function matchesSearch(project: ProjectData, query: string): boolean {
     .join(" ")
     .toLowerCase();
   return haystack.includes(query);
+}
+
+type ProjectsNavExtrasProps = {
+  count: number
+  onFilterOpen: () => void
+}
+
+function ProjectsNavExtras({ count, onFilterOpen }: ProjectsNavExtrasProps) {
+  const t = useTranslations("projectsPage");
+
+  return (
+    <>
+      {/* Mobile filter toggle */}
+      <button
+        type="button"
+        onClick={onFilterOpen}
+        className="lg:hidden glass px-3 py-2 rounded-xl text-sm text-white/60 hover:text-amber-400 transition-colors cursor-pointer flex items-center gap-2"
+        aria-label={t("filters")}
+      >
+        <FunnelIcon className="w-4 h-4" />
+        {t("filters")}
+      </button>
+
+      <div className="hidden sm:flex items-center gap-2 text-white/30 text-sm">
+        <span className="font-heading font-bold text-white">{count}</span>
+        <span>{count === 1 ? "project" : "projects"}</span>
+      </div>
+    </>
+  );
 }
 
 export function ProjectsPage() {
@@ -138,7 +168,10 @@ export function ProjectsPage() {
 
   return (
     <>
-      <ProjectsNav count={filtered.length} onFilterOpen={() => setMobileOpen(true)} />
+      <SubpageNav
+        maxWidth="max-w-7xl"
+        rightExtras={<ProjectsNavExtras count={filtered.length} onFilterOpen={() => setMobileOpen(true)} />}
+      />
 
       <FilterPanelMobile
         open={mobileOpen}

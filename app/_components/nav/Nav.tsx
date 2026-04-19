@@ -60,7 +60,7 @@ export function Nav({ links: linksProp, ctaHref = "#contact", ctaLabel }: NavPro
         {/* Mobile: theme toggle + hamburger */}
         <div className="md:hidden flex items-center gap-2">
           <ThemeToggle />
-          <MobileMenu links={links} />
+          <MobileMenu links={links} cta={{ href: ctaHref, label: cta }} />
         </div>
       </div>
     </nav>

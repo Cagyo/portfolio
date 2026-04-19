@@ -1,4 +1,7 @@
 {
+  "subpageNav": {
+    "backHome": "Back to home"
+  },
   "nav": {
     "links": {
       "about": "About",
@@ -343,7 +346,6 @@
   "projectsPage": {
     "title": "Projects",
     "subtitle": "A curated record of projects I've built — covering architecture, leadership, and hands-on development across industries.",
-    "backToHome": "Back to home",
     "filters": "Filters",
     "clearAllFilters": "Clear all filters",
     "searchPlaceholder": "Search projects…",
@@ -378,7 +380,6 @@
   "mentorshipPage": {
     "metadata": { "title": "Mentorship & Courses" },
     "nav": {
-      "portfolio": "Portfolio",
       "programs": "Programs",
       "whoItsFor": "Who it's for",
       "cta": "Apply Now"
@@ -481,8 +482,7 @@
     "footer": {
       "copyright": "© 2026",
       "author": "Oleksii Berliziev",
-      "suffix": "Mentorship & Courses.",
-      "backToPortfolio": "Back to Portfolio"
+      "suffix": "Mentorship & Courses."
     }
   }
 }
