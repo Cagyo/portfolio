@@ -140,7 +140,8 @@
       "database": "Database",
       "devops": "DevOps",
       "cloud": "Cloud",
-      "tools": "Tools"
+      "tools": "Tools",
+      "mobile": "Mobile"
     }
   },
   "projects": {

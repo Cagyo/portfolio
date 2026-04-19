@@ -20,7 +20,6 @@ export function SkillChip({ name, category, variant }: SkillChipProps) {
   return (
     <span className={styles.skillChipRest}>
       {name}
-      <span className={styles.skillChipCat}>{category}</span>
     </span>
   );
 }
