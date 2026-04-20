@@ -75,3 +75,6 @@ next-env.d.ts
 /.claude/skills/ui-ux-pro-max/scripts/search.py
 .env*.local
 /.claude
+
+# local scratch notes (not part of the project)
+/.scratch/
