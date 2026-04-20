@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { ExpandSection } from "@/app/_components/expand-section/ExpandSection";
 import { BuildingOfficeIcon } from "@/assets/icons/BuildingOfficeIcon";
@@ -70,6 +71,11 @@ export function ProjectCard({ project, expanded, onToggleExpand, animationDelay 
           </div>
         </div>
 
+        {/* Problem */}
+        {project.problem && (
+          <p className="text-amber-400/70 text-xs italic mb-2">{project.problem}</p>
+        )}
+
         {/* Description */}
         <p className="text-white/55 text-sm leading-relaxed">{project.description}</p>
 
@@ -77,7 +83,7 @@ export function ProjectCard({ project, expanded, onToggleExpand, animationDelay 
         {project.achievements.length > 0 && (
           <div className="mt-4 glass-amber rounded-xl p-3.5">
             <p className="text-amber-500/70 text-xs uppercase tracking-widest font-bold mb-2">
-              {t("achievements")}
+              {t("achievementsLabel")}
             </p>
             <ul className="space-y-1">
               {project.achievements.map((achievement) => (
@@ -100,6 +106,18 @@ export function ProjectCard({ project, expanded, onToggleExpand, animationDelay 
         collapseLabel={t("hideDetails")}
         buttonClassName="px-6 pb-4 flex items-center gap-2 text-amber-500 text-xs font-semibold hover:text-amber-400 transition-colors cursor-pointer"
       >
+        {project.anonymizedImage && (
+          <div className={styles.anonymizedImageWrap}>
+            <Image
+              src={project.anonymizedImage}
+              alt={`${getProjectTitle(project)} — anonymized`}
+              width={1200}
+              height={675}
+              className={styles.anonymizedImage}
+            />
+            <span className={styles.anonymizedBadge}>{t("ndaAnonymized")}</span>
+          </div>
+        )}
         <div className="border-t border-white/5 p-6 pt-5 grid sm:grid-cols-2 gap-6">
           {/* Duties */}
           <div>

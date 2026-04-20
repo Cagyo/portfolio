@@ -94,7 +94,11 @@ export async function AboutSection({ sectionNumber }: AboutSectionProps) {
                 ),
               })}
             </p>
-            <p className="text-white/60 leading-relaxed">{t("bio2")}</p>
+            <p className="text-white/60 leading-relaxed">{t.rich("bio2", {
+                highlight: (chunks) => (
+                  <span className="text-amber-400 font-semibold">{chunks}</span>
+                ),
+              })}</p>
             <p className="text-white/60 leading-relaxed">{t("bio3")}</p>
             <InfoGrid />
             <SocialLinks />

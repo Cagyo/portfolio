@@ -31,6 +31,7 @@ export type ProjectData = {
   teamDetail: string
   scale: string
   description: string
+  problem?: string
   achievements: string[]
   duties: string[]
   stack: string[]
