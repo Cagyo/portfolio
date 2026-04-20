@@ -1,22 +1,27 @@
 /**
- * sections — single source of truth for page render order and nav visibility.
+ * sections — single source of truth for page render order, nav visibility, and numbering.
  *
  * id        — matches the HTML `id` on the section element
  * enabled   — false hides the section from the page AND from the nav
+ * numbered  — whether the section renders with a SectionHeader number (01., 02., ...).
+ *             Numbering is dynamic: it follows the enabled-section render order.
  * navKey    — translation key under `nav.links.*`; omit for sections with no nav link
  */
-type SectionEntry =
-  | { id: string; enabled: boolean; navKey: string }
-  | { id: string; enabled: boolean }
+type SectionEntry = {
+  id: string
+  enabled: boolean
+  numbered?: boolean
+  navKey?: string
+}
 
 const sections: SectionEntry[] = [
-  { id: 'about',           enabled: true,  navKey: 'about' },
-  { id: 'projects',        enabled: true,  navKey: 'projects' },
-  { id: 'skills',          enabled: true,  navKey: 'skills' },
-  { id: 'recommendations', enabled: true,  navKey: 'reviews' },
-  { id: 'engagement',      enabled: true,  navKey: 'services' },
-  { id: 'fit',             enabled: true,  navKey: 'fit' },
-  { id: 'contact',         enabled: true,  navKey: 'contact' },
+  { id: 'about',           enabled: true, numbered: true, navKey: 'about' },
+  { id: 'projects',        enabled: true, numbered: true, navKey: 'projects' },
+  { id: 'skills',          enabled: true, numbered: true, navKey: 'skills' },
+  { id: 'recommendations', enabled: true, numbered: true, navKey: 'reviews' },
+  { id: 'engagement',      enabled: true, numbered: true, navKey: 'services' },
+  { id: 'fit',             enabled: true, numbered: true, navKey: 'fit' },
+  { id: 'contact',         enabled: true, numbered: true, navKey: 'contact' },
   { id: 'mentorship-teaser', enabled: true },
 ]
 

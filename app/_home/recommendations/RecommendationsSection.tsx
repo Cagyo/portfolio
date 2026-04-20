@@ -9,7 +9,9 @@ const GRADIENT_CLASSES = [
 ];
 const INITIALS_COLORS: (string | undefined)[] = [undefined, "text-white"];
 
-export async function RecommendationsSection() {
+type RecommendationsSectionProps = { sectionNumber?: string }
+
+export async function RecommendationsSection({ sectionNumber }: RecommendationsSectionProps) {
   const t = await getTranslations("recommendations");
   const items = t.raw("items") as {
     quotePreview: string;
@@ -45,7 +47,7 @@ export async function RecommendationsSection() {
       <BlobBackground size="w-80 h-80" color="bg-amber-500" position="top-0 -right-20" opacity={0.1} />
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <SectionHeader number={t("sectionNumber")} title={t("sectionTitle")} />
+        <SectionHeader number={sectionNumber} title={t("sectionTitle")} />
 
         <div className="reveal">
           <TestimonialsSlider items={sliderItems} />

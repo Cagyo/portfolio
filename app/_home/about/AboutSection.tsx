@@ -35,7 +35,9 @@ function getCompanyLogo(company: string): React.ReactNode {
   }
 }
 
-export async function AboutSection() {
+type AboutSectionProps = { sectionNumber?: string }
+
+export async function AboutSection({ sectionNumber }: AboutSectionProps) {
   const t = await getTranslations("about");
 
   const items = t.raw("experience") as {
@@ -80,7 +82,7 @@ export async function AboutSection() {
       <BlobBackground size="w-96 h-96" color="bg-amber-500" position="-top-32 -right-32" opacity={0.1} />
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <SectionHeader number={t("sectionNumber")} title={t("sectionTitle")} />
+        <SectionHeader number={sectionNumber} title={t("sectionTitle")} />
 
         <div className="grid lg:grid-cols-5 gap-12 items-start">
           {/* Text content */}

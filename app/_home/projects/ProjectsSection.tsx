@@ -8,7 +8,9 @@ import { Button } from "@/app/_components/button/Button";
 import { ProjectCard } from "./ProjectCard";
 import { ProjectLinkOverlay } from "./ProjectLinkOverlay";
 
-export async function ProjectsSection() {
+type ProjectsSectionProps = { sectionNumber?: string }
+
+export async function ProjectsSection({ sectionNumber }: ProjectsSectionProps) {
   const t = await getTranslations("projects");
 
   const projects = HOME_PROJECT_IDS.map((id) => PROJECTS.find((project) => project.id === id)!)
@@ -18,7 +20,7 @@ export async function ProjectsSection() {
       <BlobBackground size="w-96 h-96" color="bg-amber-500" position="top-0 right-0" opacity={0.1} />
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <SectionHeader number={t("sectionNumber")} title={t("sectionTitle")} />
+        <SectionHeader number={sectionNumber} title={t("sectionTitle")} />
         <p className="reveal text-white/50 mb-16 max-w-xl">
           {t("subtitle")}
         </p>

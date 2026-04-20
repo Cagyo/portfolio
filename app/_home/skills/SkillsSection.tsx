@@ -14,7 +14,9 @@ import styles from "./SkillsSection.module.css";
 
 const INITIAL_REST = 10;
 
-export function SkillsSection() {
+type SkillsSectionProps = { sectionNumber?: string }
+
+export function SkillsSection({ sectionNumber }: SkillsSectionProps) {
   const t = useTranslations("skills");
   const [search, setSearch] = useState("");
   const [activeCat, setActiveCat] = useState(0);
@@ -50,7 +52,7 @@ export function SkillsSection() {
       <BlobBackground size="w-80 h-80" color="bg-amber-500" position="-bottom-20 -left-20" opacity={0.1} />
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <SectionHeader number={t("sectionNumber")} title={t("sectionTitle")} />
+        <SectionHeader number={sectionNumber} title={t("sectionTitle")} />
 
         <div className="reveal mb-10 space-y-5">
           <SearchInput

@@ -33,7 +33,6 @@
     ]
   },
   "about": {
-    "sectionNumber": "01.",
     "sectionTitle": "About Me",
     "bio1": "I've spent the last <highlight>10+ years</highlight> building things end-to-end — and I mean that literally. Mobile, backend, frontend, and infrastructure — I like them all. I don't hand off when my \"part\" is done; I care about the whole system working — and about keeping it simple enough that someone can understand, maintain, and debug it when that person is no longer you.",
     "bio2": "Most of my career has involved switching between two modes: being the sole engineer with full ownership, and being the person others looked to for architectural direction within a team. Both shaped how I think. Working solo teaches you to make decisions fast and own the consequences. Working with teams teaches you when to lead, when to listen, and when the right answer isn't your answer. I've learned to value both — and to show up the same way in either.",
@@ -120,7 +119,6 @@
     ]
   },
   "skills": {
-    "sectionNumber": "02.",
     "sectionTitle": "Skills",
     "searchPlaceholder": "Search skills…",
     "searchLabel": "Search skills",
@@ -145,7 +143,6 @@
     }
   },
   "projects": {
-    "sectionNumber": "03.",
     "sectionTitle": "Projects",
     "subtitle": "A selection of projects I've shipped — from side experiments to production systems serving millions of users.",
     "viewLive": "View Live",
@@ -157,7 +154,6 @@
     "viewInProjects": "View in projects"
   },
   "recommendations": {
-    "sectionNumber": "04.",
     "sectionTitle": "What people say",
     "viewOnLinkedIn": "View on LinkedIn",
     "readMore": "Read more",
@@ -175,7 +171,6 @@
     ]
   },
   "engagement": {
-    "sectionNumber": "05.",
     "sectionTitle": "Ways to work together",
     "footerText": "Not sure which fits? Start with a discovery call — we'll figure it out together.",
     "bookCall": "Book a call",
@@ -212,24 +207,26 @@
     ]
   },
   "fit": {
-    "quote": "I work best with clients who are decisive about what they're building and trust their engineer to figure out how.",
+    "sectionTitle": "Who I work with",
+    "quote": "I do my best work with founders who have a clear picture of the product they want, and want a technical partner to figure out how to build it.",
     "goodFitHeading": "Good fit",
-    "notFitHeading": "Not a fit",
+    "notFitHeading": "Better served elsewhere",
+    "featuredEyebrow": "What I do best",
+    "featuredBody": "You shipped an MVP with Cursor, Claude Code, or ChatGPT, and it's starting to buckle. I use the same tools every day. I know exactly where they give up, and what to rebuild underneath.",
     "goodFit": [
-      "Founders building a product from scratch",
-      "Teams that need a tech lead to own architecture",
-      "Greenfield projects where decisions still matter",
-      "Mobile + web + backend in one engagement"
+      "You need to ship something real in weeks to test a market, not commit to a six-month agency plan.",
+      "You're building a new product from scratch and want one person owning mobile, web, backend, and infrastructure.",
+      "You're non-technical. You want a partner who makes calls you can trust, not a vendor waiting for instructions."
     ],
     "notFit": [
-      "Executing a fully pre-written spec",
-      "Staff augmentation / body shop work",
-      "Projects requiring work in an existing non-JavaScript backend",
-      "Projects without a clear owner on the client side"
-    ]
+      "You've decided what to build and how, and want someone to execute without pushback. I work as a partner, not a pair of hands.",
+      "Your backend runs on Python, Ruby, Java, or .NET. I'm deep in the TypeScript/Node world, so I'd be the wrong person to own it.",
+      "You need 10+ engineers from day one. I lead small teams, not large departments.",
+      "There's no single decision-maker on your side. I need one person I can get answers from."
+    ],
+    "closingLine": "Not sure which you are? That's what the discovery call is for."
   },
   "contact": {
-    "sectionNumber": "06.",
     "sectionTitle": "Contact",
     "heading": "Let's build something <gradient>amazing</gradient> together.",
     "subheading": "Whether you have a product idea, need a technical partner, or just want to say hi — my inbox is always open.",

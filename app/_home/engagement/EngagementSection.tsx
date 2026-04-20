@@ -29,7 +29,9 @@ const CARD_META: CardMeta[] = [
   { variant: "teal",   IconComponent: WarningIcon,    interest: "rescue",     ctaClass: cardStyles.ctaTeal,   order: "order-3",            delay: "0.2s" },
 ]
 
-export async function EngagementSection() {
+type EngagementSectionProps = { sectionNumber?: string }
+
+export async function EngagementSection({ sectionNumber }: EngagementSectionProps) {
   const t = await getTranslations("engagement");
   const cards = t.raw("cards") as {
     tag: string;
@@ -50,7 +52,7 @@ export async function EngagementSection() {
       <BlobBackground size="w-96 h-96" color="bg-amber-500" position="-bottom-24 left-1/4" opacity={0.1} />
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <SectionHeader number={t("sectionNumber")} title={t("sectionTitle")} />
+        <SectionHeader number={sectionNumber} title={t("sectionTitle")} />
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
           {cards.map((card, index) => {
