@@ -40,6 +40,7 @@ export type ProjectData = {
   featured?: boolean
   badgeLabel?: string
   imageBg?: string
+  anonymizedImage?: string
 }
 
 /**

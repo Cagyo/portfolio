@@ -144,14 +144,48 @@
   },
   "projects": {
     "sectionTitle": "Projects",
-    "subtitle": "A selection of projects I've shipped — from side experiments to production systems serving millions of users.",
+    "subtitle": "Live products I've built from scratch or rescued — at agency scale and solo. Pick one that looks like yours, then let's talk.",
     "viewLive": "View Live",
     "appStore": "App Store",
     "googlePlay": "Google Play",
     "privateBuild": "Private Build",
     "nda": "Internal project · NDA",
+    "ndaAnonymized": "NDA · anonymized",
     "viewAll": "View All Projects",
-    "viewInProjects": "View in projects"
+    "letsTalk": "See one that fits? Let's talk →",
+    "viewInProjects": "View in projects",
+    "homeCards": [
+      {
+        "id": 1,
+        "problem": "Tournament organiser needed a platform that absorbs live-event traffic spikes, scans tickets on-site, and lets non-dev staff publish and edit pages and control whole platform parts — e.g. show/hide sections in the mobile app — without a developer in the loop.",
+        "outcome": ["In production since 2022", "Peak concurrent users on tournament days", "Tickets scanned on-site during live rounds"],
+        "buyerBadge": "Live-event scale · Self-serve CMS for non-devs"
+      },
+      {
+        "id": 2,
+        "problem": "Mature product needed new revenue surfaces (booking, search) and legacy modules modernised without freezing feature delivery.",
+        "outcome": ["Shipped booking + search across web + mobile on a live codebase", "Legacy modules rebuilt with zero user-visible regressions"],
+        "buyerBadge": "Mature codebase · Ships without breaking"
+      },
+      {
+        "id": 3,
+        "problem": "Golf club needed a mobile booking app with integrated payments, led end-to-end.",
+        "outcome": ["Mobile architecture owned start-to-finish", "Payments shipped across iOS + Android"],
+        "buyerBadge": "Mobile + payments · Lead ownership"
+      },
+      {
+        "id": 6,
+        "problem": "Swiss fintech needed a mobile client with a compliant multi-step signup (Onfido identity verification) and automated release pipelines across iOS + Android.",
+        "outcome": ["Onfido KYC integrated end-to-end", "Mobile CI/CD automated via Fastlane"],
+        "buyerBadge": "Swiss fintech · KYC + regulatory-grade mobile"
+      },
+      {
+        "id": 4,
+        "problem": "Founder needed the whole on-demand service app — mobile, dispatcher dashboard, backend, infra — built solo, shipped in both the original market and a South Africa edition.",
+        "outcome": ["Shipped mobile + web + backend + CI/CD as sole developer", "Launched in two markets (original + South Africa)", "Years in production"],
+        "buyerBadge": "Solo full-stack build · Service app from zero, two markets"
+      }
+    ]
   },
   "recommendations": {
     "sectionTitle": "What people say",

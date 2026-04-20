@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ArrowRightIcon } from "@/assets/icons/ArrowRightIcon";
+import { CheckIcon } from "@/assets/icons/CheckIcon";
 import { Tag } from "@/app/_components/tag/Tag";
 import { ProjectMeta } from "./ProjectMeta";
 import styles from "./ProjectCard.module.css";
@@ -7,6 +8,8 @@ import styles from "./ProjectCard.module.css";
 type ProjectCardProps = {
   title: string
   description: string
+  problem?: string
+  outcome?: string[]
   meta: { category: string; role: string; year: string }
   badge: { icon: React.ReactNode; label: string }
   tags: string[]
@@ -21,6 +24,8 @@ type ProjectCardProps = {
 export function ProjectCard({
   title,
   description,
+  problem,
+  outcome,
   meta,
   badge,
   tags,
@@ -48,7 +53,22 @@ export function ProjectCard({
       <div className={`${padding} flex flex-col flex-1`}>
         <ProjectMeta {...meta} />
         <h3 className={`font-heading font-bold ${titleSize} text-white mb-2`}>{title}</h3>
-        <p className="text-white/50 text-sm leading-relaxed mb-4">{description}</p>
+        {problem && (
+          <p className={styles.problemText}>{problem}</p>
+        )}
+        {outcome && outcome.length > 0 && (
+          <ul className={styles.outcomeList}>
+            {outcome.map((item) => (
+              <li key={item} className={styles.outcomeItem}>
+                <CheckIcon className={styles.outcomeIcon} />
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+        )}
+        {!problem && (
+          <p className="text-white/50 text-sm leading-relaxed mb-4">{description}</p>
+        )}
         <div className="inline-flex self-start items-center gap-1.5 glass-amber rounded-lg px-3 py-1.5 mb-4">
           {badge.icon}
           <span className="text-amber-400 text-xs font-bold">{badge.label}</span>

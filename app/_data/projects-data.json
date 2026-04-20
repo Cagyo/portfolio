@@ -128,7 +128,8 @@
     "year": "2017–2022",
     "link": { "type": "private" },
     "badgeLabel": "Full stack · Google Maps",
-    "imageBg": "bg-gradient-to-br from-sky-900/30 to-transparent"
+    "imageBg": "bg-gradient-to-br from-sky-900/30 to-transparent",
+    "anonymizedImage": "/projects-anonymized/pinclean.png"
   },
   {
     "id": 5,
