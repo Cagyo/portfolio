@@ -250,4 +250,20 @@ describe('sendContactMessage', () => {
     const result = await sendContactMessage(null, fd)
     expect(result).toEqual({ success: false, error: 'unknown' })
   })
+
+  // 20. sendContactEmail throws a non-Error value → both instanceof branches take the false arm
+  it('case 20: sendContactEmail throws a plain string → { success: false, error: sendFailed }', async () => {
+    mockSendContactEmail.mockRejectedValue('raw string error')
+    const result = await sendContactMessage(null, makeTextFormData())
+    expect(result).toEqual({ success: false, error: 'sendFailed' })
+  })
+
+  // 21. turnstileToken passes verifyTurnstile but Zod rejects empty string → mapZodError turnstileToken branch
+  it('case 21: empty turnstileToken passes mock but fails Zod min(1) → { success: false, error: turnstile }', async () => {
+    // verifyTurnstile mock still returns { ok: true } — the failure comes from Zod's min(1) on
+    // turnstileToken, exercising the `if (field === 'turnstileToken') return 'turnstile'` branch
+    // in mapZodError that no existing test reaches.
+    const result = await sendContactMessage(null, makeTextFormData({ turnstileToken: '' }))
+    expect(result).toEqual({ success: false, error: 'turnstile' })
+  })
 })

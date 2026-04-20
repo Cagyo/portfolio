@@ -360,4 +360,53 @@ describe('VoiceRecorder', () => {
       expect(mrMock.revokedUrls).toContain(url)
     }
   })
+
+  // ─── Branch coverage gap: pause same clip (togglePlayback same-id branch) ──
+
+  it('case 18: click play then pause on same recording → audio.pause() called, playingId clears', async () => {
+    const user = userEvent.setup()
+    render()
+    await recordOneClip(user, 1)
+
+    // Start playback — button becomes pauseBtn
+    await user.click(screen.getByRole('button', { name: voiceMessages.playBtn }))
+    await waitFor(() => {
+      expect(screen.getByRole('button', { name: voiceMessages.pauseBtn })).toBeInTheDocument()
+    })
+
+    const pauseCallsBefore = audioInstances[0].pause.mock.calls.length
+
+    // Pause — togglePlayback called with same id → hits `if (playingId === id)` true arm
+    await user.click(screen.getByRole('button', { name: voiceMessages.pauseBtn }))
+
+    await waitFor(() => {
+      expect(audioInstances[0].pause.mock.calls.length).toBeGreaterThan(pauseCallsBefore)
+    })
+    // Button should flip back to play
+    expect(screen.getByRole('button', { name: voiceMessages.playBtn })).toBeInTheDocument()
+  })
+
+  // ─── Branch coverage gap: zero-duration clip (RecordingItem progress ternary false arm) ──
+
+  it('case 19: recording with duration=0 → progress renders as 0% without dividing by zero', async () => {
+    const user = userEvent.setup()
+    const { container } = renderWithIntl(<VoiceRecorder onRecordingsChange={onRecordingsChange} />)
+    await startRecording(user)
+
+    // Finish the recording with duration=0 — hits `duration > 0 ? ... : 0` false branch
+    mrMock.emitChunk()
+    await act(async () => { mrMock.triggerStop() })
+    const latest = audioInstances[audioInstances.length - 1]
+    await act(async () => { latest?.fireLoadedMetadata(0) })
+
+    await waitFor(() => {
+      expect(screen.getByText(voiceMessages.recordingNLabel.replace('{n}', '1'))).toBeInTheDocument()
+    })
+
+    // The progress fill should be 0% — no NaN, no crash
+    await user.click(screen.getByRole('button', { name: voiceMessages.playBtn }))
+    const fill = container.querySelector('[class*="progressFill"]') as HTMLElement | null
+    expect(fill).not.toBeNull()
+    expect(fill!.style.width).toBe('0%')
+  })
 })
