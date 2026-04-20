@@ -17,6 +17,14 @@ export function overlayTypeFor(link: ProjectPageLink): OverlayType {
   }
 }
 
+export type Screenshot = {
+  src: string
+  kind: "web" | "mobile" | "blurred"
+  alt: string
+  width?: number
+  height?: number
+}
+
 export type ProjectData = {
   id: number
   title: string
@@ -41,7 +49,8 @@ export type ProjectData = {
   featured?: boolean
   badgeLabel?: string
   imageBg?: string
-  anonymizedImage?: string
+  logo?: string
+  screenshots?: Screenshot[]
 }
 
 /**
@@ -55,4 +64,8 @@ export function getProjectTitle(project: ProjectData): string {
   return SHOW_REAL_PROJECT_NAMES ? project.title : project.titleGeneric
 }
 
-export const PROJECTS: ProjectData[] = projectsJson as ProjectData[]
+export const PROJECTS: ProjectData[] = (projectsJson as ProjectData[]).map(
+  (project) => project.screenshots
+    ? { ...project, screenshots: project.screenshots.slice(0, 3) }
+    : project
+)

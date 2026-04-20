@@ -39,6 +39,7 @@ export async function ProjectsSection({ sectionNumber }: ProjectsSectionProps) {
           {projects.map((project) => {
             const visuals = getHomeProjectVisual(project.id);
             const card = homeCards.find((hc) => hc.id === project.id);
+            const blurredSrc = project.screenshots?.find((s) => s.kind === "blurred")?.src;
 
             return (
               <ProjectCard
@@ -54,14 +55,14 @@ export async function ProjectsSection({ sectionNumber }: ProjectsSectionProps) {
                 imageContent={
                   <>
                     {visuals?.imageContent}
-                    {project.anonymizedImage && <AnonymizedImageContent src={project.anonymizedImage} />}
+                    {blurredSrc && <AnonymizedImageContent src={blurredSrc} />}
                   </>
                 }
                 linkOverlay={
                   <ProjectLinkOverlay
                     overlayType={overlayTypeFor(project.link)}
                     link={project.link}
-                    anonymizedImage={project.anonymizedImage}
+                    hasBlurredImage={!!blurredSrc}
                   />
                 }
                 featured={project.featured}

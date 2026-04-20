@@ -8,7 +8,7 @@ import type { OverlayType, ProjectPageLink } from "@/app/_data/projects-data";
 type ProjectLinkOverlayProps = {
   overlayType: OverlayType
   link: ProjectPageLink
-  anonymizedImage?: string
+  hasBlurredImage?: boolean
 }
 
 function StoreLink({ href, icon, label }: { href: string; icon: React.ReactNode; label: string }) {
@@ -24,11 +24,11 @@ function StoreLink({ href, icon, label }: { href: string; icon: React.ReactNode;
 export async function ProjectLinkOverlay({
   overlayType,
   link,
-  anonymizedImage,
+  hasBlurredImage,
 }: ProjectLinkOverlayProps) {
   const t = await getTranslations("projects")
 
-  if (overlayType === "private" && anonymizedImage) {
+  if (overlayType === "private" && hasBlurredImage) {
     return (
       <span className="bg-black/60 backdrop-blur-sm text-white/60 text-[0.625rem] font-medium px-2 py-0.5 rounded">
         {t("ndaAnonymized")}

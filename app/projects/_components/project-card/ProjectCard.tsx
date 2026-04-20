@@ -15,6 +15,7 @@ import { GooglePlayLogo } from "@/assets/logos/GooglePlayLogo";
 import { Tag } from "@/app/_components/tag/Tag";
 import type { ProjectData, ProjectPageLink } from "@/app/_data/projects-data";
 import { getProjectTitle } from "@/app/_data/projects-data";
+import { ProjectScreenshots } from "./ProjectScreenshots";
 import styles from "./ProjectCard.module.css";
 
 function MetaRow({ icon, value }: { icon: React.ReactNode; value: string }) {
@@ -106,18 +107,6 @@ export function ProjectCard({ project, expanded, onToggleExpand, animationDelay 
         collapseLabel={t("hideDetails")}
         buttonClassName="px-6 pb-4 flex items-center gap-2 text-amber-500 text-xs font-semibold hover:text-amber-400 transition-colors cursor-pointer"
       >
-        {project.anonymizedImage && (
-          <div className={styles.anonymizedImageWrap}>
-            <Image
-              src={project.anonymizedImage}
-              alt={`${getProjectTitle(project)} — anonymized`}
-              width={1200}
-              height={675}
-              className={styles.anonymizedImage}
-            />
-            <span className={styles.anonymizedBadge}>{t("ndaAnonymized")}</span>
-          </div>
-        )}
         <div className="border-t border-white/5 p-6 pt-5 grid sm:grid-cols-2 gap-6">
           {/* Duties */}
           <div>
@@ -134,7 +123,7 @@ export function ProjectCard({ project, expanded, onToggleExpand, animationDelay 
             </ul>
           </div>
 
-          {/* Stack + Team */}
+          {/* Stack + Team + Screenshots */}
           <div className="space-y-5">
             <div>
               <p className="text-white/30 text-xs uppercase tracking-widest font-semibold mb-3">{t("techStack")}</p>
@@ -152,12 +141,15 @@ export function ProjectCard({ project, expanded, onToggleExpand, animationDelay 
               <p className="text-white/30 text-xs uppercase tracking-widest font-semibold mb-2">{t("scope")}</p>
               <p className="text-white/50 text-sm">{project.skills}</p>
             </div>
+            {project.screenshots?.length ? (
+              <ProjectScreenshots screenshots={project.screenshots} projectTitle={getProjectTitle(project)} />
+            ) : null}
           </div>
         </div>
       </ExpandSection>
 
       {/* Link strip */}
-      <LinkStrip link={project.link} t={t} />
+      <LinkStrip link={project.link} logo={project.logo} t={t} />
     </article>
   );
 }
@@ -183,20 +175,30 @@ function StoreLinks({ link, t }: { link: { appStore: string; playStore: string }
   );
 }
 
-function WebLink({ url, label }: { url: string; label: string }) {
+function WebLink({ url, label, logo }: { url: string; label: string; logo?: string }) {
+  const [logoFailed, setLogoFailed] = useState(false)
   return (
     <a href={url} target="_blank" rel="noopener noreferrer" className={styles.linkWeb}>
-      <ExternalLinkIcon className="w-3.5 h-3.5 flex-shrink-0" />
+      {logo && !logoFailed ? (
+        <Image src={logo} alt="" width={20} height={20} className="object-contain flex-shrink-0" onError={() => setLogoFailed(true)} />
+      ) : (
+        <ExternalLinkIcon className="w-3.5 h-3.5 flex-shrink-0" />
+      )}
       {label}
     </a>
   );
 }
 
-function PrivateBadge({ label, tooltip }: { label: string; tooltip: string }) {
+function PrivateBadge({ label, tooltip, logo }: { label: string; tooltip: string; logo?: string }) {
+  const [logoFailed, setLogoFailed] = useState(false)
   return (
     <div className={styles.linkPrivateWrap}>
       <span className={styles.linkPrivate}>
-        <LockIcon className="w-3.5 h-3.5 flex-shrink-0" />
+        {logo && !logoFailed ? (
+          <Image src={logo} alt="" width={20} height={20} className="object-contain flex-shrink-0" onError={() => setLogoFailed(true)} />
+        ) : (
+          <LockIcon className="w-3.5 h-3.5 flex-shrink-0" />
+        )}
         {label}
       </span>
       <div className={styles.linkPrivateTooltip}>{tooltip}</div>
@@ -204,15 +206,17 @@ function PrivateBadge({ label, tooltip }: { label: string; tooltip: string }) {
   );
 }
 
-function LinkStrip({ link, t }: { link: ProjectPageLink; t: ReturnType<typeof useTranslations<"projectsPage">> }) {
+function LinkStrip({ link, logo, t }: { link: ProjectPageLink; logo?: string; t: ReturnType<typeof useTranslations<"projectsPage">> }) {
+  const isPrimaryWeb = link.type === "web" || link.type === "web+mobile"
+  const isPrimaryPrivate = link.type === "private"
   return (
     <div className={styles.linkStrip}>
       <span className={styles.linkTypeLabel}>{t("links")}</span>
       {link.type === "private" && (
-        <PrivateBadge label={t("privateLabel")} tooltip={t("privateTooltip")} />
+        <PrivateBadge label={t("privateLabel")} tooltip={t("privateTooltip")} logo={isPrimaryPrivate ? logo : undefined} />
       )}
       {(link.type === "web" || link.type === "web+mobile") && (
-        <WebLink url={link.url} label={t("liveApp")} />
+        <WebLink url={link.url} label={t("liveApp")} logo={isPrimaryWeb ? logo : undefined} />
       )}
       {(link.type === "mobile" || link.type === "web+mobile") && (
         <StoreLinks link={link} t={t} />

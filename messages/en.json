@@ -400,6 +400,11 @@
     "noResultsTitle": "No projects match your filters",
     "noResultsHint": "Try adjusting or clearing your filters",
     "ndaAnonymized": "NDA · Anonymized",
+    "screenshotsHeading": "Screenshots",
+    "screenshotWebLabel": "Web",
+    "screenshotMobileLabel": "Mobile",
+    "screenshotBlurredCaption": "Private — shown anonymized",
+    "screenshotAltFallback": "{title} — screenshot {n}",
     "problems": {
       "1": "Tournament organiser needed a platform that absorbs live-event traffic spikes, scans tickets on-site, and lets non-dev staff manage the entire product without a developer.",
       "2": "Mature product needed new revenue surfaces (booking, search) and legacy modules modernised without freezing feature delivery.",

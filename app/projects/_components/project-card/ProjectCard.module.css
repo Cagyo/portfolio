@@ -216,38 +216,6 @@
   }
 }
 
-/* ── Anonymized image ── */
-.anonymizedImageWrap {
-  position: relative;
-  border-radius: 12px;
-  overflow: hidden;
-  margin: 24px 24px 0;
-  border: 1px solid color-mix(in srgb, white 8%, transparent);
-}
-
-.anonymizedImage {
-  width: 100%;
-  height: auto;
-  display: block;
-  object-fit: cover;
-}
-
-.anonymizedBadge {
-  position: absolute;
-  top: 8px;
-  right: 8px;
-  padding: 4px 10px;
-  border-radius: 8px;
-  font-size: 0.65rem;
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: color-mix(in srgb, white 60%, transparent);
-  background: color-mix(in srgb, black 60%, transparent);
-  backdrop-filter: blur(8px);
-  border: 1px solid color-mix(in srgb, white 10%, transparent);
-}
-
 /* ── Light mode overrides ── */
 html[data-theme="light"] .metaBadge {
   background: var(--surface);
@@ -299,12 +267,4 @@ html[data-theme="light"] .linkPrivateTooltip {
   color: var(--text-faint);
 }
 
-html[data-theme="light"] .anonymizedImageWrap {
-  border-color: var(--border);
-}
 
-html[data-theme="light"] .anonymizedBadge {
-  background: color-mix(in srgb, white 80%, transparent);
-  border-color: var(--border);
-  color: var(--text-muted);
-}

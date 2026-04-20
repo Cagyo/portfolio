@@ -1,0 +1,147 @@
+/* ── Screenshot gallery ── */
+.wrap {
+  /* spacing handled by parent space-y-5 */
+}
+
+.heading {
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, white 30%, transparent);
+  margin-bottom: 8px;
+}
+
+.grid {
+  display: grid;
+  gap: 6px;
+}
+
+.grid[data-count="1"] {
+  grid-template-columns: 1fr;
+}
+
+.grid[data-count="2"] {
+  grid-template-columns: 1fr 1fr;
+}
+
+.grid[data-count="3"] {
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+/* ── Thumbnail tile ── */
+.tile {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid color-mix(in srgb, white 8%, transparent);
+  cursor: pointer;
+  background: color-mix(in srgb, white 3%, transparent);
+  transition: border-color 0.2s ease;
+}
+
+.tile:hover {
+  border-color: color-mix(in srgb, var(--amber) 30%, transparent);
+}
+
+.tile:focus-visible {
+  outline: 2px solid var(--amber);
+  outline-offset: 2px;
+}
+
+.tileImage {
+  object-fit: cover;
+}
+
+/* ── Kind chip (Web / Mobile / NDA) ── */
+.chip {
+  position: absolute;
+  bottom: 4px;
+  left: 4px;
+  padding: 2px 6px;
+  border-radius: 5px;
+  font-size: 0.55rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.chipWeb,
+.chipMobile {
+  color: color-mix(in srgb, white 50%, transparent);
+  background: color-mix(in srgb, black 55%, transparent);
+  backdrop-filter: blur(6px);
+  border: 1px solid color-mix(in srgb, white 8%, transparent);
+}
+
+.chipBlurred {
+  color: color-mix(in srgb, white 60%, transparent);
+  background: color-mix(in srgb, black 60%, transparent);
+  backdrop-filter: blur(8px);
+  border: 1px solid color-mix(in srgb, white 10%, transparent);
+  top: 4px;
+  right: 4px;
+  bottom: auto;
+  left: auto;
+}
+
+/* ── Error placeholder ── */
+.errorPlaceholder {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--surface);
+  color: var(--text-ghost);
+  font-size: 0.7rem;
+}
+
+/* ── Light mode overrides ── */
+html[data-theme="light"] .heading {
+  color: var(--text-ghost);
+}
+
+html[data-theme="light"] .tile {
+  border-color: var(--border);
+  background: var(--surface);
+}
+
+html[data-theme="light"] .tile:hover {
+  border-color: color-mix(in srgb, var(--amber) 40%, transparent);
+}
+
+html[data-theme="light"] .chipWeb,
+html[data-theme="light"] .chipMobile {
+  background: color-mix(in srgb, white 80%, transparent);
+  border-color: var(--border);
+  color: var(--text-muted);
+}
+
+html[data-theme="light"] .chipBlurred {
+  background: color-mix(in srgb, white 80%, transparent);
+  border-color: var(--border);
+  color: var(--text-muted);
+}
+
+/* ── Lightbox theming ── */
+:global(.yarl__root) {
+  --yarl__color_backdrop: rgba(8, 8, 16, 0.92);
+  --yarl__color_button: rgba(255, 255, 255, 0.7);
+  --yarl__color_button_active: var(--amber);
+}
+
+html[data-theme="light"] :global(.yarl__root) {
+  --yarl__color_backdrop: rgba(255, 255, 255, 0.92);
+  --yarl__color_button: rgba(0, 0, 0, 0.6);
+  --yarl__color_button_active: var(--amber);
+}
+
+@media (max-width: 640px) {
+  .grid[data-count="3"] {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}

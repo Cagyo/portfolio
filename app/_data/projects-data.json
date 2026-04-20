@@ -129,7 +129,15 @@
     "link": { "type": "private" },
     "badgeLabel": "Full stack · Google Maps",
     "imageBg": "bg-gradient-to-br from-sky-900/30 to-transparent",
-    "anonymizedImage": "/projects-anonymized/pinclean.png"
+    "screenshots": [
+      {
+        "src": "/projects-anonymized/pinclean.png",
+        "kind": "blurred",
+        "alt": "PinClean — anonymized preview",
+        "width": 1200,
+        "height": 675
+      }
+    ]
   },
   {
     "id": 5,
