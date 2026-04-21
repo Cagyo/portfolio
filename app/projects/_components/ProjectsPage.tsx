@@ -6,6 +6,7 @@ import { useTranslations } from "next-intl";
 import { EmptyState } from "@/app/_components/EmptyState";
 import { SearchInput } from "@/app/_components/SearchInput";
 import { SubpageNav } from "@/app/_components/nav/SubpageNav";
+import { ClosingCta } from "./ClosingCta";
 import { ActiveChips } from "./filter/ActiveChips";
 import { FilterPanelMobile } from "./filter/FilterPanelMobile";
 import { FilterSidebar } from "./filter/FilterSidebar";
@@ -62,6 +63,7 @@ function ProjectsNavExtras({ count, onFilterOpen }: ProjectsNavExtrasProps) {
 
 export function ProjectsPage() {
   const t = useTranslations("projectsPage");
+  const tNav = useTranslations("nav");
   const searchParams = useSearchParams();
 
   const problems = t.raw("problems") as Record<string, string>;
@@ -184,6 +186,7 @@ export function ProjectsPage() {
     <>
       <SubpageNav
         maxWidth="max-w-7xl"
+        cta={{ href: "/#contact", label: tNav("cta") }}
         rightExtras={<ProjectsNavExtras count={filtered.length} onFilterOpen={() => setMobileOpen(true)} />}
       />
 
@@ -240,23 +243,28 @@ export function ProjectsPage() {
 
             {/* Project cards */}
             {filtered.length > 0 ? (
-              <div className="space-y-5">
-                {filtered.map((project, i) => (
-                  <ProjectCard
-                    key={project.id}
-                    project={project}
-                    expanded={expandedIds.has(project.id)}
-                    onToggleExpand={toggleExpand}
-                    animationDelay={i * 0.06}
-                  />
-                ))}
-              </div>
+              <>
+                <div className="space-y-5">
+                  {filtered.map((project, i) => (
+                    <ProjectCard
+                      key={project.id}
+                      project={project}
+                      expanded={expandedIds.has(project.id)}
+                      onToggleExpand={toggleExpand}
+                      animationDelay={i * 0.06}
+                    />
+                  ))}
+                </div>
+                <ClosingCta />
+              </>
             ) : (
               <EmptyState
                 message={t("noResultsTitle")}
                 hint={t("noResultsHint")}
                 clearLabel={t("clearAllFilters")}
                 onClear={clearAll}
+                ctaHref="/#contact"
+                ctaLabel={tNav("cta")}
               />
             )}
           </div>

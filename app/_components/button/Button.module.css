@@ -10,6 +10,7 @@
     content: '';
     position: absolute;
     inset: 0;
+    border-radius: inherit;
     background: linear-gradient(135deg, var(--amber-light), var(--amber));
     opacity: 0;
     transition: opacity 0.25s;
