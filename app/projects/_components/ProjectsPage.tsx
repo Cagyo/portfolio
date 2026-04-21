@@ -11,6 +11,7 @@ import { ActiveChips } from "./filter/ActiveChips";
 import { FilterPanelMobile } from "./filter/FilterPanelMobile";
 import { FilterSidebar } from "./filter/FilterSidebar";
 import { ProjectCard } from "./project-card/ProjectCard";
+import { ThemeToggle } from "@/app/_components/theme/ThemeToggle";
 import { FunnelIcon } from "@/assets/icons/FunnelIcon";
 import { PROJECTS, getProjectTitle } from "@/app/_data/projects-data";
 import type { ProjectData } from "@/app/_data/projects-data";
@@ -57,6 +58,7 @@ function ProjectsNavExtras({ count, onFilterOpen }: ProjectsNavExtrasProps) {
         <span className="font-heading font-bold text-white">{count}</span>
         <span>{count === 1 ? "project" : "projects"}</span>
       </div>
+      <ThemeToggle />
     </>
   );
 }

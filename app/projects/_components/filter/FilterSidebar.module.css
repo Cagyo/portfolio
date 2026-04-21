@@ -90,3 +90,15 @@ html[data-theme="light"] .pill {
   border-color: var(--border);
   color: var(--text-muted);
 }
+
+html[data-theme="light"] .pill:hover {
+  background: color-mix(in srgb, var(--amber) 12%, transparent);
+  border-color: color-mix(in srgb, var(--amber) 35%, transparent);
+  color: color-mix(in srgb, var(--amber) 70%, black);
+}
+
+html[data-theme="light"] .pillActive {
+  background: color-mix(in srgb, var(--amber) 20%, transparent);
+  border-color: color-mix(in srgb, var(--amber) 55%, transparent);
+  color: color-mix(in srgb, var(--amber) 70%, black);
+}

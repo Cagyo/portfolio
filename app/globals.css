@@ -160,6 +160,7 @@ html[data-theme="light"] .group-hover\:text-white:hover { color: var(--text-prim
 html[data-theme="light"] .text-amber-400 { color: #B45309 !important; }
 html[data-theme="light"] .text-amber-500 { color: #92400E !important; }
 html[data-theme="light"] .text-amber-400\/80 { color: rgba(180,83,9,0.85) !important; }
+html[data-theme="light"] .text-amber-400\/70 { color: rgba(180,83,9,0.8) !important; }
 html[data-theme="light"] .text-amber-500\/70 { color: rgba(146,64,14,0.7) !important; }
 html[data-theme="light"] .text-purple-400 { color: #7C3AED !important; }
 html[data-theme="light"] .text-violet-400 { color: #7C3AED !important; }
@@ -209,6 +210,7 @@ html[data-theme="light"] .hover\:text-amber-400:hover { color: #B45309 !importan
 html[data-theme="light"] .group-hover\:text-amber-400:hover { color: #B45309 !important; }
 html[data-theme="light"] .group:hover .group-hover\:text-amber-400 { color: #B45309 !important; }
 html[data-theme="light"] .hover\:border-amber-500\/30:hover { border-color: rgba(180,120,0,0.2) !important; }
+html[data-theme="light"] .hover\:bg-amber-500\/5:hover { background-color: rgba(180,120,0,0.06) !important; }
 
 /* ── Theme transition ─────────────────────────────────────── */
 html.theme-transitioning,
