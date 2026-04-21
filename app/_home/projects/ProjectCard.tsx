@@ -56,33 +56,35 @@ export function ProjectCard({
         {problem && (
           <p className={styles.problemText}>{problem}</p>
         )}
-        {outcome && outcome.length > 0 && (
-          <ul className={styles.outcomeList}>
-            {outcome.map((item) => (
-              <li key={item} className={styles.outcomeItem}>
-                <CheckIcon className={styles.outcomeIcon} />
-                <span>{item}</span>
-              </li>
-            ))}
-          </ul>
-        )}
         {!problem && (
           <p className="text-white/50 text-sm leading-relaxed mb-4">{description}</p>
         )}
-        <div className="inline-flex self-start items-center gap-1.5 glass-amber rounded-lg px-3 py-1.5 mb-4">
-          {badge.icon}
-          <span className="text-amber-400 text-xs font-bold">{badge.label}</span>
-        </div>
-        <div className="flex flex-wrap gap-2 mb-3">
-          {tags.map((tag) => (
-            <Tag key={tag}>{tag}</Tag>
-          ))}
-        </div>
-        <div className="mt-auto flex justify-end">
-          <Link href={viewInProjectsHref} className={styles.viewInProjectsLink}>
-            {viewInProjectsLabel}
-            <ArrowRightIcon className="w-3.5 h-3.5" />
-          </Link>
+        <div className="mt-auto">
+          {outcome && outcome.length > 0 && (
+            <ul className={styles.outcomeList}>
+              {outcome.map((item) => (
+                <li key={item} className={styles.outcomeItem}>
+                  <CheckIcon className={styles.outcomeIcon} />
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          )}
+          <div className="inline-flex self-start items-center gap-1.5 glass-amber rounded-lg px-3 py-1.5 mb-2">
+            {badge.icon}
+            <span className="text-amber-400 text-xs font-bold">{badge.label}</span>
+          </div>
+          <div className="flex flex-wrap gap-2 mb-3">
+            {tags.map((tag) => (
+              <Tag key={tag}>{tag}</Tag>
+            ))}
+          </div>
+          <div className="flex justify-end">
+            <Link href={viewInProjectsHref} className={styles.viewInProjectsLink}>
+              {viewInProjectsLabel}
+              <ArrowRightIcon className="w-3.5 h-3.5" />
+            </Link>
+          </div>
         </div>
       </div>
     </div>
