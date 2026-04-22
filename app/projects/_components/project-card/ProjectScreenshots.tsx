@@ -7,7 +7,7 @@ import Lightbox from "yet-another-react-lightbox"
 import Fullscreen from "yet-another-react-lightbox/plugins/fullscreen"
 import Zoom from "yet-another-react-lightbox/plugins/zoom"
 import Counter from "yet-another-react-lightbox/plugins/counter"
-import type { Screenshot } from "@/app/_data/projects-data"
+import type { Screenshot } from "@/app/_data/projects/types"
 import styles from "./ProjectScreenshots.module.css"
 
 type ProjectScreenshotsProps = {

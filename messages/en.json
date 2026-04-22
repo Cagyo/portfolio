@@ -153,39 +153,7 @@
     "ndaAnonymized": "NDA · anonymized",
     "viewAll": "View All Projects",
     "letsTalk": "See one that fits? Let's talk →",
-    "viewInProjects": "View in projects",
-    "homeCards": [
-      {
-        "id": 1,
-        "problem": "Tournament organiser needed a platform that absorbs live-event traffic spikes, scans tickets on-site, and lets non-dev staff publish and edit pages and control whole platform parts — e.g. show/hide sections in the mobile app — without a developer in the loop.",
-        "outcome": ["In production since 2022", "Peak concurrent users on tournament days", "Tickets scanned on-site during live rounds"],
-        "buyerBadge": "Live-event scale · Self-serve CMS for non-devs"
-      },
-      {
-        "id": 2,
-        "problem": "Mature product needed new revenue surfaces (booking, search) and legacy modules modernised without freezing feature delivery.",
-        "outcome": ["Shipped booking + search across web + mobile on a live codebase", "Legacy modules rebuilt with zero user-visible regressions"],
-        "buyerBadge": "Mature codebase · Ships without breaking"
-      },
-      {
-        "id": 3,
-        "problem": "Golf club needed a mobile booking app with integrated payments, led end-to-end.",
-        "outcome": ["Mobile architecture owned start-to-finish", "Payments shipped across iOS + Android"],
-        "buyerBadge": "Mobile + payments · Lead ownership"
-      },
-      {
-        "id": 6,
-        "problem": "Swiss fintech needed a mobile client with a compliant multi-step signup (Onfido identity verification) and automated release pipelines across iOS + Android.",
-        "outcome": ["Onfido KYC integrated end-to-end", "Mobile CI/CD automated via Fastlane"],
-        "buyerBadge": "Swiss fintech · KYC + regulatory-grade mobile"
-      },
-      {
-        "id": 4,
-        "problem": "Founder needed the whole on-demand service app — mobile, dispatcher dashboard, backend, infra — built solo, shipped in both the original market and a South Africa edition.",
-        "outcome": ["Shipped mobile + web + backend + CI/CD as sole developer", "Launched in two markets (original + South Africa)", "Years in production"],
-        "buyerBadge": "Solo full-stack build · Service app from zero, two markets"
-      }
-    ]
+    "viewInProjects": "View in projects"
   },
   "recommendations": {
     "sectionTitle": "What people say",
@@ -406,39 +374,7 @@
     "screenshotWebLabel": "Web",
     "screenshotMobileLabel": "Mobile",
     "screenshotBlurredCaption": "Private — shown anonymized",
-    "screenshotAltFallback": "{title} — screenshot {n}",
-    "problems": {
-      "1": "Tournament organiser needed a platform that absorbs live-event traffic spikes, scans tickets on-site, and lets non-dev staff manage the entire product without a developer.",
-      "2": "Mature product needed new revenue surfaces (booking, search) and legacy modules modernised without freezing feature delivery.",
-      "3": "Golf club needed a mobile booking app with integrated payments, owned end-to-end from architecture to App Store.",
-      "4": "Founder needed the whole on-demand service app — mobile, dispatcher dashboard, backend, infra — built solo and shipped in two markets.",
-      "5": "Product required a reliable last-message delivery system with scheduling, recipient management, and push notifications across mobile and backend.",
-      "6": "Swiss fintech needed a mobile client with compliant multi-step KYC signup and automated release pipelines across iOS + Android.",
-      "7": "Team needed a Calendly-like mobile scheduling app delivered across both iOS and Android with backend support.",
-      "8": "Government commissioned a mobile e-learning platform with student testing, delivered under a tight deadline.",
-      "9": "Needed a self-hosted home security system that evolved over a decade — from camera recording to a full multi-sensor platform with remote control.",
-      "10": "Legacy codebase needed migration to a modern stack while continuing to ship new features for homeowners and service providers.",
-      "11": "Sporting event needed a web + mobile proof of concept delivered from scratch in one month.",
-      "12": "Enterprise needed a SurveyMonkey-like platform supporting many field types with cross-field conditional logic.",
-      "13": "Corporation needed a Chrome extension to search across multiple internal knowledge bases and file storages.",
-      "14": "Large-scale ACA healthcare system required frontend development within a complex, cross-functional team."
-    },
-    "achievements": {
-      "1": ["In production since 2022", "Peak concurrent users on tournament days", "On-site ticket scanning during live rounds", "Self-serve CMS — non-dev team manages the full product"],
-      "2": ["Booking + search shipped across web + mobile on a live codebase", "Legacy modules rebuilt with zero user-visible regressions"],
-      "3": ["Mobile architecture owned start-to-finish", "Payments shipped across iOS + Android"],
-      "4": ["Shipped mobile + web + backend + CI/CD as sole developer", "Launched in two markets (original + South Africa)", "In production for multiple years"],
-      "5": ["Led a team of 5 through full product lifecycle", "Backend-heavy split — ~60% backend, ~40% mobile", "Full system architecture: React Native + GraphQL + MongoDB + AWS"],
-      "6": ["Onfido KYC integrated end-to-end", "Mobile CI/CD automated via Fastlane (CircleCI → GitHub Actions)"],
-      "7": ["iOS + Android delivered in parallel", "Backend contributions alongside mobile work", "Test coverage improved across the project"],
-      "8": ["Delivered on time under tight government deadline", "iOS + Android shipped simultaneously"],
-      "9": ["Four architecture iterations over 10+ years", "RFID + CO₂ sensor support integrated", "Telegram bot + worker architecture for remote control"],
-      "10": ["Legacy-to-modern migration completed solo", "Mobile + backend features shipped in parallel", "CI/CD automated with CircleCI"],
-      "11": ["Led a team of 5 through one-month delivery", "Web + mobile + backend built from scratch"],
-      "12": ["Dynamic questionnaire builder with conditional logic", "Cross-field linking for complex survey flows"],
-      "13": ["Multiple storage connector integrations shipped", "Chrome WebExtensions API implemented"],
-      "14": ["SPA features delivered on ACA-scale project", "Legacy Backbone/Marionette codebase maintained"]
-    }
+    "screenshotAltFallback": "{title} — screenshot {n}"
   },
   "notFound": {
     "title": "Page not found",

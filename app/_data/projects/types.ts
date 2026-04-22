@@ -1,5 +1,3 @@
-import projectsJson from "./projects-data.json"
-
 export type ProjectPageLink =
   | { type: "web"; url: string }
   | { type: "web+mobile"; url: string; appStore: string; playStore: string }
@@ -25,8 +23,25 @@ export type Screenshot = {
   height?: number
 }
 
-export type ProjectData = {
+export type ProjectBase = {
   id: number
+  year: string
+  link: ProjectPageLink
+  featured?: boolean
+  imageBg?: string
+  logo?: string
+  screenshots?: Screenshot[]
+  stackFilters: string[]
+  stack: string[]
+}
+
+export type ProjectHomeCard = {
+  problem: string
+  outcome: string[]
+  buyerBadge: string
+}
+
+export type ProjectContent = {
   title: string
   titleGeneric: string
   company: string
@@ -42,16 +57,11 @@ export type ProjectData = {
   problem?: string
   achievements: string[]
   duties: string[]
-  stack: string[]
-  stackFilters: string[]
-  year: string
-  link: ProjectPageLink
-  featured?: boolean
   badgeLabel?: string
-  imageBg?: string
-  logo?: string
-  screenshots?: Screenshot[]
+  homeCard?: ProjectHomeCard
 }
+
+export type Project = ProjectBase & ProjectContent
 
 /**
  * Toggle between real project names and generic display titles.
@@ -60,12 +70,6 @@ export type ProjectData = {
  */
 export const SHOW_REAL_PROJECT_NAMES = false
 
-export function getProjectTitle(project: ProjectData): string {
+export function getProjectTitle(project: Pick<Project, "title" | "titleGeneric">): string {
   return SHOW_REAL_PROJECT_NAMES ? project.title : project.titleGeneric
 }
-
-export const PROJECTS: ProjectData[] = (projectsJson as ProjectData[]).map(
-  (project) => project.screenshots
-    ? { ...project, screenshots: project.screenshots.slice(0, 3) }
-    : project
-)

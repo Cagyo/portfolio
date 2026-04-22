@@ -13,11 +13,11 @@ import { FilterSidebar } from "./filter/FilterSidebar";
 import { ProjectCard } from "./project-card/ProjectCard";
 import { ThemeToggle } from "@/app/_components/theme/ThemeToggle";
 import { FunnelIcon } from "@/assets/icons/FunnelIcon";
-import { PROJECTS, getProjectTitle } from "@/app/_data/projects-data";
-import type { ProjectData } from "@/app/_data/projects-data";
+import { getProjectTitle } from "@/app/_data/projects/types";
+import type { Project } from "@/app/_data/projects/types";
 import { FILTER_GROUPS } from "@/app/_data/projects-filters";
 
-function matchesSearch(project: ProjectData, query: string): boolean {
+function matchesSearch(project: Project, query: string): boolean {
   const haystack = [
     getProjectTitle(project),
     project.description,
@@ -63,22 +63,10 @@ function ProjectsNavExtras({ count, onFilterOpen }: ProjectsNavExtrasProps) {
   );
 }
 
-export function ProjectsPage() {
+export function ProjectsPage({ projects }: { projects: Project[] }) {
   const t = useTranslations("projectsPage");
   const tNav = useTranslations("nav");
   const searchParams = useSearchParams();
-
-  const problems = t.raw("problems") as Record<string, string>;
-  const achievementsMap = t.raw("achievements") as Record<string, string[]>;
-  const enrichedProjects = useMemo(
-    () =>
-      PROJECTS.map((project) => ({
-        ...project,
-        problem: problems[project.id],
-        achievements: achievementsMap[project.id] ?? project.achievements,
-      })),
-    [problems, achievementsMap],
-  );
 
   const [search, setSearch] = useState("");
   const [activeFilters, setActiveFilters] = useState<Record<string, Set<string>>>(() => {
@@ -131,7 +119,7 @@ export function ProjectsPage() {
 
   const filtered = useMemo(() => {
     const query = search.toLowerCase();
-    return enrichedProjects.filter((project) => {
+    return projects.filter((project) => {
       if (search && !matchesSearch(project, query)) return false;
       for (const filterGroup of FILTER_GROUPS) {
         const active = activeFilters[filterGroup.key];
@@ -140,7 +128,7 @@ export function ProjectsPage() {
       }
       return true;
     });
-  }, [search, activeFilters, enrichedProjects]);
+  }, [search, activeFilters, projects]);
 
   const totalActive = useMemo(
     () => Object.values(activeFilters).reduce((acc, filterSet) => acc + filterSet.size, 0),

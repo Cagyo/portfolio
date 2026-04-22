@@ -1,10 +1,10 @@
-import type { ProjectData } from "./projects-data"
+import type { Project } from "./projects/types"
 
 export type FilterGroupConfig = {
   key: string
   label: string
   options: string[]
-  match: (project: ProjectData, values: string[]) => boolean
+  match: (project: Project, values: string[]) => boolean
 }
 
 export const FILTER_GROUPS: FilterGroupConfig[] = [

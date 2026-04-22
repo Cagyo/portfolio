@@ -13,8 +13,8 @@ import { UsersIcon } from "@/assets/icons/UsersIcon";
 import { AppStoreLogo } from "@/assets/logos/AppStoreLogo";
 import { GooglePlayLogo } from "@/assets/logos/GooglePlayLogo";
 import { Tag } from "@/app/_components/tag/Tag";
-import type { ProjectData, ProjectPageLink } from "@/app/_data/projects-data";
-import { getProjectTitle } from "@/app/_data/projects-data";
+import type { Project, ProjectPageLink } from "@/app/_data/projects/types";
+import { getProjectTitle } from "@/app/_data/projects/types";
 import { ProjectScreenshots } from "./ProjectScreenshots";
 import styles from "./ProjectCard.module.css";
 
@@ -28,7 +28,7 @@ function MetaRow({ icon, value }: { icon: React.ReactNode; value: string }) {
 }
 
 type ProjectCardProps = {
-  project: ProjectData
+  project: Project
   expanded: boolean
   onToggleExpand: (id: number) => void
   animationDelay?: number
