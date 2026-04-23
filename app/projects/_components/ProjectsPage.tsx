@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect, useLayoutEffect, useMemo, useState } from "react";
-import { useSearchParams } from "next/navigation";
+import { useCallback, useEffect, useLayoutEffect, useMemo, useState } from "react";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { EmptyState } from "@/app/_components/EmptyState";
 import { SearchInput } from "@/app/_components/SearchInput";
@@ -67,30 +67,38 @@ export function ProjectsPage({ projects }: { projects: Project[] }) {
   const t = useTranslations("projectsPage");
   const tNav = useTranslations("nav");
   const searchParams = useSearchParams();
+  const router = useRouter();
+  const pathname = usePathname();
 
   const [search, setSearch] = useState("");
-  const [activeFilters, setActiveFilters] = useState<Record<string, Set<string>>>(() => {
-    const init: Record<string, Set<string>> = {};
+  const activeFilters = useMemo<Record<string, Set<string>>>(() => {
+    const next: Record<string, Set<string>> = {};
     FILTER_GROUPS.forEach((filterGroup) => {
-      const params = searchParams.getAll(filterGroup.key);
-      init[filterGroup.key] = new Set(params);
+      next[filterGroup.key] = new Set(searchParams.getAll(filterGroup.key));
     });
-    return init;
-  });
+    return next;
+  }, [searchParams]);
   const [expandedIds, setExpandedIds] = useState<Set<number>>(new Set());
   const [mobileOpen, setMobileOpen] = useState(false);
 
-  // Sync URL → filters on every navigation (handles Activity-preserved mounts
-  // where the useState initializer doesn't re-run on inbound chip/bundle links).
-  useEffect(() => {
-    setActiveFilters(() => {
-      const next: Record<string, Set<string>> = {};
-      FILTER_GROUPS.forEach((filterGroup) => {
-        next[filterGroup.key] = new Set(searchParams.getAll(filterGroup.key));
+  const commitFilters = useCallback(
+    (next: Record<string, Set<string>>) => {
+      const groupKeys = new Set(FILTER_GROUPS.map((filterGroup) => filterGroup.key));
+      const params = new URLSearchParams();
+      // Preserve any unknown query keys (utm_*, hash-companion params, etc.)
+      searchParams.forEach((value, key) => {
+        if (!groupKeys.has(key)) params.append(key, value);
       });
-      return next;
-    });
-  }, [searchParams]);
+      FILTER_GROUPS.forEach((filterGroup) => {
+        const set = next[filterGroup.key];
+        if (!set) return;
+        for (const value of set) params.append(filterGroup.key, value);
+      });
+      const qs = params.toString();
+      router.replace(qs ? `${pathname}?${qs}` : pathname, { scroll: false });
+    },
+    [pathname, router, searchParams],
+  );
 
   // Reset drawer on route cache unmount (per CLAUDE.md Activity guidance)
   useLayoutEffect(() => {
@@ -148,23 +156,22 @@ export function ProjectsPage({ projects }: { projects: Project[] }) {
   );
 
   function toggleFilter(groupKey: string, value: string) {
-    setActiveFilters((prev) => {
-      const next = { ...prev, [groupKey]: new Set(prev[groupKey]) };
-      if (next[groupKey].has(value)) {
-        next[groupKey].delete(value);
-      } else {
-        next[groupKey].add(value);
-      }
-      return next;
+    const next: Record<string, Set<string>> = {};
+    FILTER_GROUPS.forEach((filterGroup) => {
+      next[filterGroup.key] = new Set(activeFilters[filterGroup.key]);
     });
+    if (next[groupKey].has(value)) {
+      next[groupKey].delete(value);
+    } else {
+      next[groupKey].add(value);
+    }
+    commitFilters(next);
   }
 
   function clearAll() {
-    setActiveFilters(() => {
-      const init: Record<string, Set<string>> = {};
-      FILTER_GROUPS.forEach((filterGroup) => { init[filterGroup.key] = new Set(); });
-      return init;
-    });
+    const next: Record<string, Set<string>> = {};
+    FILTER_GROUPS.forEach((filterGroup) => { next[filterGroup.key] = new Set(); });
+    commitFilters(next);
     setSearch("");
   }
 

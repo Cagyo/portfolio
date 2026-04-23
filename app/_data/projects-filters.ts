@@ -13,7 +13,7 @@ export const FILTER_GROUPS: FilterGroupConfig[] = [
     key: "devTypes",
     label: "Type",
     options: ["Mobile", "Full Stack", "Web", "Backend"],
-    match: (project, values) => values.some((value) => project.devTypes.includes(value)),
+    match: (project, values) => values.every((value) => project.devTypes.includes(value)),
   },
   {
     key: "role",
@@ -37,7 +37,7 @@ export const FILTER_GROUPS: FilterGroupConfig[] = [
     key: "stackFilters",
     label: "Stack",
     options: [...STACK_FILTER_NAMES],
-    match: (project, values) => values.some((value) => (project.stackFilters as readonly string[]).includes(value)),
+    match: (project, values) => values.every((value) => (project.stackFilters as readonly string[]).includes(value)),
   },
   {
     key: "company",
