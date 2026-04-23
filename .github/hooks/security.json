@@ -1,0 +1,11 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "type": "command",
+        "command": "bash .github/hooks/block-env-files.sh",
+        "timeout": 5
+      }
+    ]
+  }
+}
