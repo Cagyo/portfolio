@@ -89,12 +89,11 @@ export function ContactForm() {
   }
 
   return (
-    <div className={`lg:col-span-3 reveal ${styles.formCol}`}>
-      <form
-        onSubmit={handleSubmit(onSubmit)}
-        className="glass rounded-3xl p-8 space-y-5"
-        noValidate
-      >
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      className="glass rounded-3xl p-8 space-y-5"
+      noValidate
+    >
         {/* ── Honeypot ── */}
         <div className={styles.honeypot} aria-hidden="true">
           <label htmlFor="website">{t('form.honeypotLabel')}</label>
@@ -360,7 +359,6 @@ export function ContactForm() {
             <p className="text-white/80 text-sm">{t('form.successMessage')}</p>
           </div>
         )}
-      </form>
-    </div>
+    </form>
   )
 }

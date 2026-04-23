@@ -1,7 +1,3 @@
-.formCol {
-  transition-delay: 0.15s;
-}
-
 /* ── Mode Toggle ── */
 .modeToggle {
   display: flex;

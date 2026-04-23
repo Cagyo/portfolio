@@ -4,6 +4,7 @@ import { BlobBackground } from "@/app/_components/BlobBackground";
 import { SectionHeader } from "@/app/_components/SectionHeader";
 import { ContactForm } from "./ContactForm";
 import { ContactInfo } from "./ContactInfo";
+import styles from "./ContactSection.module.css";
 
 type ContactSectionProps = { sectionNumber?: string }
 
@@ -19,9 +20,11 @@ export async function ContactSection({ sectionNumber }: ContactSectionProps) {
 
         <div className="grid lg:grid-cols-5 gap-12">
           <ContactInfo />
-          <Suspense>
-            <ContactForm />
-          </Suspense>
+          <div className={`lg:col-span-3 reveal ${styles.formCol}`}>
+            <Suspense>
+              <ContactForm />
+            </Suspense>
+          </div>
         </div>
       </div>
     </section>
