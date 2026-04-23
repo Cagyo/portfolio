@@ -72,13 +72,25 @@ export function ProjectsPage({ projects }: { projects: Project[] }) {
   const [activeFilters, setActiveFilters] = useState<Record<string, Set<string>>>(() => {
     const init: Record<string, Set<string>> = {};
     FILTER_GROUPS.forEach((filterGroup) => {
-      const param = searchParams.get(filterGroup.key);
-      init[filterGroup.key] = param ? new Set([param]) : new Set();
+      const params = searchParams.getAll(filterGroup.key);
+      init[filterGroup.key] = new Set(params);
     });
     return init;
   });
   const [expandedIds, setExpandedIds] = useState<Set<number>>(new Set());
   const [mobileOpen, setMobileOpen] = useState(false);
+
+  // Sync URL → filters on every navigation (handles Activity-preserved mounts
+  // where the useState initializer doesn't re-run on inbound chip/bundle links).
+  useEffect(() => {
+    setActiveFilters(() => {
+      const next: Record<string, Set<string>> = {};
+      FILTER_GROUPS.forEach((filterGroup) => {
+        next[filterGroup.key] = new Set(searchParams.getAll(filterGroup.key));
+      });
+      return next;
+    });
+  }, [searchParams]);
 
   // Reset drawer on route cache unmount (per CLAUDE.md Activity guidance)
   useLayoutEffect(() => {

@@ -3,7 +3,7 @@ import Image from "next/image";
 import { siteConfig } from "@/app/_config/site-config";
 import { BlobBackground } from "@/app/_components/BlobBackground";
 import { SectionHeader } from "@/app/_components/SectionHeader";
-import { BusinessImpact } from "./BusinessImpact";
+// import { BusinessImpact } from "./BusinessImpact";
 import { ExperienceCard } from "./ExperienceCard";
 import { ExperienceList } from "./ExperienceList";
 import { InfoGrid } from "./InfoGrid";
@@ -111,7 +111,7 @@ export async function AboutSection({ sectionNumber }: AboutSectionProps) {
           </div>
         </div>
 
-        <BusinessImpact />
+        {/* <BusinessImpact /> */}
       </div>
     </section>
   );

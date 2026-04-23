@@ -58,3 +58,39 @@
   background: var(--amber);
   flex-shrink: 0;
 }
+
+.skillChipTopLink {
+  cursor: pointer;
+  text-decoration: none;
+
+  &:hover {
+    transform: translateY(-1px);
+    border-color: var(--amber);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--amber);
+    outline-offset: 2px;
+  }
+}
+
+.shipsBadge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--amber) 18%, transparent);
+  color: var(--amber);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0;
+  line-height: 1;
+}
+
+html[data-theme="light"] .shipsBadge {
+  background: color-mix(in srgb, var(--amber-dark) 14%, transparent);
+  color: var(--amber-dark);
+}

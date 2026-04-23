@@ -128,6 +128,11 @@
     "additionalSkills": "Additional skills",
     "showMore": "Show more",
     "showLess": "Show less",
+    "shipsAria": "{count} projects shipped",
+    "shippableStacksTitle": "Stacks I ship",
+    "shippableStacksSubtitle": "Pick the stack that looks like your build.",
+    "projectsShipped": "{count, plural, one {# project shipped} other {# projects shipped}}",
+    "viewProjectsCta": "See projects",
     "noResults": "No results for \"{query}\"",
     "clearSearch": "Clear search",
     "categories": {

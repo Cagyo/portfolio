@@ -9,7 +9,9 @@ import { SearchInput } from "@/app/_components/SearchInput";
 import { SectionHeader } from "@/app/_components/SectionHeader";
 import { SkillChip } from "./SkillChip";
 import { SkillFilterTabs } from "./SkillFilterTabs";
+import { ShippableStacks } from "./ShippableStacks";
 import { CATEGORIES, SKILLS } from "@/app/_data/skills-data";
+import { getProjectCountByStack } from "@/app/_data/projects/get-stack-stats";
 import styles from "./SkillsSection.module.css";
 
 const INITIAL_REST = 10;
@@ -54,7 +56,9 @@ export function SkillsSection({ sectionNumber }: SkillsSectionProps) {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeader number={sectionNumber} title={t("sectionTitle")} />
 
-        <div className="reveal mb-10 space-y-5">
+        <ShippableStacks />
+
+        <div className="reveal mb-10 space-y-5 border-t border-white/5 pt-8">
           <SearchInput
             value={search}
             onChange={setSearch}
@@ -80,12 +84,18 @@ export function SkillsSection({ sectionNumber }: SkillsSectionProps) {
               {topSkills.length > 0 && (
                 <>
                   <div className="flex items-center gap-3 mb-4">
-                    <span className="text-amber-500/70 text-xs uppercase tracking-widest font-semibold">{t("coreExpertise")}</span>
-                    <div className="flex-1 h-px bg-gradient-to-r from-amber-500/20 to-transparent" />
+                    <span className="text-white/35 text-xs uppercase tracking-widest font-medium">{t("coreExpertise")}</span>
+                    <div className="flex-1 h-px bg-white/5" />
                   </div>
                   <div className="flex flex-wrap gap-3 mb-8">
                     {topSkills.map((skill) => (
-                      <SkillChip key={skill.name} name={skill.name} category={CATEGORIES.find((category) => category.id === skill.cat)?.label ?? ""} variant="top" />
+                      <SkillChip
+                        key={skill.name}
+                        name={skill.name}
+                        category={CATEGORIES.find((category) => category.id === skill.cat)?.label ?? ""}
+                        variant="top"
+                        projectCount={getProjectCountByStack(skill.name)}
+                      />
                     ))}
                   </div>
                 </>
