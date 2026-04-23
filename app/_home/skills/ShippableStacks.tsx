@@ -3,14 +3,19 @@
 import Link from "next/link"
 import { useTranslations } from "next-intl"
 import { Tag } from "@/app/_components/tag/Tag"
-import { getStackBundleLabel, getStackSignatures } from "@/app/_data/projects/get-stack-stats"
+import { getOutcomeBuckets, type OutcomeBucketKey } from "@/app/_data/projects/get-stack-stats"
 import styles from "./ShippableStacks.module.css"
+
+const CARD_TITLE_KEYS: Record<OutcomeBucketKey, "fullStackCardTitle" | "mobileCardTitle"> = {
+  "full-stack": "fullStackCardTitle",
+  mobile: "mobileCardTitle",
+}
 
 export function ShippableStacks() {
   const t = useTranslations("skills")
-  const signatures = getStackSignatures()
+  const buckets = getOutcomeBuckets().filter((bucket) => bucket.count > 0)
 
-  if (signatures.length === 0) return null
+  if (buckets.length === 0) return null
 
   return (
     <div className="reveal mb-10">
@@ -20,23 +25,20 @@ export function ShippableStacks() {
       </div>
 
       <div className={styles.grid}>
-        {signatures.map((signature) => {
-          const href =
-            "/projects?" +
-            signature.skills.map((skill) => `stackFilters=${encodeURIComponent(skill)}`).join("&")
-          const label = getStackBundleLabel(signature.skills)
-          const key = signature.skills.join("+")
+        {buckets.map((bucket) => {
+          const href = `/projects?devTypes=${encodeURIComponent(bucket.devType)}`
+          const title = t(CARD_TITLE_KEYS[bucket.key])
 
           return (
-            <Link key={key} href={href} className={`glass rounded-2xl p-5 ${styles.card}`}>
-              <h4 className={styles.cardTitle}>{label}</h4>
+            <Link key={bucket.key} href={href} className={`glass rounded-2xl p-5 ${styles.card}`}>
+              <h4 className={styles.cardTitle}>{title}</h4>
               <div className={styles.tagRow}>
-                {signature.skills.map((skill) => (
-                  <Tag key={skill} variant="amber">{skill}</Tag>
+                {bucket.topStacks.map((stack) => (
+                  <Tag key={stack} variant="amber">{stack}</Tag>
                 ))}
               </div>
               <p className={styles.shippedLine}>
-                {t("projectsShipped", { count: signature.count })}
+                {t("projectsShipped", { count: bucket.count })}
               </p>
               <span className={styles.cta}>
                 {t("viewProjectsCta")}

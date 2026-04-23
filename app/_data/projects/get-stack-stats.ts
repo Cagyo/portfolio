@@ -1,5 +1,7 @@
 import { FILTER_GROUPS } from "@/app/_data/projects-filters"
+import type { StackFilterName } from "@/app/_data/skills-data"
 import { PROJECT_BASES } from "./base"
+import { PROJECT_CONTENT_EN } from "./content.en"
 
 const stackFilterGroup = FILTER_GROUPS.find((filterGroup) => filterGroup.key === "stackFilters")
 
@@ -28,45 +30,45 @@ export function getProjectCountByStack(skill: string): number {
   return PROJECT_COUNT_BY_STACK[skill] ?? 0
 }
 
-export type StackSignature = {
-  skills: string[]
+export type OutcomeBucketKey = "full-stack" | "mobile"
+export type OutcomeBucketDevType = "Full Stack" | "Mobile"
+
+export type OutcomeBucket = {
+  key: OutcomeBucketKey
+  devType: OutcomeBucketDevType
+  topStacks: StackFilterName[]
   count: number
   projectIds: number[]
 }
 
-/**
- * Curated overrides for auto-generated bundle labels.
- * Key: stack skills sorted ascending and joined with "+".
- * Value: human-readable label.
- * Empty by default — labels are derived from the stack until curated.
- */
-export const STACK_BUNDLE_OVERRIDES: Record<string, string> = {}
+const OUTCOME_BUCKET_DEFS: { key: OutcomeBucketKey; devType: OutcomeBucketDevType }[] = [
+  { key: "full-stack", devType: "Full Stack" },
+  { key: "mobile", devType: "Mobile" },
+]
 
-export function getStackBundleLabel(skills: string[]): string {
-  const key = [...skills].sort().join("+")
-  return STACK_BUNDLE_OVERRIDES[key] ?? skills.join(" + ")
-}
+export function getOutcomeBuckets(): OutcomeBucket[] {
+  return OUTCOME_BUCKET_DEFS.map(({ key, devType }) => {
+    const projectIds: number[] = []
+    const stackCounts = new Map<StackFilterName, number>()
 
-export function getStackSignatures(): StackSignature[] {
-  const buckets = new Map<string, StackSignature>()
+    for (const project of PROJECT_BASES) {
+      const content = PROJECT_CONTENT_EN[project.id]
+      if (!content || !content.devTypes.includes(devType)) continue
 
-  for (const project of PROJECT_BASES) {
-    if (project.stackFilters.length === 0) continue
-    const sortedSkills = [...project.stackFilters].sort()
-    const key = sortedSkills.join("+")
-    const existing = buckets.get(key)
-    if (existing) {
-      existing.count += 1
-      existing.projectIds.push(project.id)
-    } else {
-      buckets.set(key, { skills: sortedSkills, count: 1, projectIds: [project.id] })
+      projectIds.push(project.id)
+      for (const stack of project.stackFilters) {
+        stackCounts.set(stack, (stackCounts.get(stack) ?? 0) + 1)
+      }
     }
-  }
 
-  return [...buckets.values()]
-    .sort((a, b) => {
-      if (b.count !== a.count) return b.count - a.count
-      return b.skills.length - a.skills.length
-    })
-    .slice(0, 3)
+    const topStacks = [...stackCounts.entries()]
+      .sort((a, b) => {
+        if (b[1] !== a[1]) return b[1] - a[1]
+        return STACK_FILTER_OPTIONS.indexOf(a[0]) - STACK_FILTER_OPTIONS.indexOf(b[0])
+      })
+      .slice(0, 4)
+      .map(([stack]) => stack)
+
+    return { key, devType, topStacks, count: projectIds.length, projectIds }
+  })
 }

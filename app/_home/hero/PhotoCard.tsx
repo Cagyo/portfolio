@@ -9,7 +9,7 @@ type PhotoCardProps = {
   testimonial?: SnippetTestimonial;
 };
 
-const TOP_SKILL_NAMES = SKILLS.filter((skill) => skill.top).map((skill) => skill.name);
+const TOP_SKILL_NAMES = SKILLS.filter((skill) => "top" in skill && skill.top).map((skill) => skill.name);
 
 export function PhotoCard({ availableLabel, testimonial }: PhotoCardProps) {
   return (

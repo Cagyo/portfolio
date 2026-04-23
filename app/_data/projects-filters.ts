@@ -1,4 +1,5 @@
 import type { Project } from "./projects/types"
+import { STACK_FILTER_NAMES } from "./skills-data"
 
 export type FilterGroupConfig = {
   key: string
@@ -35,8 +36,8 @@ export const FILTER_GROUPS: FilterGroupConfig[] = [
   {
     key: "stackFilters",
     label: "Stack",
-    options: ["React Native", "NestJS", "Next.js", "GraphQL", "AWS"],
-    match: (project, values) => values.some((value) => project.stackFilters.includes(value)),
+    options: [...STACK_FILTER_NAMES],
+    match: (project, values) => values.some((value) => (project.stackFilters as readonly string[]).includes(value)),
   },
   {
     key: "company",

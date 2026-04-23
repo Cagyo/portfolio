@@ -1,3 +1,12 @@
+import type { SkillName, StackFilterName } from "@/app/_data/skills-data"
+
+export type ExtraStack = { name: string; extra: true }
+export type StackEntry = SkillName | ExtraStack
+
+export function getStackName(entry: StackEntry): string {
+  return typeof entry === "string" ? entry : entry.name
+}
+
 export type ProjectPageLink =
   | { type: "web"; url: string }
   | { type: "web+mobile"; url: string; appStore: string; playStore: string }
@@ -31,8 +40,8 @@ export type ProjectBase = {
   imageBg?: string
   logo?: string
   screenshots?: Screenshot[]
-  stackFilters: string[]
-  stack: string[]
+  stackFilters: StackFilterName[]
+  stack: StackEntry[]
 }
 
 export type ProjectHomeCard = {

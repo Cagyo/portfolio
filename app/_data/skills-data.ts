@@ -9,7 +9,7 @@ export type Skill = {
   top?: boolean
 }
 
-export const SKILLS: Skill[] = [
+export const SKILLS = [
   // Core expertise
   { name: "TypeScript", cat: 3, top: true },
   { name: "React Native", cat: 8, top: true },
@@ -82,7 +82,24 @@ export const SKILLS: Skill[] = [
   { name: "Clickup", cat: 7 },
   { name: "Mocha", cat: 7 },
   { name: "Chai", cat: 7 },
-];
+] as const satisfies readonly Skill[];
+
+export type SkillName = (typeof SKILLS)[number]["name"];
+
+const SKILL_NAME_SET: ReadonlySet<string> = new Set(SKILLS.map((skill) => skill.name));
+
+export function isSkillName(value: string): value is SkillName {
+  return SKILL_NAME_SET.has(value);
+}
+
+/**
+ * The subset of skill names that can be used as project filters in the UI.
+ * Source of truth for `ProjectBase.stackFilters[]` and `FILTER_GROUPS["stackFilters"].options`.
+ * Adding a value here that is not a `SkillName` is a compile error.
+ */
+export const STACK_FILTER_NAMES = ["React Native", "NestJS", "Next.js", "GraphQL", "AWS"] as const satisfies readonly SkillName[];
+
+export type StackFilterName = (typeof STACK_FILTER_NAMES)[number];
 
 export const CATEGORIES: Category[] = [
   { id: 0, label: "All" },

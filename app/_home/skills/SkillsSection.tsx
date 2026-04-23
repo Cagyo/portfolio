@@ -33,8 +33,8 @@ export function SkillsSection({ sectionNumber }: SkillsSectionProps) {
     });
   }, [search, activeCat]);
 
-  const topSkills = filtered.filter((skill) => skill.top);
-  const restSkills = filtered.filter((skill) => !skill.top);
+  const topSkills = filtered.filter((skill) => "top" in skill && skill.top);
+  const restSkills = filtered.filter((skill) => !("top" in skill) || !skill.top);
 
   const isFiltering = activeCat !== 0 || search.length > 0;
   const visibleRest = isFiltering || expanded ? restSkills : restSkills.slice(0, INITIAL_REST);

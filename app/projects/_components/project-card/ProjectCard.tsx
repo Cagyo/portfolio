@@ -14,7 +14,7 @@ import { AppStoreLogo } from "@/assets/logos/AppStoreLogo";
 import { GooglePlayLogo } from "@/assets/logos/GooglePlayLogo";
 import { Tag } from "@/app/_components/tag/Tag";
 import type { Project, ProjectPageLink } from "@/app/_data/projects/types";
-import { getProjectTitle } from "@/app/_data/projects/types";
+import { getProjectTitle, getStackName } from "@/app/_data/projects/types";
 import { ProjectScreenshots } from "./ProjectScreenshots";
 import styles from "./ProjectCard.module.css";
 
@@ -128,9 +128,12 @@ export function ProjectCard({ project, expanded, onToggleExpand, animationDelay 
             <div>
               <p className="text-white/30 text-xs uppercase tracking-widest font-semibold mb-3">{t("techStack")}</p>
               <div className="flex flex-wrap gap-1.5">
-                {project.stack.map((stackItem) => (
-                  <span key={stackItem} className={styles.stackChip}>{stackItem}</span>
-                ))}
+                {project.stack.map((stackItem) => {
+                  const stackName = getStackName(stackItem);
+                  return (
+                    <span key={stackName} className={styles.stackChip}>{stackName}</span>
+                  );
+                })}
               </div>
             </div>
             <div>

@@ -213,7 +213,7 @@ export const PROJECT_CONTENT_EN: Record<number, ProjectContent> = {
     company: "Avocado Technology",
     industry: "Services",
     productType: "SaaS",
-    devTypes: ["Mobile"],
+    devTypes: ["Full Stack"],
     role: "Developer",
     skills: "Mobile + partial backend",
     teamLabel: "8",

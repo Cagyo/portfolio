@@ -13,7 +13,7 @@ import { FilterSidebar } from "./filter/FilterSidebar";
 import { ProjectCard } from "./project-card/ProjectCard";
 import { ThemeToggle } from "@/app/_components/theme/ThemeToggle";
 import { FunnelIcon } from "@/assets/icons/FunnelIcon";
-import { getProjectTitle } from "@/app/_data/projects/types";
+import { getProjectTitle, getStackName } from "@/app/_data/projects/types";
 import type { Project } from "@/app/_data/projects/types";
 import { FILTER_GROUPS } from "@/app/_data/projects-filters";
 
@@ -24,7 +24,7 @@ function matchesSearch(project: Project, query: string): boolean {
     project.company,
     project.industry,
     project.problem,
-    ...project.stack,
+    ...project.stack.map(getStackName),
     ...project.duties,
     ...project.achievements,
   ]
