@@ -13,30 +13,27 @@ export const PROJECT_CONTENT_EN: Record<number, ProjectContent> = {
     teamLabel: "7–11",
     teamDetail: "2–5 devs · 1–2 QA · 2 BA · 1 PO · 1 PM",
     scale: "Team",
-    description: "Large-scale golf tournament platform built from the ground up — a high-load, multi-component system spanning a NestJS backend, Next.js web app, React Native mobile app with separate user and admin modes (admin used on-site for ticket scanning during live events), background workers, and a no-code page builder enabling non-technical teams to manage the entire product independently.",
-    problem: "Tournament organiser needed a platform that absorbs live-event traffic spikes, scans tickets on-site, and lets non-dev staff manage the entire product without a developer.",
+    description: "Greenfield tournament platform built end-to-end — NestJS backend, Next.js web app, React Native apps with separate user and on-site admin modes (ticket scanning during live rounds), background workers, and a no-code page builder so non-technical staff run the entire product without a developer.",
+    problem: "Founders needed a platform that could absorb live-event traffic spikes, scan tickets on-site, and let non-dev staff run the whole product — no developer in the loop after launch.",
     achievements: [
-      "In production since 2022",
-      "Peak concurrent users on tournament days",
+      "Live in production since 2022",
+      "Handles concurrent-user spikes on tournament days",
       "On-site ticket scanning during live rounds",
-      "Self-serve CMS — non-dev team manages the full product",
+      "Non-dev team runs the full product via self-serve CMS",
     ],
     duties: [
-      "Architecture of the platform",
-      "Web app development",
-      "Mobile application development (last year completely solo)",
-      "Backend development (almost completely solo)",
-      "Highload optimisation",
-      "Deployment infrastructure setup and support",
-      "CircleCI builds automation",
-      "Code review",
+      "Platform architecture (web + mobile + backend)",
+      "Backend development — solo for the final stretch",
+      "Mobile development — solo for the final year",
+      "High-load optimisation",
+      "Deployment infra + CircleCI automation",
     ],
     badgeLabel: "High-load · no-code page builder · ticket system",
     homeCard: {
-      problem: "Tournament organiser needed a platform that absorbs live-event traffic spikes, scans tickets on-site, and lets non-dev staff publish and edit pages and control whole platform parts — e.g. show/hide sections in the mobile app — without a developer in the loop.",
+      problem: "Founders needed a platform that absorbs live-event traffic spikes, scans tickets on-site, and lets non-dev staff publish pages and toggle whole mobile-app sections — without a developer in the loop.",
       outcome: [
-        "In production since 2022",
-        "Peak concurrent users on tournament days",
+        "Live in production since 2022",
+        "Absorbs concurrent-user spikes on tournament days",
         "Tickets scanned on-site during live rounds",
       ],
       buyerBadge: "Live-event scale · Self-serve CMS for non-devs",
@@ -54,17 +51,16 @@ export const PROJECT_CONTENT_EN: Record<number, ProjectContent> = {
     teamLabel: "8",
     teamDetail: "4 devs · 1 QA · 1 BA · 1 PO · 1 PM",
     scale: "Team",
-    description: "Full-stack feature delivery for a large-scale golf social network across web and mobile on a mature, established codebase. Extended platform capabilities with new product sections including booking and search, complex interactive UI components, backend features, and legacy module modernisation.",
+    description: "Shipped new revenue surfaces (booking, search) across web and mobile on a mature live codebase while rebuilding legacy modules in parallel. No feature-freeze for the migration.",
     problem: "Mature product needed new revenue surfaces (booking, search) and legacy modules modernised without freezing feature delivery.",
     achievements: [
       "Booking + search shipped across web + mobile on a live codebase",
       "Legacy modules rebuilt with zero user-visible regressions",
     ],
     duties: [
-      "Web app development",
-      "Mobile application development",
-      "Backend development",
-      "Code review",
+      "Web + mobile feature delivery",
+      "Backend feature delivery",
+      "Legacy module rebuilds",
     ],
     badgeLabel: "Mature · Legacy",
     homeCard: {
@@ -88,7 +84,7 @@ export const PROJECT_CONTENT_EN: Record<number, ProjectContent> = {
     teamLabel: "8",
     teamDetail: "2 mobile devs · 1 backend · 1–2 QA · 2 BA · 1 PM",
     scale: "Team",
-    description: "Led React Native mobile development for a golf-club booking platform with integrated payments. Owned mobile architecture, feature delivery, and code review.",
+    description: "Led the React Native mobile build of a golf-club booking app end-to-end — architecture, feature delivery, and payments integration across iOS and Android.",
     problem: "Golf club needed a mobile booking app with integrated payments, owned end-to-end from architecture to App Store.",
     achievements: [
       "Mobile architecture owned start-to-finish",
@@ -97,7 +93,6 @@ export const PROJECT_CONTENT_EN: Record<number, ProjectContent> = {
     duties: [
       "Mobile app architecture",
       "Mobile app development",
-      "Code review",
     ],
     badgeLabel: "Mobile App Lead · payments",
     homeCard: {
@@ -121,7 +116,7 @@ export const PROJECT_CONTENT_EN: Record<number, ProjectContent> = {
     teamLabel: "3",
     teamDetail: "1 dev · 1 QA · 1 PM",
     scale: "Solo build",
-    description: "On-demand car washing platform connecting users with on-call washers via a mobile app and managing operations through a web dashboard. Built solo across all layers: mobile, web, backend, and infrastructure.",
+    description: "Solo 0→1 build of an on-demand car-wash platform — customer mobile app, dispatcher web dashboard, backend, and infrastructure. Later re-launched in a second market.",
     problem: "Founder needed the whole on-demand service app — mobile, dispatcher dashboard, backend, infra — built solo and shipped in two markets.",
     achievements: [
       "Shipped mobile + web + backend + CI/CD as sole developer",
@@ -158,8 +153,8 @@ export const PROJECT_CONTENT_EN: Record<number, ProjectContent> = {
     teamLabel: "5",
     teamDetail: "2 devs · 1 QA · 1 BA · 1 PM",
     scale: "Team",
-    description: "Last-message delivery app that automatically sends pre-written personal messages to recipients when the user stops checking in. Led a team of 5, designed the full system architecture across React Native, GraphQL/Apollo, MongoDB, and AWS, and drove hands-on development of backend and mobile.",
-    problem: "Product required a reliable last-message delivery system with scheduling, recipient management, and push notifications across mobile and backend.",
+    description: "0→1 build of a last-message delivery app — sends pre-written personal messages when the user stops checking in. Led a team of 5 through the full lifecycle and owned architecture across React Native, GraphQL/Apollo, MongoDB, and AWS.",
+    problem: "Founders needed a reliable last-message delivery system — scheduling, recipient management, and push notifications across mobile and backend — shipped by a small team.",
     achievements: [
       "Led a team of 5 through full product lifecycle",
       "Backend-heavy split — ~60% backend, ~40% mobile",
@@ -167,9 +162,8 @@ export const PROJECT_CONTENT_EN: Record<number, ProjectContent> = {
     ],
     duties: [
       "Platform architecture",
-      "Backend development (~60% of time)",
-      "Mobile app development (~40% of time)",
-      "Code review",
+      "Backend development (~60%)",
+      "Mobile app development (~40%)",
       "Infrastructure & CI/CD setup",
     ],
   },
@@ -185,7 +179,7 @@ export const PROJECT_CONTENT_EN: Record<number, ProjectContent> = {
     teamLabel: "9",
     teamDetail: "5 devs · 2 QA · 1 BA · 1 PM",
     scale: "Team",
-    description: "Swiss fintech currency-exchange platform mobile app. Owned the mobile architecture and established mobile CI/CD automation with Fastlane across CircleCI and later GitHub Actions.",
+    description: "Mobile lead for a Swiss fintech currency-exchange app. Owned mobile architecture end-to-end and set up automated iOS + Android release pipelines with Fastlane.",
     problem: "Swiss fintech needed a mobile client with compliant multi-step KYC signup and automated release pipelines across iOS + Android.",
     achievements: [
       "Onfido KYC integrated end-to-end",
@@ -194,8 +188,7 @@ export const PROJECT_CONTENT_EN: Record<number, ProjectContent> = {
     duties: [
       "Mobile app architecture",
       "Mobile app development",
-      "Code review",
-      "CircleCI / GitHub Actions builds automation",
+      "iOS + Android release automation (Fastlane, CircleCI → GitHub Actions)",
     ],
     badgeLabel: "Mobile App Lead · Swiss Fintech",
     homeCard: {
@@ -219,7 +212,7 @@ export const PROJECT_CONTENT_EN: Record<number, ProjectContent> = {
     teamLabel: "8",
     teamDetail: "3 devs · 1 lead · 1–2 QA · 1 BA · 1 PM",
     scale: "Team",
-    description: "Calendly-like scheduling application for mobile. Delivered iOS and Android development, contributed to backend, improved test coverage, and participated in code review throughout the project.",
+    description: "Calendly-like mobile scheduling app for iOS and Android. Shipped mobile end-to-end with backend contributions and stronger test coverage.",
     problem: "Team needed a Calendly-like mobile scheduling app delivered across both iOS and Android with backend support.",
     achievements: [
       "iOS + Android delivered in parallel",
@@ -227,10 +220,9 @@ export const PROJECT_CONTENT_EN: Record<number, ProjectContent> = {
       "Test coverage improved across the project",
     ],
     duties: [
-      "Mobile application development (iOS + Android)",
-      "Partial backend development",
-      "Test coverage",
-      "Code review",
+      "iOS + Android mobile development",
+      "Partial backend",
+      "Test coverage expansion",
     ],
   },
   8: {
@@ -245,16 +237,15 @@ export const PROJECT_CONTENT_EN: Record<number, ProjectContent> = {
     teamLabel: "7",
     teamDetail: "2 devs · 1 lead · 2 QA · 1 BA · 1 PM",
     scale: "Team",
-    description: "Government-commissioned e-learning platform for Ukraine with student testing functionality. Delivered under tight deadlines across iOS and Android.",
+    description: "Government-commissioned e-learning + testing mobile app. Shipped iOS and Android simultaneously under a tight deadline.",
     problem: "Government commissioned a mobile e-learning platform with student testing, delivered under a tight deadline.",
     achievements: [
       "Delivered on time under tight government deadline",
       "iOS + Android shipped simultaneously",
     ],
     duties: [
-      "Mobile application development (iOS + Android)",
+      "iOS + Android mobile development",
       "Build automation",
-      "Code review",
     ],
   },
   9: {
@@ -269,8 +260,8 @@ export const PROJECT_CONTENT_EN: Record<number, ProjectContent> = {
     teamLabel: "1",
     teamDetail: "Solo",
     scale: "Personal project",
-    description: "Own home security platform built over 10+ years through four iterations — from simple camera recording synced to Google Drive, to a full system with backend, mobile notifications, RFID and CO2 sensor support, and finally a leaner worker + Telegram bot architecture for remote control and alerting.",
-    problem: "Needed a self-hosted home security system that evolved over a decade — from camera recording to a full multi-sensor platform with remote control.",
+    description: "Self-built home-security platform evolved over 10+ years across four architectures — from camera-to-Google-Drive, to a full backend + mobile + RFID + CO₂ system, to a lean Telegram-bot-controlled worker. Owner mindset on every iteration.",
+    problem: "Needed a self-hosted home-security system that could evolve with the hardware — from basic camera recording to multi-sensor control with remote alerting.",
     achievements: [
       "Four architecture iterations over 10+ years",
       "RFID + CO₂ sensor support integrated",
@@ -297,8 +288,8 @@ export const PROJECT_CONTENT_EN: Record<number, ProjectContent> = {
     teamLabel: "3",
     teamDetail: "1 dev · 1 QA · 1 PM",
     scale: "Solo build",
-    description: "Platform connecting homeowners with service providers for household tasks. Led migration of the legacy codebase to a modern stack, delivered new features across mobile and backend, and automated builds with CircleCI.",
-    problem: "Legacy codebase needed migration to a modern stack while continuing to ship new features for homeowners and service providers.",
+    description: "Led the migration of a legacy homeowner-services platform onto a modern stack while shipping new mobile and backend features in parallel. No feature-freeze during migration.",
+    problem: "Legacy codebase needed migration to a modern stack without pausing feature delivery for homeowners and service providers.",
     achievements: [
       "Legacy-to-modern migration completed solo",
       "Mobile + backend features shipped in parallel",
@@ -306,9 +297,9 @@ export const PROJECT_CONTENT_EN: Record<number, ProjectContent> = {
     ],
     duties: [
       "Legacy codebase migration to modern stack",
-      "Mobile application development",
-      "Minor backend updates",
-      "CircleCI builds automation",
+      "Mobile feature delivery",
+      "Backend updates",
+      "CircleCI automation",
     ],
   },
   11: {
@@ -323,7 +314,7 @@ export const PROJECT_CONTENT_EN: Record<number, ProjectContent> = {
     teamLabel: "5",
     teamDetail: "3 devs · 1 QA · 1 PM",
     scale: "Team",
-    description: "Event website and mobile app proof of concept for a sporting event. Led a team of 5 through a tight one-month delivery, building web, mobile, and backend from scratch.",
+    description: "One-month 0→1 build of a sporting-event web + mobile proof of concept. Led a team of 5; web, mobile, and backend all from scratch, shipped in time for the event.",
     problem: "Sporting event needed a web + mobile proof of concept delivered from scratch in one month.",
     achievements: [
       "Led a team of 5 through one-month delivery",
@@ -348,7 +339,7 @@ export const PROJECT_CONTENT_EN: Record<number, ProjectContent> = {
     teamLabel: "15–30",
     teamDetail: "Large cross-functional team",
     scale: "Team",
-    description: "SurveyMonkey-like platform with dynamic questionnaire creation. Supports many field types and cross-field linking for conditional logic.",
+    description: "Enterprise SurveyMonkey-alternative with a dynamic questionnaire builder — many field types and cross-field conditional logic.",
     problem: "Enterprise needed a SurveyMonkey-like platform supporting many field types with cross-field conditional logic.",
     achievements: [
       "Dynamic questionnaire builder with conditional logic",
@@ -396,7 +387,7 @@ export const PROJECT_CONTENT_EN: Record<number, ProjectContent> = {
     teamLabel: "15",
     teamDetail: "8 devs · 4 QA · 1 PM · 1 BA · 1 tech writer",
     scale: "Team",
-    description: "Complex web application for the US healthcare system, related to the Affordable Care Act program. Built as part of a large cross-functional team.",
+    description: "Large-scale web app for the US Affordable Care Act healthcare program, delivered inside a cross-functional team.",
     problem: "Large-scale ACA healthcare system required frontend development within a complex, cross-functional team.",
     achievements: [
       "SPA features delivered on ACA-scale project",

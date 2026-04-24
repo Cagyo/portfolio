@@ -71,7 +71,7 @@ beforeEach(() => {
   mockHeaders.mockResolvedValue(makeHeaders({ 'x-forwarded-for': '1.1.1.1' }))
   mockVerifyTurnstile.mockResolvedValue({ ok: true })
   mockCheckRateLimit.mockReturnValue({ ok: true })
-  mockSendContactEmail.mockResolvedValue(undefined)
+  mockSendContactEmail.mockResolvedValue({ id: 'msg_test_123' })
 })
 
 describe('sendContactMessage', () => {
@@ -265,5 +265,19 @@ describe('sendContactMessage', () => {
     // in mapZodError that no existing test reaches.
     const result = await sendContactMessage(null, makeTextFormData({ turnstileToken: '' }))
     expect(result).toEqual({ success: false, error: 'turnstile' })
+  })
+
+  // 22. text happy path → success log includes messageId from Resend
+  it('case 22: success log includes messageId returned by sendContactEmail', async () => {
+    const infoSpy = vi.spyOn(console, 'info').mockImplementation(() => {})
+    mockSendContactEmail.mockResolvedValue({ id: 'msg_xyz_789' })
+    await sendContactMessage(null, makeTextFormData())
+    expect(infoSpy).toHaveBeenCalledWith({
+      tag: 'contact-action',
+      kind: 'send-success',
+      messageId: 'msg_xyz_789',
+      mode: 'text',
+    })
+    infoSpy.mockRestore()
   })
 })

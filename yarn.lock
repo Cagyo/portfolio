@@ -5457,6 +5457,7 @@ __metadata:
     react-dom: "npm:19.2.4"
     react-hook-form: "npm:^7.72.1"
     resend: "npm:^6.10.0"
+    standardwebhooks: "npm:^1.0.0"
     tailwindcss: "npm:^4"
     typescript: "npm:^5"
     vitest: "npm:^4.1.4"
@@ -6150,7 +6151,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"standardwebhooks@npm:1.0.0":
+"standardwebhooks@npm:1.0.0, standardwebhooks@npm:^1.0.0":
   version: 1.0.0
   resolution: "standardwebhooks@npm:1.0.0"
   dependencies:

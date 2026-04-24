@@ -17,6 +17,10 @@ type SendParams = {
   attachments?: Attachment[]
 }
 
+export type SendContactEmailResult = {
+  id: string
+}
+
 let client: Resend | null = null
 
 function getClient(): Resend {
@@ -28,7 +32,7 @@ function getClient(): Resend {
   return client
 }
 
-export async function sendContactEmail(params: SendParams) {
+export async function sendContactEmail(params: SendParams): Promise<SendContactEmailResult> {
   const resend = getClient()
   const { data, error } = await resend.emails.send({
     from: params.from,
@@ -39,5 +43,6 @@ export async function sendContactEmail(params: SendParams) {
     attachments: params.attachments,
   })
   if (error) throw error
-  return data
+  if (!data?.id) throw new Error('Resend returned no message id')
+  return { id: data.id }
 }

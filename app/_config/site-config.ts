@@ -22,7 +22,7 @@ const sections: SectionEntry[] = [
   { id: 'engagement',      enabled: true, numbered: true, navKey: 'services' },
   { id: 'fit',             enabled: true, numbered: true, navKey: 'fit' },
   { id: 'contact',         enabled: true, numbered: true, navKey: 'contact' },
-  { id: 'mentorship-teaser', enabled: true },
+  { id: 'mentorship-teaser', enabled: false },
 ]
 
 export const siteConfig = {
@@ -41,7 +41,7 @@ export const siteConfig = {
   },
   author: {
     name: 'Oleksii Berliziev',
-    email: '',
+    email: 'oleksii.berliziev@gmail.com',
   },
   ui: {
     experienceInitialVisible: 2,

@@ -6,9 +6,8 @@ import type { ActionResult, ContactErrorKey, ContactEmailData } from './contact-
 import { checkRateLimit } from './rate-limit'
 import { verifyTurnstile } from './turnstile-verify'
 import { sendContactEmail } from './email-client'
+import { MAX_TOTAL_BYTES } from './email-constants'
 import { ContactEmail } from './ContactEmail'
-
-const MAX_TOTAL_BYTES = 20 * 1024 * 1024
 
 function mapZodError(issues: { path: PropertyKey[]; message: string; code: string }[]): ContactErrorKey {
   const issue = issues[0]
@@ -135,13 +134,19 @@ export async function sendContactMessage(
 
   // 11. Send
   try {
-    await sendContactEmail({
+    const sendResult = await sendContactEmail({
       to,
       from,
       replyTo: emailData.email,
       subject: emailSubject,
       react: ContactEmail({ data: emailData }),
       attachments: attachments.length > 0 ? attachments : undefined,
+    })
+    console.info({
+      tag: 'contact-action',
+      kind: 'send-success',
+      messageId: sendResult.id,
+      mode: emailData.mode,
     })
   } catch (error) {
     const errorName = error instanceof Error ? error.name : 'UnknownError'
