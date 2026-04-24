@@ -397,6 +397,23 @@
     "title": "Oleksii Berliziev — Product Designer & Creative Developer",
     "description": "Portfolio of Oleksii Berliziev — designing and building digital products that move people."
   },
+  "og": {
+    "home": {
+      "eyebrow": "PORTFOLIO",
+      "title": "Your prototype deserves a real foundation",
+      "description": "Full-Stack Engineer & Fractional CTO — 10+ years shipping end-to-end: mobile, web, backend, infrastructure."
+    },
+    "projects": {
+      "eyebrow": "PROJECTS",
+      "title": "Shipped products, not case studies",
+      "description": "Live products built from scratch or rescued — mobile, web, backend, at agency scale and solo."
+    },
+    "mentorship": {
+      "eyebrow": "MENTORSHIP",
+      "title": "Build real. Ship fast. Get hired.",
+      "description": "Production-grade full-stack mentorship. Leave with a deployable product and a GitHub repo recruiters can read."
+    }
+  },
   "mentorshipPage": {
     "metadata": { "title": "Mentorship & Courses" },
     "nav": {

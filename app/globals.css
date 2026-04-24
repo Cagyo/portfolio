@@ -1,6 +1,14 @@
 @import "tailwindcss";
 @import "yet-another-react-lightbox/styles.css";
 
+/*
+ * Brand color tokens defined in :root below (--amber*, --bg*, --text-*, --card-shadow)
+ * are mirrored in app/_og/tokens.ts for build-time OG image rendering (Satori cannot
+ * read CSS variables). When changing those values, update both files — the unit test
+ * in app/_og/og-template.test.ts asserts specific values and will fail on drift.
+ * ↔ app/_og/tokens.ts
+ */
+
 /* ── Tailwind v4 custom tokens ───────────────────────────── */
 @theme {
   --font-heading: 'Archivo', sans-serif;

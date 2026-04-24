@@ -2,6 +2,7 @@ import { getLocale, getMessages } from "next-intl/server";
 import { NextIntlClientProvider } from "next-intl";
 import { Archivo, Space_Grotesk } from "next/font/google";
 import { cookies } from "next/headers";
+import { siteConfig } from "@/app/_config/site-config";
 import "./globals.css";
 
 const archivo = Archivo({
@@ -19,10 +20,23 @@ const spaceGrotesk = Space_Grotesk({
 export async function generateMetadata() {
   const t = await (await import("next-intl/server")).getTranslations("metadata");
   return {
+    metadataBase: new URL(siteConfig.url),
     title: t("title"),
     description: t("description"),
+    openGraph: {
+      type: "website",
+      siteName: siteConfig.author.name,
+      locale: "en_US",
+    },
+    twitter: {
+      card: "summary_large_image",
+    },
   };
 }
+
+export const viewport = {
+  themeColor: "#F59E0B",
+};
 
 export default async function RootLayout({
   children,
