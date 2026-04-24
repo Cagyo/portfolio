@@ -2,6 +2,7 @@ import { FILTER_GROUPS } from "@/app/_data/projects-filters"
 import type { StackFilterName } from "@/app/_data/skills-data"
 import { PROJECT_BASES } from "./base"
 import { PROJECT_CONTENT_EN } from "./content.en"
+import { getStackName, type ProjectBase } from "./types"
 
 const stackFilterGroup = FILTER_GROUPS.find((filterGroup) => filterGroup.key === "stackFilters")
 
@@ -30,30 +31,49 @@ export function getProjectCountByStack(skill: string): number {
   return PROJECT_COUNT_BY_STACK[skill] ?? 0
 }
 
-export type OutcomeBucketKey = "full-stack" | "mobile"
-export type OutcomeBucketDevType = "Full Stack" | "Mobile"
+export type OutcomeBucketKey = "full-stack" | "mobile" | "payments"
 
 export type OutcomeBucket = {
   key: OutcomeBucketKey
-  devType: OutcomeBucketDevType
+  href: string
   topStacks: StackFilterName[]
   count: number
   projectIds: number[]
 }
 
-const OUTCOME_BUCKET_DEFS: { key: OutcomeBucketKey; devType: OutcomeBucketDevType }[] = [
-  { key: "full-stack", devType: "Full Stack" },
-  { key: "mobile", devType: "Mobile" },
+type BucketDef = {
+  key: OutcomeBucketKey
+  href: string
+  matches: (project: ProjectBase) => boolean
+}
+
+const PAYMENT_STACK_NAMES = new Set<string>(["Stripe", "Saferpay"])
+
+const OUTCOME_BUCKET_DEFS: BucketDef[] = [
+  {
+    key: "full-stack",
+    href: "/projects?devTypes=Full+Stack",
+    matches: (project) => PROJECT_CONTENT_EN[project.id]?.devTypes.includes("Full Stack") ?? false,
+  },
+  {
+    key: "mobile",
+    href: "/projects?devTypes=Mobile",
+    matches: (project) => PROJECT_CONTENT_EN[project.id]?.devTypes.includes("Mobile") ?? false,
+  },
+  {
+    key: "payments",
+    href: "/projects?stackFilters=Stripe",
+    matches: (project) => project.stack.some((entry) => PAYMENT_STACK_NAMES.has(getStackName(entry))),
+  },
 ]
 
 export function getOutcomeBuckets(): OutcomeBucket[] {
-  return OUTCOME_BUCKET_DEFS.map(({ key, devType }) => {
+  return OUTCOME_BUCKET_DEFS.map(({ key, href, matches }) => {
     const projectIds: number[] = []
     const stackCounts = new Map<StackFilterName, number>()
 
     for (const project of PROJECT_BASES) {
-      const content = PROJECT_CONTENT_EN[project.id]
-      if (!content || !content.devTypes.includes(devType)) continue
+      if (!matches(project)) continue
 
       projectIds.push(project.id)
       for (const stack of project.stackFilters) {
@@ -69,6 +89,6 @@ export function getOutcomeBuckets(): OutcomeBucket[] {
       .slice(0, 4)
       .map(([stack]) => stack)
 
-    return { key, devType, topStacks, count: projectIds.length, projectIds }
+    return { key, href, topStacks, count: projectIds.length, projectIds }
   })
 }

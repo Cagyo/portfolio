@@ -38,6 +38,7 @@ export function PhotoCard({ availableLabel, testimonial }: PhotoCardProps) {
 
         {/* Tags */}
         <div className="px-6 py-4 flex flex-wrap gap-1.5">
+          <Tag variant="amber">AI</Tag>
           {TOP_SKILL_NAMES.map((tag) => (
             <Tag key={tag}>{tag}</Tag>
           ))}

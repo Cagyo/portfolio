@@ -15,6 +15,7 @@ import { getProjectCountByStack } from "@/app/_data/projects/get-stack-stats";
 import styles from "./SkillsSection.module.css";
 
 const INITIAL_REST = 10;
+const AI_CATEGORY_ID = 9;
 
 type SkillsSectionProps = { sectionNumber?: string }
 
@@ -23,6 +24,7 @@ export function SkillsSection({ sectionNumber }: SkillsSectionProps) {
   const [search, setSearch] = useState("");
   const [activeCat, setActiveCat] = useState(0);
   const [expanded, setExpanded] = useState(false);
+  const [showBuried, setShowBuried] = useState(false);
 
   const filtered = useMemo(() => {
     const query = search.toLowerCase();
@@ -33,13 +35,21 @@ export function SkillsSection({ sectionNumber }: SkillsSectionProps) {
     });
   }, [search, activeCat]);
 
-  const topSkills = filtered.filter((skill) => "top" in skill && skill.top);
-  const restSkills = filtered.filter((skill) => !("top" in skill) || !skill.top);
-
   const isFiltering = activeCat !== 0 || search.length > 0;
+
+  const topSkills = filtered.filter((skill) => "top" in skill && skill.top);
+  const aiSkills = filtered.filter((skill) => skill.cat === AI_CATEGORY_ID && !("top" in skill && skill.top));
+  const nonTopNonAi = filtered.filter(
+    (skill) => !("top" in skill && skill.top) && skill.cat !== AI_CATEGORY_ID,
+  );
+  const restSkills = nonTopNonAi.filter((skill) => !("buried" in skill && skill.buried));
+  const buriedSkills = nonTopNonAi.filter((skill) => "buried" in skill && skill.buried);
+
   const visibleRest = isFiltering || expanded ? restSkills : restSkills.slice(0, INITIAL_REST);
-  const hiddenCount = restSkills.length - INITIAL_REST;
-  const showToggle = !isFiltering && hiddenCount > 0;
+  const hiddenRestCount = restSkills.length - INITIAL_REST;
+  const showRestToggle = !isFiltering && hiddenRestCount > 0;
+  const showBuriedToggle = !isFiltering && expanded && buriedSkills.length > 0;
+  const visibleBuried = isFiltering ? buriedSkills : showBuried ? buriedSkills : [];
 
   const counts = useMemo(() => {
     const categoryCounts: Record<number, number> = { [0]: SKILLS.length };
@@ -48,6 +58,9 @@ export function SkillsSection({ sectionNumber }: SkillsSectionProps) {
     });
     return categoryCounts;
   }, []);
+
+  const categoryLabelFor = (catId: number) =>
+    CATEGORIES.find((category) => category.id === catId)?.label ?? "";
 
   return (
     <section id="skills" className="py-16 relative overflow-hidden">
@@ -92,7 +105,27 @@ export function SkillsSection({ sectionNumber }: SkillsSectionProps) {
                       <SkillChip
                         key={skill.name}
                         name={skill.name}
-                        category={CATEGORIES.find((category) => category.id === skill.cat)?.label ?? ""}
+                        category={categoryLabelFor(skill.cat)}
+                        variant="top"
+                        projectCount={getProjectCountByStack(skill.name)}
+                      />
+                    ))}
+                  </div>
+                </>
+              )}
+
+              {aiSkills.length > 0 && (
+                <>
+                  <div className="flex items-center gap-3 mb-4">
+                    <span className="text-white/35 text-xs uppercase tracking-widest font-medium">{t("aiToolingLabel")}</span>
+                    <div className="flex-1 h-px bg-white/5" />
+                  </div>
+                  <div className="flex flex-wrap gap-3 mb-8">
+                    {aiSkills.map((skill) => (
+                      <SkillChip
+                        key={skill.name}
+                        name={skill.name}
+                        category={categoryLabelFor(skill.cat)}
                         variant="top"
                         projectCount={getProjectCountByStack(skill.name)}
                       />
@@ -109,10 +142,10 @@ export function SkillsSection({ sectionNumber }: SkillsSectionProps) {
                   </div>
                   <div className="flex flex-wrap gap-2 pb-2">
                     {visibleRest.map((skill) => (
-                      <SkillChip key={skill.name} name={skill.name} category={CATEGORIES.find((category) => category.id === skill.cat)?.label ?? ""} variant="rest" />
+                      <SkillChip key={skill.name} name={skill.name} category={categoryLabelFor(skill.cat)} variant="rest" />
                     ))}
                   </div>
-                  {showToggle && (
+                  {showRestToggle && (
                     <div className="mt-5">
                       <button
                         onClick={() => setExpanded((prev) => !prev)}
@@ -121,11 +154,33 @@ export function SkillsSection({ sectionNumber }: SkillsSectionProps) {
                       >
                         <ChevronDownIcon className={`${styles.toggleChevron} w-3.5 h-3.5`} />
                         <span>{expanded ? t("showLess") : t("showMore")}</span>
-                        <span className={styles.toggleCount}>+{hiddenCount}</span>
+                        <span className={styles.toggleCount}>+{hiddenRestCount}</span>
                       </button>
                     </div>
                   )}
                 </>
+              )}
+
+              {visibleBuried.length > 0 && (
+                <div className="flex flex-wrap gap-2 pb-2 mt-4">
+                  {visibleBuried.map((skill) => (
+                    <SkillChip key={skill.name} name={skill.name} category={categoryLabelFor(skill.cat)} variant="rest" />
+                  ))}
+                </div>
+              )}
+
+              {showBuriedToggle && (
+                <div className="mt-5">
+                  <button
+                    onClick={() => setShowBuried((prev) => !prev)}
+                    className={`${styles.skillsToggleBtn} ${showBuried ? styles.expanded : ""}`}
+                    aria-expanded={showBuried}
+                  >
+                    <ChevronDownIcon className={`${styles.toggleChevron} w-3.5 h-3.5`} />
+                    <span>{showBuried ? t("showFewer") : t("showAll")}</span>
+                    <span className={styles.toggleCount}>+{buriedSkills.length}</span>
+                  </button>
+                </div>
               )}
             </>
           )}

@@ -6,9 +6,10 @@ import { Tag } from "@/app/_components/tag/Tag"
 import { getOutcomeBuckets, type OutcomeBucketKey } from "@/app/_data/projects/get-stack-stats"
 import styles from "./ShippableStacks.module.css"
 
-const CARD_TITLE_KEYS: Record<OutcomeBucketKey, "fullStackCardTitle" | "mobileCardTitle"> = {
+const CARD_TITLE_KEYS: Record<OutcomeBucketKey, "fullStackCardTitle" | "mobileCardTitle" | "paymentsCardTitle"> = {
   "full-stack": "fullStackCardTitle",
   mobile: "mobileCardTitle",
+  payments: "paymentsCardTitle",
 }
 
 export function ShippableStacks() {
@@ -26,11 +27,10 @@ export function ShippableStacks() {
 
       <div className={styles.grid}>
         {buckets.map((bucket) => {
-          const href = `/projects?devTypes=${encodeURIComponent(bucket.devType)}`
           const title = t(CARD_TITLE_KEYS[bucket.key])
 
           return (
-            <Link key={bucket.key} href={href} className={`glass rounded-2xl p-5 ${styles.card}`}>
+            <Link key={bucket.key} href={bucket.href} className={`glass rounded-2xl p-5 ${styles.card}`}>
               <h4 className={styles.cardTitle}>{title}</h4>
               <div className={styles.tagRow}>
                 {bucket.topStacks.map((stack) => (

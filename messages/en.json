@@ -22,7 +22,7 @@
     "lastName": "Berliziev",
     "tagline": "",
     "typewriterRoles": ["Full-Stack Engineer", "Fractional CTO", "Tech Lead", "Problem Solver"],
-    "description": "Your idea deserves more than a prototype. Your prototype deserves a real foundation",
+    "description": "Your idea deserves more than a prototype. Your prototype deserves a real foundation.",
     "ctaWork": "View Work",
     "ctaContact": "Get in Touch",
     "photoAlt": "Photo",
@@ -125,14 +125,18 @@
     "filterAriaLabel": "Filter by category",
     "counter": "Showing {filtered} of {total} skills",
     "coreExpertise": "Core expertise",
+    "aiToolingLabel": "AI tooling",
     "additionalSkills": "Additional skills",
     "showMore": "Show more",
     "showLess": "Show less",
+    "showAll": "Show all",
+    "showFewer": "Show fewer",
     "shipsAria": "{count} projects shipped",
     "shippableStacksTitle": "Stacks I ship",
     "shippableStacksSubtitle": "What I ship end-to-end.",
     "fullStackCardTitle": "Full product (backend + app)",
     "mobileCardTitle": "Mobile delivery",
+    "paymentsCardTitle": "Payments integration",
     "projectsShipped": "{count, plural, one {# project shipped} other {# projects shipped}}",
     "viewProjectsCta": "See projects",
     "noResults": "No results for \"{query}\"",
@@ -146,7 +150,8 @@
       "devops": "DevOps",
       "cloud": "Cloud",
       "tools": "Tools",
-      "mobile": "Mobile"
+      "mobile": "Mobile",
+      "ai": "AI"
     }
   },
   "projects": {

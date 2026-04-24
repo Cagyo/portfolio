@@ -13,7 +13,7 @@ export const PROJECT_BASES: ProjectBase[] = [
     featured: true,
     imageBg: "bg-gradient-to-br from-red-900/40 via-red-800/20 to-transparent",
     stack: ["TypeScript", "React Native", "Next.js", "NestJS", "Apollo Client", "Apollo Server", "PostgreSQL", "Prisma", "Redis", { name: "Bull", extra: true }, "Saferpay", "OneSignal", "MJML", "Docker", "DigitalOcean"],
-    stackFilters: ["React Native", "Next.js", "NestJS", "GraphQL"],
+    stackFilters: ["React Native", "Next.js", "NestJS", "GraphQL", "Saferpay"],
   },
   {
     id: 2,
@@ -26,7 +26,7 @@ export const PROJECT_BASES: ProjectBase[] = [
     },
     imageBg: "bg-gradient-to-br from-green-900/30 to-transparent",
     stack: ["TypeScript", "Next.js", "React Native", "Apollo Client", "Apollo Server", "MariaDB", "Sequelize", "Stripe"],
-    stackFilters: ["Next.js", "React Native", "GraphQL"],
+    stackFilters: ["Next.js", "React Native", "GraphQL", "Stripe"],
   },
   {
     id: 3,
@@ -110,7 +110,7 @@ export const PROJECT_BASES: ProjectBase[] = [
     year: "2017–2022",
     link: { type: "private" },
     stack: ["TypeScript", "React Native", "Redux", "Redux-Saga", "GraphQL", "Stripe", "PostgreSQL", "CircleCI"],
-    stackFilters: ["React Native", "GraphQL"],
+    stackFilters: ["React Native", "GraphQL", "Stripe"],
   },
   {
     id: 11,
