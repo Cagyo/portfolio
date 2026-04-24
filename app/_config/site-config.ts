@@ -26,6 +26,7 @@ const sections: SectionEntry[] = [
 ]
 
 export const siteConfig = {
+  url: 'https://berliziev.dev',
   social: {
     github:   { url: 'https://github.com/cagyo', handle: 'cagyo' },
     linkedin: { url: 'https://www.linkedin.com/in/oleksii-berliziev/', handle: 'oleksii-berliziev' },
