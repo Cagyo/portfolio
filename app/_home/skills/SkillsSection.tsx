@@ -24,7 +24,6 @@ export function SkillsSection({ sectionNumber }: SkillsSectionProps) {
   const [search, setSearch] = useState("");
   const [activeCat, setActiveCat] = useState(0);
   const [expanded, setExpanded] = useState(false);
-  const [showBuried, setShowBuried] = useState(false);
 
   const filtered = useMemo(() => {
     const query = search.toLowerCase();
@@ -46,10 +45,10 @@ export function SkillsSection({ sectionNumber }: SkillsSectionProps) {
   const buriedSkills = nonTopNonAi.filter((skill) => "buried" in skill && skill.buried);
 
   const visibleRest = isFiltering || expanded ? restSkills : restSkills.slice(0, INITIAL_REST);
-  const hiddenRestCount = restSkills.length - INITIAL_REST;
-  const showRestToggle = !isFiltering && hiddenRestCount > 0;
-  const showBuriedToggle = !isFiltering && expanded && buriedSkills.length > 0;
-  const visibleBuried = isFiltering ? buriedSkills : showBuried ? buriedSkills : [];
+  const visibleBuried = isFiltering || expanded ? buriedSkills : [];
+  const hiddenCount = Math.max(0, restSkills.length - INITIAL_REST) + buriedSkills.length;
+  const showToggle = !isFiltering && hiddenCount > 0;
+  const showBuriedHeader = expanded && !isFiltering && buriedSkills.length > 0;
 
   const counts = useMemo(() => {
     const categoryCounts: Record<number, number> = { [0]: SKILLS.length };
@@ -134,53 +133,50 @@ export function SkillsSection({ sectionNumber }: SkillsSectionProps) {
                 </>
               )}
 
-              {restSkills.length > 0 && (
+              {(restSkills.length > 0 || buriedSkills.length > 0) && (
                 <>
                   <div className="flex items-center gap-3 mb-4">
                     <span className="text-white/25 text-xs uppercase tracking-widest">{t("additionalSkills")}</span>
                     <div className="flex-1 h-px bg-white/5" />
                   </div>
-                  <div className="flex flex-wrap gap-2 pb-2">
+                  <div id="skills-additional" className="flex flex-wrap gap-2 pb-2">
                     {visibleRest.map((skill) => (
                       <SkillChip key={skill.name} name={skill.name} category={categoryLabelFor(skill.cat)} variant="rest" />
                     ))}
+                    {isFiltering && visibleBuried.map((skill) => (
+                      <SkillChip key={`buried-${skill.name}`} name={skill.name} category={categoryLabelFor(skill.cat)} variant="rest" />
+                    ))}
                   </div>
-                  {showRestToggle && (
+
+                  {showBuriedHeader && (
+                    <>
+                      <div className="flex items-center gap-3 mb-4 mt-6">
+                        <span className="text-white/25 text-xs uppercase tracking-widest">{t("moreToolsLabel")}</span>
+                        <div className="flex-1 h-px bg-white/5" />
+                      </div>
+                      <div id="skills-more-tools" className="flex flex-wrap gap-2 pb-2">
+                        {visibleBuried.map((skill) => (
+                          <SkillChip key={skill.name} name={skill.name} category={categoryLabelFor(skill.cat)} variant="rest" />
+                        ))}
+                      </div>
+                    </>
+                  )}
+
+                  {showToggle && (
                     <div className="mt-5">
                       <button
                         onClick={() => setExpanded((prev) => !prev)}
                         className={`${styles.skillsToggleBtn} ${expanded ? styles.expanded : ""}`}
                         aria-expanded={expanded}
+                        aria-controls={showBuriedHeader ? "skills-additional skills-more-tools" : "skills-additional"}
                       >
                         <ChevronDownIcon className={`${styles.toggleChevron} w-3.5 h-3.5`} />
                         <span>{expanded ? t("showLess") : t("showMore")}</span>
-                        <span className={styles.toggleCount}>+{hiddenRestCount}</span>
+                        <span className={styles.toggleCount}>+{hiddenCount}</span>
                       </button>
                     </div>
                   )}
                 </>
-              )}
-
-              {visibleBuried.length > 0 && (
-                <div className="flex flex-wrap gap-2 pb-2 mt-4">
-                  {visibleBuried.map((skill) => (
-                    <SkillChip key={skill.name} name={skill.name} category={categoryLabelFor(skill.cat)} variant="rest" />
-                  ))}
-                </div>
-              )}
-
-              {showBuriedToggle && (
-                <div className="mt-5">
-                  <button
-                    onClick={() => setShowBuried((prev) => !prev)}
-                    className={`${styles.skillsToggleBtn} ${showBuried ? styles.expanded : ""}`}
-                    aria-expanded={showBuried}
-                  >
-                    <ChevronDownIcon className={`${styles.toggleChevron} w-3.5 h-3.5`} />
-                    <span>{showBuried ? t("showFewer") : t("showAll")}</span>
-                    <span className={styles.toggleCount}>+{buriedSkills.length}</span>
-                  </button>
-                </div>
               )}
             </>
           )}
