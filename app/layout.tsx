@@ -3,6 +3,9 @@ import { NextIntlClientProvider } from "next-intl";
 import { Archivo, Space_Grotesk } from "next/font/google";
 import { cookies } from "next/headers";
 import { siteConfig } from "@/app/_config/site-config";
+import { JsonLd } from "@/app/_schema/JsonLd";
+import { buildPersonSchema } from "@/app/_schema/person";
+import { buildWebSiteSchema } from "@/app/_schema/website";
 import "./globals.css";
 
 const archivo = Archivo({
@@ -47,6 +50,9 @@ export default async function RootLayout({
   const messages = await getMessages();
   const cookieStore = await cookies();
   const theme = cookieStore.get("theme")?.value;
+  const t = await (await import("next-intl/server")).getTranslations("metadata");
+  const personSchema = buildPersonSchema(t);
+  const websiteSchema = buildWebSiteSchema(t);
 
   return (
     <html
@@ -56,6 +62,8 @@ export default async function RootLayout({
     >
       <head />
       <body className="min-h-full flex flex-col" suppressHydrationWarning>
+        <JsonLd data={personSchema} />
+        <JsonLd data={websiteSchema} />
         <NextIntlClientProvider messages={messages}>
           {children}
         </NextIntlClientProvider>
