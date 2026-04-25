@@ -101,6 +101,7 @@
   align-items: center;
   justify-content: center;
   gap: 7px;
+  min-height: 2.5rem;
   padding: 7px 16px;
   border-radius: 10px;
   font-size: 0.8rem;
@@ -125,6 +126,7 @@
   align-items: center;
   justify-content: center;
   gap: 9px;
+  min-height: 2.5rem;
   padding: 7px 14px;
   border-radius: 10px;
   background: color-mix(in srgb, white 4%, transparent);
@@ -165,7 +167,9 @@
 .linkPrivate {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 7px;
+  min-height: 2.5rem;
   padding: 7px 14px;
   border-radius: 10px;
   background: color-mix(in srgb, white 2%, transparent);
