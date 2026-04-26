@@ -10,6 +10,7 @@
 - Error boundaries / `error.tsx` / Server Function error contracts → [docs/error-handling.md](docs/error-handling.md)
 - Forms (react-hook-form + zod) → [docs/forms.md](docs/forms.md)
 - `@utility` blocks, CSS module internals, `color-mix` usage → [docs/styling-details.md](docs/styling-details.md)
+- SEO: metadata, sitemap/robots, OG images, JSON-LD → [docs/seo.md](docs/seo.md)
 
 ## Stack
 
@@ -296,6 +297,18 @@ Never use a magic number as initial `useState` value to approximate a pre-measur
 - Visual-only data (gradients, SVG paths, `imageBg`) stays in component data arrays, not in messages
 
 Namespaces, file structure, ICU interpolation: [docs/i18n.md](docs/i18n.md).
+
+---
+
+## SEO — summary
+
+- Stack: `generateMetadata` + `next-intl`, `MetadataRoute.{Sitemap,Robots}`, `next/og` `ImageResponse`, JSON-LD via plain `<script>` tags
+- All external URLs source from `app/_config/site-config.ts` via `absoluteUrl()` (`app/_schema/absolute-url.ts`) — never concatenate `siteConfig.url + path`
+- Root layout emits `Person` + `WebSite` JSON-LD **once**; per-route pages emit `BreadcrumbList` + their page-specific schema (reference root nodes via `@id`)
+- OG images: one template at `app/_og/og-template.tsx`; each route has `opengraph-image.tsx` (calls `renderOg()`) and `twitter-image.tsx` (re-exports the OG file)
+- i18n namespaces: `metadata` for site-wide tags, `og.<route>` for OG card text, `<route>Page` for per-page titles
+
+Full patterns + new-route checklist: [docs/seo.md](docs/seo.md).
 
 ---
 
