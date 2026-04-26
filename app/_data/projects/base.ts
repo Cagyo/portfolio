@@ -3,6 +3,7 @@ import type { ProjectBase } from "./types"
 export const PROJECT_BASES: ProjectBase[] = [
   {
     id: 1,
+    slug: "omega-european-masters",
     year: "2022–2026",
     link: {
       type: "web+mobile",
@@ -17,6 +18,7 @@ export const PROJECT_BASES: ProjectBase[] = [
   },
   {
     id: 2,
+    slug: "all-square-golf-social-network",
     year: "2022–2026",
     link: {
       type: "web+mobile",
@@ -30,6 +32,7 @@ export const PROJECT_BASES: ProjectBase[] = [
   },
   {
     id: 3,
+    slug: "golf-club-crans-sur-sierre",
     year: "2022–2026",
     link: {
       type: "mobile",
@@ -42,6 +45,7 @@ export const PROJECT_BASES: ProjectBase[] = [
   },
   {
     id: 4,
+    slug: "on-demand-car-wash",
     year: "2017–2022",
     link: { type: "private" },
     imageBg: "bg-gradient-to-br from-sky-900/30 to-transparent",
@@ -59,6 +63,7 @@ export const PROJECT_BASES: ProjectBase[] = [
   },
   {
     id: 5,
+    slug: "yamback",
     year: "2017–2022",
     link: {
       type: "mobile",
@@ -70,6 +75,7 @@ export const PROJECT_BASES: ProjectBase[] = [
   },
   {
     id: 6,
+    slug: "b-sharpe-currency-exchange",
     year: "2017–2022",
     link: {
       type: "mobile",
@@ -82,6 +88,7 @@ export const PROJECT_BASES: ProjectBase[] = [
   },
   {
     id: 7,
+    slug: "wesyncup",
     year: "2017–2022",
     link: {
       type: "mobile",
@@ -93,6 +100,7 @@ export const PROJECT_BASES: ProjectBase[] = [
   },
   {
     id: 8,
+    slug: "e-learning-mobile-platform",
     year: "2017–2022",
     link: { type: "private" },
     stack: ["TypeScript", "React Native", "Redux", "Redux-Saga", "REST APIs", "Fastlane"],
@@ -100,6 +108,7 @@ export const PROJECT_BASES: ProjectBase[] = [
   },
   {
     id: 9,
+    slug: "home-security-platform",
     year: "2016–present",
     link: { type: "private" },
     stack: ["TypeScript", "NestJS", "React Native", "Apollo Client", "Apollo Server", { name: "GPIO", extra: true }, { name: "Telegram API", extra: true }],
@@ -107,6 +116,7 @@ export const PROJECT_BASES: ProjectBase[] = [
   },
   {
     id: 10,
+    slug: "home-services-platform",
     year: "2017–2022",
     link: { type: "private" },
     stack: ["TypeScript", "React Native", "Redux", "Redux-Saga", "GraphQL", "Stripe", "PostgreSQL", "CircleCI"],
@@ -114,6 +124,7 @@ export const PROJECT_BASES: ProjectBase[] = [
   },
   {
     id: 11,
+    slug: "sporting-event-platform",
     year: "2017–2022",
     link: { type: "private" },
     stack: ["TypeScript", "React", "React Native", "Redux", "Redux-Saga", "Mongoose", "Apollo Client", "Apollo Server"],
@@ -121,6 +132,7 @@ export const PROJECT_BASES: ProjectBase[] = [
   },
   {
     id: 12,
+    slug: "survey-platform",
     year: "2015–2017",
     link: { type: "private" },
     stack: ["TypeScript", "React", "REST APIs", "Jest"],
@@ -128,6 +140,7 @@ export const PROJECT_BASES: ProjectBase[] = [
   },
   {
     id: 13,
+    slug: "search-bar-extension",
     year: "2015–2017",
     link: { type: "private" },
     stack: [{ name: "Angular", extra: true }, "JavaScript", "Node.js", "REST APIs"],
@@ -135,6 +148,7 @@ export const PROJECT_BASES: ProjectBase[] = [
   },
   {
     id: 14,
+    slug: "healthcare-system",
     year: "2015–2017",
     link: { type: "private" },
     stack: [{ name: "Marionette", extra: true }, { name: "Backbone", extra: true }, "JavaScript", "REST APIs"],
