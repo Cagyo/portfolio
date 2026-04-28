@@ -242,13 +242,6 @@ body {
   transition: background-color 0.35s ease, color 0.35s ease;
 }
 
-.cursor::after {
-  content: '|';
-  color: var(--amber);
-  animation: blink 1s step-end infinite;
-}
-@keyframes blink { 0%,100% { opacity: 1; } 50% { opacity: 0; } }
-
 ::-webkit-scrollbar { width: 4px; }
 ::-webkit-scrollbar-track { background: var(--scrollbar-track); }
 ::-webkit-scrollbar-thumb { background: var(--amber-dark); border-radius: 4px; }

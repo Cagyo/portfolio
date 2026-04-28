@@ -8,7 +8,6 @@ import { Button } from "@/app/_components/button/Button";
 import { ScrollIndicator } from "@/app/_components/ScrollIndicator";
 import { StatRow } from "@/app/_components/StatRow";
 import { PhotoCard } from "./PhotoCard";
-import { Typewriter } from "./Typewriter";
 import { TestimonialSnippet, type SnippetTestimonial } from "@/app/_home/recommendations/TestimonialSnippet";
 
 export async function HeroSection() {
@@ -17,7 +16,6 @@ export async function HeroSection() {
     getTranslations("recommendations"),
   ]);
   const stats = t.raw("stats") as { value: string; label: string }[];
-  const typewriterRoles = t.raw("typewriterRoles") as string[];
   const recItems = tRecs.raw("items") as SnippetTestimonial[];
   const firstRec = recItems[0];
 
@@ -57,7 +55,10 @@ export async function HeroSection() {
                 <span className="text-gradient">{t("lastName")}</span>
               </h1>
               <p className="text-xl sm:text-2xl text-white/60 font-light">
-                {t("tagline") && <>{t("tagline")} </>}<Typewriter roles={typewriterRoles} />
+                {t.rich("tagline", {
+                  role: (chunks) => <span className="text-white/80">{chunks}</span>,
+                  emphasis: (chunks) => <span className="text-amber-400 font-medium">{chunks}</span>,
+                })}
               </p>
             </div>
             {/* Medium mobile photo */}

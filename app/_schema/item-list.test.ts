@@ -5,6 +5,7 @@ import { buildProjectsItemListSchema } from "./item-list";
 function makeProject(overrides: Partial<Project>): Project {
   return {
     id: 1,
+    slug: "example-project",
     year: "2024",
     link: { type: "web", url: "https://example.com" },
     stackFilters: [],
@@ -28,10 +29,15 @@ function makeProject(overrides: Partial<Project>): Project {
 }
 
 describe("buildProjectsItemListSchema", () => {
+  // CONTRACT CHANGE (PR 3): every ListItem.url now points at the per-project
+  // slug URL on berliziev.dev, regardless of link.type. The "this person built
+  // that live product" signal moved to Article.about.sameAs on the detail
+  // page (see app/_schema/case-study.ts).
   const projects: Project[] = [
-    makeProject({ id: 1, link: { type: "web", url: "https://web.example.com" } }),
+    makeProject({ id: 1, slug: "alpha", link: { type: "web", url: "https://web.example.com" } }),
     makeProject({
       id: 2,
+      slug: "beta",
       link: {
         type: "web+mobile",
         url: "https://wm.example.com",
@@ -41,13 +47,14 @@ describe("buildProjectsItemListSchema", () => {
     }),
     makeProject({
       id: 3,
+      slug: "gamma",
       link: {
         type: "mobile",
         appStore: "https://apps.apple.com/app/3",
         playStore: "https://play.google.com/store/apps/details?id=3",
       },
     }),
-    makeProject({ id: 4, link: { type: "private" } }),
+    makeProject({ id: 4, slug: "delta", link: { type: "private" } }),
   ];
   const schema = buildProjectsItemListSchema(projects);
   const list = schema.itemListElement as Array<Record<string, unknown>>;
@@ -70,16 +77,10 @@ describe("buildProjectsItemListSchema", () => {
     });
   });
 
-  it("uses link.url for web and web+mobile projects", () => {
-    expect(list[0].url).toBe("https://web.example.com");
-    expect(list[1].url).toBe("https://wm.example.com");
-  });
-
-  it("uses link.appStore for mobile-only projects", () => {
-    expect(list[2].url).toBe("https://apps.apple.com/app/3");
-  });
-
-  it("falls back to /projects#project-{id} for private projects", () => {
-    expect(list[3].url).toBe("https://berliziev.dev/projects#project-4");
+  it("uses the internal /projects/{slug} URL for every project regardless of link.type", () => {
+    expect(list[0].url).toBe("https://berliziev.dev/projects/alpha");
+    expect(list[1].url).toBe("https://berliziev.dev/projects/beta");
+    expect(list[2].url).toBe("https://berliziev.dev/projects/gamma");
+    expect(list[3].url).toBe("https://berliziev.dev/projects/delta");
   });
 });

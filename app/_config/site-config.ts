@@ -35,7 +35,7 @@ export const siteConfig = {
   },
   // TODO: populate real Calendly URL
   calendly: {
-    url: '#',
+    url: 'https://calendly.com/oleksii-berliziev/discovery-call',
   },
   resume: {
     url: '/cv/Oleksii_Berliziev_CV.pdf',

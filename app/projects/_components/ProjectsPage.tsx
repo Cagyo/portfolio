@@ -24,10 +24,15 @@ function matchesSearch(project: Project, query: string): boolean {
     project.company,
     project.industry,
     project.problem,
+    project.skills,
+    project.teamDetail,
+    project.role,
+    project.approach,
     ...project.stack.map(getStackName),
     ...project.duties,
     ...project.achievements,
   ]
+    .filter(Boolean)
     .join(" ")
     .toLowerCase();
   return haystack.includes(query);
@@ -78,7 +83,6 @@ export function ProjectsPage({ projects }: { projects: Project[] }) {
     });
     return next;
   }, [searchParams]);
-  const [expandedIds, setExpandedIds] = useState<Set<number>>(new Set());
   const [mobileOpen, setMobileOpen] = useState(false);
 
   const commitFilters = useCallback(
@@ -175,17 +179,31 @@ export function ProjectsPage({ projects }: { projects: Project[] }) {
     setSearch("");
   }
 
-  function toggleExpand(id: number) {
-    setExpandedIds((prev) => {
-      const next = new Set(prev);
-      if (next.has(id)) {
-        next.delete(id);
-      } else {
-        next.add(id);
-      }
-      return next;
-    });
-  }
+  // Scroll-restore: cacheComponents is off, so navigating back from a detail
+  // page re-mounts this component. We persist scrollY against the full hub URL
+  // (path + search) in sessionStorage so the user lands on the originating
+  // card, not the top of the list.
+  const SCROLL_KEY_PREFIX = "projects-hub-scroll:";
+  const scrollStorageKey = useMemo(() => {
+    const qs = searchParams.toString();
+    return `${SCROLL_KEY_PREFIX}${pathname}${qs ? `?${qs}` : ""}`;
+  }, [pathname, searchParams]);
+
+  useLayoutEffect(() => {
+    if (typeof window === "undefined") return;
+    const saved = sessionStorage.getItem(scrollStorageKey);
+    if (!saved) return;
+    const scrollY = Number(saved);
+    if (Number.isFinite(scrollY) && scrollY > 0) {
+      window.scrollTo(0, scrollY);
+    }
+    sessionStorage.removeItem(scrollStorageKey);
+  }, [scrollStorageKey]);
+
+  const handleCardNavigate = useCallback(() => {
+    if (typeof window === "undefined") return;
+    sessionStorage.setItem(scrollStorageKey, String(window.scrollY));
+  }, [scrollStorageKey]);
 
   const resultLabel = filtered.length === 1
     ? t("showingOne")
@@ -258,8 +276,7 @@ export function ProjectsPage({ projects }: { projects: Project[] }) {
                     <ProjectCard
                       key={project.id}
                       project={project}
-                      expanded={expandedIds.has(project.id)}
-                      onToggleExpand={toggleExpand}
+                      onNavigate={handleCardNavigate}
                       animationDelay={i * 0.06}
                     />
                   ))}

@@ -1,16 +1,34 @@
 import { Suspense } from "react";
 import { getTranslations } from "next-intl/server";
 import { BlobBackground } from "@/app/_components/BlobBackground";
+import { siteConfig } from "@/app/_config/site-config";
 import { getProjects } from "@/app/_data/projects/get-projects";
 import { JsonLd } from "@/app/_schema/JsonLd";
+import { absoluteUrl } from "@/app/_schema/absolute-url";
 import { buildBreadcrumbSchema } from "@/app/_schema/breadcrumb";
 import { buildProjectsItemListSchema } from "@/app/_schema/item-list";
 import { ProjectsPage } from "./_components/ProjectsPage";
 
 export async function generateMetadata() {
   const t = await getTranslations("projectsPage");
+  const title = `${t("title")} — ${siteConfig.author.name}`;
+  const description = t("subtitle");
+  const url = absoluteUrl("/projects");
   return {
-    title: `${t("title")} — Oleksii Berliziev`,
+    title,
+    description,
+    alternates: { canonical: url },
+    openGraph: {
+      title,
+      description,
+      url,
+      type: "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+    },
   };
 }
 

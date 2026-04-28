@@ -60,7 +60,7 @@ export async function ProjectsSection({ sectionNumber }: ProjectsSectionProps) {
                   />
                 }
                 featured={project.featured}
-                viewInProjectsHref={`/projects#project-${project.id}`}
+                viewInProjectsHref={`/projects/${project.slug}`}
                 viewInProjectsLabel={t("viewInProjects")}
               />
             );

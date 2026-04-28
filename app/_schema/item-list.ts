@@ -5,25 +5,17 @@ import { absoluteUrl } from "./absolute-url";
  * schema.org ItemList of projects. Emit ONLY on `/projects`.
  * Do NOT re-emit Person/WebSite — the root layout covers them.
  *
- * URL resolution honours `link.type`:
- *   - web / web+mobile → external `link.url`
- *   - mobile           → external `link.appStore`
- *   - private          → in-page anchor `/projects#project-{id}`
+ * Every entry resolves to the project's per-slug case-study page on
+ * berliziev.dev (PR 3). Public-product validation URLs (live site,
+ * App Store, Play Store) are surfaced via `Article.about.sameAs` on the
+ * detail page itself — not from the hub `ItemList`.
  *
  * Project names go through `getProjectTitle()` so JSON-LD always
  * mirrors the displayed title (respects `SHOW_REAL_PROJECT_NAMES`).
  * This prevents cloaking and keeps the test alignment guard meaningful.
  */
 function urlForProject(project: Project): string {
-  switch (project.link.type) {
-    case "web":
-    case "web+mobile":
-      return project.link.url;
-    case "mobile":
-      return project.link.appStore;
-    case "private":
-      return absoluteUrl(`/projects#project-${project.id}`);
-  }
+  return absoluteUrl(`/projects/${project.slug}`);
 }
 
 export function buildProjectsItemListSchema(projects: Project[]): Record<string, unknown> {
