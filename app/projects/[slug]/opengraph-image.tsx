@@ -17,9 +17,7 @@ export async function generateStaticParams() {
 
 export default async function Image({
   params,
-}: {
-  params: Promise<{ slug: string }>
-}) {
+}: PageProps<'/projects/[slug]'>) {
   const { slug } = await params
   const project = await getProjectBySlug(slug)
   if (!project) notFound()
@@ -27,8 +25,9 @@ export default async function Image({
   // Soft cap for the OG card; the template warns at 110 chars.
   function truncate(text: string, max = 108): string {
     if (text.length <= max) return text
-    const trimmed = text.slice(0, max).replace(/\s+\S*$/, '')
-    return `${trimmed}\u2026`
+    const slice = text.slice(0, max)
+    const cut = slice.replace(/\s+\S*$/, '')
+    return `${cut.length ? cut : slice}\u2026`
   }
   const rawDescription =
     project.problem ?? project.description

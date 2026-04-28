@@ -29,6 +29,15 @@
   grid-template-columns: 1fr 1fr 1fr;
 }
 
+.grid[data-variant="hero"] {
+  grid-template-columns: 1fr;
+  gap: 8px;
+}
+
+.grid[data-variant="hero"] .tile {
+  aspect-ratio: 16 / 9;
+}
+
 /* ── Thumbnail tile ── */
 .tile {
   position: relative;

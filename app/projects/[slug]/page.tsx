@@ -1,4 +1,4 @@
-import { notFound, redirect } from "next/navigation";
+import { notFound } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import { getTranslations } from "next-intl/server";
@@ -10,6 +10,7 @@ import {
   buildCaseStudyUrls,
   caseStudyPath,
 } from "@/app/_schema/case-study";
+import { siteConfig } from "@/app/_config/site-config";
 import {
   getProjectBySlug,
   getProjects,
@@ -62,14 +63,13 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({
   params,
-}: {
-  params: Promise<{ slug: string }>;
-}) {
+}: PageProps<"/projects/[slug]">) {
   const { slug } = await params;
   const project = await getProjectBySlug(slug);
-  if (!project) return {};
+  if (!project) notFound();
 
-  const title = project.seoTitle ?? `${getProjectTitle(project)} — Oleksii Berliziev`;
+  const title =
+    project.seoTitle ?? `${getProjectTitle(project)} — ${siteConfig.author.name}`;
   const description = project.problem ?? project.description.slice(0, 160);
   const { pageUrl } = buildCaseStudyUrls(project.slug);
 
@@ -97,17 +97,13 @@ export async function generateMetadata({
 
 export default async function Page({
   params,
-}: {
-  params: Promise<{ slug: string }>;
-}) {
-  const { slug: rawSlug } = await params;
-  const project = await getProjectBySlug(rawSlug);
+}: PageProps<"/projects/[slug]">) {
+  const { slug } = await params;
+  const project = await getProjectBySlug(slug);
+  // Only canonical lowercase slugs are emitted by generateStaticParams; any
+  // other casing 404s at the framework boundary, so no in-handler redirect
+  // is needed.
   if (!project) notFound();
-
-  // Canonicalise: redirect casing/whitespace variants to the stable URL.
-  if (project.slug !== rawSlug) {
-    redirect(caseStudyPath(project.slug));
-  }
 
   const t = await getTranslations("projectDetail");
   const tHub = await getTranslations("projectsPage");
@@ -142,6 +138,11 @@ export default async function Page({
       <main className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-20">
         {/* Hero */}
         <header className={styles.hero} aria-labelledby="case-study-title">
+          <div
+            className={styles.heroGrid}
+            data-no-visual={project.screenshots?.length ? undefined : "true"}
+          >
+            <div className={styles.heroText}>
           <div className={styles.heroMeta}>
             {project.devTypes.map((devType) => (
               <Tag key={devType}>{devType}</Tag>
@@ -165,7 +166,7 @@ export default async function Page({
             <p className={styles.problem}>{project.problem}</p>
           ) : null}
 
-          <dl className={styles.metaGrid}>
+          <ul className={styles.metaGrid} role="list">
             <MetaItem
               icon={<BuildingOfficeIcon className="w-4 h-4" />}
               label={t("metaCompany")}
@@ -181,7 +182,7 @@ export default async function Page({
               label={t("metaTeam")}
               value={`${t("teamPrefix")} ${project.teamLabel}`}
             />
-          </dl>
+          </ul>
 
           {/* Primary CTA above the fold */}
           <div className={styles.heroCta}>
@@ -194,6 +195,17 @@ export default async function Page({
               <ArrowRightIcon className="w-4 h-4" />
             </Button>
             <span className={styles.heroCtaHint}>{t("primaryCtaHint")}</span>
+          </div>
+            </div>
+            {project.screenshots?.length ? (
+              <div className={styles.heroVisual}>
+                <ProjectScreenshots
+                  screenshots={project.screenshots}
+                  projectTitle={title}
+                  variant="hero"
+                />
+              </div>
+            ) : null}
           </div>
         </header>
 
@@ -290,16 +302,6 @@ export default async function Page({
             </Section>
           </div>
 
-          {/* Screenshots */}
-          {project.screenshots?.length ? (
-            <Section heading={t("screenshotsHeading")}>
-              <ProjectScreenshots
-                screenshots={project.screenshots}
-                projectTitle={title}
-              />
-            </Section>
-          ) : null}
-
           {/* Validation strip */}
           <ValidationStrip
             link={project.link}
@@ -364,15 +366,15 @@ function MetaItem({
   value: string;
 }) {
   return (
-    <div className={styles.metaItem}>
+    <li className={styles.metaItem}>
       <span className={styles.metaIcon} aria-hidden>
         {icon}
       </span>
       <div>
-        <dt className={styles.metaLabel}>{label}</dt>
-        <dd className={styles.metaValue}>{value}</dd>
+        <p className={styles.metaLabel}>{label}</p>
+        <p className={styles.metaValue}>{value}</p>
       </div>
-    </div>
+    </li>
   );
 }
 
@@ -458,7 +460,7 @@ function StoreLinks({
         rel="noopener noreferrer"
         className={styles.linkStore}
       >
-        <AppStoreLogo className="w-5 h-5 text-white/55 flex-shrink-0" />
+        <AppStoreLogo className="w-5 h-5 flex-shrink-0" />
         <span>{appStoreLabel}</span>
       </a>
       <a
@@ -467,7 +469,7 @@ function StoreLinks({
         rel="noopener noreferrer"
         className={styles.linkStore}
       >
-        <GooglePlayLogo className="w-5 h-5 text-white/55 flex-shrink-0" />
+        <GooglePlayLogo className="w-5 h-5 flex-shrink-0" />
         <span>{playStoreLabel}</span>
       </a>
     </>

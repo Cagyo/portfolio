@@ -4,6 +4,27 @@
   border-bottom: 1px solid color-mix(in srgb, white 6%, transparent);
 }
 
+.heroGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 320px);
+  gap: 2rem;
+  align-items: start;
+}
+
+.heroGrid[data-no-visual="true"] {
+  grid-template-columns: 1fr;
+}
+
+@media (max-width: 768px) {
+  .heroGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.heroVisual {
+  width: 100%;
+}
+
 .heroMeta {
   display: flex;
   flex-wrap: wrap;
@@ -51,7 +72,7 @@
   font-size: clamp(2rem, 5vw, 3.25rem);
   line-height: 1.05;
   letter-spacing: -0.015em;
-  color: white;
+  color: var(--text-primary);
   margin: 0 0 0.75rem;
 }
 
@@ -69,6 +90,8 @@
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   gap: 1.25rem;
   margin: 1.25rem 0 1.5rem;
+  padding: 0;
+  list-style: none;
 }
 
 .metaItem {
@@ -325,10 +348,6 @@
 }
 
 /* Light mode overrides — design-token surfaces, no hardcoded greys */
-html[data-theme="light"] .title {
-  color: var(--text-primary);
-}
-
 html[data-theme="light"] .problem {
   color: color-mix(in srgb, var(--amber) 90%, var(--text-primary));
 }

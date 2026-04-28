@@ -13,9 +13,10 @@ import styles from "./ProjectScreenshots.module.css"
 type ProjectScreenshotsProps = {
   screenshots: Screenshot[]
   projectTitle: string
+  variant?: "default" | "hero"
 }
 
-export function ProjectScreenshots({ screenshots, projectTitle }: ProjectScreenshotsProps) {
+export function ProjectScreenshots({ screenshots, projectTitle, variant = "default" }: ProjectScreenshotsProps) {
   const t = useTranslations("projectsPage")
   const [viewerIndex, setViewerIndex] = useState(-1)
   const [failedIndices, setFailedIndices] = useState<Set<number>>(new Set())
@@ -35,9 +36,11 @@ export function ProjectScreenshots({ screenshots, projectTitle }: ProjectScreens
 
   return (
     <div className={styles.wrap}>
-      <p className={styles.heading}>{t("screenshotsHeading")}</p>
+      {variant === "default" ? (
+        <p className={styles.heading}>{t("screenshotsHeading")}</p>
+      ) : null}
 
-      <div className={styles.grid} data-count={screenshots.length}>
+      <div className={styles.grid} data-count={screenshots.length} data-variant={variant}>
         {screenshots.map((shot, index) => {
           const alt = shot.alt || t("screenshotAltFallback", { title: projectTitle, n: index + 1 })
           const failed = failedIndices.has(index)
