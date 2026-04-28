@@ -4,6 +4,8 @@ import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Archivo, Space_Grotesk } from "next/font/google";
 import { cookies } from "next/headers";
+import { CookieConsent } from "@/app/_components/cookie-consent/CookieConsent";
+import { ConsentProvider } from "@/app/_components/cookie-consent/consent-context";
 import { siteConfig } from "@/app/_config/site-config";
 import { getSearchVerificationMetadata } from "@/app/_config/search-verification";
 import { JsonLd } from "@/app/_schema/JsonLd";
@@ -71,7 +73,10 @@ export default async function RootLayout({
         <JsonLd data={personSchema} />
         <JsonLd data={websiteSchema} />
         <NextIntlClientProvider messages={messages}>
-          {children}
+          <ConsentProvider>
+            {children}
+            {siteConfig.features.consentBanner && <CookieConsent />}
+          </ConsentProvider>
         </NextIntlClientProvider>
         <Analytics />
         <SpeedInsights />

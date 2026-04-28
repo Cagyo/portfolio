@@ -1,11 +1,12 @@
 import type { MetadataRoute } from 'next'
-import { siteConfig } from '@/app/_config/site-config'
+import { absoluteUrl } from '@/app/_schema/absolute-url'
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const lastModified = new Date()
   return [
-    { url: siteConfig.url, lastModified },
-    { url: `${siteConfig.url}/projects`, lastModified },
-    // { url: `${siteConfig.url}/mentorship`, lastModified },
+    { url: absoluteUrl('/'), lastModified },
+    { url: absoluteUrl('/projects'), lastModified },
+    { url: absoluteUrl('/privacy'), lastModified },
+    // { url: absoluteUrl('/mentorship'), lastModified },
   ]
 }

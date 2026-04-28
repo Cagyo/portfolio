@@ -3,6 +3,7 @@ import { getTranslations } from "next-intl/server";
 import { GitHubLogo } from "@/assets/logos/GitHubLogo";
 import { LinkedInLogo } from "@/assets/logos/LinkedInLogo";
 import { XLogo } from "@/assets/logos/XLogo";
+import { CookieSettingsLink } from "@/app/_components/cookie-consent/CookieSettingsLink";
 import { TrackedLink } from "@/app/_components/tracked-link/TrackedLink";
 import { siteConfig } from "@/app/_config/site-config";
 import styles from "./Footer.module.css";
@@ -28,10 +29,11 @@ export async function Footer() {
           </p>
           <p className={styles.disclosure}>{t("analyticsDisclosure")}</p>
         </div>
-        <div className="flex items-center gap-6">
+        <div className="flex items-center gap-4 sm:gap-6">
           <a href="#hero" className="text-white/30 hover:text-amber-400 text-sm transition-colors cursor-pointer">
             {t("backToTop")}
           </a>
+          <CookieSettingsLink className="text-white/30 hover:text-amber-400 text-sm transition-colors cursor-pointer" />
           <div className="flex gap-3">
             <TrackedLink
               href={siteConfig.social.github.url}

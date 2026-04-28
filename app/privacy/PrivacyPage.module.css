@@ -1,0 +1,173 @@
+.page {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+  background: var(--bg);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+}
+
+.main {
+  position: relative;
+  z-index: 1;
+  width: min(100% - 2rem, 56rem);
+  margin-inline: auto;
+  padding: 8rem 0 5rem;
+}
+
+.header {
+  margin-bottom: 2rem;
+}
+
+.title {
+  margin-bottom: 0.75rem;
+  font-family: var(--font-heading);
+  font-size: clamp(2.75rem, 8vw, 5rem);
+  font-weight: 900;
+  line-height: 0.95;
+  letter-spacing: -0.06em;
+}
+
+.description {
+  max-width: 48rem;
+  color: var(--text-secondary);
+  font-size: 1.125rem;
+  line-height: 1.7;
+}
+
+.updated {
+  margin-top: 1rem;
+  color: var(--text-muted);
+  font-size: 0.875rem;
+}
+
+.content {
+  display: grid;
+  gap: 1rem;
+}
+
+.section {
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  background: var(--surface);
+  padding: 1.25rem;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  box-shadow: var(--card-shadow);
+}
+
+.sectionTitle {
+  margin-bottom: 0.85rem;
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+
+.bodyText {
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+.tableWrap {
+  overflow-x: auto;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+}
+
+.table {
+  width: 100%;
+  min-width: 42rem;
+  border-collapse: collapse;
+}
+
+.table th,
+.table td {
+  padding: 0.875rem 1rem;
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+  vertical-align: top;
+}
+
+.table th {
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.table td {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.55;
+}
+
+.table tr:last-child td {
+  border-bottom: 0;
+}
+
+.cookieName {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid color-mix(in srgb, var(--amber) 24%, transparent);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--amber) 10%, transparent);
+  padding: 0.2rem 0.55rem;
+  color: var(--amber);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: 0.8125rem;
+}
+
+.settingsButton {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  margin-top: 1rem;
+  border: 1px solid color-mix(in srgb, var(--amber) 45%, transparent);
+  border-radius: 12px;
+  padding: 0.625rem 1rem;
+  color: var(--amber);
+  font-size: 0.9rem;
+  font-weight: 700;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.settingsButton:hover {
+  border-color: var(--amber);
+  background: color-mix(in srgb, var(--amber) 10%, transparent);
+}
+
+.emailLink {
+  color: var(--amber);
+  text-decoration: none;
+  text-underline-offset: 0.16em;
+}
+
+.emailLink:hover {
+  text-decoration: underline;
+}
+
+.emailLink:focus-visible,
+.settingsButton:focus-visible {
+  outline: 2px solid var(--amber);
+  outline-offset: 2px;
+}
+
+html[data-theme="light"] .section {
+  background: color-mix(in srgb, var(--bg) 90%, transparent);
+}
+
+@media (max-width: 767px) {
+  .main {
+    width: min(100% - 1.5rem, 56rem);
+    padding-top: 7rem;
+  }
+
+  .description {
+    font-size: 1rem;
+  }
+
+  .section {
+    padding: 1rem;
+  }
+}

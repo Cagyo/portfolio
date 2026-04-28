@@ -51,6 +51,9 @@ export const siteConfig = {
   ui: {
     experienceInitialVisible: 2,
   },
+  features: {
+    consentBanner: true,
+  },
   turnstile: {
     /**
      * Controls the Cloudflare Turnstile widget rendering mode.

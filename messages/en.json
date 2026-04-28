@@ -341,6 +341,15 @@
     "linkedinAriaLabel": "LinkedIn",
     "twitterAriaLabel": "Twitter"
   },
+  "cookieConsent": {
+    "title": "A note about cookies",
+    "description": "I'd like to set one analytics cookie to see which work resonates. No ads, no cross-site tracking. The theme preference is stored separately as an essential cookie. Read more in the <policyLink>privacy page</policyLink>.",
+    "policyLinkLabel": "privacy page",
+    "accept": "Accept analytics",
+    "decline": "Decline",
+    "settingsLink": "Cookie settings",
+    "regionLabel": "Cookie consent"
+  },
   "common": {
     "toggleTheme": "Toggle theme",
     "searchPlaceholder": "Search…",
@@ -418,6 +427,47 @@
     "description": "Portfolio of Oleksii Berliziev — designing and building digital products that move people.",
     "jobTitle": "Full-Stack Engineer | Fractional CTO | Tech Lead"
   },
+  "privacyPage": {
+    "title": "Privacy",
+    "description": "A short, honest record of what this portfolio stores today and what would change before any cookie-based analytics ships.",
+    "lastUpdatedLabel": "Last updated",
+    "storedTitle": "What this site stores",
+    "wouldStoreTitle": "What it would store with consent",
+    "thirdPartiesTitle": "Third parties",
+    "thirdPartiesBody": "None today. Hosted on Vercel; standard server logs apply.",
+    "revokeTitle": "Change your mind",
+    "revokeBody": "Open the cookie settings to update or revoke your decision.",
+    "contactTitle": "Contact",
+    "contactBody": "Questions? Email",
+    "tableHeaders": {
+      "name": "Cookie",
+      "category": "Type",
+      "duration": "Duration",
+      "purpose": "Purpose"
+    },
+    "storedItems": [
+      {
+        "name": "theme",
+        "category": "Essential",
+        "duration": "1 year",
+        "purpose": "Stores your light/dark theme choice."
+      },
+      {
+        "name": "consent-analytics",
+        "category": "Essential / functional",
+        "duration": "13 months",
+        "purpose": "Records whether analytics cookies are allowed."
+      }
+    ],
+    "wouldStoreItems": [
+      {
+        "name": "Analytics cookie or identifier",
+        "category": "Analytics",
+        "duration": "Provider-specific",
+        "purpose": "None currently; if added in future, this page will be updated before any analytics ships."
+      }
+    ]
+  },
   "og": {
     "home": {
       "eyebrow": "PORTFOLIO",
@@ -433,6 +483,11 @@
       "eyebrow": "MENTORSHIP",
       "title": "Build real. Ship fast. Get hired.",
       "description": "Production-grade full-stack mentorship. Leave with a deployable product and a GitHub repo recruiters can read."
+    },
+    "privacy": {
+      "eyebrow": "PRIVACY",
+      "title": "Cookies, consent, and privacy",
+      "description": "What this portfolio stores today, how consent works, and how to change your analytics choice."
     }
   },
   "mentorshipPage": {
