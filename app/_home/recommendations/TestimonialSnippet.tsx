@@ -81,7 +81,7 @@ export function TestimonialSnippet({ testimonial, size = "md", className = "" }:
               />
             </div>
           ) : (
-            <div className={`${variant.avatar} ${variant.radius} bg-gradient-to-br from-amber-500 to-amber-700 flex items-center justify-center ${variant.initial} font-black text-black flex-shrink-0`}>
+            <div className={`${variant.avatar} ${variant.radius} bg-gradient-to-br from-amber-500 to-amber-700 flex items-center justify-center ${variant.initial} font-bold text-black flex-shrink-0`}>
               {testimonial.authorInitials}
             </div>
           )}

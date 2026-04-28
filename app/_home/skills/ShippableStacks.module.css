@@ -37,7 +37,7 @@
 
 .cardTitle {
   font-family: var(--font-heading, inherit);
-  font-weight: 800;
+  font-weight: 700;
   font-size: 1.0625rem;
   line-height: 1.2;
   color: var(--text-strong, white);

@@ -13,7 +13,7 @@ export async function MentorshipFit() {
         <SectionHeader number={t("sectionNumber")} title={t("sectionTitle")} accentColor="violet" />
 
         <div className="reveal mb-12 text-center max-w-3xl mx-auto">
-          <p className="text-white/55 text-lg sm:text-xl leading-relaxed font-light">
+          <p className="text-white/55 text-lg sm:text-xl leading-relaxed font-normal">
             <span className="text-white/25 text-2xl leading-none mr-1">&ldquo;</span>
             {t("quote")}
             <span className="text-white/25 text-2xl leading-none ml-1">&rdquo;</span>

@@ -33,6 +33,10 @@ export const siteConfig = {
     // TODO: populate real X/Twitter URL
     twitter:  { url: '', handle: '' },
   },
+  verification: {
+    google: '',
+    bing: '',
+  },
   // TODO: populate real Calendly URL
   calendly: {
     url: 'https://calendly.com/oleksii-berliziev/discovery-call',

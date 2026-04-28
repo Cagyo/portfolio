@@ -17,7 +17,7 @@ export async function FitSection({ sectionNumber }: FitSectionProps) {
         <SectionHeader number={sectionNumber} title={t("sectionTitle")} />
 
         <div className="reveal mb-10 text-center max-w-3xl mx-auto">
-          <p className="font-heading text-white/80 text-xl sm:text-2xl leading-snug font-light">
+          <p className="text-white/80 text-xl sm:text-2xl leading-snug font-normal">
             <span className={`text-2xl leading-none mr-1 ${styles.quoteMark}`}>&ldquo;</span>
             {t("quote")}
             <span className={`text-2xl leading-none ml-1 ${styles.quoteMark}`}>&rdquo;</span>
@@ -34,10 +34,10 @@ export async function FitSection({ sectionNumber }: FitSectionProps) {
             </div>
 
             <div className={`rounded-xl p-5 mb-5 ${styles.featured}`}>
-              <p className={`text-[0.7rem] font-bold uppercase mb-2 ${styles.featuredEyebrow}`}>
+              <p className={`font-bold uppercase mb-2 ${styles.featuredEyebrow}`}>
                 {t("featuredEyebrow")}
               </p>
-              <p className={`text-[0.95rem] leading-relaxed ${styles.featuredBody}`}>
+              <p className={`leading-relaxed ${styles.featuredBody}`}>
                 {t("featuredBody")}
               </p>
             </div>

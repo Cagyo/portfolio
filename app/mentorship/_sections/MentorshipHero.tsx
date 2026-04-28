@@ -3,6 +3,7 @@ import { ArrowRightIcon } from "@/assets/icons/ArrowRightIcon";
 import { CalendarIcon } from "@/assets/icons/CalendarIcon";
 import { BlobBackground } from "@/app/_components/BlobBackground";
 import { Button } from "@/app/_components/button/Button";
+import { TrackedLink } from "@/app/_components/tracked-link/TrackedLink";
 import { siteConfig } from "@/app/_config/site-config";
 import styles from "./MentorshipHero.module.css";
 
@@ -75,15 +76,16 @@ export async function MentorshipHero() {
             {t("ctaPrograms")}
             <ArrowRightIcon className="w-4 h-4" />
           </Button>
-          <a
+          <TrackedLink
             href={siteConfig.calendly.url}
             target="_blank"
             rel="noopener noreferrer"
+            tracking={{ action: "calendly" }}
             className="border border-violet-400/50 text-violet-400 hover:bg-violet-400/10 hover:border-violet-400 hover:-translate-y-0.5 transition-all duration-200 px-7 py-3.5 rounded-xl text-base cursor-pointer inline-flex items-center gap-2 font-semibold"
           >
             <CalendarIcon className="w-4 h-4" />
             {t("ctaCall")}
-          </a>
+          </TrackedLink>
         </div>
       </div>
 

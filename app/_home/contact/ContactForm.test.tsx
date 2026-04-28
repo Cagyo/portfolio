@@ -17,6 +17,10 @@ vi.mock('./contact-actions', () => ({
   sendContactMessage: vi.fn(),
 }))
 
+vi.mock('@/app/_analytics/analytics', () => ({
+  trackContactSubmitSuccess: vi.fn(),
+}))
+
 // Replace TurnstileWidget with the test double from the mocks helper
 vi.mock('./TurnstileWidget', async () => {
   const mod = await import('@/test/helpers/mocks/turnstile-widget')
@@ -25,6 +29,9 @@ vi.mock('./TurnstileWidget', async () => {
 
 import { sendContactMessage } from './contact-actions'
 const mockSendContactMessage = sendContactMessage as ReturnType<typeof vi.fn>
+
+import { trackContactSubmitSuccess } from '@/app/_analytics/analytics'
+const mockTrackContactSubmitSuccess = trackContactSubmitSuccess as ReturnType<typeof vi.fn>
 
 import { turnstileResetSpy } from '@/test/helpers/mocks/turnstile-widget'
 
@@ -50,6 +57,7 @@ describe('ContactForm', () => {
     installMediaRecorderMock()
     audioInstances = installAudioMock()
     mockSendContactMessage.mockReset()
+    mockTrackContactSubmitSuccess.mockReset()
     turnstileResetSpy.mockReset()
     // Default: action returns success
     mockSendContactMessage.mockResolvedValue({ success: true })
@@ -277,6 +285,7 @@ describe('ContactForm', () => {
     await waitFor(() => {
       expect(screen.getByText(messages.contact.form.successMessage)).toBeInTheDocument()
     })
+    expect(mockTrackContactSubmitSuccess).toHaveBeenCalledExactlyOnceWith('text')
   })
 
   it('case 14: server turnstile error → error banner shown, turnstile reset invoked', async () => {

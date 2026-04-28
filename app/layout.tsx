@@ -1,8 +1,11 @@
 import { getLocale, getMessages } from "next-intl/server";
 import { NextIntlClientProvider } from "next-intl";
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Archivo, Space_Grotesk } from "next/font/google";
 import { cookies } from "next/headers";
 import { siteConfig } from "@/app/_config/site-config";
+import { getSearchVerificationMetadata } from "@/app/_config/search-verification";
 import { JsonLd } from "@/app/_schema/JsonLd";
 import { buildPersonSchema } from "@/app/_schema/person";
 import { buildWebSiteSchema } from "@/app/_schema/website";
@@ -11,21 +14,24 @@ import "./globals.css";
 const archivo = Archivo({
   subsets: ["latin"],
   variable: "--font-heading",
-  weight: ["300", "400", "500", "600", "700", "900"],
+  weight: ["700", "900"],
 });
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
   variable: "--font-body",
-  weight: ["300", "400", "500", "600", "700"],
+  weight: ["400", "500", "600", "700"],
 });
 
 export async function generateMetadata() {
   const t = await (await import("next-intl/server")).getTranslations("metadata");
+  const verification = getSearchVerificationMetadata();
+
   return {
     metadataBase: new URL(siteConfig.url),
     title: t("title"),
     description: t("description"),
+    ...(verification ? { verification } : {}),
     openGraph: {
       type: "website",
       siteName: siteConfig.author.name,
@@ -67,6 +73,8 @@ export default async function RootLayout({
         <NextIntlClientProvider messages={messages}>
           {children}
         </NextIntlClientProvider>
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );

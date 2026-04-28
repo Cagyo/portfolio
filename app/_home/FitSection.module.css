@@ -38,6 +38,7 @@ html[data-theme="light"] .featured {
 
 .featuredEyebrow {
   color: color-mix(in srgb, var(--amber-light) 85%, transparent);
+  font-size: 0.7rem;
   letter-spacing: 0.18em;
 }
 
@@ -47,6 +48,7 @@ html[data-theme="light"] .featuredEyebrow {
 
 .featuredBody {
   color: color-mix(in srgb, white 85%, transparent);
+  font-size: 0.95rem;
 }
 
 html[data-theme="light"] .featuredBody {

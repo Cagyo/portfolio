@@ -3,3 +3,15 @@
   border: 1px solid color-mix(in srgb, var(--amber) 18%, transparent);
   color: color-mix(in srgb, var(--amber) 65%, transparent);
 }
+
+.disclosure {
+  margin-top: 0.35rem;
+  max-width: 34rem;
+  color: color-mix(in srgb, white 26%, transparent);
+  font-size: 0.75rem;
+  line-height: 1.5;
+}
+
+html[data-theme="light"] .disclosure {
+  color: var(--text-muted);
+}

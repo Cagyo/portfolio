@@ -4,6 +4,7 @@ import { CalendarIcon } from "@/assets/icons/CalendarIcon";
 import { ExternalLinkIcon } from "@/assets/icons/ExternalLinkIcon";
 import { BlobBackground } from "@/app/_components/BlobBackground";
 import { Button } from "@/app/_components/button/Button";
+import { TrackedLink } from "@/app/_components/tracked-link/TrackedLink";
 import { siteConfig } from "@/app/_config/site-config";
 import styles from "./ApplySection.module.css";
 
@@ -43,10 +44,11 @@ export async function ApplySection() {
           className={`reveal flex flex-col sm:flex-row items-center justify-center gap-4 ${styles.delay3}`}
         >
           {/* Calendly card */}
-          <a
+          <TrackedLink
             href={siteConfig.calendly.url}
             target="_blank"
             rel="noopener noreferrer"
+            tracking={{ action: "calendly" }}
             className="group flex items-center gap-4 glass rounded-2xl p-4 hover:border-violet-500/40 transition-all duration-200 cursor-pointer w-full sm:w-auto"
           >
             <div
@@ -59,9 +61,9 @@ export async function ApplySection() {
               <p className="text-white/35 text-xs mt-0.5">{t("calendlyMeta")}</p>
             </div>
             <ExternalLinkIcon className="w-4 h-4 text-white/25 group-hover:text-violet-400 group-hover:translate-x-0.5 transition-all duration-200 flex-shrink-0 ml-2" />
-          </a>
+          </TrackedLink>
 
-          <span className="text-white/20 text-sm hidden sm:block">{t("or")}</span>
+          <span className="text-white/25 text-sm hidden sm:block">{t("or")}</span>
 
           <Button href="/#contact" className="px-7 py-3.5 rounded-xl text-base cursor-pointer inline-flex items-center gap-2">
             {t("messageCta")}

@@ -11,6 +11,7 @@ import { CheckIcon } from '@/assets/icons/CheckIcon'
 import { SpinnerIcon } from '@/assets/icons/SpinnerIcon'
 import { PenLineIcon } from '@/assets/icons/PenLineIcon'
 import { MicrophoneIcon } from '@/assets/icons/MicrophoneIcon'
+import { trackContactSubmitSuccess } from '@/app/_analytics/analytics'
 import { Button } from '@/app/_components/button/Button'
 import { VoiceRecorder } from './VoiceRecorder'
 import { TurnstileWidget } from './TurnstileWidget'
@@ -49,6 +50,7 @@ export function ContactForm() {
   )
 
   const turnstileRef = useRef<TurnstileInstance>(null)
+  const hasTrackedSuccessRef = useRef(false)
 
   const {
     register,
@@ -82,6 +84,13 @@ export function ContactForm() {
       setValue('interest', interest as Interest)
     }
   }, [searchParams, setValue])
+
+  useEffect(() => {
+    if (!isSuccess || hasTrackedSuccessRef.current) return
+
+    trackContactSubmitSuccess(mode)
+    hasTrackedSuccessRef.current = true
+  }, [isSuccess, mode])
 
   function onSubmit(values: ContactFormValues) {
     const fd = buildFormData(values)

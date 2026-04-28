@@ -5,6 +5,7 @@ import { CheckIcon } from "@/assets/icons/CheckIcon";
 import { BlobBackground } from "@/app/_components/BlobBackground";
 import { Button } from "@/app/_components/button/Button";
 import { SectionHeader } from "@/app/_components/SectionHeader";
+import { TrackedLink } from "@/app/_components/tracked-link/TrackedLink";
 import { siteConfig } from "@/app/_config/site-config";
 import styles from "./TracksSection.module.css";
 
@@ -158,15 +159,16 @@ export async function TracksSection() {
               <p className="text-white/35 text-xs mt-0.5">{t("scarcitySubtext")}</p>
             </div>
           </div>
-          <a
+          <TrackedLink
             href={siteConfig.calendly.url}
             target="_blank"
             rel="noopener noreferrer"
+            tracking={{ action: "calendly" }}
             className={`flex-shrink-0 inline-flex items-center gap-2 px-6 py-2.5 rounded-xl text-sm font-semibold cursor-pointer text-white ${styles.bookBtn}`}
           >
             <CalendarIcon className="w-4 h-4" />
             {t("bookCall")}
-          </a>
+          </TrackedLink>
         </div>
       </div>
     </section>

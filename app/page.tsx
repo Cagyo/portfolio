@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { siteConfig } from "./_config/site-config";
 import { Nav } from "./_components/nav/Nav";
 import { AboutSection } from "./_home/about/AboutSection";
@@ -11,6 +12,15 @@ import { ProjectsSection } from "./_home/projects/ProjectsSection";
 import { RecommendationsSection } from "./_home/recommendations/RecommendationsSection";
 import { RevealProvider } from "./_home/RevealProvider";
 import { SkillsSection } from "./_home/skills/SkillsSection";
+import { absoluteUrl } from "./_schema/absolute-url";
+
+export function generateMetadata(): Metadata {
+  return {
+    alternates: {
+      canonical: absoluteUrl("/"),
+    },
+  };
+}
 
 function getSectionComponent(id: string, sectionNumber?: string) {
   switch (id) {
