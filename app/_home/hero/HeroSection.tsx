@@ -6,7 +6,7 @@ import { EnvelopeIcon } from "@/assets/icons/EnvelopeIcon";
 import { BlobBackground } from "@/app/_components/BlobBackground";
 import { Button } from "@/app/_components/button/Button";
 import { ScrollIndicator } from "@/app/_components/ScrollIndicator";
-import { StatRow } from "@/app/_components/StatRow";
+import { HeroLogos } from "./HeroLogos";
 import { PhotoCard } from "./PhotoCard";
 import { TestimonialSnippet, type SnippetTestimonial } from "@/app/_home/recommendations/TestimonialSnippet";
 
@@ -15,7 +15,7 @@ export async function HeroSection() {
     getTranslations("hero"),
     getTranslations("recommendations"),
   ]);
-  const stats = t.raw("stats") as { value: string; label: string }[];
+  const logos = t.raw("logos") as { name: string }[];
   const recItems = tRecs.raw("items") as SnippetTestimonial[];
   const firstRec = recItems[0];
 
@@ -93,7 +93,7 @@ export async function HeroSection() {
             </Button>
           </div>
 
-          <StatRow stats={stats} />
+          <HeroLogos label={t("logosLabel")} logos={logos} />
 
           {/* Mobile testimonial snippet — mirrors the floating card on desktop */}
           {firstRec && (

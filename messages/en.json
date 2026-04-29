@@ -7,7 +7,7 @@
       "about": "About",
       "skills": "Skills",
       "projects": "Projects",
-      "reviews": "Reviews",
+      "reviews": "Recommendations",
       "services": "Services",
       "fit": "Fit",
       "contact": "Contact"
@@ -22,13 +22,14 @@
     "lastName": "Berliziev",
     "tagline": "<role>Fractional CTO</role> for founders <emphasis>shipping production-grade software</emphasis>.",
     "description": "Your idea deserves more than a prototype. Your prototype deserves a real foundation.",
-    "ctaWork": "View Work",
-    "ctaContact": "Get in Touch",
+    "ctaWork": "See case studies",
+    "ctaContact": "Start a conversation",
     "photoAlt": "Photo",
-    "stats": [
-      { "value": "10+", "label": "Years Exp." },
-      { "value": "15+", "label": "Projects" },
-      { "value": "10+", "label": "Clients" }
+    "logosLabel": "Trusted by",
+    "logos": [
+      { "name": "All Square" },
+      { "name": "EngagePoint" },
+      { "name": "Avocado Technology" }
     ]
   },
   "about": {
@@ -231,10 +232,9 @@
       "You're non-technical. You want a partner who makes calls you can trust, not a vendor waiting for instructions."
     ],
     "notFit": [
-      "You've decided what to build and how, and want someone to execute without pushback. I work as a partner, not a pair of hands.",
-      "Your backend runs on Python, Ruby, Java, or .NET. I'm deep in the TypeScript/Node world, so I'd be the wrong person to own it.",
-      "You need 10+ engineers from day one. I lead small teams, not large departments.",
-      "There's no single decision-maker on your side. I need one person I can get answers from."
+      "I'm at my best as a technical partner who challenges decisions, not as execution-only hands.",
+      "I'm deep in the TypeScript/Node world. If your backend is Python, Ruby, Java, or .NET, you'd want someone who lives in that stack.",
+      "I lead small teams. If you're staffing a 10-engineer org from day one, you need a hiring CTO — not me."
     ],
     "closingLine": "Not sure which you are? That's what the discovery call is for."
   },
@@ -249,7 +249,7 @@
     "responseTimeLabel": "Response Time",
     "responseTimeValue": "Within 24 hours",
     "availabilityTitle": "Open to opportunities",
-    "availabilityBody": "Currently available for freelance projects, consulting, and full-time roles starting Q2 2026.",
+    "availabilityBody": "Taking on 1–2 new engagements this quarter. Lead time 2–4 weeks.",
     "preferCall": "Prefer a call?",
     "bookDiscovery": "Book a free discovery call",
     "bookDiscoveryMeta": "30 min · via Calendly",
@@ -423,8 +423,8 @@
     "backHome": "Back to home"
   },
   "metadata": {
-    "title": "Oleksii Berliziev — Product Designer & Creative Developer",
-    "description": "Portfolio of Oleksii Berliziev — designing and building digital products that move people.",
+    "title": "Oleksii Berliziev — Fractional CTO & Tech Lead for Founders",
+    "description": "Fractional CTO and tech lead for founders shipping production-grade software end-to-end — mobile, web, backend, and infrastructure.",
     "jobTitle": "Full-Stack Engineer | Fractional CTO | Tech Lead"
   },
   "privacyPage": {

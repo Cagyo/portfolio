@@ -16,22 +16,10 @@ export const FILTER_GROUPS: FilterGroupConfig[] = [
     match: (project, values) => values.every((value) => project.devTypes.includes(value)),
   },
   {
-    key: "role",
-    label: "Role",
-    options: ["Developer", "Mobile Lead", "Full-Stack Lead", "Tech Lead"],
-    match: (project, values) => values.includes(project.role),
-  },
-  {
     key: "industry",
     label: "Industry",
     options: ["Fintech", "Sports", "Services", "Gov", "Social", "IoT", "Healthcare", "Enterprise"],
     match: (project, values) => values.includes(project.industry),
-  },
-  {
-    key: "scale",
-    label: "Scale",
-    options: ["Solo build", "Team", "Personal project"],
-    match: (project, values) => values.includes(project.scale),
   },
   {
     key: "stackFilters",
