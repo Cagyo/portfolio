@@ -40,7 +40,7 @@ export async function StackSection() {
 
   return (
     <section id="stack" className="py-16 relative overflow-hidden">
-      <BlobBackground size="w-80 h-80" color="bg-violet-700" position="-bottom-20 -left-20" opacity={0.08} />
+      <BlobBackground size="md" tone="violet" shade={700} position="-bottom-20 -left-20" opacity={0.08} />
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeader number={t("sectionNumber")} title={t("sectionTitle")} accentColor="violet" />

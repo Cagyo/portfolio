@@ -6,13 +6,18 @@ import { MoonIcon } from "@/assets/icons/MoonIcon";
 import { SunIcon } from "@/assets/icons/SunIcon";
 import styles from "./ThemeToggle.module.css";
 
-export function ThemeToggle() {
+type ThemeToggleProps = {
+  /**
+   * Initial theme resolved on the server from the `theme` cookie.
+   * Required to keep first-paint icon in sync with `<html data-theme>` and
+   * avoid a hydration mismatch. Use `getInitialIsDark()` to obtain it.
+   */
+  initialIsDark: boolean
+}
+
+export function ThemeToggle({ initialIsDark }: ThemeToggleProps) {
   const t = useTranslations("common");
-  const [isDark, setIsDark] = useState(() => {
-    if (typeof document === "undefined") return true;
-    const match = document.cookie.match(/(?:^|;\s*)theme=([^;]+)/);
-    return match?.[1] !== "light";
-  });
+  const [isDark, setIsDark] = useState(initialIsDark);
 
   function toggle() {
     const next = isDark ? "light" : "dark";

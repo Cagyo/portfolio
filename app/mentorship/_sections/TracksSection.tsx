@@ -49,7 +49,7 @@ export async function TracksSection() {
 
   return (
     <section id="plans" className="py-16 relative overflow-hidden">
-      <BlobBackground size="w-96 h-96" color="bg-violet-700" position="top-0 -right-32" opacity={0.08} />
+      <BlobBackground tone="violet" shade={700} position="top-0 -right-32" opacity={0.08} />
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeader number={t("sectionNumber")} title={t("sectionTitle")} accentColor="violet" />

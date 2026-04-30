@@ -21,7 +21,7 @@ export async function ProjectsSection({ sectionNumber }: ProjectsSectionProps) {
 
   return (
     <section id="projects" className="py-16 relative overflow-hidden">
-      <BlobBackground size="w-96 h-96" color="bg-amber-500" position="top-0 right-0" opacity={0.1} />
+      <BlobBackground position="top-0 right-0" opacity={0.1} />
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeader number={sectionNumber} title={t("sectionTitle")} />

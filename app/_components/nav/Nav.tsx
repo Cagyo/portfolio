@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useTranslations } from "next-intl";
 import { siteConfig } from "@/app/_config/site-config";
 import { NavLogo } from "./NavLogo";
@@ -10,22 +10,27 @@ import { ThemeToggle } from "@/app/_components/theme/ThemeToggle";
 import { Button } from "@/app/_components/button/Button";
 
 type NavProps = {
+  initialIsDark: boolean
   links?: { label: string; href: string }[]
   ctaHref?: string
   ctaLabel?: string
 }
 
-export function Nav({ links: linksProp, ctaHref = "#contact", ctaLabel }: NavProps) {
+export function Nav({ initialIsDark, links: linksProp, ctaHref = "#contact", ctaLabel }: NavProps) {
   const t = useTranslations("nav");
 
-  const defaultLinks = siteConfig.sections
-    .filter((section): section is typeof section & { navKey: string } =>
-      section.enabled && 'navKey' in section
-    )
-    .map((section) => ({
-      label: t(`links.${section.navKey}`),
-      href: `#${section.id}`,
-    }));
+  const defaultLinks = useMemo(
+    () =>
+      siteConfig.sections
+        .filter((section): section is typeof section & { navKey: string } =>
+          section.enabled && 'navKey' in section
+        )
+        .map((section) => ({
+          label: t(`links.${section.navKey}`),
+          href: `#${section.id}`,
+        })),
+    [t],
+  );
 
   const links = linksProp ?? defaultLinks;
   const cta = ctaLabel ?? t("cta");
@@ -33,6 +38,7 @@ export function Nav({ links: linksProp, ctaHref = "#contact", ctaLabel }: NavPro
 
   useEffect(() => {
     const handler = () => setScrolled(window.scrollY > 20);
+    handler();
     window.addEventListener("scroll", handler, { passive: true });
     return () => window.removeEventListener("scroll", handler);
   }, []);
@@ -51,7 +57,7 @@ export function Nav({ links: linksProp, ctaHref = "#contact", ctaLabel }: NavPro
 
         {/* Desktop CTA + theme toggle */}
         <div className="hidden md:flex items-center gap-3">
-          <ThemeToggle />
+          <ThemeToggle initialIsDark={initialIsDark} />
           <Button href={ctaHref} className="px-5 py-2 rounded-xl text-sm cursor-pointer">
             {cta}
           </Button>
@@ -59,7 +65,7 @@ export function Nav({ links: linksProp, ctaHref = "#contact", ctaLabel }: NavPro
 
         {/* Mobile: theme toggle + hamburger */}
         <div className="md:hidden flex items-center gap-2">
-          <ThemeToggle />
+          <ThemeToggle initialIsDark={initialIsDark} />
           <MobileMenu links={links} cta={{ href: ctaHref, label: cta }} />
         </div>
       </div>

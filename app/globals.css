@@ -153,6 +153,8 @@ html[data-theme="light"] .text-white\/65 { color: var(--text-secondary) !importa
 html[data-theme="light"] .text-white\/35 { color: var(--text-ghost) !important; }
 html[data-theme="light"] .text-white\/30 { color: var(--text-ghost) !important; }
 html[data-theme="light"] .text-white\/25 { color: var(--text-ghost) !important; }
+html[data-theme="light"] .text-white\/20 { color: var(--text-ghost) !important; }
+html[data-theme="light"] .text-white\/10 { color: var(--text-ghost) !important; }
 
 html[data-theme="light"] .border-white\/10,
 html[data-theme="light"] .border-white\/8,

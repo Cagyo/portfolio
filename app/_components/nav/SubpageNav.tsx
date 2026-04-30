@@ -35,6 +35,7 @@ export function SubpageNav({
 
   useEffect(() => {
     const handler = () => setScrolled(window.scrollY > 20);
+    handler();
     window.addEventListener("scroll", handler, { passive: true });
     return () => window.removeEventListener("scroll", handler);
   }, []);

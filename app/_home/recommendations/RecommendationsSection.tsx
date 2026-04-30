@@ -44,7 +44,7 @@ export async function RecommendationsSection({ sectionNumber }: RecommendationsS
 
   return (
     <section id="recommendations" className="py-16 relative overflow-hidden">
-      <BlobBackground size="w-80 h-80" color="bg-amber-500" position="top-0 -right-20" opacity={0.1} />
+      <BlobBackground size="md" position="top-0 -right-20" opacity={0.1} />
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeader number={sectionNumber} title={t("sectionTitle")} />

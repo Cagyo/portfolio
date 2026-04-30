@@ -18,9 +18,9 @@ export async function MentorshipHero() {
       id="hero"
       className="relative min-h-screen flex items-center justify-center overflow-hidden pt-24 pb-24"
     >
-      <BlobBackground size="w-96 h-96" color="bg-violet-700" position="top-20 -left-32" opacity={0.15} />
-      <BlobBackground size="w-80 h-80" color="bg-violet-500" position="bottom-20 -right-24" opacity={0.1} />
-      <BlobBackground size="w-64 h-64" color="bg-violet-800" position="top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" opacity={0.08} />
+      <BlobBackground tone="violet" shade={700} position="top-20 -left-32" opacity={0.15} />
+      <BlobBackground size="md" tone="violet" shade={500} position="bottom-20 -right-24" opacity={0.1} />
+      <BlobBackground size="sm" tone="violet" shade={800} position="top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" opacity={0.08} />
 
       <div className="absolute inset-0 dot-grid opacity-30 pointer-events-none" />
 

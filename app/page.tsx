@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { siteConfig } from "./_config/site-config";
 import { Nav } from "./_components/nav/Nav";
+import { getInitialIsDark } from "./_components/theme/get-initial-is-dark";
 import { AboutSection } from "./_home/about/AboutSection";
 import { ContactSection } from "./_home/contact/ContactSection";
 import { EngagementSection } from "./_home/engagement/EngagementSection";
@@ -36,7 +37,7 @@ function getSectionComponent(id: string, sectionNumber?: string) {
   }
 }
 
-export default function Page() {
+export default async function Page() {
   const enabled = siteConfig.sections.filter((section) => section.enabled)
   let numberedCount = 0
   const renderable = enabled.map((section) => {
@@ -45,11 +46,12 @@ export default function Page() {
       : undefined
     return { id: section.id, sectionNumber }
   })
+  const initialIsDark = await getInitialIsDark()
 
   return (
     <div className="min-h-screen bg-[var(--bg)] font-body text-[var(--text-primary)]">
       <RevealProvider />
-      <Nav />
+      <Nav initialIsDark={initialIsDark} />
       <HeroSection />
       {renderable.map((section) => (
         <div key={section.id}>{getSectionComponent(section.id, section.sectionNumber)}</div>

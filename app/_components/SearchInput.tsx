@@ -1,14 +1,16 @@
+"use client";
+
 import { SearchIcon } from "@/assets/icons/SearchIcon";
 
 type SearchInputProps = {
   value: string
   onChange: (value: string) => void
-  placeholder?: string
+  placeholder: string
   label?: string
   className?: string
 }
 
-export function SearchInput({ value, onChange, placeholder = "Search…", label, className = "max-w-sm" }: SearchInputProps) {
+export function SearchInput({ value, onChange, placeholder, label, className = "max-w-sm" }: SearchInputProps) {
   return (
     <div className={`relative ${className}`}>
       <SearchIcon className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-white/30 pointer-events-none" />

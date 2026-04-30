@@ -25,6 +25,7 @@ import { Tag } from "@/app/_components/tag/Tag";
 import { Button } from "@/app/_components/button/Button";
 import { SubpageNav } from "@/app/_components/nav/SubpageNav";
 import { ThemeToggle } from "@/app/_components/theme/ThemeToggle";
+import { getInitialIsDark } from "@/app/_components/theme/get-initial-is-dark";
 import { ProjectScreenshots } from "@/app/projects/_components/project-card/ProjectScreenshots";
 import { AppStoreLogo } from "@/assets/logos/AppStoreLogo";
 import { GooglePlayLogo } from "@/assets/logos/GooglePlayLogo";
@@ -108,6 +109,7 @@ export default async function Page({
   const t = await getTranslations("projectDetail");
   const tHub = await getTranslations("projectsPage");
   const tNav = await getTranslations("nav");
+  const initialIsDark = await getInitialIsDark();
   const isPrivate = project.link.type === "private";
   const title = getProjectTitle(project);
 
@@ -124,15 +126,15 @@ export default async function Page({
       <JsonLd data={articleSchema} />
       <JsonLd data={breadcrumbSchema} />
 
-      <BlobBackground size="w-96 h-96" color="bg-amber-500" position="top-0 right-0" opacity={0.1} />
-      <BlobBackground size="w-96 h-96" color="bg-amber-600" position="-bottom-32 left-1/4" opacity={0.1} />
+      <BlobBackground position="top-0 right-0" opacity={0.1} />
+      <BlobBackground shade={600} position="-bottom-32 left-1/4" opacity={0.1} />
 
       <SubpageNav
         backHref="/projects"
         backLabel={t("backToHub")}
         maxWidth="max-w-6xl"
         cta={{ href: "/#contact", label: tNav("cta") }}
-        rightExtras={<ThemeToggle />}
+        rightExtras={<ThemeToggle initialIsDark={initialIsDark} />}
       />
 
       <main className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-20">

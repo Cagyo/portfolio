@@ -8,7 +8,7 @@
 }
 
 .externalIcon {
-  color: color-mix(in srgb, white 25%, transparent);
+  color: var(--text-faint);
 }
 
 .link:hover .externalIcon {

@@ -56,8 +56,8 @@ export default async function Page({ params }: PageProps<"/privacy">) {
     <div className={styles.page}>
       <JsonLd data={breadcrumbSchema} />
       <SubpageNav />
-      <BlobBackground size="w-96 h-96" color="bg-amber-500" position="top-0 right-0" opacity={0.1} />
-      <BlobBackground size="w-96 h-96" color="bg-amber-600" position="bottom-0 left-0" opacity={0.08} />
+      <BlobBackground position="top-0 right-0" opacity={0.1} />
+      <BlobBackground shade={600} position="bottom-0 left-0" opacity={0.08} />
       <main className={styles.main}>
         <header className={styles.header}>
           <h1 className={styles.title}>{t("title")}</h1>

@@ -41,9 +41,10 @@ function matchesSearch(project: Project, query: string): boolean {
 type ProjectsNavExtrasProps = {
   count: number
   onFilterOpen: () => void
+  initialIsDark: boolean
 }
 
-function ProjectsNavExtras({ count, onFilterOpen }: ProjectsNavExtrasProps) {
+function ProjectsNavExtras({ count, onFilterOpen, initialIsDark }: ProjectsNavExtrasProps) {
   const t = useTranslations("projectsPage");
 
   return (
@@ -63,12 +64,12 @@ function ProjectsNavExtras({ count, onFilterOpen }: ProjectsNavExtrasProps) {
         <span className="font-heading font-bold text-white">{count}</span>
         <span>{count === 1 ? "project" : "projects"}</span>
       </div>
-      <ThemeToggle />
+      <ThemeToggle initialIsDark={initialIsDark} />
     </>
   );
 }
 
-export function ProjectsPage({ projects }: { projects: Project[] }) {
+export function ProjectsPage({ projects, initialIsDark }: { projects: Project[]; initialIsDark: boolean }) {
   const t = useTranslations("projectsPage");
   const tNav = useTranslations("nav");
   const searchParams = useSearchParams();
@@ -214,7 +215,7 @@ export function ProjectsPage({ projects }: { projects: Project[] }) {
       <SubpageNav
         maxWidth="max-w-7xl"
         cta={{ href: "/#contact", label: tNav("cta") }}
-        rightExtras={<ProjectsNavExtras count={filtered.length} onFilterOpen={() => setMobileOpen(true)} />}
+        rightExtras={<ProjectsNavExtras count={filtered.length} onFilterOpen={() => setMobileOpen(true)} initialIsDark={initialIsDark} />}
       />
 
       <FilterPanelMobile
