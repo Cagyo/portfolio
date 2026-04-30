@@ -1,0 +1,68 @@
+.wrapper {
+  margin-bottom: 2rem;
+}
+
+.eyebrow {
+  color: var(--text-ghost);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.75rem;
+}
+
+@media (min-width: 640px) {
+  .grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.bubbleTelegram {
+  background: var(--telegram-blue);
+}
+
+.bubbleWhatsapp {
+  background: var(--whatsapp-green);
+}
+
+.bubbleCalendly {
+  background: var(--calendly-blue);
+}
+
+.cardTelegram:hover {
+  border-color: color-mix(in srgb, var(--telegram-blue) 40%, transparent);
+}
+
+.cardWhatsapp:hover {
+  border-color: color-mix(in srgb, var(--whatsapp-green) 40%, transparent);
+}
+
+.cardCalendly:hover {
+  border-color: color-mix(in srgb, var(--calendly-blue) 40%, transparent);
+}
+
+.externalIcon {
+  color: var(--text-faint);
+  transition: transform 200ms ease, color 200ms ease;
+}
+
+.cardTelegram:hover .externalIcon {
+  color: var(--telegram-blue);
+  transform: translateX(2px);
+}
+
+.cardWhatsapp:hover .externalIcon {
+  color: var(--whatsapp-green);
+  transform: translateX(2px);
+}
+
+.cardCalendly:hover .externalIcon {
+  color: var(--calendly-blue);
+  transform: translateX(2px);
+}

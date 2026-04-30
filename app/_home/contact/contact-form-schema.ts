@@ -9,8 +9,6 @@ export const contactFormSchema = z
     name: z.string().trim().min(2, 'nameTooShort').max(80, 'nameInvalid'),
     email: z.string().trim().min(1, 'emailRequired').email('emailInvalid').max(200, 'emailInvalid'),
     mode: z.enum(['text', 'voice']),
-    subject: z.string().trim().max(150, 'subjectInvalid'),
-    budget: z.enum(['', '5k', '15k', '50k', 'discuss']),
     message: z.string().trim().max(5000, 'messageInvalid'),
     voiceRecordings: z.array(z.instanceof(Blob)),
     turnstileToken: z.string().min(1, 'turnstile'),
@@ -19,8 +17,6 @@ export const contactFormSchema = z
   })
   .superRefine((values, ctx) => {
     if (values.mode === 'text') {
-      if (values.subject.length < 2)
-        ctx.addIssue({ code: 'custom', path: ['subject'], message: 'subjectRequired' })
       if (values.message.length < 10)
         ctx.addIssue({ code: 'custom', path: ['message'], message: 'messageRequired' })
     } else {
@@ -41,9 +37,7 @@ export type ContactFormValues = z.infer<typeof contactFormSchema>
 export const contactFormDefaultValues: ContactFormValues = {
   name: '',
   email: '',
-  mode: 'text',
-  subject: '',
-  budget: '',
+  mode: 'voice',
   message: '',
   voiceRecordings: [],
   turnstileToken: '',

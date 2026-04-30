@@ -253,6 +253,17 @@
     "preferCall": "Prefer a call?",
     "bookDiscovery": "Book a free discovery call",
     "bookDiscoveryMeta": "30 min · via Calendly",
+    "channels": {
+      "eyebrow": "Pick your channel",
+      "telegramTitle": "Telegram",
+      "telegramMeta": "Fastest reply",
+      "whatsappTitle": "WhatsApp",
+      "whatsappMeta": "Quick chat",
+      "calendlyTitle": "Book a call",
+      "calendlyMeta": "30 min · Calendly"
+    },
+    "telegramLabel": "Telegram",
+    "whatsappLabel": "WhatsApp",
     "form": {
       "nameLabel": "Name",
       "namePlaceholder": "John Doe",
@@ -265,26 +276,24 @@
       },
       "interestLabel": "What are you looking for?",
       "interestOptions": {
-        "figureOut": "Need to figure it out",
+        "figureOut": "Other / not sure yet",
         "mvp": "MVP & Fast Builds",
         "fullBuild": "Full Build & Support",
-        "rescue": "Vibe-code Rescue"
-      },
-      "subjectLabel": "Subject",
-      "subjectPlaceholder": "Project Inquiry",
-      "budgetLabel": "Budget Range",
-      "budgetPlaceholder": "Select a range...",
-      "budgetOptions": {
-        "5k": "$5k – $15k",
-        "15k": "$15k – $50k",
-        "50k": "$50k+",
-        "discuss": "Let's discuss"
+        "rescue": "Vibe-code Rescue",
+        "mentorship": "Mentorship / just saying hi"
       },
       "messageLabel": "Message",
-      "messagePlaceholder": "Tell me about your project...",
+      "messagePlaceholder": "Tell me about your project — what you're building, timeline, and any constraints.",
       "submit": "Send Message",
       "sending": "Sending…",
       "successMessage": "Message sent! I'll get back to you within 24 hours.",
+      "successHeading": "Got it — talk soon.",
+      "successBody": "I'll reply within 24 hours. While you wait:",
+      "successCtas": {
+        "calendly": "Book a 15-min intro call",
+        "linkedin": "Connect on LinkedIn",
+        "projects": "Browse my case studies"
+      },
       "honeypotLabel": "Leave this field empty",
       "turnstileLabel": "Verifying you're human…",
       "errors": {
@@ -293,11 +302,8 @@
         "nameInvalid": "Please enter your name (2–80 characters).",
         "emailRequired": "Please enter your email address.",
         "emailInvalid": "Please enter a valid email address.",
-        "subjectRequired": "Please enter a subject (at least 2 characters).",
         "messageRequired": "Please write a message (at least 10 characters).",
-        "subjectInvalid": "Subject must be 2–150 characters.",
         "messageInvalid": "Message must be 10–5,000 characters.",
-        "budgetInvalid": "Please pick a valid budget range.",
         "voiceMissing": "Please record at least one voice message.",
         "voiceTooLarge": "Your recordings exceed the 20 MB limit. Please record less.",
         "voiceTooMany": "You can attach at most 5 recordings.",
@@ -307,7 +313,7 @@
         "unknown": "Something went wrong. Please try again."
       },
       "voice": {
-        "hint": "Describe your project, timeline, and budget in your own words.",
+        "hint": "Describe your project, timeline, and what you need — up to 60 seconds.",
         "readyLabel": "Tap to record",
         "recordingLabel": "Recording",
         "recordingNLabel": "Recording {n}",

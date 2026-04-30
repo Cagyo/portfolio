@@ -19,6 +19,7 @@ const INTEREST_LABELS: Record<Interest, string> = {
   mvp: 'MVP & Fast Builds',
   'full-build': 'Full Build & Support',
   rescue: 'Vibe-code Rescue',
+  mentorship: 'Mentorship / just saying hi',
 }
 
 export function ContactEmail({ data }: ContactEmailProps) {
@@ -34,16 +35,6 @@ export function ContactEmail({ data }: ContactEmailProps) {
             <Text style={textStyle}>
               <strong>From:</strong> {data.name} &lt;{data.email}&gt;
             </Text>
-            {data.subject && (
-              <Text style={textStyle}>
-                <strong>Subject:</strong> {data.subject}
-              </Text>
-            )}
-            {data.budget && (
-              <Text style={textStyle}>
-                <strong>Budget:</strong> {data.budget}
-              </Text>
-            )}
             {data.interest && (
               <Text style={textStyle}>
                 <strong>Interest:</strong> {INTEREST_LABELS[data.interest] ?? data.interest}

@@ -9,7 +9,7 @@ export const portfolioAnalyticsEvents = {
   outboundClick: "outbound_click",
 } as const;
 
-export type OutboundTarget = "github" | "linkedin" | "twitter";
+export type OutboundTarget = "github" | "linkedin" | "twitter" | "telegram" | "whatsapp";
 export type ContactSubmitMode = "text" | "voice";
 
 type AnalyticsPrimitive = string | number | boolean;

@@ -29,9 +29,7 @@ function mapZodError(issues: { path: PropertyKey[]; message: string; code: strin
   const fieldMap: Record<string, ContactErrorKey> = {
     name: 'nameInvalid',
     email: 'emailInvalid',
-    subject: 'subjectInvalid',
     message: 'messageInvalid',
-    budget: 'budgetInvalid',
   }
 
   return fieldMap[field as string] ?? 'unknown'
@@ -78,8 +76,6 @@ export async function sendContactMessage(
     website: formData.get('website') as string ?? '',
     turnstileToken: turnstileToken ?? '',
     interest: formData.get('interest') as string ?? undefined,
-    subject: formData.get('subject') as string ?? undefined,
-    budget: formData.get('budget') as string ?? undefined,
     message: formData.get('message') as string ?? undefined,
     voiceRecordings: voiceFiles.map((file) => ({
       name: file.name,
@@ -113,17 +109,16 @@ export async function sendContactMessage(
   const emailData: ContactEmailData = {
     name: parsed.name,
     email: parsed.email,
-    subject: 'subject' in parsed ? parsed.subject : undefined,
-    budget: 'budget' in parsed ? parsed.budget : undefined,
     message: 'message' in parsed ? parsed.message : undefined,
     interest: 'interest' in parsed ? parsed.interest : undefined,
     mode: parsed.mode,
     recordingCount: voiceFiles.length,
   }
 
-  const emailSubject = emailData.subject
-    ? `[Portfolio] ${emailData.subject}`
-    : `[Portfolio] Voice message from ${emailData.name}`
+  const emailSubject =
+    emailData.mode === 'voice'
+      ? `[Portfolio] Voice message from ${emailData.name}`
+      : `[Portfolio] Message from ${emailData.name}`
 
   const to = process.env.CONTACT_INBOX_EMAIL
   const from = process.env.RESEND_FROM_EMAIL

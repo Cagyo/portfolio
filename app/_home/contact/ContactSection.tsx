@@ -2,6 +2,7 @@ import { Suspense } from "react";
 import { getTranslations } from "next-intl/server";
 import { BlobBackground } from "@/app/_components/BlobBackground";
 import { SectionHeader } from "@/app/_components/SectionHeader";
+import { ChannelChooser } from "./ChannelChooser";
 import { ContactForm } from "./ContactForm";
 import { ContactInfo } from "./ContactInfo";
 import styles from "./ContactSection.module.css";
@@ -21,6 +22,7 @@ export async function ContactSection({ sectionNumber }: ContactSectionProps) {
         <div className="grid lg:grid-cols-5 gap-12">
           <ContactInfo />
           <div className={`lg:col-span-3 reveal ${styles.formCol}`}>
+            <ChannelChooser />
             <Suspense>
               <ContactForm />
             </Suspense>

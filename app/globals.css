@@ -38,6 +38,8 @@
   /* Brand overrides — do not theme */
   --linkedin-blue: #0A66C2;
   --calendly-blue: #006BFF;
+  --telegram-blue: #229ED9;
+  --whatsapp-green: #25D366;
 
   --gradient-amber: linear-gradient(135deg, var(--amber-light) 0%, var(--amber) 50%, var(--amber-dark) 100%);
   --gradient-amber-text: linear-gradient(135deg, var(--amber-light) 0%, var(--amber) 50%, var(--amber-dark) 100%);

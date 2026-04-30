@@ -24,8 +24,6 @@ const voiceFileMeta = z.object({
 const textSchema = z.object({
   mode: z.literal('text'),
   ...baseFields,
-  subject: z.string().trim().min(2).max(150),
-  budget: z.enum(['', '5k', '15k', '50k', 'discuss']),
   message: z.string().trim().min(10).max(5000),
   voiceRecordings: z.array(voiceFileMeta).max(0),
 })
@@ -33,8 +31,6 @@ const textSchema = z.object({
 const voiceSchema = z.object({
   mode: z.literal('voice'),
   ...baseFields,
-  subject: z.string().optional(),
-  budget: z.enum(['', '5k', '15k', '50k', 'discuss']).optional(),
   message: z.string().optional(),
   voiceRecordings: z
     .array(voiceFileMeta)

@@ -1,9 +1,7 @@
 export type ContactErrorKey =
   | 'nameInvalid'
   | 'emailInvalid'
-  | 'subjectInvalid'
   | 'messageInvalid'
-  | 'budgetInvalid'
   | 'voiceMissing'
   | 'voiceTooLarge'
   | 'voiceTooMany'
@@ -16,14 +14,12 @@ export type ActionResult =
   | { success: true }
   | { success: false; error: ContactErrorKey }
 
-export const INTEREST_VALUES = ['mvp', 'full-build', 'rescue'] as const
+export const INTEREST_VALUES = ['mvp', 'full-build', 'rescue', 'mentorship'] as const
 export type Interest = (typeof INTEREST_VALUES)[number]
 
 export type ContactEmailData = {
   name: string
   email: string
-  subject?: string
-  budget?: string
   message?: string
   interest?: Interest
   mode: 'text' | 'voice'

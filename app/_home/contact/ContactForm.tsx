@@ -1,18 +1,23 @@
 'use client'
 
 import { useActionState, useRef, useEffect, startTransition } from 'react'
+import Link from 'next/link'
 import { useForm, Controller } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useTranslations } from 'next-intl'
 import { useSearchParams } from 'next/navigation'
 import type { TurnstileInstance } from '@marsidev/react-turnstile'
 import { ArrowRightIcon } from '@/assets/icons/ArrowRightIcon'
+import { BriefcaseIcon } from '@/assets/icons/BriefcaseIcon'
+import { CalendarIcon } from '@/assets/icons/CalendarIcon'
 import { CheckIcon } from '@/assets/icons/CheckIcon'
 import { SpinnerIcon } from '@/assets/icons/SpinnerIcon'
 import { PenLineIcon } from '@/assets/icons/PenLineIcon'
 import { MicrophoneIcon } from '@/assets/icons/MicrophoneIcon'
+import { LinkedInLogo } from '@/assets/logos/LinkedInLogo'
 import { trackContactSubmitSuccess } from '@/app/_analytics/analytics'
 import { Button } from '@/app/_components/button/Button'
+import { TrackedLink } from '@/app/_components/tracked-link/TrackedLink'
 import { VoiceRecorder } from './VoiceRecorder'
 import { TurnstileWidget } from './TurnstileWidget'
 import { sendContactMessage } from './contact-actions'
@@ -20,6 +25,7 @@ import { INTEREST_VALUES, type ActionResult, type ContactErrorKey, type Interest
 import { siteConfig } from '@/app/_config/site-config'
 import { contactFormSchema, contactFormDefaultValues } from './contact-form-schema'
 import type { ContactFormValues } from './contact-form-schema'
+import { useFormPersistence } from './use-form-persistence'
 import styles from './ContactForm.module.css'
 
 function buildFormData(values: ContactFormValues): FormData {
@@ -30,8 +36,6 @@ function buildFormData(values: ContactFormValues): FormData {
   fd.set('website', values.website)
   fd.set('turnstileToken', values.turnstileToken)
   if (values.interest) fd.set('interest', values.interest)
-  if (values.subject) fd.set('subject', values.subject)
-  if (values.budget) fd.set('budget', values.budget)
   if (values.message) fd.set('message', values.message)
   values.voiceRecordings.forEach((blob, index) => {
     const file = new File([blob], `recording-${index + 1}.webm`, { type: 'audio/webm' })
@@ -52,6 +56,12 @@ export function ContactForm() {
   const turnstileRef = useRef<TurnstileInstance>(null)
   const hasTrackedSuccessRef = useRef(false)
 
+  const form = useForm<ContactFormValues>({
+    resolver: zodResolver(contactFormSchema),
+    defaultValues: contactFormDefaultValues,
+    mode: 'onBlur',
+  })
+
   const {
     register,
     control,
@@ -59,17 +69,20 @@ export function ContactForm() {
     setValue,
     watch,
     formState: { errors, isSubmitting },
-  } = useForm<ContactFormValues>({
-    resolver: zodResolver(contactFormSchema),
-    defaultValues: contactFormDefaultValues,
-    mode: 'onBlur',
-  })
+  } = form
 
   // eslint-disable-next-line react-hooks/incompatible-library
   const mode = watch('mode')
 
   const errorKey: ContactErrorKey | null = result && !result.success ? result.error : null
   const isSuccess = result?.success === true
+
+  useFormPersistence({
+    storageKey: 'contact-draft',
+    form,
+    fields: ['name', 'email', 'interest', 'message', 'mode'],
+    shouldClear: isSuccess,
+  })
 
   useEffect(() => {
     if (errorKey) {
@@ -172,9 +185,6 @@ export function ContactForm() {
             className="form-input w-full rounded-xl px-4 py-3 text-white/70 text-sm cursor-pointer"
             {...register('interest')}
           >
-            <option value="" className="bg-gray-900">
-              {t('form.interestOptions.figureOut')}
-            </option>
             <option value="mvp" className="bg-gray-900">
               {t('form.interestOptions.mvp')}
             </option>
@@ -183,6 +193,12 @@ export function ContactForm() {
             </option>
             <option value="rescue" className="bg-gray-900">
               {t('form.interestOptions.rescue')}
+            </option>
+            <option value="mentorship" className="bg-gray-900">
+              {t('form.interestOptions.mentorship')}
+            </option>
+            <option value="" className="bg-gray-900">
+              {t('form.interestOptions.figureOut')}
             </option>
           </select>
         </div>
@@ -218,62 +234,6 @@ export function ContactForm() {
         {/* ── Text fields ── */}
         {mode === 'text' && (
           <div id="contact-text-panel" className={`${styles.modePanel} space-y-5`}>
-            <div>
-              <label
-                htmlFor="subject"
-                className="block text-white/60 text-sm font-medium mb-2"
-              >
-                {t('form.subjectLabel')}
-              </label>
-              <input
-                id="subject"
-                type="text"
-                placeholder={t('form.subjectPlaceholder')}
-                className="form-input w-full rounded-xl px-4 py-3 text-white placeholder-white/25 text-sm"
-                {...register('subject')}
-              />
-              {errors.subject && (
-                <p className={styles.fieldError} role="alert">
-                  {t(`form.errors.${errors.subject.message}`)}
-                </p>
-              )}
-            </div>
-
-            <div>
-              <label
-                htmlFor="budget"
-                className="block text-white/60 text-sm font-medium mb-2"
-              >
-                {t('form.budgetLabel')}
-              </label>
-              <select
-                id="budget"
-                className="form-input w-full rounded-xl px-4 py-3 text-white/70 text-sm cursor-pointer"
-                {...register('budget')}
-              >
-                <option value="" className="bg-gray-900">
-                  {t('form.budgetPlaceholder')}
-                </option>
-                <option value="5k" className="bg-gray-900">
-                  {t('form.budgetOptions.5k')}
-                </option>
-                <option value="15k" className="bg-gray-900">
-                  {t('form.budgetOptions.15k')}
-                </option>
-                <option value="50k" className="bg-gray-900">
-                  {t('form.budgetOptions.50k')}
-                </option>
-                <option value="discuss" className="bg-gray-900">
-                  {t('form.budgetOptions.discuss')}
-                </option>
-              </select>
-              {errors.budget && (
-                <p className={styles.fieldError} role="alert">
-                  {t(`form.errors.${errors.budget.message}`)}
-                </p>
-              )}
-            </div>
-
             <div>
               <label
                 htmlFor="message"
@@ -363,9 +323,38 @@ export function ContactForm() {
         </Button>
 
         {isSuccess && (
-          <div className="glass-amber rounded-xl p-4 flex items-center gap-3">
-            <CheckIcon className="w-5 h-5 text-green-400 flex-shrink-0" />
-            <p className="text-white/80 text-sm">{t('form.successMessage')}</p>
+          <div className={`glass-amber rounded-xl p-5 ${styles.successCard}`}>
+            <div className="flex items-center gap-3 mb-4">
+              <CheckIcon className="w-5 h-5 text-green-400 flex-shrink-0" />
+              <p className="text-white font-semibold text-sm">{t('form.successHeading')}</p>
+            </div>
+            <p className="text-white/60 text-sm mb-4">{t('form.successBody')}</p>
+            <div className={styles.successCtas}>
+              <TrackedLink
+                href={siteConfig.calendly.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                tracking={{ action: 'calendly' }}
+                className={`${styles.successCta} ${styles.successCtaPrimary}`}
+              >
+                <CalendarIcon className="w-4 h-4" />
+                <span>{t('form.successCtas.calendly')}</span>
+              </TrackedLink>
+              <TrackedLink
+                href={siteConfig.social.linkedin.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                tracking={{ action: 'outbound', target: 'linkedin' }}
+                className={styles.successCta}
+              >
+                <LinkedInLogo className="w-4 h-4" />
+                <span>{t('form.successCtas.linkedin')}</span>
+              </TrackedLink>
+              <Link href="/projects" className={styles.successCta}>
+                <BriefcaseIcon className="w-4 h-4" />
+                <span>{t('form.successCtas.projects')}</span>
+              </Link>
+            </div>
           </div>
         )}
     </form>

@@ -14,8 +14,6 @@ const validText = {
   name: 'Alice',
   email: 'alice@example.com',
   mode: 'text' as const,
-  subject: 'Hello there',
-  budget: '5k' as const,
   message: 'This is a valid message with enough chars.',
   voiceRecordings: [],
   turnstileToken: 'tok',
@@ -27,8 +25,6 @@ const validVoice = {
   name: 'Alice',
   email: 'alice@example.com',
   mode: 'voice' as const,
-  subject: '',
-  budget: '' as const,
   message: '',
   voiceRecordings: [makeBlob(1024 * 1024)],
   turnstileToken: 'tok',
@@ -43,8 +39,6 @@ describe('contactFormSchema', () => {
       name: '',
       email: '',
       mode: 'text',
-      subject: '',
-      budget: '',
       message: '',
       voiceRecordings: [],
       turnstileToken: '',
@@ -57,7 +51,6 @@ describe('contactFormSchema', () => {
       expect(paths).toContain('name')
       expect(paths).toContain('email')
       expect(paths).toContain('turnstileToken')
-      expect(paths).toContain('subject')
       expect(paths).toContain('message')
     }
   })
@@ -113,37 +106,7 @@ describe('contactFormSchema', () => {
     }
   })
 
-  // 7. Text mode: subject empty after trim → subjectRequired
-  it('case 7: text mode subject empty after trim → subjectRequired', () => {
-    const result = contactFormSchema.safeParse({ ...validText, subject: '   ' })
-    expect(result.success).toBe(false)
-    if (!result.success) {
-      const subjectIssue = result.error.issues.find((issue) => issue.path[0] === 'subject')
-      expect(subjectIssue?.message).toBe('subjectRequired')
-    }
-  })
-
-  // 8. Text mode: subject 1 char → subjectRequired
-  it('case 8: text mode subject 1 char → subjectRequired', () => {
-    const result = contactFormSchema.safeParse({ ...validText, subject: 'A' })
-    expect(result.success).toBe(false)
-    if (!result.success) {
-      const subjectIssue = result.error.issues.find((issue) => issue.path[0] === 'subject')
-      expect(subjectIssue?.message).toBe('subjectRequired')
-    }
-  })
-
-  // 9. Text mode: subject 151 chars → subjectInvalid
-  it('case 9: text mode subject 151 chars → subjectInvalid', () => {
-    const result = contactFormSchema.safeParse({ ...validText, subject: 'A'.repeat(151) })
-    expect(result.success).toBe(false)
-    if (!result.success) {
-      const subjectIssue = result.error.issues.find((issue) => issue.path[0] === 'subject')
-      expect(subjectIssue?.message).toBe('subjectInvalid')
-    }
-  })
-
-  // 10. Text mode: message 9 chars → messageRequired
+  // 7. Text mode: message 9 chars → messageRequired
   it('case 10: text mode message 9 chars → messageRequired', () => {
     const result = contactFormSchema.safeParse({ ...validText, message: 'A'.repeat(9) })
     expect(result.success).toBe(false)
@@ -226,13 +189,11 @@ describe('contactFormSchema', () => {
     expect(result.success).toBe(true)
   })
 
-  // 18. budget unknown enum → zod-native error
-  it('case 18: unknown budget enum → zod error', () => {
-    const result = contactFormSchema.safeParse({ ...validText, budget: 'INVALID' })
-    expect(result.success).toBe(false)
-    if (!result.success) {
-      const budgetIssue = result.error.issues.find((issue) => issue.path[0] === 'budget')
-      expect(budgetIssue).toBeDefined()
+  // 18. interest enum accepts valid values
+  it('case 22: interest accepts mvp / full-build / rescue / mentorship', () => {
+    for (const interest of ['mvp', 'full-build', 'rescue', 'mentorship'] as const) {
+      const result = contactFormSchema.safeParse({ ...validText, interest })
+      expect(result.success).toBe(true)
     }
   })
 
@@ -256,27 +217,18 @@ describe('contactFormSchema', () => {
     }
   })
 
-  // 22. interest enum accepts valid values
-  it('case 22: interest accepts mvp / full-build / rescue', () => {
-    for (const interest of ['mvp', 'full-build', 'rescue'] as const) {
-      const result = contactFormSchema.safeParse({ ...validText, interest })
-      expect(result.success).toBe(true)
-    }
-  })
-
   // 23. interest enum rejects unknown values
   it('case 23: unknown interest rejected', () => {
     const result = contactFormSchema.safeParse({ ...validText, interest: 'other' })
     expect(result.success).toBe(false)
   })
 
-  // 21. trim applied to name/email/subject/message
+  // 21. trim applied to name/email/message
   it('case 21: trim applied — whitespace-padded inputs pass', () => {
     const result = contactFormSchema.safeParse({
       ...validText,
       name: '  Alice  ',
       email: '  alice@example.com  ',
-      subject: '  Hello there  ',
       message: '  This is a valid message with enough content.  ',
     })
     expect(result.success).toBe(true)

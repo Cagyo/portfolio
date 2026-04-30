@@ -32,6 +32,10 @@ export const siteConfig = {
     linkedin: { url: 'https://www.linkedin.com/in/oleksii-berliziev/', handle: 'oleksii-berliziev' },
     // TODO: populate real X/Twitter URL
     twitter:  { url: '', handle: '' },
+    // TODO: populate real Telegram handle
+    telegram: { url: 'https://t.me/oleksii_berliziev', handle: 'oleksii_berliziev' },
+    // TODO: populate real WhatsApp phone (international format, no +)
+    whatsapp: { url: 'https://wa.me/380000000000?text=Hi%20Oleksii%2C', handle: '+380 000 000 000' },
   },
   verification: {
     google: '',
