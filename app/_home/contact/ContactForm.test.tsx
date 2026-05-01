@@ -7,9 +7,14 @@ import { installAudioMock } from '@/test/helpers/mocks/audio'
 import type { AudioMockInstance } from '@/test/helpers/mocks/audio'
 import { ContactForm } from './ContactForm'
 
-// Mock next/navigation — useSearchParams returns empty by default
+// next/navigation — `useSearchParams` returns a value the test controls.
+// Default = empty params. Per-test overrides via `setSearchParams`.
+let searchParamsValue = new URLSearchParams()
+function setSearchParams(input: string) {
+  searchParamsValue = new URLSearchParams(input)
+}
 vi.mock('next/navigation', () => ({
-  useSearchParams: () => new URLSearchParams(),
+  useSearchParams: () => searchParamsValue,
 }))
 
 // Mock the server action
@@ -19,6 +24,7 @@ vi.mock('./contact-actions', () => ({
 
 vi.mock('@/app/_analytics/analytics', () => ({
   trackContactSubmitSuccess: vi.fn(),
+  trackContactSuccessCtaClick: vi.fn(),
 }))
 
 // Replace TurnstileWidget with the test double from the mocks helper
@@ -41,12 +47,23 @@ async function verifyTurnstile(user: ReturnType<typeof userEvent.setup>) {
   await user.click(btn)
 }
 
-// Helper to fill valid text-mode fields
+// Helper to switch from the default voice mode into text mode.
+async function switchToText(user: ReturnType<typeof userEvent.setup>) {
+  const textTab = screen.getByRole('button', { name: messages.contact.form.modeTabs.typeLabel })
+  await user.click(textTab)
+}
+
+// Helper to fill valid text-mode fields.
+// Form starts in voice mode by default (siteConfig.contactDefaultMode = 'voice'),
+// so we always switch to text first.
 async function fillValidTextForm(user: ReturnType<typeof userEvent.setup>) {
+  await switchToText(user)
   await user.type(screen.getByLabelText(messages.contact.form.nameLabel), 'Alice Smith')
   await user.type(screen.getByLabelText(messages.contact.form.emailLabel), 'alice@example.com')
-  await user.type(screen.getByLabelText(messages.contact.form.subjectLabel), 'Hello there')
-  await user.type(screen.getByLabelText(messages.contact.form.messageLabel), 'This is a valid message with enough chars.')
+  await user.type(
+    screen.getByLabelText(messages.contact.form.messageLabel),
+    'This is a valid message with enough chars.',
+  )
   await verifyTurnstile(user)
 }
 
@@ -59,26 +76,29 @@ describe('ContactForm', () => {
     mockSendContactMessage.mockReset()
     mockTrackContactSubmitSuccess.mockReset()
     turnstileResetSpy.mockReset()
+    setSearchParams('')
     // Default: action returns success
     mockSendContactMessage.mockResolvedValue({ success: true })
   })
 
   // ─── Initial render ──────────────────────────────────────────────────────
 
-  it('case 1: fresh render — shows name, email, text tab active, subject, budget, message; no voice panel', () => {
+  it('case 1: fresh render — voice tab pressed by default, mic record button visible, no message field', () => {
     renderWithIntl(<ContactForm />)
     expect(screen.getByLabelText(messages.contact.form.nameLabel)).toBeInTheDocument()
     expect(screen.getByLabelText(messages.contact.form.emailLabel)).toBeInTheDocument()
-    expect(screen.getByLabelText(messages.contact.form.subjectLabel)).toBeInTheDocument()
-    expect(screen.getByLabelText(messages.contact.form.budgetLabel)).toBeInTheDocument()
-    expect(screen.getByLabelText(messages.contact.form.messageLabel)).toBeInTheDocument()
 
-    // Text tab is active
-    const textTab = screen.getByRole('button', { name: messages.contact.form.modeTabs.typeLabel })
-    expect(textTab).toHaveAttribute('aria-pressed', 'true')
+    // Voice tab is active by default
+    const voiceTab = screen.getByRole('button', { name: messages.contact.form.modeTabs.voiceLabel })
+    expect(voiceTab).toHaveAttribute('aria-pressed', 'true')
 
-    // Voice panel not shown
-    expect(screen.queryByTestId('voice-recorder')).not.toBeInTheDocument()
+    // Mic record button visible (voice panel mounted)
+    expect(
+      screen.getByRole('button', { name: messages.contact.form.voice.recordBtn }),
+    ).toBeInTheDocument()
+
+    // No message label (text panel not mounted)
+    expect(screen.queryByLabelText(messages.contact.form.messageLabel)).not.toBeInTheDocument()
   })
 
   it('case 2: honeypot input is aria-hidden, tabIndex=-1, autoComplete=off', () => {
@@ -90,7 +110,7 @@ describe('ContactForm', () => {
     expect(honeypotInput).toHaveAttribute('autocomplete', 'off')
   })
 
-  // ─── Client validation ───────────────────────────────────────────────────
+  // ─── Client validation (mode-independent fields above the toggle) ────────
 
   it('case 3: blur empty name → nameTooShort error', async () => {
     const user = userEvent.setup()
@@ -114,20 +134,10 @@ describe('ContactForm', () => {
     })
   })
 
-  it('case 5: text mode, blur empty subject → subjectRequired error', async () => {
-    const user = userEvent.setup()
-    renderWithIntl(<ContactForm />)
-    const subjectInput = screen.getByLabelText(messages.contact.form.subjectLabel)
-    await user.click(subjectInput)
-    await user.tab()
-    await waitFor(() => {
-      expect(screen.getByText(messages.contact.form.errors.subjectRequired)).toBeInTheDocument()
-    })
-  })
-
   it('case 6: text mode, blur 9-char message → messageRequired error', async () => {
     const user = userEvent.setup()
     renderWithIntl(<ContactForm />)
+    await switchToText(user)
     const messageInput = screen.getByLabelText(messages.contact.form.messageLabel)
     await user.type(messageInput, 'A'.repeat(9))
     await user.tab()
@@ -154,32 +164,35 @@ describe('ContactForm', () => {
 
   // ─── Mode toggle ─────────────────────────────────────────────────────────
 
-  it('case 8: click Voice tab → text panel unmounts, voice panel mounts, aria-pressed flips', async () => {
+  it('case 8: click Text tab → voice panel unmounts, text panel mounts, aria-pressed flips', async () => {
     const user = userEvent.setup()
     renderWithIntl(<ContactForm />)
 
-    const voiceTab = screen.getByRole('button', { name: messages.contact.form.modeTabs.voiceLabel })
-    await user.click(voiceTab)
+    const textTab = screen.getByRole('button', { name: messages.contact.form.modeTabs.typeLabel })
+    await user.click(textTab)
 
-    // text panel fields gone
+    // Text panel mounted (message label appears)
     await waitFor(() => {
-      expect(screen.queryByLabelText(messages.contact.form.subjectLabel)).not.toBeInTheDocument()
+      expect(screen.getByLabelText(messages.contact.form.messageLabel)).toBeInTheDocument()
     })
 
-    // voice panel visible
-    expect(document.getElementById('contact-voice-panel')).not.toBeNull()
+    // Voice panel mic-record button gone
+    expect(
+      screen.queryByRole('button', { name: messages.contact.form.voice.recordBtn }),
+    ).not.toBeInTheDocument()
 
     // aria-pressed flipped
-    expect(voiceTab).toHaveAttribute('aria-pressed', 'true')
-    const textTab = screen.getByRole('button', { name: messages.contact.form.modeTabs.typeLabel })
-    expect(textTab).toHaveAttribute('aria-pressed', 'false')
+    expect(textTab).toHaveAttribute('aria-pressed', 'true')
+    const voiceTab = screen.getByRole('button', { name: messages.contact.form.modeTabs.voiceLabel })
+    expect(voiceTab).toHaveAttribute('aria-pressed', 'false')
   })
 
-  it('case 9: Text→Voice→Text retains typed subject', async () => {
+  it('case 9: Text→Voice→Text retains typed message', async () => {
     const user = userEvent.setup()
     renderWithIntl(<ContactForm />)
 
-    await user.type(screen.getByLabelText(messages.contact.form.subjectLabel), 'My project')
+    await switchToText(user)
+    await user.type(screen.getByLabelText(messages.contact.form.messageLabel), 'My project')
 
     const voiceTab = screen.getByRole('button', { name: messages.contact.form.modeTabs.voiceLabel })
     await user.click(voiceTab)
@@ -187,8 +200,10 @@ describe('ContactForm', () => {
     const textTab = screen.getByRole('button', { name: messages.contact.form.modeTabs.typeLabel })
     await user.click(textTab)
 
-    const subjectInput = screen.getByLabelText(messages.contact.form.subjectLabel) as HTMLInputElement
-    expect(subjectInput.value).toBe('My project')
+    const messageInput = screen.getByLabelText(
+      messages.contact.form.messageLabel,
+    ) as HTMLTextAreaElement
+    expect(messageInput.value).toBe('My project')
   })
 
   // ─── Submission ───────────────────────────────────────────────────────────
@@ -198,7 +213,9 @@ describe('ContactForm', () => {
     renderWithIntl(<ContactForm />)
     await fillValidTextForm(user)
 
-    await user.click(screen.getByRole('button', { name: new RegExp(messages.contact.form.submit, 'i') }))
+    await user.click(
+      screen.getByRole('button', { name: new RegExp(messages.contact.form.submit, 'i') }),
+    )
 
     await waitFor(() => {
       expect(mockSendContactMessage).toHaveBeenCalledOnce()
@@ -214,8 +231,7 @@ describe('ContactForm', () => {
     const user = userEvent.setup()
     renderWithIntl(<ContactForm />)
 
-    // Switch to voice mode
-    await user.click(screen.getByRole('button', { name: messages.contact.form.modeTabs.voiceLabel }))
+    // Voice mode is the default — no tab click needed.
 
     // Fill name and email
     await user.type(screen.getByLabelText(messages.contact.form.nameLabel), 'Alice Smith')
@@ -231,14 +247,18 @@ describe('ContactForm', () => {
     await act(async () => { mrMock.triggerStop() })
     await act(async () => { localAudioInstances[0]?.fireLoadedMetadata(5) })
     await waitFor(() => {
-      expect(screen.getByText(
-        messages.contact.form.voice.recordingNLabel.replace('{n}', '1'),
-      )).toBeInTheDocument()
+      expect(
+        screen.getByText(messages.contact.form.voice.recordingNLabel.replace('{n}', '1')),
+      ).toBeInTheDocument()
     })
 
     await verifyTurnstile(user)
 
-    await user.click(screen.getByRole('button', { name: new RegExp(messages.contact.form.voice.submitLabel, 'i') }))
+    await user.click(
+      screen.getByRole('button', {
+        name: new RegExp(messages.contact.form.voice.submitLabel, 'i'),
+      }),
+    )
 
     await waitFor(() => {
       expect(mockSendContactMessage).toHaveBeenCalledOnce()
@@ -262,29 +282,46 @@ describe('ContactForm', () => {
     renderWithIntl(<ContactForm />)
     await fillValidTextForm(user)
 
-    await user.click(screen.getByRole('button', { name: new RegExp(messages.contact.form.submit, 'i') }))
+    await user.click(
+      screen.getByRole('button', { name: new RegExp(messages.contact.form.submit, 'i') }),
+    )
 
     await waitFor(() => {
       expect(screen.getByText(messages.contact.form.sending)).toBeInTheDocument()
     })
-    const submitBtn = screen.getByRole('button', { name: new RegExp(messages.contact.form.sending, 'i') })
+    const submitBtn = screen.getByRole('button', {
+      name: new RegExp(messages.contact.form.sending, 'i'),
+    })
     expect(submitBtn).toBeDisabled()
 
     // Resolve to clean up
     resolveAction({ success: true })
   })
 
-  it('case 13: server success → successMessage banner visible, submit stays disabled', async () => {
+  it('case 13: server success → success heading + 3 CTA links visible', async () => {
     mockSendContactMessage.mockResolvedValue({ success: true })
     const user = userEvent.setup()
     renderWithIntl(<ContactForm />)
     await fillValidTextForm(user)
 
-    await user.click(screen.getByRole('button', { name: new RegExp(messages.contact.form.submit, 'i') }))
+    await user.click(
+      screen.getByRole('button', { name: new RegExp(messages.contact.form.submit, 'i') }),
+    )
 
     await waitFor(() => {
-      expect(screen.getByText(messages.contact.form.successMessage)).toBeInTheDocument()
+      expect(screen.getByText(messages.contact.form.successHeading)).toBeInTheDocument()
     })
+
+    expect(
+      screen.getByRole('link', { name: messages.contact.form.successCtas.calendly }),
+    ).toBeInTheDocument()
+    expect(
+      screen.getByRole('link', { name: messages.contact.form.successCtas.linkedin }),
+    ).toBeInTheDocument()
+    expect(
+      screen.getByRole('link', { name: messages.contact.form.successCtas.projects }),
+    ).toBeInTheDocument()
+
     expect(mockTrackContactSubmitSuccess).toHaveBeenCalledExactlyOnceWith('text')
   })
 
@@ -294,13 +331,14 @@ describe('ContactForm', () => {
     renderWithIntl(<ContactForm />)
     await fillValidTextForm(user)
 
-    await user.click(screen.getByRole('button', { name: new RegExp(messages.contact.form.submit, 'i') }))
+    await user.click(
+      screen.getByRole('button', { name: new RegExp(messages.contact.form.submit, 'i') }),
+    )
 
     await waitFor(() => {
       expect(screen.getByText(messages.contact.form.errors.turnstile)).toBeInTheDocument()
     })
 
-    // Verify that turnstileRef.current.reset() was actually invoked by the useEffect
     expect(turnstileResetSpy).toHaveBeenCalledOnce()
   })
 
@@ -310,7 +348,9 @@ describe('ContactForm', () => {
     renderWithIntl(<ContactForm />)
     await fillValidTextForm(user)
 
-    await user.click(screen.getByRole('button', { name: new RegExp(messages.contact.form.submit, 'i') }))
+    await user.click(
+      screen.getByRole('button', { name: new RegExp(messages.contact.form.submit, 'i') }),
+    )
 
     await waitFor(() => {
       expect(screen.getByText(messages.contact.form.errors.rateLimited)).toBeInTheDocument()
@@ -318,15 +358,27 @@ describe('ContactForm', () => {
   })
 
   it('case 16: voice mode submit button reads voice.submitLabel', async () => {
-    const user = userEvent.setup()
     renderWithIntl(<ContactForm />)
-
-    await user.click(screen.getByRole('button', { name: messages.contact.form.modeTabs.voiceLabel }))
-
+    // Voice is the default — no mode click needed.
     await waitFor(() => {
       expect(
-        screen.getByRole('button', { name: new RegExp(messages.contact.form.voice.submitLabel, 'i') }),
+        screen.getByRole('button', {
+          name: new RegExp(messages.contact.form.voice.submitLabel, 'i'),
+        }),
       ).toBeInTheDocument()
+    })
+  })
+
+  // ─── Deep-link via ?interest= ────────────────────────────────────────────
+
+  it('case 17: ?interest=mentorship deep-link selects the mentorship option', async () => {
+    setSearchParams('interest=mentorship')
+    renderWithIntl(<ContactForm />)
+    await waitFor(() => {
+      const select = screen.getByLabelText(
+        messages.contact.form.interestLabel,
+      ) as HTMLSelectElement
+      expect(select.value).toBe('mentorship')
     })
   })
 })

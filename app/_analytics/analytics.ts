@@ -5,12 +5,15 @@ import { track } from "@vercel/analytics";
 export const portfolioAnalyticsEvents = {
   resumeDownload: "resume_download",
   contactSubmitSuccess: "contact_submit_success",
+  contactSectionView: "contact_section_view",
+  contactSuccessCtaClick: "contact_success_cta_click",
   calendlyOpen: "calendly_open",
   outboundClick: "outbound_click",
 } as const;
 
 export type OutboundTarget = "github" | "linkedin" | "twitter" | "telegram" | "whatsapp";
 export type ContactSubmitMode = "text" | "voice";
+export type ContactSuccessCtaTarget = "calendly" | "linkedin" | "projects";
 
 type AnalyticsPrimitive = string | number | boolean;
 
@@ -26,6 +29,10 @@ type PortfolioEventPayloads = {
   [portfolioAnalyticsEvents.contactSubmitSuccess]: AnalyticsContext & {
     target: "contact_form";
     mode: ContactSubmitMode;
+  };
+  [portfolioAnalyticsEvents.contactSectionView]: AnalyticsContext;
+  [portfolioAnalyticsEvents.contactSuccessCtaClick]: AnalyticsContext & {
+    target: ContactSuccessCtaTarget;
   };
   [portfolioAnalyticsEvents.calendlyOpen]: AnalyticsContext & { target: "calendly" };
   [portfolioAnalyticsEvents.outboundClick]: AnalyticsContext & { target: OutboundTarget };
@@ -92,5 +99,18 @@ export function trackContactSubmitSuccess(mode: ContactSubmitMode): void {
     ...getAnalyticsContext(),
     target: "contact_form",
     mode,
+  });
+}
+
+export function trackContactSectionView(): void {
+  trackPortfolioEvent(portfolioAnalyticsEvents.contactSectionView, {
+    ...getAnalyticsContext(),
+  });
+}
+
+export function trackContactSuccessCtaClick(target: ContactSuccessCtaTarget): void {
+  trackPortfolioEvent(portfolioAnalyticsEvents.contactSuccessCtaClick, {
+    ...getAnalyticsContext(),
+    target,
   });
 }

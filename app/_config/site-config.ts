@@ -57,7 +57,13 @@ export const siteConfig = {
   },
   features: {
     consentBanner: true,
+    contactChannels: true,
   },
+  /**
+   * Default mode for the contact form. Cheap rollback lever — flip to 'text'
+   * without a code change if voice-default tanks conversion.
+   */
+  contactDefaultMode: 'voice' as 'voice' | 'text',
   turnstile: {
     /**
      * Controls the Cloudflare Turnstile widget rendering mode.

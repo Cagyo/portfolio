@@ -40,8 +40,6 @@ function makeTextFormData(overrides: Record<string, string> = {}): FormData {
   fd.set('email', 'alice@example.com')
   fd.set('website', '')
   fd.set('turnstileToken', 'tok')
-  fd.set('subject', 'Hello there')
-  fd.set('budget', '5k')
   fd.set('message', 'This is a valid message with enough chars.')
   Object.entries(overrides).forEach(([key, value]) => fd.set(key, value))
   return fd
@@ -110,7 +108,7 @@ describe('sendContactMessage', () => {
     expect(callArgs.to).toBe('inbox@test.com')
     expect(callArgs.from).toBe('from@test.com')
     expect(callArgs.replyTo).toBe('alice@example.com')
-    expect(callArgs.subject).toBe('[Portfolio] Hello there')
+    expect(callArgs.subject).toBe('[Portfolio] Message from Alice Smith')
     expect(callArgs.attachments).toBeUndefined()
   })
 
@@ -176,12 +174,6 @@ describe('sendContactMessage', () => {
   it('case 11: invalid email → { success: false, error: emailInvalid }', async () => {
     const result = await sendContactMessage(null, makeTextFormData({ email: 'not-an-email' }))
     expect(result).toEqual({ success: false, error: 'emailInvalid' })
-  })
-
-  // 12. Unknown budget enum → budgetInvalid
-  it('case 12: unknown budget enum → { success: false, error: budgetInvalid }', async () => {
-    const result = await sendContactMessage(null, makeTextFormData({ budget: 'GALAXY_BRAIN' }))
-    expect(result).toEqual({ success: false, error: 'budgetInvalid' })
   })
 
   // 13. Missing CONTACT_INBOX_EMAIL → sendFailed

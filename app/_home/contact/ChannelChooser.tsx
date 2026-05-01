@@ -70,8 +70,8 @@ export async function ChannelChooser() {
               {channel.icon}
             </div>
             <div className="flex-1 min-w-0">
-              <p className="text-white font-semibold text-sm">{channel.title}</p>
-              <p className="text-white/35 text-xs mt-0.5">{channel.meta}</p>
+              <p className={`text-white font-semibold text-sm ${styles.cardTitle}`}>{channel.title}</p>
+              <p className={`text-white/35 text-xs mt-0.5 ${styles.cardMeta}`}>{channel.meta}</p>
             </div>
             <ExternalLinkIcon className={`w-4 h-4 flex-shrink-0 ${styles.externalIcon}`} />
           </TrackedLink>

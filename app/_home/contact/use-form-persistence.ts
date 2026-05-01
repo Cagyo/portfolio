@@ -79,7 +79,6 @@ export function useFormPersistence<TValues extends FieldValues>({
   }, [])
 
   // Debounced write on changes
-  // eslint-disable-next-line react-hooks/incompatible-library
   const watched = form.watch(fields)
 
   useEffect(() => {

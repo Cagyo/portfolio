@@ -286,7 +286,6 @@
       "messagePlaceholder": "Tell me about your project — what you're building, timeline, and any constraints.",
       "submit": "Send Message",
       "sending": "Sending…",
-      "successMessage": "Message sent! I'll get back to you within 24 hours.",
       "successHeading": "Got it — talk soon.",
       "successBody": "I'll reply within 24 hours. While you wait:",
       "successCtas": {

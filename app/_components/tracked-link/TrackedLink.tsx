@@ -1,6 +1,6 @@
 "use client";
 
-import type { AnchorHTMLAttributes } from "react";
+import { useCallback, type AnchorHTMLAttributes, type MouseEvent } from "react";
 import {
   trackLinkAction,
   type LinkTracking,
@@ -8,7 +8,7 @@ import {
 
 type TrackedLinkProps = Omit<
   AnchorHTMLAttributes<HTMLAnchorElement>,
-  "href" | "onClick"
+  "href"
 > & {
   href: string;
   tracking: LinkTracking;
@@ -19,13 +19,19 @@ export function TrackedLink({
   tracking,
   className = "",
   children,
+  onClick,
   ...anchorProps
 }: TrackedLinkProps) {
+  const handleClick = useCallback((event: MouseEvent<HTMLAnchorElement>) => {
+    trackLinkAction(tracking);
+    onClick?.(event);
+  }, [tracking, onClick]);
+
   return (
     <a
       href={href}
       className={className}
-      onClick={() => trackLinkAction(tracking)}
+      onClick={handleClick}
       {...anchorProps}
     >
       {children}

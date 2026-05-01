@@ -15,7 +15,7 @@ import { SpinnerIcon } from '@/assets/icons/SpinnerIcon'
 import { PenLineIcon } from '@/assets/icons/PenLineIcon'
 import { MicrophoneIcon } from '@/assets/icons/MicrophoneIcon'
 import { LinkedInLogo } from '@/assets/logos/LinkedInLogo'
-import { trackContactSubmitSuccess } from '@/app/_analytics/analytics'
+import { trackContactSubmitSuccess, trackContactSuccessCtaClick } from '@/app/_analytics/analytics'
 import { Button } from '@/app/_components/button/Button'
 import { TrackedLink } from '@/app/_components/tracked-link/TrackedLink'
 import { VoiceRecorder } from './VoiceRecorder'
@@ -335,6 +335,7 @@ export function ContactForm() {
                 target="_blank"
                 rel="noopener noreferrer"
                 tracking={{ action: 'calendly' }}
+                onClick={() => trackContactSuccessCtaClick('calendly')}
                 className={`${styles.successCta} ${styles.successCtaPrimary}`}
               >
                 <CalendarIcon className="w-4 h-4" />
@@ -345,12 +346,17 @@ export function ContactForm() {
                 target="_blank"
                 rel="noopener noreferrer"
                 tracking={{ action: 'outbound', target: 'linkedin' }}
+                onClick={() => trackContactSuccessCtaClick('linkedin')}
                 className={styles.successCta}
               >
                 <LinkedInLogo className="w-4 h-4" />
                 <span>{t('form.successCtas.linkedin')}</span>
               </TrackedLink>
-              <Link href="/projects" className={styles.successCta}>
+              <Link
+                href="/projects"
+                onClick={() => trackContactSuccessCtaClick('projects')}
+                className={styles.successCta}
+              >
                 <BriefcaseIcon className="w-4 h-4" />
                 <span>{t('form.successCtas.projects')}</span>
               </Link>

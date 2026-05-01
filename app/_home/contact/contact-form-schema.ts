@@ -1,4 +1,5 @@
 import { z } from 'zod'
+import { siteConfig } from '@/app/_config/site-config'
 import { INTEREST_VALUES } from './contact-types'
 
 const MAX_FILE_BYTES = 5 * 1024 * 1024
@@ -37,7 +38,7 @@ export type ContactFormValues = z.infer<typeof contactFormSchema>
 export const contactFormDefaultValues: ContactFormValues = {
   name: '',
   email: '',
-  mode: 'voice',
+  mode: siteConfig.contactDefaultMode,
   message: '',
   voiceRecordings: [],
   turnstileToken: '',

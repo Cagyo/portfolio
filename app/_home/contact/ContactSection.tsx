@@ -2,9 +2,11 @@ import { Suspense } from "react";
 import { getTranslations } from "next-intl/server";
 import { BlobBackground } from "@/app/_components/BlobBackground";
 import { SectionHeader } from "@/app/_components/SectionHeader";
+import { siteConfig } from "@/app/_config/site-config";
 import { ChannelChooser } from "./ChannelChooser";
 import { ContactForm } from "./ContactForm";
 import { ContactInfo } from "./ContactInfo";
+import { ContactSectionView } from "./ContactSectionView";
 import styles from "./ContactSection.module.css";
 
 type ContactSectionProps = { sectionNumber?: string }
@@ -15,6 +17,7 @@ export async function ContactSection({ sectionNumber }: ContactSectionProps) {
   return (
     <section id="contact" className="py-16 relative overflow-hidden">
       <BlobBackground position="-bottom-32 left-1/2 -translate-x-1/2" opacity={0.1} />
+      <ContactSectionView />
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeader number={sectionNumber} title={t("sectionTitle")} />
@@ -22,7 +25,7 @@ export async function ContactSection({ sectionNumber }: ContactSectionProps) {
         <div className="grid lg:grid-cols-5 gap-12">
           <ContactInfo />
           <div className={`lg:col-span-3 reveal ${styles.formCol}`}>
-            <ChannelChooser />
+            {siteConfig.features.contactChannels && <ChannelChooser />}
             <Suspense>
               <ContactForm />
             </Suspense>

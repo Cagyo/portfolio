@@ -19,8 +19,6 @@ const validTextPayload = {
   email: 'alice@example.com',
   website: '',
   turnstileToken: 'tok',
-  subject: 'Hello there',
-  budget: '5k' as const,
   message: 'This is a valid message with enough chars.',
   voiceRecordings: [],
 }
@@ -127,27 +125,9 @@ describe('contactSchema (server)', () => {
     }
   })
 
-  // 9. Voice mode with subject/budget/message absent → passes
-  it('case 9: voice mode without optional fields → still passes', () => {
-    const { subject: _s, budget: _b, message: _m, ..._baseVoice } = {
-      ...validVoicePayload,
-      subject: undefined as unknown,
-      budget: undefined as unknown,
-      message: undefined as unknown,
-    }
-    void _s; void _b; void _m; void _baseVoice
+  // 9. Voice mode without optional message → passes
+  it('case 9: voice mode without optional message → passes', () => {
     const result = contactSchema.safeParse(validVoicePayload)
-    expect(result.success).toBe(true)
-  })
-
-  // 10. budget: '' valid in both modes
-  it('case 10: budget empty string is valid in text mode', () => {
-    const result = contactSchema.safeParse({ ...validTextPayload, budget: '' })
-    expect(result.success).toBe(true)
-  })
-
-  it('case 10b: budget empty string is valid in voice mode', () => {
-    const result = contactSchema.safeParse({ ...validVoicePayload, budget: '' })
     expect(result.success).toBe(true)
   })
 
