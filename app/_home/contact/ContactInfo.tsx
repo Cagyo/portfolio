@@ -39,9 +39,11 @@ export async function ContactInfo() {
           <span className="w-2.5 h-2.5 bg-green-400 rounded-full animate-pulse-slow" />
           <span className="text-amber-400 font-semibold text-sm">{t("availabilityTitle")}</span>
         </div>
-        <p className="text-white/50 text-sm leading-relaxed">
-          {t("availabilityBody")}
-        </p>
+        {t("availabilityBody") && (
+          <p className="text-white/50 text-sm leading-relaxed">
+            {t("availabilityBody")}
+          </p>
+        )}
       </div>
     </div>
   );

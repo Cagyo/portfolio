@@ -24,6 +24,8 @@ export function SkillsSection({ sectionNumber }: SkillsSectionProps) {
   const [search, setSearch] = useState("");
   const [activeCat, setActiveCat] = useState(0);
   const [expanded, setExpanded] = useState(false);
+  const [detailsOpen, setDetailsOpen] = useState(false);
+  const detailsPanelId = "skills-full-stack-panel";
 
   const filtered = useMemo(() => {
     const query = search.toLowerCase();
@@ -70,22 +72,47 @@ export function SkillsSection({ sectionNumber }: SkillsSectionProps) {
 
         <ShippableStacks />
 
-        <div className="reveal mb-10 space-y-5 border-t border-white/5 pt-8">
-          <SearchInput
-            value={search}
-            onChange={setSearch}
-            placeholder={t("searchPlaceholder")}
-            label={t("searchLabel")}
-          />
-          <SkillFilterTabs active={activeCat} counts={counts} onSelect={setActiveCat} />
+        <div className="reveal mt-8">
+          <button
+            type="button"
+            onClick={() => setDetailsOpen((prev) => !prev)}
+            aria-expanded={detailsOpen}
+            aria-controls={detailsPanelId}
+            className="w-full flex items-center gap-3 text-white/25 hover:text-white/50 transition-colors duration-200 cursor-pointer group py-1"
+          >
+            <div className="flex-1 border-t border-dashed border-white/10 group-hover:border-white/20 transition-colors duration-200" />
+            <span className="text-xs tracking-wide">
+              {detailsOpen ? t("fullStackToggleHide") : t("fullStackToggleShow")}
+            </span>
+            <ChevronDownIcon
+              className={`w-3 h-3 transition-transform duration-300 ${detailsOpen ? "rotate-180" : ""}`}
+            />
+            <div className="flex-1 border-t border-dashed border-white/10 group-hover:border-white/20 transition-colors duration-200" />
+          </button>
         </div>
 
-        <p className="text-white/30 text-xs mb-6 reveal" aria-live="polite">
-          {t("counter", { filtered: filtered.length, total: SKILLS.length })}
-        </p>
+        <div
+          id={detailsPanelId}
+          className={styles.detailsGrid}
+          style={{ gridTemplateRows: detailsOpen ? "1fr" : "0fr" }}
+        >
+          <div className={styles.detailsInner}>
+            <div className="mb-10 space-y-5 pt-8">
+              <SearchInput
+                value={search}
+                onChange={setSearch}
+                placeholder={t("searchPlaceholder")}
+                label={t("searchLabel")}
+              />
+              <SkillFilterTabs active={activeCat} counts={counts} onSelect={setActiveCat} />
+            </div>
 
-        <div className="reveal">
-          {filtered.length === 0 ? (
+            <p className="text-white/30 text-xs mb-6" aria-live="polite">
+              {t("counter", { filtered: filtered.length, total: SKILLS.length })}
+            </p>
+
+            <div>
+              {filtered.length === 0 ? (
             <EmptyState
               message={t("noResults", { query: search })}
               clearLabel={t("clearSearch")}
@@ -180,6 +207,8 @@ export function SkillsSection({ sectionNumber }: SkillsSectionProps) {
               )}
             </>
           )}
+            </div>
+          </div>
         </div>
       </div>
     </section>

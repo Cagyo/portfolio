@@ -12,7 +12,7 @@
       "fit": "Fit",
       "contact": "Contact"
     },
-    "cta": "Hire Me",
+    "cta": "Work with me",
     "mobileMenuAriaLabel": "Site navigation",
     "mobileMenuOpenAriaLabel": "Open navigation menu"
   },
@@ -25,7 +25,7 @@
     "ctaWork": "See case studies",
     "ctaContact": "Start a conversation",
     "photoAlt": "Photo",
-    "logosLabel": "Trusted by",
+    "logosLabel": "Past employers",
     "logos": [
       { "name": "All Square" },
       { "name": "EngagePoint" },
@@ -34,9 +34,9 @@
   },
   "about": {
     "sectionTitle": "About Me",
-    "bio1": "If you've shipped something real with Cursor, Claude Code, or a small team and now need someone to take it further, that's the work I'm built for. If you have a clear picture of what you want to build and need a technical partner to figure out how, I've been doing that for ten years. Both are good places to start from.",
+    "bio1": "If you've shipped something real with Cursor or Claude Code and now need someone to take it further, that's the work I'm built for. If you've got a working prototype and a clear picture of where it should go, I've been doing that work for ten years. Both are good places to start from.",
     "bio2": "I've spent the last <highlight>10+ years</highlight> building things end-to-end: mobile, backend, frontend, infrastructure. The last three on a live event platform used by thousands of people during international tournaments. Cursor, Claude Code, and Copilot are part of my daily workflow, which is why I know where they stop being enough. I don't hand off when my \"part\" is done. I care about the whole system working, and about keeping it simple enough that someone can pick it up and maintain it when that person is no longer me.",
-    "bio3": "The stack matters less to me than the quality of the product. I want to understand the product, the users, and the direction, not just the ticket on my plate. Most engagements I start become long-term because I stay invested in what I build. If you're looking for a technical partner for the arc of a business rather than a vendor for the next sprint, that's where I'm at my best.",
+    "bio3": "The stack matters less to me than the quality of the product. I want to understand the product, the users, and the direction, not just the ticket on my plate. Most engagements I start become long-term because I stay invested in what I build. If you're looking for a technical partner for the arc of a business rather than a vendor for the next quarter, that's where I'm at my best.",
     "experienceHeading": "Experience",
     "showLess": "Show less",
     "showNMore": "{count, plural, one {# more} other {# more}}",
@@ -133,6 +133,8 @@
     "shipsAria": "{count} projects shipped",
     "shippableStacksTitle": "Stacks I ship",
     "shippableStacksSubtitle": "What I ship end-to-end.",
+    "fullStackToggleShow": "See full stack details",
+    "fullStackToggleHide": "Hide stack details",
     "fullStackCardTitle": "Full product (backend + app)",
     "mobileCardTitle": "Mobile delivery",
     "paymentsCardTitle": "Payments integration",
@@ -193,17 +195,17 @@
       {
         "tag": "Ship fast",
         "title": "MVP & Fast Builds",
-        "kicker": "For founders testing an idea fast",
-        "body": "This website was built in days using AI-assisted development. That's the pace I bring to your project. A working solution in weeks, not months, without the overhead of a full agency process. Scope is fixed before we start, so you know what you're paying for and what you're getting. No surprise invoices, no expanding timelines, no rotating team members you've never met.",
-        "bestFor": "Founders who need to validate an idea, test a market, or quickly ship something real before committing to the full build.",
+        "kicker": "For founders shipping the first real version, fast",
+        "body": "This website was built in days using AI-assisted development. That's the pace I bring to your project. Live in 4 to 6 weeks, fixed scope, fixed price. No surprise invoices, no expanding timelines, no rotating team members you've never met.",
+        "bestFor": "Founders who need to ship the first real version of their product fast, without committing to a full build before they've seen it work.",
         "note": "Fast scope. Fixed price. Shipped in weeks.",
         "cta": "Start a fast build →"
       },
       {
         "tag": "Long-term",
         "title": "Full Build & Support",
-        "kicker": "For products built to run for years",
-        "body": "Solid architecture from day one, built to scale. I'm embedded in your product long-term: designing, building, leading, and evolving it as your business grows. No handoffs, no rotating developers, no context lost between quarters. The same engineer who architects it in month one is the one shipping features in year three. When you hire a team later, I help you hire the right people or step into the tech lead role as you scale.",
+        "kicker": "For prototypes that proved the idea and now need to run as a real business",
+        "body": "Solid architecture from day one, built to scale. I'm embedded in your product long-term: designing, building, leading, and evolving it as your business grows. No handoffs, no agency revolving door, no context lost between quarters. On my last engagement, I shipped features in year three of a product I'd architected in month one. If you grow a team later, I help you hire the right people, or stay on as the tech lead.",
         "bestFor": "Founders building something they intend to run for years, who want one technical partner for the whole arc, not a series of handoffs.",
         "note": "One partner. Full ownership. Zero handoffs.",
         "cta": "Start the conversation →"
@@ -227,8 +229,8 @@
     "featuredEyebrow": "What I do best",
     "featuredBody": "You shipped an MVP with Cursor, Claude Code, or ChatGPT, and it's starting to buckle. I use the same tools every day. I know exactly where they give up, and what to rebuild underneath.",
     "goodFit": [
-      "You need to ship something real in weeks to test a market, not commit to a six-month agency plan.",
-      "You're building a new product from scratch and want one person owning mobile, web, backend, and infrastructure.",
+      "You need to ship the first real version of your product in weeks, not over six months with an agency.",
+      "You want one person owning your product end to end: mobile, web, backend, and infrastructure.",
       "You're non-technical. You want a partner who makes calls you can trust, not a vendor waiting for instructions."
     ],
     "notFit": [
@@ -240,8 +242,8 @@
   },
   "contact": {
     "sectionTitle": "Contact",
-    "heading": "Let's build something <gradient>amazing</gradient> together.",
-    "subheading": "Whether you have a product idea, need a technical partner, or just want to say hi — my inbox is always open.",
+    "heading": "Bring me your prototype. I'll tell you what to <gradient>keep</gradient>, what to rebuild, what to ship next.",
+    "subheading": "Whether you've got a prototype that's working, need a technical partner, or just want to say hi, my inbox is always open.",
     "emailLabel": "Email",
     "emailValue": "oleksii.berliziev@gmail.com",
     "locationLabel": "Location",
@@ -249,7 +251,7 @@
     "responseTimeLabel": "Response Time",
     "responseTimeValue": "Within 24 hours",
     "availabilityTitle": "Open to opportunities",
-    "availabilityBody": "Taking on 1–2 new engagements this quarter. Lead time 2–4 weeks.",
+    "availabilityBody": "",
     "preferCall": "Prefer a call?",
     "bookDiscovery": "Book a free discovery call",
     "bookDiscoveryMeta": "30 min · via Calendly",

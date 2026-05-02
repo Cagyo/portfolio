@@ -37,3 +37,13 @@
 .expanded .toggleChevron {
   transform: rotate(180deg);
 }
+
+.detailsGrid {
+  display: grid;
+  transition: grid-template-rows 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.detailsInner {
+  overflow: hidden;
+  min-height: 0;
+}
