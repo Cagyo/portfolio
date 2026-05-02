@@ -14,6 +14,7 @@ export const contactFormSchema = z
     voiceRecordings: z.array(z.instanceof(Blob)),
     turnstileToken: z.string().min(1, 'turnstile'),
     interest: z.enum(['', ...INTEREST_VALUES]),
+    ref: z.string().max(120).optional(),
     website: z.string().max(0),
   })
   .superRefine((values, ctx) => {
@@ -43,5 +44,6 @@ export const contactFormDefaultValues: ContactFormValues = {
   voiceRecordings: [],
   turnstileToken: '',
   interest: '',
+  ref: '',
   website: '',
 }

@@ -36,6 +36,7 @@ function buildFormData(values: ContactFormValues): FormData {
   fd.set('website', values.website)
   fd.set('turnstileToken', values.turnstileToken)
   if (values.interest) fd.set('interest', values.interest)
+  if (values.ref) fd.set('ref', values.ref)
   if (values.message) fd.set('message', values.message)
   values.voiceRecordings.forEach((blob, index) => {
     const file = new File([blob], `recording-${index + 1}.webm`, { type: 'audio/webm' })
@@ -99,6 +100,13 @@ export function ContactForm() {
   }, [searchParams, setValue])
 
   useEffect(() => {
+    const ref = searchParams.get('ref')
+    if (ref) {
+      setValue('ref', ref.slice(0, 120))
+    }
+  }, [searchParams, setValue])
+
+  useEffect(() => {
     if (!isSuccess || hasTrackedSuccessRef.current) return
 
     trackContactSubmitSuccess(mode)
@@ -127,6 +135,9 @@ export function ContactForm() {
             {...register('website')}
           />
         </div>
+
+        {/* ── Hidden ref (originating project slug) ── */}
+        <input type="hidden" {...register('ref')} />
 
         {/* ── Name + Email ── */}
         <div className="grid sm:grid-cols-2 gap-5">

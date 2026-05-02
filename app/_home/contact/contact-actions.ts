@@ -76,6 +76,7 @@ export async function sendContactMessage(
     website: formData.get('website') as string ?? '',
     turnstileToken: turnstileToken ?? '',
     interest: formData.get('interest') as string ?? undefined,
+    ref: formData.get('ref') as string ?? undefined,
     message: formData.get('message') as string ?? undefined,
     voiceRecordings: voiceFiles.map((file) => ({
       name: file.name,
@@ -111,6 +112,7 @@ export async function sendContactMessage(
     email: parsed.email,
     message: 'message' in parsed ? parsed.message : undefined,
     interest: 'interest' in parsed ? parsed.interest : undefined,
+    ref: 'ref' in parsed ? parsed.ref : undefined,
     mode: parsed.mode,
     recordingCount: voiceFiles.length,
   }

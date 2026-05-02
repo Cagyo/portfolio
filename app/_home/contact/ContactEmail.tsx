@@ -40,6 +40,11 @@ export function ContactEmail({ data }: ContactEmailProps) {
                 <strong>Interest:</strong> {INTEREST_LABELS[data.interest] ?? data.interest}
               </Text>
             )}
+            {data.ref && (
+              <Text style={textStyle}>
+                <strong>Referenced project:</strong> {data.ref}
+              </Text>
+            )}
             <Text style={textStyle}>
               <strong>Mode:</strong> {data.mode}
             </Text>

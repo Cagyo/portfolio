@@ -173,6 +173,7 @@ export default async function Page({
               icon={<BuildingOfficeIcon className="w-4 h-4" />}
               label={t("metaCompany")}
               value={project.company}
+              logo={project.logo}
             />
             <MetaItem
               icon={<UserIcon className="w-4 h-4" />}
@@ -189,7 +190,7 @@ export default async function Page({
           {/* Primary CTA above the fold */}
           <div className={styles.heroCta}>
             <Button
-              href="/#contact"
+              href={`/?ref=${project.slug}#contact`}
               variant="primary"
               className="px-6 py-3 rounded-xl text-sm gap-2"
             >
@@ -329,7 +330,7 @@ export default async function Page({
               {t("backToAll")}
             </Link>
             <Button
-              href="/#contact"
+              href={`/?ref=${project.slug}#contact`}
               variant="primary"
               className="px-6 py-3 rounded-xl text-sm gap-2"
             >
@@ -362,16 +363,27 @@ function MetaItem({
   icon,
   label,
   value,
+  logo,
 }: {
   icon: React.ReactNode;
   label: string;
   value: string;
+  logo?: string;
 }) {
   return (
     <li className={styles.metaItem}>
       <span className={styles.metaIcon} aria-hidden>
         {icon}
       </span>
+      {logo ? (
+        <Image
+          src={logo}
+          alt=""
+          width={16}
+          height={16}
+          className={styles.metaLogo}
+        />
+      ) : null}
       <div>
         <p className={styles.metaLabel}>{label}</p>
         <p className={styles.metaValue}>{value}</p>

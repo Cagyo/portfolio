@@ -10,6 +10,7 @@ const baseFields = {
   website: z.string().max(0),
   turnstileToken: z.string().min(1),
   interest: z.enum(INTEREST_VALUES).optional(),
+  ref: z.string().max(120).optional(),
 }
 
 const voiceFileMeta = z.object({

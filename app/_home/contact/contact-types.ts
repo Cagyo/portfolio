@@ -22,6 +22,7 @@ export type ContactEmailData = {
   email: string
   message?: string
   interest?: Interest
+  ref?: string
   mode: 'text' | 'voice'
   recordingCount: number
 }
