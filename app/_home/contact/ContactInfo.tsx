@@ -35,7 +35,7 @@ export async function ContactInfo() {
       </div>
 
       <div className="glass-amber rounded-2xl p-5">
-        <div className="flex items-center gap-3 mb-3">
+        <div className={`flex items-center gap-3 ${t("availabilityBody") ? "mb-3" : ""}`}>
           <span className="w-2.5 h-2.5 bg-green-400 rounded-full animate-pulse-slow" />
           <span className="text-amber-400 font-semibold text-sm">{t("availabilityTitle")}</span>
         </div>

@@ -41,6 +41,12 @@ import styles from "./project-detail.module.css";
 
 const THIN_CONTENT_THRESHOLD_WORDS = 120;
 
+const companyLogos: Record<string, string> = {
+  Allsquare: "/assets/companies/allsquare.jpg",
+  "Avocado Technology": "/assets/companies/avocado_tech_logo.jpg",
+  EngagePoint: "/assets/companies/engagepoint.jpg",
+};
+
 function combinedProse(project: Project): string {
   return [
     project.description,
@@ -106,12 +112,15 @@ export default async function Page({
   // is needed.
   if (!project) notFound();
 
-  const t = await getTranslations("projectDetail");
-  const tHub = await getTranslations("projectsPage");
-  const tNav = await getTranslations("nav");
-  const initialIsDark = await getInitialIsDark();
+  const [t, tHub, tNav, initialIsDark] = await Promise.all([
+    getTranslations("projectDetail"),
+    getTranslations("projectsPage"),
+    getTranslations("nav"),
+    getInitialIsDark(),
+  ]);
   const isPrivate = project.link.type === "private";
   const title = getProjectTitle(project);
+  const companyLogo = companyLogos[project.company];
 
   const { pageUrl, imageUrl } = buildCaseStudyUrls(project.slug);
   const articleSchema = buildCaseStudySchema({ project, pageUrl, imageUrl });
@@ -173,7 +182,7 @@ export default async function Page({
               icon={<BuildingOfficeIcon className="w-4 h-4" />}
               label={t("metaCompany")}
               value={project.company}
-              logo={project.logo}
+              logo={companyLogo}
             />
             <MetaItem
               icon={<UserIcon className="w-4 h-4" />}
@@ -195,7 +204,7 @@ export default async function Page({
               className="px-6 py-3 rounded-xl text-sm gap-2"
             >
               {t("primaryCta")}
-              <ArrowRightIcon className="w-4 h-4" />
+              <ArrowRightIcon className="w-4 h-4" aria-hidden />
             </Button>
             <span className={styles.heroCtaHint}>{t("primaryCtaHint")}</span>
           </div>
@@ -225,7 +234,7 @@ export default async function Page({
                 {project.achievements.map((achievement) => (
                   <li key={achievement} className={styles.achievementItem}>
                     <LightningIcon
-                      className="w-4 h-4 text-amber-400 flex-shrink-0 mt-0.5"
+                      className="w-4 h-4 text-[var(--amber)] flex-shrink-0 mt-0.5"
                       aria-hidden
                     />
                     {achievement}
@@ -365,22 +374,24 @@ function MetaItem({
   value,
   logo,
 }: {
-  icon: React.ReactNode;
+  icon?: React.ReactNode;
   label: string;
   value: string;
   logo?: string;
 }) {
   return (
     <li className={styles.metaItem}>
-      <span className={styles.metaIcon} aria-hidden>
-        {icon}
-      </span>
+      {!logo && (
+        <span className={styles.metaIcon} aria-hidden="true">
+          {icon}
+        </span>
+      )}
       {logo ? (
         <Image
           src={logo}
           alt=""
-          width={16}
-          height={16}
+          width={36}
+          height={36}
           className={styles.metaLogo}
         />
       ) : null}

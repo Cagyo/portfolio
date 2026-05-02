@@ -375,6 +375,12 @@ html[data-theme="light"] .linkStore {
   color: color-mix(in srgb, var(--text-primary) 70%, transparent);
 }
 
+html[data-theme="light"] .linkStore:hover {
+  background: color-mix(in srgb, var(--text-primary) 10%, transparent);
+  border-color: color-mix(in srgb, var(--text-primary) 20%, transparent);
+  transform: translateY(-1px);
+}
+
 html[data-theme="light"] .year {
   color: color-mix(in srgb, var(--text-primary) 55%, transparent);
 }
