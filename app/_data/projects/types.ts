@@ -92,6 +92,8 @@ export type ProjectHomeCard = {
   buyerBadge: string
 }
 
+export type ProjectShape = "greenfield" | "mature"
+
 export type ProjectContent = {
   title: string
   titleGeneric: string
@@ -104,6 +106,7 @@ export type ProjectContent = {
   teamLabel: string
   teamDetail: string
   scale: string
+  shapes: ProjectShape[]
   description: string
   problem?: string
   achievements: string[]

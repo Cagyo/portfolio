@@ -66,6 +66,7 @@ export function ProjectCard({ project, onNavigate, animationDelay = 0 }: Project
           <div className="flex flex-wrap items-start justify-between gap-3 mb-4">
             <div className="flex-1 min-w-0">
               <div className="flex flex-wrap items-center gap-2 mb-1.5">
+                <Tag variant={project.scale === "Solo build" ? "green" : "neutral"}>{project.scale}</Tag>
                 {project.devTypes.map((devType) => (
                   <Tag key={devType}>{devType}</Tag>
                 ))}

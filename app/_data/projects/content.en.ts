@@ -13,6 +13,7 @@ export const PROJECT_CONTENT_EN: Record<number, ProjectContent> = {
     teamLabel: "7–11",
     teamDetail: "2–5 devs · 1–2 QA · 2 BA · 1 PO · 1 PM",
     scale: "Team",
+    shapes: ["greenfield"],
     description: "Greenfield tournament platform, live since 2022. Web app with an admin dashboard and a built-in no-code page builder, iOS and Android apps with separate user and on-site admin modes for ticket scanning, and a NestJS backend with background workers. Held the whole platform alone in the final year, including a full content migration from the old site.",
     problem: "A platform the founders' team runs themselves — page authoring, mobile-app sections, and on-site ticket scanning during live rounds, without a developer in the loop after launch.",
     achievements: [
@@ -53,6 +54,7 @@ export const PROJECT_CONTENT_EN: Record<number, ProjectContent> = {
     teamLabel: "8",
     teamDetail: "4 devs · 1 QA · 1 BA · 1 PO · 1 PM",
     scale: "Team",
+    shapes: ["mature"],
     description: "Worked inside a mature, live golf social network on Allsquare's main product. Shipped brand-new booking and search flows alongside an incremental rewrite of legacy modules, with no feature-freeze and no user-visible regressions.",
     problem: "A mature, live product where booking and search had to ship across web and mobile while legacy modules were rewritten underneath, with no feature-freeze and no user-visible regressions.",
     achievements: [
@@ -90,6 +92,7 @@ export const PROJECT_CONTENT_EN: Record<number, ProjectContent> = {
     teamLabel: "8",
     teamDetail: "2 mobile devs · 1 backend · 1–2 QA · 2 BA · 1 PM",
     scale: "Team",
+    shapes: ["greenfield"],
     description: "React Native booking app for a Swiss golf club, built end-to-end as the mobile lead. Owned the architecture, feature delivery, and Saferpay integration on top of a dedicated REST backend; shipped to both the App Store and Google Play.",
     problem: "A native iOS and Android booking app for the club, owned end-to-end by one mobile lead from architecture and payments through to both stores.",
     achievements: [
@@ -127,6 +130,7 @@ export const PROJECT_CONTENT_EN: Record<number, ProjectContent> = {
     teamLabel: "3",
     teamDetail: "1 dev · 1 QA · 1 PM",
     scale: "Solo build",
+    shapes: ["greenfield"],
     description: "Solo 0→1 build of an on-demand car-wash platform: customer mobile app, dispatcher web dashboard, backend, and AWS infrastructure, all owned by one developer. Live in the original market 2018–2020, then productised and re-launched in South Africa.",
     problem: "An on-demand service platform built solo from zero. Customer mobile app, dispatcher web dashboard, backend, and infra. Shipped, productised, and re-launched in a second market.",
     achievements: [
@@ -164,6 +168,7 @@ export const PROJECT_CONTENT_EN: Record<number, ProjectContent> = {
     teamLabel: "5",
     teamDetail: "2 devs · 1 QA · 1 BA · 1 PM",
     scale: "Team",
+    shapes: ["greenfield"],
     description: "0→1 build of a dead-man's-switch messaging app: sends pre-written personal messages (text, video, documents) to chosen recipients when the user stops checking in. Recipients without the app open the delivery on a web view via a one-time token in the notification, SMS, or email. Led the team through the full lifecycle and owned the architecture end-to-end.",
     problem: "A messaging app that delivers pre-written content (text, video, documents) to chosen recipients when the user stops checking in, reachable even by recipients who never installed the app. Reliability over arbitrary time windows was the whole product.",
     achievements: [
@@ -192,6 +197,7 @@ export const PROJECT_CONTENT_EN: Record<number, ProjectContent> = {
     teamLabel: "9",
     teamDetail: "5 devs · 2 QA · 1 BA · 1 PM",
     scale: "Team",
+    shapes: ["greenfield"],
     description: "Mobile lead on a Swiss fintech currency-exchange app, live in four languages (DE, FR, IT, EN) on both stores. Owned the architecture end-to-end: a complex multi-step regulated signup with Onfido KYC, mobile observability and attribution (Crashlytics, Firebase Analytics, AppsFlyer), an externalised translations workflow, and iOS/Android release pipelines (CircleCI + Fastlane, later migrated to GitHub Actions).",
     problem: "A Swiss fintech mobile client where a complex multi-step regulated signup (Onfido KYC), four-language localization, and signed iOS/Android release pipelines all had to ship production-grade.",
     achievements: [
@@ -231,6 +237,7 @@ export const PROJECT_CONTENT_EN: Record<number, ProjectContent> = {
     teamLabel: "8",
     teamDetail: "3 devs · 1 lead · 1–2 QA · 1 BA · 1 PM",
     scale: "Team",
+    shapes: ["greenfield"],
     description: "Calendly-style mobile scheduling app on React Native, live on both stores. Reconciles availability across Google, iCloud, and Outlook calendars for multiple participants, with push reminders and cross-region time-zone handling. Backend contributions against Parse SDK and GraphQL, Sentry for crash and error tracking, and test coverage raised from 0 to over 80%.",
     problem: "A Calendly-style scheduling app where multi-participant calendar reconciliation across Google, iCloud, and Outlook had to work correctly on iOS and Android.",
     achievements: [
@@ -260,6 +267,7 @@ export const PROJECT_CONTENT_EN: Record<number, ProjectContent> = {
     teamLabel: "7",
     teamDetail: "2 devs · 1 lead · 2 QA · 1 BA · 1 PM",
     scale: "Team",
+    shapes: ["greenfield"],
     description: "Mobile e-learning and student-assessment app for a government client, delivered on React Native with REST APIs, Fastlane-automated releases, and Sentry for crash reporting. Offline content delivery and offline assessments, with iOS and Android shipped simultaneously inside a 3-month contractual window.",
     problem: "A government e-learning and assessment app, delivered offline-capable on iOS and Android within a 3-month contractual deadline.",
     achievements: [
@@ -287,6 +295,7 @@ export const PROJECT_CONTENT_EN: Record<number, ProjectContent> = {
     teamLabel: "1",
     teamDetail: "Solo",
     scale: "Personal project",
+    shapes: ["greenfield"],
     description: "Solo, self-hosted home-security platform in its tenth year, rebuilt four times. v1 streamed camera footage to Google Drive. v2 added a full backend. v3 grew into a full mobile app with RFID access and a CO₂ sensor. v4 deliberately cut everything back to a Raspberry Pi running a Telegram-bot worker: camera capture + cloud upload, alerts and control via chat, no web UI, no mobile app, no cloud bills. Running today across three locations.",
     problem: "A self-hosted home-security system rebuilt four times across a decade, from camera-to-cloud, through a full mobile + sensor stack, to a leaner Telegram-bot worker running on a Raspberry Pi today.",
     achievements: [
@@ -316,6 +325,7 @@ export const PROJECT_CONTENT_EN: Record<number, ProjectContent> = {
     teamLabel: "3",
     teamDetail: "1 dev · 1 QA · 1 PM",
     scale: "Solo build",
+    shapes: ["mature"],
     description: "Solo modernisation of a two-sided homeowner-services marketplace. Migrated the mobile codebase from JavaScript to TypeScript and from class components to hooks, consolidated a state-management mess of React Context + Apollo + Redux onto Apollo cache as the source of truth, re-integrated the Stripe payment flow against the modernised backend, and added CircleCI + Fastlane release automation. New features shipped throughout, with no feature-freeze and no user-visible regressions.",
     problem: "A two-sided homeowner-services marketplace whose mobile codebase had to be modernised solo, with payments re-integrated and CI/CD added, all while continuing to ship features without regressions.",
     achievements: [
@@ -345,6 +355,7 @@ export const PROJECT_CONTENT_EN: Record<number, ProjectContent> = {
     teamLabel: "5",
     teamDetail: "3 devs · 1 QA · 1 PM",
     scale: "Team",
+    shapes: ["greenfield"],
     description: "One-month 0→1 build of a sporting-event proof-of-concept platform: a React web app, a React Native mobile app, and an Apollo + Mongoose backend, all from scratch. Covered event agenda, signup/sign-in, news, and webviews of pages from the existing event site. Led the team and delivered demo-ready before the event opened.",
     problem: "A sporting-event proof-of-concept platform with web, mobile, and backend all built from scratch and demo-ready in time for the event opening, on a one-month deadline.",
     achievements: [
@@ -372,7 +383,8 @@ export const PROJECT_CONTENT_EN: Record<number, ProjectContent> = {
     teamLabel: "15–30",
     teamDetail: "Large cross-functional team",
     scale: "Team",
-    description: "Contributed to an enterprise SurveyMonkey-alternative inside a large cross-functional team. Built dynamic questionnaire components with 20+ field types, a conditional-logic engine covering visibility, required-state, and value-derivation rules, and virtualised rendering for long forms.",
+    shapes: ["mature"],
+    description: "Inside a large cross-functional team, built dynamic questionnaire components for an enterprise SurveyMonkey-alternative — 20+ field types, a conditional-logic engine covering visibility, required-state, and value-derivation rules, and virtualised rendering for long forms.",
     problem: "An enterprise SurveyMonkey-alternative whose dynamic questionnaire builder had to support 20+ field types, cross-field conditional logic, and long-form rendering performance.",
     achievements: [
       "Shipped dynamic questionnaire components inside a large enterprise codebase",
@@ -399,7 +411,8 @@ export const PROJECT_CONTENT_EN: Record<number, ProjectContent> = {
     teamLabel: "14",
     teamDetail: "8 devs · 3 QA · 1 PM · 1 BA · 1 tech writer",
     scale: "Team",
-    description: "Contributed to a Chrome extension that searches across a corporate knowledge base and multiple file-storage providers (internal corporate storage, databases, Google Drive, Dropbox, Confluence/SharePoint). Built on the Chrome WebExtensions API with an Angular UI and a Node.js backend that normalises results across providers.",
+    shapes: ["mature"],
+    description: "Chrome extension that searches across a corporate knowledge base and multiple file-storage providers (internal corporate storage, databases, Google Drive, Dropbox, Confluence/SharePoint), built on the WebExtensions API with an Angular UI and a Node.js backend that normalises results across providers. Delivered inside an 8-dev team.",
     problem: "A Chrome extension that searches across a corporate knowledge base and multiple file-storage providers, with a unified result format across heterogeneous APIs.",
     achievements: [
       "Connectors integrated across internal corporate storage, databases, Google Drive, Dropbox, and Confluence/SharePoint",
@@ -425,7 +438,8 @@ export const PROJECT_CONTENT_EN: Record<number, ProjectContent> = {
     teamLabel: "15",
     teamDetail: "8 devs · 4 QA · 1 PM · 1 BA · 1 tech writer",
     scale: "Team",
-    description: "Contributed SPA features to a large-scale US Affordable Care Act healthcare web app on a legacy Backbone/Marionette frontend. Section 508 accessibility compliance and performance optimisation on long multi-step enrolment flows. Worked inside a federal-scale cross-functional team.",
+    shapes: ["mature"],
+    description: "Shipped SPA features into a federal-scale US Affordable Care Act healthcare web app on a legacy Backbone/Marionette frontend. Section 508 accessibility compliance and performance optimisation on long multi-step enrolment flows. Inside an 8-dev cross-functional team.",
     problem: "A federal-scale ACA healthcare web app on a legacy Backbone/Marionette frontend, with Section 508 accessibility and performance demands on long enrolment flows.",
     achievements: [
       "SPA features shipped on a federal-scale ACA healthcare web app",
