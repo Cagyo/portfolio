@@ -44,6 +44,7 @@ export async function AboutSection({ sectionNumber }: AboutSectionProps) {
     company: string
     period: string
     tags: string[]
+    capabilities?: string[]
     positions: { title: string; period: string; description: string }[]
   }[]
 
@@ -55,6 +56,7 @@ export async function AboutSection({ sectionNumber }: AboutSectionProps) {
       company={exp.company}
       period={exp.period}
       tags={exp.tags}
+      capabilities={exp.capabilities}
       positions={exp.positions}
       logo={getCompanyLogo(exp.company)}
       accentOpacity={accentOpacities[expIndex]}
@@ -68,6 +70,7 @@ export async function AboutSection({ sectionNumber }: AboutSectionProps) {
       company={exp.company}
       period={exp.period}
       tags={exp.tags}
+      capabilities={exp.capabilities}
       positions={exp.positions}
       logo={getCompanyLogo(exp.company)}
       accentOpacity={accentOpacities[siteConfig.ui.experienceInitialVisible + expIndex]}

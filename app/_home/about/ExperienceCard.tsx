@@ -14,6 +14,7 @@ type ExperienceCardProps = {
   company: string
   period: string
   tags: string[]
+  capabilities?: string[]
   logo?: React.ReactNode
   accentOpacity?: string
   projectsHref?: string
@@ -32,6 +33,7 @@ export function ExperienceCard({
   company,
   period,
   tags,
+  capabilities,
   logo,
   accentOpacity = "1",
   projectsHref,
@@ -70,6 +72,16 @@ export function ExperienceCard({
               )}
             </div>
           </div>
+
+          {capabilities && capabilities.length > 0 && (
+            <div className={styles.capabilityList}>
+              {capabilities.map((capability) => (
+                <span key={capability} className={styles.capabilityChip}>
+                  {capability}
+                </span>
+              ))}
+            </div>
+          )}
 
           {/* Positions timeline */}
           <div className="mt-4">

@@ -55,11 +55,12 @@
         "company": "All Square",
         "period": "Dec 2022 – Jan 2026",
         "tags": ["Next.js", "React Native", "Node.js", "NestJS", "TypeScript", "CI/CD"],
+        "capabilities": ["Solo ownership"],
         "positions": [
           {
             "title": "Senior Full-Stack Engineer / Tech Lead",
             "period": "Dec 2022 – Jan 2026",
-            "description": "Led architecture and full-stack development of web (Next.js), mobile (React Native), and backend (Node.js, NestJS) products in a high-load environment. Managed deployment infrastructure, CI/CD pipelines, and code reviews as tech lead."
+            "description": "Held the whole tournament platform alone in the final year. Three editions, four years live, thousands of concurrent users on tournament days; ops ships without a developer thanks to a no-code page builder I shipped. Also led the rebuild of the legacy Golf Social Network on a live codebase, zero user-visible regressions, with new booking and search shipping concurrently across web and mobile. And shipped Golfcrans, a club booking app with Saferpay payments, solo from first commit to App Store + Play."
           }
         ]
       },
@@ -67,11 +68,12 @@
         "company": "Avocado Technology",
         "period": "Sep 2017 – Dec 2022",
         "tags": ["React Native", "Node.js", "GraphQL", "MongoDB", "PostgreSQL", "AWS"],
+        "capabilities": ["0→1 builds"],
         "positions": [
           {
             "title": "Senior Full-Stack Engineer / Tech Lead",
             "period": "June 2018 – Dec 2022",
-            "description": "Led architecture and end-to-end delivery of mobile and backend products as tech lead. Set up automated CI/CD to App Store & Google Play. Managed AWS & standalone infrastructure. Conducted code reviews, interviews, and pre-sale estimations."
+            "description": "Led 0→1 builds across mobile and backend at Avocado. Shipped PinClean solo — on-demand car-wash with mobile, dispatcher, backend, and AWS — relaunched in a second market. Team-led Yamback, a 0→1 dead-man's-switch app with push delivery and one-time-token SMS/email fallback. Shipped B-Sharpe, a 0→1 mobile fintech in regulated Switzerland with Onfido KYC and a four-language release. Also shipped the Government Learning Platform across iOS and Android to a fixed 3-month deadline with offline content. Owned release pipelines (CircleCI, then GitHub Actions; Fastlane to App Store + Play) and AWS infra."
           },
           {
             "title": "React Native / Node.js Developer",
@@ -88,7 +90,7 @@
           {
             "title": "Front-End Developer",
             "period": "Sep 2015 – Jul 2017",
-            "description": "Built SPAs with React, Angular, and TypeScript. Created data visualizations using D3/SVG. Developed accessible markup, unit tests (Karma, Jest), and a Chrome extension. Participated in SCRUM, code reviews, and mentored junior teammates."
+            "description": "Built a survey platform with a runtime, not just screens. 20+ dynamic field types, a conditional-logic engine for visibility, required-state, and value-derivation rules, virtualised so long forms stayed responsive. Also shipped SPA features on a federal-scale US healthcare platform (ACA enrolment, Section 508 accessibility). React, Angular, TypeScript."
           }
         ]
       },

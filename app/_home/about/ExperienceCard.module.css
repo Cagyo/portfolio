@@ -1,5 +1,24 @@
 /* Multi-position timeline */
 
+.capabilityList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 10px;
+}
+
+.capabilityChip {
+  background: color-mix(in srgb, white 5%, transparent);
+  border: 1px solid color-mix(in srgb, white 10%, transparent);
+  border-radius: 4px;
+  color: color-mix(in srgb, white 50%, transparent);
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  padding: 2px 6px;
+  text-transform: uppercase;
+}
+
 .positionItem {
   display: grid;
   grid-template-columns: 16px 1fr;
@@ -32,4 +51,10 @@
     color-mix(in srgb, var(--amber) 25%, transparent),
     color-mix(in srgb, var(--border) 60%, transparent)
   );
+}
+
+html[data-theme="light"] .capabilityChip {
+  background: var(--surface);
+  border-color: var(--border);
+  color: var(--text-muted);
 }

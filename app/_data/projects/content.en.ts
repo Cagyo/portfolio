@@ -4,7 +4,7 @@ export const PROJECT_CONTENT_EN: Record<number, ProjectContent> = {
   1: {
     title: "Omega European Masters",
     titleGeneric: "Golf Tournament Platform",
-    company: "Allsquare",
+    company: "All Square",
     industry: "Sports",
     productType: "SaaS",
     devTypes: ["Full Stack"],
@@ -45,7 +45,7 @@ export const PROJECT_CONTENT_EN: Record<number, ProjectContent> = {
   2: {
     title: "Golfers Social Network",
     titleGeneric: "Golf Social Network",
-    company: "Allsquare",
+    company: "All Square",
     industry: "Social",
     productType: "SaaS",
     devTypes: ["Full Stack"],
@@ -83,7 +83,7 @@ export const PROJECT_CONTENT_EN: Record<number, ProjectContent> = {
   3: {
     title: "Golfcrans",
     titleGeneric: "Golf Club Booking App",
-    company: "Allsquare",
+    company: "All Square",
     industry: "Sports",
     productType: "SaaS",
     devTypes: ["Mobile"],

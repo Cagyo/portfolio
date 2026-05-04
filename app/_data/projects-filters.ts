@@ -50,7 +50,7 @@ export const FILTER_GROUPS: FilterGroupConfig[] = [
   {
     key: "company",
     label: "Company",
-    options: ["Personal", "Avocado Technology", "Allsquare", "EngagePoint"],
+    options: ["Personal", "Avocado Technology", "All Square", "EngagePoint"],
     match: (project, values) => values.includes(project.company),
   },
 ]
