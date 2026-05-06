@@ -17,7 +17,7 @@ export async function generateMetadata(): Promise<Metadata> {
   }
 }
 
-type CandidateName = 'face' | 'mono'
+type CandidateName = 'face'
 
 type CandidateRowProps = {
   name: CandidateName
@@ -25,12 +25,8 @@ type CandidateRowProps = {
   note: string
 }
 
-function renderCandidate(name: CandidateName, previewSize: number) {
-  if (name === 'face') {
-    return <IconMarkFace size={previewSize} />
-  }
-
-  return <IconMarkMono size={previewSize} />
+function renderCandidate(_name: CandidateName, previewSize: number) {
+  return <IconMarkFace size={previewSize} />
 }
 
 function CandidateRow({ name, title, note }: CandidateRowProps) {
@@ -66,16 +62,7 @@ function NavBadgeReference() {
     <div className={styles.navBadgeGroup}>
       {NAV_BADGE_SIZES.map((badgeSize) => (
         <div key={badgeSize}>
-          <div
-            className={styles.navBadge}
-            style={{
-              width: badgeSize,
-              height: badgeSize,
-              fontSize: badgeSize * 0.38,
-            }}
-          >
-            OB
-          </div>
+          <IconMarkFace size={badgeSize} />
           <span className={styles.label}>{badgeSize}px</span>
         </div>
       ))}

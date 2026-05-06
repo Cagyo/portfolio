@@ -2,10 +2,13 @@ import { OG_TOKENS } from '@/app/_og/tokens'
 
 type IconMarkFaceProps = {
   size: number
+  fontFamily?: string
+  fontWeight?: number
 }
 
 const BORDER_RADIUS_RATIO = 0.1875
-const FONT_FAMILY = '"Archivo", sans-serif'
+const FONT_FAMILY = 'var(--font-heading), "Archivo", sans-serif'
+const FONT_WEIGHT = 900
 
 const gradientTextStyle = {
   background: OG_TOKENS.gradientAmber,
@@ -15,7 +18,11 @@ const gradientTextStyle = {
   WebkitTextFillColor: 'transparent',
 } as const
 
-export function IconMarkFace({ size }: IconMarkFaceProps) {
+export function IconMarkFace({
+  size,
+  fontFamily = FONT_FAMILY,
+  fontWeight = FONT_WEIGHT,
+}: IconMarkFaceProps) {
   const borderRadius = size * BORDER_RADIUS_RATIO
   const dotSize = size * 0.05
 
@@ -39,9 +46,9 @@ export function IconMarkFace({ size }: IconMarkFaceProps) {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          fontFamily: FONT_FAMILY,
+          fontFamily,
           fontSize: size * 0.85,
-          fontWeight: 900,
+          fontWeight,
           lineHeight: 1,
           transform: 'rotate(-90deg)',
         }}

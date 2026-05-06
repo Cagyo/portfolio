@@ -12,7 +12,7 @@ export const OG_TOKENS = {
   amber:      '#F59E0B',
   amberLight: '#FBBF24',
   amberDark:  '#D97706',
-  green:     '#064E3B',
+  green:     'rgba(52, 211, 153, 0.75)',
 
   bg:          '#080810',
   bgSecondary: '#0c0c18',
