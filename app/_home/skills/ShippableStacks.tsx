@@ -6,10 +6,10 @@ import { Tag } from "@/app/_components/tag/Tag"
 import { getOutcomeBuckets, type OutcomeBucketKey } from "@/app/_data/projects/get-stack-stats"
 import styles from "./ShippableStacks.module.css"
 
-const CARD_TITLE_KEYS: Record<OutcomeBucketKey, "fullStackCardTitle" | "mobileCardTitle" | "paymentsCardTitle"> = {
+const CARD_TITLE_KEYS: Record<OutcomeBucketKey, "fullStackCardTitle" | "mobileCardTitle" | "greenfieldCardTitle"> = {
   "full-stack": "fullStackCardTitle",
   mobile: "mobileCardTitle",
-  payments: "paymentsCardTitle",
+  greenfield: "greenfieldCardTitle",
 }
 
 export function ShippableStacks() {

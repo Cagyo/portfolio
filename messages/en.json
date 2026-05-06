@@ -139,7 +139,7 @@
     "fullStackToggleHide": "Hide stack details",
     "fullStackCardTitle": "Full product (backend + app)",
     "mobileCardTitle": "Mobile delivery",
-    "paymentsCardTitle": "Payments integration",
+    "greenfieldCardTitle": "Idea → Live",
     "projectsShipped": "{count, plural, one {# project shipped} other {# projects shipped}}",
     "viewProjectsCta": "See projects",
     "noResults": "No results for \"{query}\"",

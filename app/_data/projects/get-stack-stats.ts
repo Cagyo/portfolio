@@ -2,7 +2,7 @@ import { FILTER_GROUPS } from "@/app/_data/projects-filters"
 import type { StackFilterName } from "@/app/_data/skills-data"
 import { PROJECT_BASES } from "./base"
 import { PROJECT_CONTENT_EN } from "./content.en"
-import { getStackName, type ProjectBase } from "./types"
+import type { ProjectBase } from "./types"
 
 const stackFilterGroup = FILTER_GROUPS.find((filterGroup) => filterGroup.key === "stackFilters")
 
@@ -31,7 +31,7 @@ export function getProjectCountByStack(skill: string): number {
   return PROJECT_COUNT_BY_STACK[skill] ?? 0
 }
 
-export type OutcomeBucketKey = "full-stack" | "mobile" | "payments"
+export type OutcomeBucketKey = "full-stack" | "mobile" | "greenfield"
 
 export type OutcomeBucket = {
   key: OutcomeBucketKey
@@ -47,8 +47,6 @@ type BucketDef = {
   matches: (project: ProjectBase) => boolean
 }
 
-const PAYMENT_STACK_NAMES = new Set<string>(["Stripe", "Saferpay"])
-
 const OUTCOME_BUCKET_DEFS: BucketDef[] = [
   {
     key: "full-stack",
@@ -61,9 +59,10 @@ const OUTCOME_BUCKET_DEFS: BucketDef[] = [
     matches: (project) => PROJECT_CONTENT_EN[project.id]?.devTypes.includes("Mobile") ?? false,
   },
   {
-    key: "payments",
-    href: "/projects?stackFilters=Stripe",
-    matches: (project) => project.stack.some((entry) => PAYMENT_STACK_NAMES.has(getStackName(entry))),
+    key: "greenfield",
+    href: "/projects?shape=Greenfield+%280%E2%86%921%29",
+    matches: (project) =>
+      PROJECT_CONTENT_EN[project.id]?.shapes.includes("greenfield") ?? false,
   },
 ]
 
