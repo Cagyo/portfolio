@@ -2,14 +2,12 @@ import Image from "next/image";
 import styles from "./PhotoCard.module.css";
 import { Tag } from "@/app/_components/tag/Tag";
 import { TestimonialSnippet, type SnippetTestimonial } from "@/app/_home/recommendations/TestimonialSnippet";
-import { SKILLS } from "@/app/_data/skills-data";
+import { TOP_SKILL_NAMES } from "./top-skills";
 
 type PhotoCardProps = {
   availableLabel: string;
   testimonial?: SnippetTestimonial;
 };
-
-const TOP_SKILL_NAMES = SKILLS.filter((skill) => "top" in skill && skill.top).map((skill) => skill.name);
 
 export function PhotoCard({ availableLabel, testimonial }: PhotoCardProps) {
   return (

@@ -7,6 +7,7 @@ import { BlobBackground } from "@/app/_components/BlobBackground";
 import { Button } from "@/app/_components/button/Button";
 import { ScrollIndicator } from "@/app/_components/ScrollIndicator";
 import { HeroLogos } from "./HeroLogos";
+import { HeroSkillChips } from "./HeroSkillChips";
 import { PhotoCard } from "./PhotoCard";
 import { TestimonialSnippet, type SnippetTestimonial } from "@/app/_home/recommendations/TestimonialSnippet";
 
@@ -92,6 +93,8 @@ export async function HeroSection() {
               {t("ctaContact")}
             </Button>
           </div>
+
+          <HeroSkillChips />
 
           <HeroLogos label={t("logosLabel")} logos={logos} />
 
