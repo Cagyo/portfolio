@@ -213,7 +213,7 @@ export function ProjectsPage({ projects, initialIsDark }: { projects: Project[];
   return (
     <>
       <SubpageNav
-        maxWidth="max-w-7xl"
+        maxWidth="max-w-6xl"
         cta={{ href: "/#contact", label: tNav("cta") }}
         rightExtras={<ProjectsNavExtras count={filtered.length} onFilterOpen={() => setMobileOpen(true)} initialIsDark={initialIsDark} />}
       />
@@ -228,7 +228,7 @@ export function ProjectsPage({ projects, initialIsDark }: { projects: Project[];
         totalActive={totalActive}
       />
 
-      <main className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-20">
+      <main className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-20">
         {/* Page header */}
         <div className="mb-10">
           <div className="flex items-center gap-4 mb-3">
