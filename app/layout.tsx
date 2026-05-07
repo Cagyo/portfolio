@@ -6,6 +6,7 @@ import { Archivo, Space_Grotesk } from "next/font/google";
 import { cookies } from "next/headers";
 import { CookieConsent } from "@/app/_components/cookie-consent/CookieConsent";
 import { ConsentProvider } from "@/app/_components/cookie-consent/consent-context";
+import { Footer } from "@/app/_components/footer/Footer";
 import { siteConfig } from "@/app/_config/site-config";
 import { getSearchVerificationMetadata } from "@/app/_config/search-verification";
 import { JsonLd } from "@/app/_schema/JsonLd";
@@ -69,12 +70,13 @@ export default async function RootLayout({
       data-theme={theme === "light" ? "light" : undefined}
     >
       <head />
-      <body className="min-h-full flex flex-col" suppressHydrationWarning>
+      <body className="min-h-full flex flex-col bg-[var(--bg)] font-body text-[var(--text-primary)]" suppressHydrationWarning>
         <JsonLd data={personSchema} />
         <JsonLd data={websiteSchema} />
         <NextIntlClientProvider messages={messages}>
           <ConsentProvider>
-            {children}
+            <div className="flex-1">{children}</div>
+            <Footer />
             {siteConfig.features.consentBanner && <CookieConsent />}
           </ConsentProvider>
         </NextIntlClientProvider>

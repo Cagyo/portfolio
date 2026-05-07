@@ -6,6 +6,7 @@ import { XLogo } from "@/assets/logos/XLogo";
 import { CookieSettingsLink } from "@/app/_components/cookie-consent/CookieSettingsLink";
 import { TrackedLink } from "@/app/_components/tracked-link/TrackedLink";
 import { siteConfig } from "@/app/_config/site-config";
+import { BackToTopLink } from "./BackToTopLink";
 import styles from "./Footer.module.css";
 
 export async function Footer() {
@@ -30,9 +31,7 @@ export async function Footer() {
           <p className={styles.disclosure}>{t("analyticsDisclosure")}</p>
         </div>
         <div className="flex items-center gap-4 sm:gap-6">
-          <a href="#hero" className="text-white/30 hover:text-amber-400 text-sm transition-colors cursor-pointer">
-            {t("backToTop")}
-          </a>
+          <BackToTopLink label={t("backToTop")} />
           <CookieSettingsLink className="text-white/30 hover:text-amber-400 text-sm transition-colors cursor-pointer" />
           <div className="flex gap-3">
             <TrackedLink

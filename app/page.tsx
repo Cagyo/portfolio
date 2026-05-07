@@ -6,7 +6,6 @@ import { AboutSection } from "./_home/about/AboutSection";
 import { ContactSection } from "./_home/contact/ContactSection";
 import { EngagementSection } from "./_home/engagement/EngagementSection";
 import { FitSection } from "./_home/FitSection";
-import { Footer } from "./_home/Footer";
 import { HeroSection } from "./_home/hero/HeroSection";
 import { MentorshipTeaser } from "./_home/MentorshipTeaser";
 import { ProjectsSection } from "./_home/projects/ProjectsSection";
@@ -49,14 +48,15 @@ export default async function Page() {
   const initialIsDark = await getInitialIsDark()
 
   return (
-    <div className="min-h-screen bg-[var(--bg)] font-body text-[var(--text-primary)]">
+    <>
       <RevealProvider />
       <Nav initialIsDark={initialIsDark} />
-      <HeroSection />
-      {renderable.map((section) => (
-        <div key={section.id}>{getSectionComponent(section.id, section.sectionNumber)}</div>
-      ))}
-      <Footer />
-    </div>
+      <main>
+        <HeroSection />
+        {renderable.map((section) => (
+          <div key={section.id}>{getSectionComponent(section.id, section.sectionNumber)}</div>
+        ))}
+      </main>
+    </>
   );
 }

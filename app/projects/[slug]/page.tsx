@@ -131,7 +131,7 @@ export default async function Page({
   ]);
 
   return (
-    <div className="min-h-screen bg-[var(--bg)] font-body text-[var(--text-primary)]">
+    <>
       <JsonLd data={articleSchema} />
       <JsonLd data={breadcrumbSchema} />
 
@@ -349,7 +349,7 @@ export default async function Page({
           </div>
         </div>
       </main>
-    </div>
+    </>
   );
 }
 

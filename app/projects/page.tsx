@@ -43,7 +43,7 @@ export default async function Page() {
     { name: t("title"), path: "/projects" },
   ]);
   return (
-    <div className="min-h-screen bg-[var(--bg)] font-body text-[var(--text-primary)]">
+    <>
       <JsonLd data={itemListSchema} />
       <JsonLd data={breadcrumbSchema} />
       <BlobBackground position="top-0 right-0" opacity={0.1} />
@@ -51,6 +51,6 @@ export default async function Page() {
       <Suspense fallback={<div className="min-h-screen" aria-hidden="true" />}>
         <ProjectsPage projects={projects} initialIsDark={initialIsDark} />
       </Suspense>
-    </div>
+    </>
   );
 }

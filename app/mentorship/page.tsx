@@ -6,7 +6,6 @@ import { buildBreadcrumbSchema } from "@/app/_schema/breadcrumb";
 import { buildMentorshipServiceSchema } from "@/app/_schema/professional-service";
 import { ApplySection } from "./_sections/ApplySection";
 import { MentorshipFit } from "./_sections/MentorshipFit";
-import { MentorshipFooter } from "./_sections/MentorshipFooter";
 import { MentorshipHero } from "./_sections/MentorshipHero";
 import { StackSection } from "./_sections/StackSection";
 import { TracksSection } from "./_sections/TracksSection";
@@ -38,17 +37,18 @@ export default async function Page() {
   ]);
 
   return (
-    <div className="min-h-screen bg-[var(--bg)] font-body text-[var(--text-primary)]">
+    <>
       <JsonLd data={serviceSchema} />
       <JsonLd data={breadcrumbSchema} />
       <RevealProvider />
       <SubpageNav sections={sections} cta={{ href: "/#contact", label: t("cta") }} />
-      <MentorshipHero />
-      <StackSection />
-      <TracksSection />
-      <MentorshipFit />
-      <ApplySection />
-      <MentorshipFooter />
-    </div>
+      <main>
+        <MentorshipHero />
+        <StackSection />
+        <TracksSection />
+        <MentorshipFit />
+        <ApplySection />
+      </main>
+    </>
   );
 }

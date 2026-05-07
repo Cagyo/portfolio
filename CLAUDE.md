@@ -285,6 +285,14 @@ Do not maintain multiple top-level arrays that must stay aligned by index (`VARI
 
 Never use a magic number as initial `useState` value to approximate a pre-measurement layout. Use `0` or `null`; `useLayoutEffect` sets the correct value synchronously before paint.
 
+### Layout shell
+
+- **Footer** (`app/_components/footer/Footer.tsx`) is rendered once in the root layout. Never import or render `<Footer />` inside a `page.tsx`.
+- **Nav** stays per-page (`Nav` on home, `SubpageNav` on subpages) because nav choice is page-specific.
+- The body sets `bg-[var(--bg)] font-body text-[var(--text-primary)]` and `min-h-full flex flex-col`. The layout wraps children in `<div className="flex-1">` so the Footer sticks to the bottom on short pages.
+- Each page renders its own `<main>` element wrapping the primary content. `<main>` must NOT contain the page's `<Nav>` / `<SubpageNav>` — they are siblings of `<main>`, not children. Exactly one `<main>` per document.
+- Footer copy/aria keys live in the `footer` i18n namespace.
+
 ---
 
 ## i18n — summary

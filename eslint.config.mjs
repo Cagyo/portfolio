@@ -14,6 +14,8 @@ const eslintConfig = defineConfig([
     "next-env.d.ts",
     // Auto-generated files — do not lint
     "types/**",
+    // Generated agent worktrees — do not lint
+    ".claude/worktrees/**",
     // Coverage output — do not lint
     "coverage/**",
   ]),
