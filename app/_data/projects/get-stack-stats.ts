@@ -60,7 +60,7 @@ const OUTCOME_BUCKET_DEFS: BucketDef[] = [
   },
   {
     key: "greenfield",
-    href: "/projects?shape=Greenfield+%280%E2%86%921%29",
+    href: "/projects?shape=Idea-to-product",
     matches: (project) =>
       PROJECT_CONTENT_EN[project.id]?.shapes.includes("greenfield") ?? false,
   },

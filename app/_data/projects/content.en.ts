@@ -131,7 +131,7 @@ export const PROJECT_CONTENT_EN: Record<number, ProjectContent> = {
     teamDetail: "1 dev · 1 QA · 1 PM",
     scale: "Solo build",
     shapes: ["greenfield"],
-    description: "Solo 0→1 build of an on-demand car-wash platform: customer mobile app, dispatcher web dashboard, backend, and AWS infrastructure, all owned by one developer. Live in the original market 2018–2020, then productised and re-launched in South Africa.",
+    description: "Solo from-scratch build of an on-demand car-wash platform: customer mobile app, dispatcher web dashboard, backend, and AWS infrastructure, all owned by one developer. Live in the original market 2018–2020, then productised and re-launched in South Africa.",
     problem: "An on-demand service platform built solo from zero. Customer mobile app, dispatcher web dashboard, backend, and infra. Shipped, productised, and re-launched in a second market.",
     achievements: [
       "Solo build of mobile + dispatcher web + backend + infra",
@@ -169,11 +169,11 @@ export const PROJECT_CONTENT_EN: Record<number, ProjectContent> = {
     teamDetail: "2 devs · 1 QA · 1 BA · 1 PM",
     scale: "Team",
     shapes: ["greenfield"],
-    description: "0→1 build of a dead-man's-switch messaging app: sends pre-written personal messages (text, video, documents) to chosen recipients when the user stops checking in. Recipients without the app open the delivery on a web view via a one-time token in the notification, SMS, or email. Led the team through the full lifecycle and owned the architecture end-to-end.",
+    description: "From-scratch build of a dead-man's-switch messaging app: sends pre-written personal messages (text, video, documents) to chosen recipients when the user stops checking in. Recipients without the app open the delivery on a web view via a one-time token in the notification, SMS, or email. Led the team through the full lifecycle and owned the architecture end-to-end.",
     problem: "A messaging app that delivers pre-written content (text, video, documents) to chosen recipients when the user stops checking in, reachable even by recipients who never installed the app. Reliability over arbitrary time windows was the whole product.",
     achievements: [
       "Live on the App Store and Google Play, with a recipient web view",
-      "Led the team through the full 0→1 lifecycle",
+      "Led the team through the full build lifecycle",
       "Multi-channel delivery: push to app users, plus one-time-token SMS/email links to a recipient web view for everyone else",
       "Architecture owned end-to-end across mobile, web, backend, and AWS",
     ],
@@ -356,11 +356,11 @@ export const PROJECT_CONTENT_EN: Record<number, ProjectContent> = {
     teamDetail: "3 devs · 1 QA · 1 PM",
     scale: "Team",
     shapes: ["greenfield"],
-    description: "One-month 0→1 build of a sporting-event proof-of-concept platform: a React web app, a React Native mobile app, and an Apollo + Mongoose backend, all from scratch. Covered event agenda, signup/sign-in, news, and webviews of pages from the existing event site. Led the team and delivered demo-ready before the event opened.",
+    description: "One-month from-scratch build of a sporting-event proof-of-concept platform: a React web app, a React Native mobile app, and an Apollo + Mongoose backend, all from scratch. Covered event agenda, signup/sign-in, news, and webviews of pages from the existing event site. Led the team and delivered demo-ready before the event opened.",
     problem: "A sporting-event proof-of-concept platform with web, mobile, and backend all built from scratch and demo-ready in time for the event opening, on a one-month deadline.",
     achievements: [
       "Three platforms (web + mobile + backend) shipped from scratch in one month",
-      "Led the team through a one-month 0→1 cycle to a fixed event deadline",
+      "Led the team through a one-month from-scratch build to a fixed event deadline",
       "Demo-ready before the event opened",
     ],
     duties: [

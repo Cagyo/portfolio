@@ -68,12 +68,12 @@
         "company": "Avocado Technology",
         "period": "Sep 2017 – Dec 2022",
         "tags": ["React Native", "Node.js", "GraphQL", "MongoDB", "PostgreSQL", "AWS"],
-        "capabilities": ["0→1 builds"],
+        "capabilities": ["Idea-to-product"],
         "positions": [
           {
             "title": "Senior Full-Stack Engineer / Tech Lead",
             "period": "June 2018 – Dec 2022",
-            "description": "Led 0→1 builds across mobile and backend at Avocado. Shipped PinClean solo — on-demand car-wash with mobile, dispatcher, backend, and AWS — relaunched in a second market. Team-led Yamback, a 0→1 dead-man's-switch app with push delivery and one-time-token SMS/email fallback. Shipped B-Sharpe, a 0→1 mobile fintech in regulated Switzerland with Onfido KYC and a four-language release. Also shipped the Government Learning Platform across iOS and Android to a fixed 3-month deadline with offline content. Owned release pipelines (CircleCI, then GitHub Actions; Fastlane to App Store + Play) and AWS infra."
+            "description": "Led from-scratch builds across mobile and backend at Avocado. Shipped PinClean solo — on-demand car-wash with mobile, dispatcher, backend, and AWS — relaunched in a second market. Team-led Yamback, a from-scratch dead-man's-switch app with push delivery and one-time-token SMS/email fallback. Shipped B-Sharpe, a from-scratch mobile fintech in regulated Switzerland with Onfido KYC and a four-language release. Also shipped the Government Learning Platform across iOS and Android to a fixed 3-month deadline with offline content. Owned release pipelines (CircleCI, then GitHub Actions; Fastlane to App Store + Play) and AWS infra."
           },
           {
             "title": "React Native / Node.js Developer",
@@ -139,7 +139,7 @@
     "fullStackToggleHide": "Hide stack details",
     "fullStackCardTitle": "Full product (backend + app)",
     "mobileCardTitle": "Mobile delivery",
-    "greenfieldCardTitle": "Idea → Live",
+    "greenfieldCardTitle": "Idea to Product",
     "projectsShipped": "{count, plural, one {# project shipped} other {# projects shipped}}",
     "viewProjectsCta": "See projects",
     "noResults": "No results for \"{query}\"",

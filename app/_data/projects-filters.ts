@@ -12,11 +12,11 @@ export const FILTER_GROUPS: FilterGroupConfig[] = [
   {
     key: "shape",
     label: "Project shape",
-    options: ["Greenfield (0→1)", "Solo build", "Lead role", "Mature codebase"],
+    options: ["Idea-to-product", "Solo build", "Lead role", "Mature codebase"],
     match: (project, values) =>
       values.some((value) => {
         switch (value) {
-          case "Greenfield (0→1)":
+          case "Idea-to-product":
             return project.shapes.includes("greenfield")
           case "Solo build":
             return project.scale === "Solo build"
