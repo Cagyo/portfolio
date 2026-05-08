@@ -1,4 +1,4 @@
-import type { SkillName, StackFilterName } from "@/app/_data/skills-data"
+import type { SkillName } from "@/app/_data/skills-data"
 
 export type ExtraStack = { name: string; extra: true }
 export type StackEntry = SkillName | ExtraStack
@@ -52,7 +52,6 @@ export type ProjectBase = {
   imageBg?: string
   logo?: string
   screenshots?: Screenshot[]
-  stackFilters: StackFilterName[]
   stack: StackEntry[]
   /**
    * URL slug for the per-project detail page (`/projects/{slug}`).

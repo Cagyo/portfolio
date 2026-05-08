@@ -3,6 +3,7 @@ import type { StackFilterName } from "@/app/_data/skills-data"
 import { PROJECT_BASES } from "./base"
 import { PROJECT_CONTENT_EN } from "./content.en"
 import type { ProjectBase } from "./types"
+import { getStackName } from "./types"
 
 const stackFilterGroup = FILTER_GROUPS.find((filterGroup) => filterGroup.key === "stackFilters")
 
@@ -18,9 +19,10 @@ const PROJECT_COUNT_BY_STACK: Record<string, number> = (() => {
   const counts: Record<string, number> = {}
   for (const stack of STACK_FILTER_OPTIONS) counts[stack] = 0
   for (const project of PROJECT_BASES) {
-    for (const stack of project.stackFilters) {
-      if (STACK_FILTER_OPTION_SET.has(stack)) {
-        counts[stack] = (counts[stack] ?? 0) + 1
+    for (const entry of project.stack) {
+      const name = getStackName(entry)
+      if (STACK_FILTER_OPTION_SET.has(name)) {
+        counts[name] = (counts[name] ?? 0) + 1
       }
     }
   }
@@ -66,28 +68,29 @@ const OUTCOME_BUCKET_DEFS: BucketDef[] = [
   },
 ]
 
-export function getOutcomeBuckets(): OutcomeBucket[] {
-  return OUTCOME_BUCKET_DEFS.map(({ key, href, matches }) => {
-    const projectIds: number[] = []
-    const stackCounts = new Map<StackFilterName, number>()
+export const OUTCOME_BUCKETS: OutcomeBucket[] = OUTCOME_BUCKET_DEFS.map(({ key, href, matches }) => {
+  const projectIds: number[] = []
+  const stackCounts = new Map<StackFilterName, number>()
 
-    for (const project of PROJECT_BASES) {
-      if (!matches(project)) continue
+  for (const project of PROJECT_BASES) {
+    if (!matches(project)) continue
 
-      projectIds.push(project.id)
-      for (const stack of project.stackFilters) {
-        stackCounts.set(stack, (stackCounts.get(stack) ?? 0) + 1)
+    projectIds.push(project.id)
+    for (const entry of project.stack) {
+      const name = getStackName(entry)
+      if (STACK_FILTER_OPTION_SET.has(name)) {
+        stackCounts.set(name as StackFilterName, (stackCounts.get(name as StackFilterName) ?? 0) + 1)
       }
     }
+  }
 
-    const topStacks = [...stackCounts.entries()]
-      .sort((a, b) => {
-        if (b[1] !== a[1]) return b[1] - a[1]
-        return STACK_FILTER_OPTIONS.indexOf(a[0]) - STACK_FILTER_OPTIONS.indexOf(b[0])
-      })
-      .slice(0, 4)
-      .map(([stack]) => stack)
+  const topStacks = [...stackCounts.entries()]
+    .sort((a, b) => {
+      if (b[1] !== a[1]) return b[1] - a[1]
+      return STACK_FILTER_OPTIONS.indexOf(a[0]) - STACK_FILTER_OPTIONS.indexOf(b[0])
+    })
+    .slice(0, 4)
+    .map(([stack]) => stack as StackFilterName)
 
-    return { key, href, topStacks, count: projectIds.length, projectIds }
-  })
-}
+  return { key, href, topStacks, count: projectIds.length, projectIds }
+})

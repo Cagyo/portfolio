@@ -3,7 +3,7 @@
 import Link from "next/link"
 import { useTranslations } from "next-intl"
 import { Tag } from "@/app/_components/tag/Tag"
-import { getOutcomeBuckets, type OutcomeBucketKey } from "@/app/_data/projects/get-stack-stats"
+import { OUTCOME_BUCKETS, type OutcomeBucketKey } from "@/app/_data/projects/get-stack-stats"
 import styles from "./ShippableStacks.module.css"
 
 const CARD_TITLE_KEYS: Record<OutcomeBucketKey, "fullStackCardTitle" | "mobileCardTitle" | "greenfieldCardTitle"> = {
@@ -14,7 +14,7 @@ const CARD_TITLE_KEYS: Record<OutcomeBucketKey, "fullStackCardTitle" | "mobileCa
 
 export function ShippableStacks() {
   const t = useTranslations("skills")
-  const buckets = getOutcomeBuckets().filter((bucket) => bucket.count > 0)
+  const buckets = OUTCOME_BUCKETS.filter((bucket) => bucket.count > 0)
 
   if (buckets.length === 0) return null
 

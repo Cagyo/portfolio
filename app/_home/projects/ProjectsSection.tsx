@@ -1,7 +1,8 @@
 import { getTranslations } from "next-intl/server";
 import { getProjects } from "@/app/_data/projects/get-projects";
-import { getProjectTitle, overlayTypeFor } from "@/app/_data/projects/types";
+import { getProjectTitle, getStackName, overlayTypeFor } from "@/app/_data/projects/types";
 import { HOME_PROJECT_IDS, getHomeProjectVisual } from "@/app/_data/home-project-visuals";
+import { isFilterableStack } from "@/app/_data/projects/get-stack-stats";
 import { BlobBackground } from "@/app/_components/BlobBackground";
 import { SectionHeader } from "@/app/_components/SectionHeader";
 import { ArrowLeftIcon } from "@/assets/icons/ArrowLeftIcon";
@@ -44,7 +45,7 @@ export async function ProjectsSection({ sectionNumber }: ProjectsSectionProps) {
                 outcome={homeCard?.outcome}
                 meta={{ category: project.industry, role: project.role, year: project.year }}
                 badge={{ icon: visuals?.icon, label: homeCard?.buyerBadge ?? '' }}
-                tags={project.stackFilters}
+                tags={project.stack.map(getStackName).filter(isFilterableStack)}
                 imageBg={project.imageBg ?? ''}
                 imageContent={
                   <>

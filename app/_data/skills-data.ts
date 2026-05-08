@@ -14,19 +14,19 @@ export const SKILLS = [
   // Core expertise
   { name: "TypeScript", cat: 3, top: true },
   { name: "React Native", cat: 8, top: true },
+  { name: "React", cat: 1,  top: true },
+  { name: "Node.js", cat: 2, top: true },
   { name: "Next.js", cat: 1, top: true },
   { name: "NestJS", cat: 2, top: true },
   { name: "GraphQL", cat: 2, top: true },
-  { name: "React", cat: 1,  top: true },
   { name: "AWS", cat: 6, top: true },
-  { name: "Stripe", cat: 7, top: true },
-  { name: "Vercel", cat: 6, top: true },
   // AI tooling
   { name: "Claude Code", cat: 9 },
   { name: "Cursor", cat: 9 },
   { name: "GitHub Copilot", cat: 9 },
   // Additional skills — sorted by global importance/popularity
-  { name: "Node.js", cat: 2 },
+  { name: "Stripe", cat: 7 },
+  { name: "Vercel", cat: 6 },
   { name: "Expo", cat: 8 },
   { name: "PostgreSQL", cat: 4 },
   { name: "Prisma", cat: 2 },
@@ -97,10 +97,11 @@ export function isSkillName(value: string): value is SkillName {
 
 /**
  * The subset of skill names that can be used as project filters in the UI.
- * Source of truth for `ProjectBase.stackFilters[]` and `FILTER_GROUPS["stackFilters"].options`.
+ * Source of truth for `FILTER_GROUPS["stackFilters"].options`. The match function checks
+ * `project.stack` for these names — `stackFilters` is only the URL/filter key.
  * Adding a value here that is not a `SkillName` is a compile error.
  */
-export const STACK_FILTER_NAMES = ["React Native", "NestJS", "Next.js", "GraphQL", "AWS", "Stripe", "Saferpay"] as const satisfies readonly SkillName[];
+export const STACK_FILTER_NAMES = ["React Native", "NestJS", "Next.js", "GraphQL", "AWS", "TypeScript", "React", "Node.js"] as const satisfies readonly SkillName[];
 
 export type StackFilterName = (typeof STACK_FILTER_NAMES)[number];
 

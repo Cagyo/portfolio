@@ -1,4 +1,5 @@
 import type { Project } from "./projects/types"
+import { getStackName } from "./projects/types"
 import { STACK_FILTER_NAMES } from "./skills-data"
 
 export type FilterGroupConfig = {
@@ -45,7 +46,7 @@ export const FILTER_GROUPS: FilterGroupConfig[] = [
     key: "stackFilters",
     label: "Stack",
     options: [...STACK_FILTER_NAMES],
-    match: (project, values) => values.every((value) => (project.stackFilters as readonly string[]).includes(value)),
+    match: (project, values) => values.every((value) => project.stack.some((entry) => getStackName(entry) === value)),
   },
   {
     key: "company",

@@ -13,7 +13,6 @@ function makeProject(overrides: Partial<Project>): Project {
     slug: "example",
     year: "2022",
     link: { type: "web", url: "https://example.com" },
-    stackFilters: [],
     stack: [],
     title: "Real Title",
     titleGeneric: "Generic Title",

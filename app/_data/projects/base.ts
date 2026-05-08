@@ -13,8 +13,7 @@ export const PROJECT_BASES: ProjectBase[] = [
     },
     featured: true,
     imageBg: "bg-gradient-to-br from-red-900/40 via-red-800/20 to-transparent",
-    stack: ["TypeScript", "React Native", "Next.js", "NestJS", "Apollo Client", "Apollo Server", "PostgreSQL", "Prisma", "Redis", { name: "Bull", extra: true }, "Saferpay", "OneSignal", "MJML", "Docker", "DigitalOcean"],
-    stackFilters: ["React Native", "Next.js", "NestJS", "GraphQL", "Saferpay"],
+    stack: ["TypeScript", "React", "React Native", "Next.js", "NestJS", "GraphQL", "Apollo Client", "Apollo Server", "Node.js", "PostgreSQL", "Prisma", "Redis", { name: "Bull", extra: true }, "Saferpay", "OneSignal", "MJML", "Docker", "DigitalOcean"],
   },
   {
     id: 2,
@@ -27,8 +26,7 @@ export const PROJECT_BASES: ProjectBase[] = [
       playStore: "https://play.google.com/store/apps/details?id=com.allsquaregolf.rnapp",
     },
     imageBg: "bg-gradient-to-br from-green-900/30 to-transparent",
-    stack: ["TypeScript", "Next.js", "React Native", "Apollo Client", "Apollo Server", "MariaDB", "Sequelize", "Stripe"],
-    stackFilters: ["Next.js", "React Native", "GraphQL", "Stripe"],
+    stack: ["TypeScript", "React", "Next.js", "React Native", "GraphQL", "Apollo Client", "Apollo Server", "Node.js", "MariaDB", "Sequelize", "Stripe"],
   },
   {
     id: 3,
@@ -40,7 +38,6 @@ export const PROJECT_BASES: ProjectBase[] = [
       playStore: "https://play.google.com/store/apps/details?id=ch.iomedia.golfcrans",
     },
     imageBg: "bg-gradient-to-br from-emerald-900/30 to-transparent",
-    stackFilters: ["React Native"],
     stack: ["TypeScript", "React Native", "React Query", "REST APIs"],
   },
   {
@@ -49,8 +46,7 @@ export const PROJECT_BASES: ProjectBase[] = [
     year: "2017–2022",
     link: { type: "private" },
     imageBg: "bg-gradient-to-br from-sky-900/30 to-transparent",
-    stackFilters: ["React Native", "GraphQL", "AWS"],
-    stack: ["TypeScript", "React", "React Native", "Apollo Client", "Apollo Server", "MongoDB", "Express", "AWS", "CircleCI", "Google Maps", "Redux", "Redux-Saga"],
+    stack: ["TypeScript", "React", "React Native", "GraphQL", "Apollo Client", "Apollo Server", "Node.js", "MongoDB", "Express", "AWS", "CircleCI", "Google Maps", "Redux", "Redux-Saga"],
     screenshots: [
       {
         src: "/projects-anonymized/pinclean.png",
@@ -70,8 +66,7 @@ export const PROJECT_BASES: ProjectBase[] = [
       appStore: "https://apps.apple.com/ua/app/yamback/id1494671035",
       playStore: "https://play.google.com/store/apps/details?id=com.yamback.app",
     },
-    stack: ["TypeScript", "React Native", "Apollo Client", "Apollo Server", "MongoDB", "Express", "AWS", "CircleCI", "Redux", "Redux-Saga"],
-    stackFilters: ["React Native", "GraphQL", "AWS"],
+    stack: ["TypeScript", "React Native", "GraphQL", "Apollo Client", "Apollo Server", "Node.js", "MongoDB", "Express", "AWS", "CircleCI", "Redux", "Redux-Saga"],
   },
   {
     id: 6,
@@ -84,7 +79,6 @@ export const PROJECT_BASES: ProjectBase[] = [
     },
     imageBg: "bg-gradient-to-br from-indigo-900/30 to-transparent",
     stack: ["TypeScript", "React Native", "Redux", "Redux-Saga", "React Query", "Fastlane", "CircleCI", "GitHub Actions"],
-    stackFilters: ["React Native"],
   },
   {
     id: 7,
@@ -96,7 +90,6 @@ export const PROJECT_BASES: ProjectBase[] = [
       playStore: "https://play.google.com/store/apps/details?id=com.wesyncup.wesyncup",
     },
     stack: ["TypeScript", "React Native", "Redux", "Redux-Saga", "GraphQL", "MongoDB", { name: "Parse SDK", extra: true }],
-    stackFilters: ["React Native", "GraphQL"],
   },
   {
     id: 8,
@@ -104,15 +97,13 @@ export const PROJECT_BASES: ProjectBase[] = [
     year: "2017–2022",
     link: { type: "private" },
     stack: ["TypeScript", "React Native", "Redux", "Redux-Saga", "REST APIs", "Fastlane"],
-    stackFilters: ["React Native"],
   },
   {
     id: 9,
     slug: "home-security-platform",
     year: "2016–present",
     link: { type: "private" },
-    stack: ["TypeScript", "NestJS", "React Native", "Apollo Client", "Apollo Server", { name: "GPIO", extra: true }, { name: "Telegram API", extra: true }],
-    stackFilters: ["NestJS", "GraphQL"],
+    stack: ["TypeScript", "NestJS", "React Native", "GraphQL", "Apollo Client", "Apollo Server", "Node.js", { name: "GPIO", extra: true }, { name: "Telegram API", extra: true }],
   },
   {
     id: 10,
@@ -120,15 +111,13 @@ export const PROJECT_BASES: ProjectBase[] = [
     year: "2017–2022",
     link: { type: "private" },
     stack: ["TypeScript", "React Native", "Redux", "Redux-Saga", "GraphQL", "Stripe", "PostgreSQL", "CircleCI"],
-    stackFilters: ["React Native", "GraphQL", "Stripe"],
   },
   {
     id: 11,
     slug: "sporting-event-platform",
     year: "2017–2022",
     link: { type: "private" },
-    stack: ["TypeScript", "React", "React Native", "Redux", "Redux-Saga", "Mongoose", "Apollo Client", "Apollo Server"],
-    stackFilters: ["React Native", "GraphQL"],
+    stack: ["TypeScript", "React", "React Native", "GraphQL", "Apollo Client", "Apollo Server", "Node.js", "Redux", "Redux-Saga", "Mongoose"],
   },
   {
     id: 12,
@@ -136,7 +125,6 @@ export const PROJECT_BASES: ProjectBase[] = [
     year: "2015–2017",
     link: { type: "private" },
     stack: ["TypeScript", "React", "REST APIs", "Jest"],
-    stackFilters: [],
   },
   {
     id: 13,
@@ -144,7 +132,6 @@ export const PROJECT_BASES: ProjectBase[] = [
     year: "2015–2017",
     link: { type: "private" },
     stack: [{ name: "Angular", extra: true }, "JavaScript", "Node.js", "REST APIs"],
-    stackFilters: [],
   },
   {
     id: 14,
@@ -152,6 +139,5 @@ export const PROJECT_BASES: ProjectBase[] = [
     year: "2015–2017",
     link: { type: "private" },
     stack: [{ name: "Marionette", extra: true }, { name: "Backbone", extra: true }, "JavaScript", "REST APIs"],
-    stackFilters: [],
   },
 ]
