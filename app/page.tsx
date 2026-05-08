@@ -5,6 +5,7 @@ import { getInitialIsDark } from "./_components/theme/get-initial-is-dark";
 import { AboutSection } from "./_home/about/AboutSection";
 import { ContactSection } from "./_home/contact/ContactSection";
 import { EngagementSection } from "./_home/engagement/EngagementSection";
+import { FaqSection } from "./_home/faq/FaqSection";
 import { FitSection } from "./_home/FitSection";
 import { HeroSection } from "./_home/hero/HeroSection";
 import { MentorshipTeaser } from "./_home/MentorshipTeaser";
@@ -30,6 +31,7 @@ function getSectionComponent(id: string, sectionNumber?: string) {
     case 'recommendations':   return <RecommendationsSection sectionNumber={sectionNumber} />
     case 'engagement':        return <EngagementSection sectionNumber={sectionNumber} />
     case 'fit':               return <FitSection sectionNumber={sectionNumber} />
+    case 'faq':               return <FaqSection sectionNumber={sectionNumber} />
     case 'contact':           return <ContactSection sectionNumber={sectionNumber} />
     case 'mentorship-teaser': return <MentorshipTeaser />
     default:                  return null

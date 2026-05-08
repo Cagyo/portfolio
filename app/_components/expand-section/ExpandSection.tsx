@@ -10,6 +10,7 @@ type ExpandSectionProps = {
   collapseLabel: React.ReactNode
   children: React.ReactNode
   buttonClassName?: string
+  panelId?: string
 }
 
 export function ExpandSection({
@@ -19,6 +20,7 @@ export function ExpandSection({
   collapseLabel,
   children,
   buttonClassName,
+  panelId,
 }: ExpandSectionProps) {
   return (
     <>
@@ -26,12 +28,14 @@ export function ExpandSection({
         type="button"
         onClick={onToggle}
         aria-expanded={isExpanded}
+        aria-controls={panelId}
         className={buttonClassName ?? styles.toggle}
       >
         <ChevronDownIcon className={`${styles.chevron} ${isExpanded ? styles.chevronUp : ''}`} />
         <span>{isExpanded ? collapseLabel : expandLabel}</span>
       </button>
       <div
+        id={panelId}
         className={styles.panel}
         style={{ gridTemplateRows: isExpanded ? '1fr' : '0fr' }}
       >

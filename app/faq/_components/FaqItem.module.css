@@ -1,0 +1,104 @@
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  margin-bottom: 0.75rem;
+  border: 1px solid color-mix(in srgb, var(--amber) 22%, transparent);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--amber) 8%, transparent);
+  padding: 0.25rem 0.65rem;
+  color: var(--amber-light);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.faqButton {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: flex-start;
+  justify-content: space-between;
+  width: 100%;
+  min-height: 56px;
+  gap: 1rem;
+  border: 1px solid var(--border);
+  border-radius: 0.75rem;
+  background: var(--surface);
+  padding: 1rem 1.25rem;
+  color: var(--text-primary);
+  text-align: left;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease, background-color 0.15s ease;
+}
+
+.faqButton:hover {
+  transform: translateY(-2px);
+  border-color: color-mix(in srgb, var(--amber) 28%, var(--border));
+  background: var(--surface-hover);
+  box-shadow: 0 14px 34px color-mix(in srgb, var(--amber) 14%, transparent);
+}
+
+.faqButton:focus-visible {
+  outline: 2px solid var(--amber);
+  outline-offset: 3px;
+}
+
+.faqButton > span {
+  min-width: 0;
+  flex: 1;
+}
+
+.faqButton svg {
+  flex-shrink: 0;
+  width: 1rem;
+  height: 1rem;
+  margin-top: 0.25rem;
+  color: var(--amber);
+}
+
+.questionText {
+  display: block;
+  color: var(--text-primary);
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.35;
+  text-align: left;
+}
+
+.panelContent {
+  display: grid;
+  gap: 0.65rem;
+  padding: 0.95rem 1.25rem 1.3rem;
+}
+
+.answer {
+  color: var(--text-primary);
+  font-weight: 700;
+  line-height: 1.65;
+}
+
+.body {
+  color: var(--text-secondary);
+  line-height: 1.75;
+  white-space: pre-line;
+}
+
+html[data-theme="light"] .eyebrow {
+  color: #B45309;
+}
+
+html[data-theme="light"] .faqButton:hover {
+  box-shadow: 0 14px 34px color-mix(in srgb, var(--amber) 10%, transparent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .faqButton {
+    transition: border-color 0.15s ease, background-color 0.15s ease;
+  }
+
+  .faqButton:hover {
+    transform: none;
+  }
+}

@@ -21,6 +21,7 @@ const sections: SectionEntry[] = [
   { id: 'recommendations', enabled: true, numbered: true, navKey: 'reviews' },
   { id: 'engagement',      enabled: true, numbered: true, navKey: 'services' },
   { id: 'fit',             enabled: true, numbered: true, navKey: 'fit' },
+  { id: 'faq',             enabled: true, numbered: true, navKey: 'faq' },
   { id: 'contact',         enabled: true, numbered: true, navKey: 'contact' },
   { id: 'mentorship-teaser', enabled: false },
 ]

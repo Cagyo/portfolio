@@ -1,0 +1,96 @@
+.columns {
+  display: grid;
+  gap: 3rem;
+}
+
+@media (min-width: 1024px) {
+  .columns {
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    align-items: start;
+  }
+}
+
+.list {
+  display: grid;
+  gap: 0.9rem;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  margin-bottom: 0.75rem;
+  border: 1px solid color-mix(in srgb, var(--amber) 22%, transparent);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--amber) 8%, transparent);
+  padding: 0.25rem 0.65rem;
+  color: var(--amber-light);
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.cta {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  overflow: hidden;
+  border: 1px solid transparent;
+  border-radius: 0.75rem;
+  background: linear-gradient(135deg, var(--amber), var(--amber-dark));
+  padding: 0.625rem 1.5rem;
+  color: #0D0D0D;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.cta::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(135deg, var(--amber-light), var(--amber));
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px color-mix(in srgb, var(--amber) 40%, transparent);
+}
+
+.cta:hover::before {
+  opacity: 1;
+}
+
+.cta:focus-visible {
+  outline: 2px solid var(--amber-light);
+  outline-offset: 3px;
+}
+
+.ctaInner {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+html[data-theme="light"] .eyebrow {
+  color: #B45309;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cta {
+    transition: box-shadow 0.25s ease;
+  }
+
+  .cta:hover {
+    transform: none;
+  }
+}

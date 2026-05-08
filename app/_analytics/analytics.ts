@@ -1,6 +1,7 @@
 "use client";
 
 import { track } from "@vercel/analytics";
+import { readConsent } from "@/app/_components/cookie-consent/consent-storage";
 
 export const portfolioAnalyticsEvents = {
   resumeDownload: "resume_download",
@@ -9,11 +10,15 @@ export const portfolioAnalyticsEvents = {
   contactSuccessCtaClick: "contact_success_cta_click",
   calendlyOpen: "calendly_open",
   outboundClick: "outbound_click",
+  faqOpen: "faq_open",
+  faqSeeAllClick: "faq_see_all_click",
 } as const;
 
 export type OutboundTarget = "github" | "linkedin" | "twitter" | "telegram" | "whatsapp";
 export type ContactSubmitMode = "text" | "voice";
 export type ContactSuccessCtaTarget = "calendly" | "linkedin" | "projects";
+export type FaqTrack = "scratch" | "rescue" | "universal";
+export type FaqLocation = "faq_page" | "home_section";
 
 type AnalyticsPrimitive = string | number | boolean;
 
@@ -36,11 +41,18 @@ type PortfolioEventPayloads = {
   };
   [portfolioAnalyticsEvents.calendlyOpen]: AnalyticsContext & { target: "calendly" };
   [portfolioAnalyticsEvents.outboundClick]: AnalyticsContext & { target: OutboundTarget };
+  [portfolioAnalyticsEvents.faqOpen]: AnalyticsContext & {
+    slug: string;
+    track: FaqTrack;
+    location: FaqLocation;
+  };
+  [portfolioAnalyticsEvents.faqSeeAllClick]: AnalyticsContext & { target: "faq" };
 };
 
 export type LinkTracking =
   | { action: "resume" }
   | { action: "calendly" }
+  | { action: "faqSeeAll" }
   | { action: "outbound"; target: OutboundTarget };
 
 function getAnalyticsContext(): AnalyticsContext {
@@ -68,6 +80,8 @@ function trackPortfolioEvent<EventName extends keyof PortfolioEventPayloads>(
   eventName: EventName,
   payload: PortfolioEventPayloads[EventName],
 ): void {
+  if (readConsent() !== "granted") return;
+
   track(eventName, compactPayload(payload));
 }
 
@@ -84,6 +98,14 @@ export function trackLinkAction(tracking: LinkTracking): void {
     trackPortfolioEvent(portfolioAnalyticsEvents.calendlyOpen, {
       ...getAnalyticsContext(),
       target: "calendly",
+    });
+    return;
+  }
+
+  if (tracking.action === "faqSeeAll") {
+    trackPortfolioEvent(portfolioAnalyticsEvents.faqSeeAllClick, {
+      ...getAnalyticsContext(),
+      target: "faq",
     });
     return;
   }
@@ -112,5 +134,22 @@ export function trackContactSuccessCtaClick(target: ContactSuccessCtaTarget): vo
   trackPortfolioEvent(portfolioAnalyticsEvents.contactSuccessCtaClick, {
     ...getAnalyticsContext(),
     target,
+  });
+}
+
+export function trackFaqOpen({
+  slug,
+  track,
+  location,
+}: {
+  slug: string;
+  track: FaqTrack;
+  location: FaqLocation;
+}): void {
+  trackPortfolioEvent(portfolioAnalyticsEvents.faqOpen, {
+    ...getAnalyticsContext(),
+    slug,
+    track,
+    location,
   });
 }
