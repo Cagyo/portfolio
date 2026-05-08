@@ -1,8 +1,7 @@
 import Image from "next/image";
 import styles from "./PhotoCard.module.css";
-import { Tag } from "@/app/_components/tag/Tag";
+import { HeroSkillChips } from "./HeroSkillChips";
 import { TestimonialSnippet, type SnippetTestimonial } from "@/app/_home/recommendations/TestimonialSnippet";
-import { TOP_SKILL_NAMES } from "./top-skills";
 
 type PhotoCardProps = {
   availableLabel: string;
@@ -35,11 +34,8 @@ export function PhotoCard({ availableLabel, testimonial }: PhotoCardProps) {
         </div>
 
         {/* Tags */}
-        <div className="px-6 py-4 flex flex-wrap gap-1.5">
-          <Tag variant="amber">AI</Tag>
-          {TOP_SKILL_NAMES.map((tag) => (
-            <Tag key={tag}>{tag}</Tag>
-          ))}
+        <div className="px-6 py-4">
+          <HeroSkillChips />
         </div>
       </div>
 

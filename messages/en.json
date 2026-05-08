@@ -31,7 +31,8 @@
       { "name": "All Square" },
       { "name": "EngagePoint" },
       { "name": "Avocado Technology" }
-    ]
+    ],
+    "systemDesignSkill": "System design"
   },
   "about": {
     "sectionTitle": "About Me",

@@ -94,7 +94,9 @@ export async function HeroSection() {
             </Button>
           </div>
 
-          <HeroSkillChips />
+          <div className="lg:hidden">
+            <HeroSkillChips />
+          </div>
 
           <HeroLogos label={t("logosLabel")} logos={logos} />
 
