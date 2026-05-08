@@ -1,8 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { ArrowLeftIcon } from "@/assets/icons/ArrowLeftIcon";
-import { ArrowRightIcon } from "@/assets/icons/ArrowRightIcon";
+import { ArrowLeftShortIcon } from "@/assets/icons/ArrowLeftShortIcon";
+import { ArrowRightShortIcon } from "@/assets/icons/ArrowRightShortIcon";
 import styles from "./TestimonialsSlider.module.css";
 import { TestimonialCard } from "./TestimonialCard";
 
@@ -48,7 +48,7 @@ export function TestimonialsSlider({ items }: TestimonialsSliderProps) {
             aria-label="Previous testimonial"
             className={`absolute left-0 top-1/2 -translate-y-1/2 -translate-x-14 z-10 w-10 h-10 rounded-full glass border border-white/10 flex items-center justify-center text-white/40 hover:text-amber-400 hover:border-amber-500/30 transition-colors duration-200 cursor-pointer ${styles.arrowBtn}`}
           >
-            <ArrowLeftIcon className="w-4 h-4" />
+            <ArrowLeftShortIcon className="w-4 h-4" />
           </button>
         )}
 
@@ -79,7 +79,7 @@ export function TestimonialsSlider({ items }: TestimonialsSliderProps) {
             aria-label="Next testimonial"
             className={`absolute right-0 top-1/2 -translate-y-1/2 translate-x-14 z-10 w-10 h-10 rounded-full glass border border-white/10 flex items-center justify-center text-white/40 hover:text-amber-400 hover:border-amber-500/30 transition-colors duration-200 cursor-pointer ${styles.arrowBtn}`}
           >
-            <ArrowRightIcon className="w-4 h-4" />
+            <ArrowRightShortIcon className="w-4 h-4" />
           </button>
         )}
       </div>

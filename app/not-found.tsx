@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { getTranslations } from "next-intl/server";
-import { ArrowLeftIcon } from "@/assets/icons/ArrowLeftIcon";
+import { ArrowRightShortIcon } from "@/assets/icons/ArrowRightShortIcon";
 
 export default async function NotFound() {
   const t = await getTranslations("notFound");
@@ -19,7 +19,7 @@ export default async function NotFound() {
           href="/"
           className="inline-flex items-center gap-2 text-amber-400 hover:text-amber-300 transition-colors font-medium"
         >
-          <ArrowLeftIcon className="w-4 h-4" />
+          <ArrowRightShortIcon className="w-4 h-4" />
           {t("backHome")}
         </Link>
       </div>

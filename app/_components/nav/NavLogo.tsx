@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useTranslations } from "next-intl";
-import { ArrowLeftIcon } from "@/assets/icons/ArrowLeftIcon";
+import { ArrowLeftShortIcon } from "@/assets/icons/ArrowLeftShortIcon";
 import { IconMarkFace } from "@/app/_og/icon-mark-face";
 
 type NavLogoProps = {
@@ -17,7 +17,7 @@ export function NavLogo({ href = "#hero", showBackArrow = false, ariaLabel }: Na
   return (
     <Link href={href} className="flex items-center gap-3 cursor-pointer group" aria-label={ariaLabel}>
       {showBackArrow && (
-        <ArrowLeftIcon className="w-4 h-4 text-white/60 group-hover:text-white transition-colors" />
+        <ArrowLeftShortIcon className="w-4 h-4 text-white/60 group-hover:text-white transition-colors" />
       )}
       <IconMarkFace size={32} />
       <span className="font-heading font-bold text-sm text-white/80 group-hover:text-white transition-colors hidden sm:block">

@@ -4,8 +4,8 @@ import { getProjectTitle, getStackName, overlayTypeFor } from "@/app/_data/proje
 import { HOME_PROJECT_IDS, getHomeProjectVisual } from "@/app/_data/home-project-visuals";
 import { isFilterableStack } from "@/app/_data/projects/get-stack-stats";
 import { BlobBackground } from "@/app/_components/BlobBackground";
+import { ArrowRightShortIcon } from "@/assets/icons/ArrowRightShortIcon";
 import { SectionHeader } from "@/app/_components/SectionHeader";
-import { ArrowLeftIcon } from "@/assets/icons/ArrowLeftIcon";
 import { ArrowRightIcon } from "@/assets/icons/ArrowRightIcon";
 import { Button } from "@/app/_components/button/Button";
 import { ProjectCard } from "./ProjectCard";
@@ -70,7 +70,7 @@ export async function ProjectsSection({ sectionNumber }: ProjectsSectionProps) {
 
         <div className="flex flex-wrap items-center justify-center gap-4 mt-12 reveal">
           <Button href="/projects" variant="outline" className="px-8 py-3.5 rounded-xl text-sm gap-2">
-            <ArrowLeftIcon className="w-4 h-4" />
+            <ArrowRightShortIcon className="w-4 h-4" />
             {t("viewAll")}
           </Button>
           <Button href="/#contact" variant="primary" className="px-8 py-3.5 rounded-xl text-sm gap-2">

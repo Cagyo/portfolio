@@ -29,7 +29,7 @@ import { getInitialIsDark } from "@/app/_components/theme/get-initial-is-dark";
 import { ProjectScreenshots } from "@/app/projects/_components/project-card/ProjectScreenshots";
 import { AppStoreLogo } from "@/assets/logos/AppStoreLogo";
 import { GooglePlayLogo } from "@/assets/logos/GooglePlayLogo";
-import { ArrowLeftIcon } from "@/assets/icons/ArrowLeftIcon";
+import { ArrowLeftShortIcon } from "@/assets/icons/ArrowLeftShortIcon";
 import { ArrowRightIcon } from "@/assets/icons/ArrowRightIcon";
 import { BuildingOfficeIcon } from "@/assets/icons/BuildingOfficeIcon";
 import { ExternalLinkIcon } from "@/assets/icons/ExternalLinkIcon";
@@ -335,7 +335,7 @@ export default async function Page({
               className={styles.backLink}
               prefetch={false}
             >
-              <ArrowLeftIcon className="w-4 h-4" aria-hidden />
+              <ArrowLeftShortIcon className="w-4 h-4" aria-hidden />
               {t("backToAll")}
             </Link>
             <Button
