@@ -23,6 +23,6 @@ describe("buildFaqPageSchema", () => {
     expect(schema?.["@context"]).toBe("https://schema.org");
     expect(schema?.["@type"]).toBe("FAQPage");
     expect(schema?.["@id"]).toBe("https://berliziev.dev/faq");
-    expect(schema?.mainEntity).toHaveLength(2);
+    expect(schema?.mainEntity).toHaveLength(15);
   });
 });
