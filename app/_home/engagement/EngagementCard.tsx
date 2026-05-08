@@ -20,7 +20,7 @@ const VARIANTS = {
     tag: styles.tagAmber,
     bestFor: styles.bestForAmber,
     label: "text-amber-500/70",
-    bar: null,
+    bar: "from-amber-600 via-amber-400 to-amber-600",
     kicker: styles.kicker,
   },
   purple: {
