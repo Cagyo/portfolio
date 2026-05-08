@@ -66,7 +66,7 @@ export const PROJECT_BASES: ProjectBase[] = [
       appStore: "https://apps.apple.com/ua/app/yamback/id1494671035",
       playStore: "https://play.google.com/store/apps/details?id=com.yamback.app",
     },
-    stack: ["TypeScript", "React Native", "GraphQL", "Apollo Client", "Apollo Server", "Node.js", "MongoDB", "Express", "AWS", "CircleCI", "Redux", "Redux-Saga"],
+    stack: ["TypeScript", "React", "React Native", "GraphQL", "Apollo Client", "Apollo Server", "Node.js", "MongoDB", "Express", "AWS", "CircleCI", "Redux", "Redux-Saga"],
   },
   {
     id: 6,
