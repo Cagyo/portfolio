@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArrowRightIcon } from "@/assets/icons/ArrowRightIcon";
 import { Tag } from "@/app/_components/tag/Tag";
 import { ShowMoreText } from "@/app/_components/show-more/ShowMoreText";
+import { getProjectCountByStack, isFilterableStack } from "@/app/_data/projects/get-stack-stats";
 import styles from "./ExperienceCard.module.css";
 
 type ExperiencePosition = {
@@ -14,7 +15,6 @@ type ExperienceCardProps = {
   company: string
   period: string
   tags: string[]
-  capabilities?: string[]
   logo?: React.ReactNode
   accentOpacity?: string
   projectsHref?: string
@@ -33,12 +33,20 @@ export function ExperienceCard({
   company,
   period,
   tags,
-  capabilities,
   logo,
   accentOpacity = "1",
   projectsHref,
   positions,
 }: ExperienceCardProps) {
+  const tagItems = tags.map((tag) => {
+    const linkable = isFilterableStack(tag) && getProjectCountByStack(tag) > 0;
+    return {
+      tag,
+      href: linkable ? `/projects?stackFilters=${encodeURIComponent(tag)}` : undefined,
+      ariaLabel: linkable ? `See projects using ${tag}` : undefined,
+    };
+  });
+
   const logoNode = logo ?? (
     <div className="glass w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0">
       <span className="text-amber-400 text-xs font-bold tracking-wider leading-none">
@@ -73,16 +81,6 @@ export function ExperienceCard({
             </div>
           </div>
 
-          {capabilities && capabilities.length > 0 && (
-            <div className={styles.capabilityList}>
-              {capabilities.map((capability) => (
-                <span key={capability} className={styles.capabilityChip}>
-                  {capability}
-                </span>
-              ))}
-            </div>
-          )}
-
           {/* Positions timeline */}
           <div className="mt-4">
             {positions.map((pos, posIndex) => (
@@ -106,8 +104,10 @@ export function ExperienceCard({
           </div>
 
         <div className="flex flex-wrap gap-1.5 mt-3">
-          {tags.map((tag) => (
-            <Tag key={tag}>{tag}</Tag>
+          {tagItems.map(({ tag, href, ariaLabel }) => (
+            <Tag key={tag} href={href} aria-label={ariaLabel}>
+              {tag}
+            </Tag>
           ))}
         </div>
       </div>

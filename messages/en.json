@@ -57,7 +57,6 @@
         "company": "All Square",
         "period": "Dec 2022 – Jan 2026",
         "tags": ["Next.js", "React Native", "Node.js", "NestJS", "TypeScript", "CI/CD"],
-        "capabilities": ["Solo ownership"],
         "positions": [
           {
             "title": "Senior Full-Stack Engineer / Tech Lead",
@@ -70,7 +69,6 @@
         "company": "Avocado Technology",
         "period": "Sep 2017 – Dec 2022",
         "tags": ["React Native", "Node.js", "GraphQL", "MongoDB", "PostgreSQL", "AWS"],
-        "capabilities": ["Idea-to-product"],
         "positions": [
           {
             "title": "Senior Full-Stack Engineer / Tech Lead",
