@@ -26,12 +26,7 @@
     "ctaWork": "See case studies",
     "ctaContact": "Start a conversation",
     "photoAlt": "Photo",
-    "logosLabel": "Past employers",
-    "logos": [
-      { "name": "All Square" },
-      { "name": "EngagePoint" },
-      { "name": "Avocado Technology" }
-    ],
+    "logosLabel": "Apps in production",
     "systemDesignSkill": "System design"
   },
   "about": {

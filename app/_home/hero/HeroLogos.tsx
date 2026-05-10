@@ -1,22 +1,29 @@
+import Link from "next/link";
+import type { HeroLogoProject } from "@/app/_data/projects/get-hero-logo-projects";
 import styles from "./HeroLogos.module.css";
-
-type HeroLogo = { name: string };
 
 type HeroLogosProps = {
   label: string;
-  logos: HeroLogo[];
+  logos: HeroLogoProject[];
 };
 
 export function HeroLogos({ label, logos }: HeroLogosProps) {
   if (logos.length === 0) return null;
   return (
-    <div className={styles.row}>
+    <div className={styles.wrapper}>
       <span className={styles.eyebrow}>{label}</span>
-      {logos.map((logo) => (
-        <span key={logo.name} className={styles.wordmark}>
-          {logo.name}
-        </span>
-      ))}
+      <div className={styles.row}>
+        {logos.map((logo) => (
+          <Link
+            key={logo.slug}
+            href={`/projects/${logo.slug}`}
+            className={styles.logoLink}
+          >
+            {/* eslint-disable-next-line @next/next/no-img-element -- tiny static logos, next/image's aspect-ratio API fights mixed-aspect uniform square slots */}
+            <img src={logo.logo} alt={logo.title} className={styles.logoImg} />
+          </Link>
+        ))}
+      </div>
     </div>
   );
 }

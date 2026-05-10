@@ -6,17 +6,20 @@ import { EnvelopeIcon } from "@/assets/icons/EnvelopeIcon";
 import { BlobBackground } from "@/app/_components/BlobBackground";
 import { Button } from "@/app/_components/button/Button";
 import { ScrollIndicator } from "@/app/_components/ScrollIndicator";
+import { getHeroLogoProjects } from "@/app/_data/projects/get-hero-logo-projects";
+import { getProjects } from "@/app/_data/projects/get-projects";
 import { HeroLogos } from "./HeroLogos";
 import { HeroSkillChips } from "./HeroSkillChips";
 import { PhotoCard } from "./PhotoCard";
 import { TestimonialSnippet, type SnippetTestimonial } from "@/app/_home/recommendations/TestimonialSnippet";
 
 export async function HeroSection() {
-  const [t, tRecs] = await Promise.all([
+  const [t, tRecs, allProjects] = await Promise.all([
     getTranslations("hero"),
     getTranslations("recommendations"),
+    getProjects(),
   ]);
-  const logos = t.raw("logos") as { name: string }[];
+  const heroLogos = getHeroLogoProjects(allProjects);
   const recItems = tRecs.raw("items") as SnippetTestimonial[];
   const firstRec = recItems[0];
 
@@ -98,7 +101,7 @@ export async function HeroSection() {
             <HeroSkillChips />
           </div>
 
-          <HeroLogos label={t("logosLabel")} logos={logos} />
+          <HeroLogos label={t("logosLabel")} logos={heroLogos} />
 
           {/* Mobile testimonial snippet — mirrors the floating card on desktop */}
           {firstRec && (

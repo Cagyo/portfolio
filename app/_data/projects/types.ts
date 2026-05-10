@@ -49,6 +49,20 @@ export type ProjectBase = {
   year: string
   link: ProjectPageLink
   featured?: boolean
+  /**
+   * When true, the project's logo renders in the home hero "Apps in
+   * production" row, linking to /projects/{slug}.
+   *
+   * Invariants enforced by hero-logo.test.ts:
+   * - link.type !== "private" (NDA: logos carry brand identity, see
+   *                             SHOW_REAL_PROJECT_NAMES below)
+   * - logo is set              (path under public/assets/projects/logo/)
+   *
+   * Logos follow the slug rule (real brand for public projects), NOT the
+   * visible-title rule. SHOW_REAL_PROJECT_NAMES does not gate logo rendering
+   * for public projects.
+   */
+  homeHero?: boolean
   imageBg?: string
   logo?: string
   screenshots?: Screenshot[]

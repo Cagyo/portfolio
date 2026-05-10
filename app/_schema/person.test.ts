@@ -40,4 +40,12 @@ describe("buildPersonSchema", () => {
     expect(knowsAbout.length).toBeGreaterThan(0);
     expect(knowsAbout).toContain("TypeScript");
   });
+
+  it("adds past employers as Organization worksFor nodes", () => {
+    expect(schema.worksFor).toEqual([
+      { "@type": "Organization", name: "All Square" },
+      { "@type": "Organization", name: "Avocado Technology" },
+      { "@type": "Organization", name: "EngagePoint" },
+    ]);
+  });
 });

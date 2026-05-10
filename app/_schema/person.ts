@@ -33,5 +33,10 @@ export function buildPersonSchema(t: Translator): Record<string, unknown> {
     description: t("description"),
     knowsAbout,
     sameAs,
+    worksFor: [
+      { "@type": "Organization", name: "All Square" },
+      { "@type": "Organization", name: "Avocado Technology" },
+      { "@type": "Organization", name: "EngagePoint" },
+    ],
   };
 }

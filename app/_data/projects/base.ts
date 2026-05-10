@@ -12,7 +12,9 @@ export const PROJECT_BASES: ProjectBase[] = [
       playStore: "https://market.android.com/details?id=ch.iomedia.oem2011",
     },
     featured: true,
+    homeHero: true,
     imageBg: "bg-gradient-to-br from-red-900/40 via-red-800/20 to-transparent",
+    logo: "/assets/projects/logo/omegamasters_logo.svg",
     stack: ["TypeScript", "React", "React Native", "Next.js", "NestJS", "GraphQL", "Apollo Client", "Apollo Server", "Node.js", "PostgreSQL", "Prisma", "Redis", { name: "Bull", extra: true }, "Saferpay", "OneSignal", "MJML", "Docker", "DigitalOcean"],
   },
   {
@@ -37,8 +39,24 @@ export const PROJECT_BASES: ProjectBase[] = [
       appStore: "https://apps.apple.com/us/app/golf-club-crans-sur-sierre/id1382210998",
       playStore: "https://play.google.com/store/apps/details?id=ch.iomedia.golfcrans",
     },
+    homeHero: true,
     imageBg: "bg-gradient-to-br from-emerald-900/30 to-transparent",
+    logo: "/assets/projects/logo/golfcrans_logo.svg",
     stack: ["TypeScript", "React Native", "React Query", "REST APIs"],
+  },
+  {
+    id: 6,
+    slug: "b-sharpe-currency-exchange",
+    year: "2017–2022",
+    link: {
+      type: "mobile",
+      appStore: "https://apps.apple.com/ch/app/b-sharpe-currency-exchange/id1499627995",
+      playStore: "https://play.google.com/store/apps/details?id=com.bsharpe.app",
+    },
+    homeHero: true,
+    imageBg: "bg-gradient-to-br from-indigo-900/30 to-transparent",
+    logo: "/assets/projects/logo/bsharpe_logo.svg",
+    stack: ["TypeScript", "React Native", "Redux", "Redux-Saga", "React Query", "Fastlane", "CircleCI", "GitHub Actions"],
   },
   {
     id: 4,
@@ -47,6 +65,8 @@ export const PROJECT_BASES: ProjectBase[] = [
     link: { type: "private" },
     imageBg: "bg-gradient-to-br from-sky-900/30 to-transparent",
     stack: ["TypeScript", "React", "React Native", "GraphQL", "Apollo Client", "Apollo Server", "Node.js", "MongoDB", "Express", "AWS", "CircleCI", "Google Maps", "Redux", "Redux-Saga"],
+    homeHero: true,
+    logo: "/assets/projects/logo/pinclean_logo.svg",
     screenshots: [
       {
         src: "/projects-anonymized/pinclean.png",
@@ -66,19 +86,9 @@ export const PROJECT_BASES: ProjectBase[] = [
       appStore: "https://apps.apple.com/ua/app/yamback/id1494671035",
       playStore: "https://play.google.com/store/apps/details?id=com.yamback.app",
     },
+    homeHero: true,
+    logo: "/assets/projects/logo/yamback_logo.svg",
     stack: ["TypeScript", "React", "React Native", "GraphQL", "Apollo Client", "Apollo Server", "Node.js", "MongoDB", "Express", "AWS", "CircleCI", "Redux", "Redux-Saga"],
-  },
-  {
-    id: 6,
-    slug: "b-sharpe-currency-exchange",
-    year: "2017–2022",
-    link: {
-      type: "mobile",
-      appStore: "https://apps.apple.com/ch/app/b-sharpe-currency-exchange/id1499627995",
-      playStore: "https://play.google.com/store/apps/details?id=com.bsharpe.app",
-    },
-    imageBg: "bg-gradient-to-br from-indigo-900/30 to-transparent",
-    stack: ["TypeScript", "React Native", "Redux", "Redux-Saga", "React Query", "Fastlane", "CircleCI", "GitHub Actions"],
   },
   {
     id: 7,
