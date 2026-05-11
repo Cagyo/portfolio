@@ -65,6 +65,8 @@ Don't re-declare `metadataBase`, `openGraph`, `twitter`, or `description` per ro
 | `og.home` | `app/opengraph-image.tsx` | `eyebrow`, `title`, `description` |
 | `og.projects` | `app/projects/opengraph-image.tsx` | same shape |
 | `og.mentorship` | `app/mentorship/opengraph-image.tsx` | same shape |
+| `og.faq` | `app/faq/opengraph-image.tsx` | same shape |
+| `og.privacy` | `app/privacy/opengraph-image.tsx` | same shape |
 | `<route>Page` | per-route `generateMetadata` | `title` (e.g. `projectsPage.title`) |
 
 Adding a route always means adding one `og.<route>` block and one `<route>Page.title`.
@@ -85,6 +87,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
 ```
 
 `/mentorship` is intentionally commented out — uncomment when the page is ready to be indexed. Don't switch to a dynamic sitemap unless the route set actually becomes data-driven.
+
+Project detail pages are data-driven from `app/_data/projects/base.ts`. Each
+project must carry a static `updatedAt` timestamp (ISO 8601 with an explicit
+time and timezone), and `app/sitemap.ts` passes that string through as
+`lastModified`. When you make a meaningful update to any project content in
+`base.ts` or `content.en.ts`, update that project's `updatedAt` timestamp in the
+same change.
 
 ## Robots — `app/robots.ts`
 
@@ -149,7 +158,10 @@ Render with `<JsonLd data={...} />` from `app/_schema/JsonLd.tsx`. It emits a pl
 | **Root layout** (every route) | `Person`, `WebSite` |
 | `/` | (root only) |
 | `/projects` | `BreadcrumbList`, `ItemList` |
+| `/projects/[slug]` | `BreadcrumbList`, `CaseStudy` (Article) — auto-`noindex` if combined prose < 120 words |
 | `/mentorship` | `BreadcrumbList`, `ProfessionalService` |
+| `/faq` | `BreadcrumbList`, `FAQPage` |
+| `/privacy` | `BreadcrumbList` |
 
 `Person` and `WebSite` are emitted **once** in the root layout. **Never re-emit them on subpages** — duplicate Person nodes confuse the entity graph. Per-route schemas reference the root nodes via `@id`:
 
@@ -168,7 +180,9 @@ person.ts                  buildPersonSchema(t)              — root layout, on
 website.ts                 buildWebSiteSchema(t)             — root layout, once
 breadcrumb.ts              buildBreadcrumbSchema(items)      — every subpage
 item-list.ts               buildProjectsItemListSchema(...)  — /projects
+case-study.ts              buildCaseStudySchema(...)         — /projects/[slug]
 professional-service.ts    buildMentorshipServiceSchema(...) — /mentorship
+faq-page.ts                buildFaqPageSchema(...)           — /faq
 ```
 
 ### Rules baked into the builders — preserve them

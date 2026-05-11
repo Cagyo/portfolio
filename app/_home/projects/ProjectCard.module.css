@@ -73,6 +73,11 @@
   }
 }
 
+.titleLink {
+  color: inherit;
+  text-decoration: none;
+}
+
 html[data-theme="light"] .problemText {
   color: color-mix(in srgb, var(--text-primary) 60%, transparent);
 }

@@ -57,6 +57,7 @@ export async function HeroSection() {
                 {t("firstName")}
                 <br />
                 <span className="text-gradient">{t("lastName")}</span>
+                <span className="sr-only"> — {t("h1Role")}</span>
               </h1>
               <p className="text-xl sm:text-2xl text-white/60 font-normal">
                 {t.rich("tagline", {

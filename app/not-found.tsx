@@ -1,7 +1,16 @@
 import Link from "next/link";
 import { getTranslations } from "next-intl/server";
 import { ArrowRightShortIcon } from "@/assets/icons/ArrowRightShortIcon";
+import { siteConfig } from "@/app/_config/site-config";
 import styles from "./not-found.module.css";
+
+export async function generateMetadata() {
+  const t = await getTranslations("notFound");
+  return {
+    title: `${t("title")} — ${siteConfig.author.name}`,
+    robots: { index: false, follow: true },
+  };
+}
 
 export default async function NotFound() {
   const t = await getTranslations("notFound");

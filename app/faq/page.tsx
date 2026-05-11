@@ -12,8 +12,7 @@ import type { FaqItem, TrackKey } from "@/app/_data/faq/types";
 import { JsonLd } from "@/app/_schema/JsonLd";
 import { absoluteUrl } from "@/app/_schema/absolute-url";
 import { buildBreadcrumbSchema } from "@/app/_schema/breadcrumb";
-// TODO(user): populate buildFaqPageSchema body, then uncomment.
-// import { buildFaqPageSchema } from "@/app/_schema/faq-page";
+import { buildFaqPageSchema } from "@/app/_schema/faq-page";
 import { FaqList } from "./_components/FaqList";
 import listStyles from "./_components/FaqList.module.css";
 
@@ -64,16 +63,14 @@ export default async function Page({ params }: PageProps<"/faq">) {
     { name: "Home", path: "/" },
     { name: t("title"), path: "/faq" },
   ]);
-  // TODO(user): populate buildFaqPageSchema body, then uncomment.
-  // const faqPageSchema = buildFaqPageSchema(
-  //   faq.items.map((item) => ({ question: item.question, answer: item.answer, slug: item.slug })),
-  // );
+  const faqPageSchema = buildFaqPageSchema(
+    faq.items.map((item) => ({ question: item.question, answer: item.answer, slug: item.slug })),
+  );
 
   return (
     <>
       <JsonLd data={breadcrumbSchema} />
-      {/* TODO(user): populate buildFaqPageSchema body, then uncomment. */}
-      {/* {faqPageSchema && <JsonLd data={faqPageSchema} />} */}
+      {faqPageSchema && <JsonLd data={faqPageSchema} />}
       <SubpageNav
         backHref="/"
         sections={trackJumpLinks}

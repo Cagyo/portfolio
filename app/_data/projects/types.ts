@@ -86,11 +86,10 @@ export type ProjectBase = {
    */
   slug: string
   /**
-   * Optional ISO 8601 date string (YYYY-MM-DD) of the most recent meaningful
-   * content revision. Consumed by `app/sitemap.ts` (`lastModified`) in PR 4.
-   * Falls back to `${parseStartYear(year)}-01-01` when omitted.
+   * ISO 8601 timestamp of the most recent meaningful content
+   * revision. Consumed by `app/sitemap.ts` (`lastModified`).
    */
-  updatedAt?: string
+  updatedAt: string
   /**
    * Optional hex-valued gradient backing the per-project OG image hero.
    * Required when the project relies on Tailwind-only `imageBg` and ships

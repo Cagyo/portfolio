@@ -52,7 +52,11 @@ export function ProjectCard({
       </div>
       <div className={`${padding} flex flex-col flex-1`}>
         <ProjectMeta {...meta} />
-        <h3 className={`font-heading font-bold ${titleSize} text-white mb-2`}>{title}</h3>
+        <h3 className={`font-heading font-bold ${titleSize} text-white mb-2`}>
+          <Link href={viewInProjectsHref} className={styles.titleLink}>
+            {title}
+          </Link>
+        </h3>
         {problem && (
           <p className={styles.problemText}>{problem}</p>
         )}
@@ -80,7 +84,7 @@ export function ProjectCard({
             ))}
           </div>
           <div className="flex justify-end">
-            <Link href={viewInProjectsHref} className={styles.viewInProjectsLink}>
+            <Link href={viewInProjectsHref} className={styles.viewInProjectsLink} aria-hidden="true" tabIndex={-1}>
               {viewInProjectsLabel}
               <ArrowRightIcon className="w-3.5 h-3.5" />
             </Link>

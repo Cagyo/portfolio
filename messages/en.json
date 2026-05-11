@@ -25,7 +25,8 @@
     "description": "Your idea deserves more than a prototype. Your prototype deserves a real foundation.",
     "ctaWork": "See case studies",
     "ctaContact": "Start a conversation",
-    "photoAlt": "Photo",
+    "photoAlt": "Oleksii Berliziev — Fractional CTO and Tech Lead",
+    "h1Role": "Fractional CTO and Tech Lead for Founders",
     "logosLabel": "Apps in production",
     "systemDesignSkill": "System design"
   },
@@ -343,7 +344,14 @@
     "backToTop": "Back to top",
     "githubAriaLabel": "GitHub",
     "linkedinAriaLabel": "LinkedIn",
-    "twitterAriaLabel": "Twitter"
+    "twitterAriaLabel": "Twitter",
+    "navAriaLabel": "Footer navigation",
+    "links": {
+      "home": "Home",
+      "projects": "Projects",
+      "faq": "FAQ",
+      "privacy": "Privacy"
+    }
   },
   "cookieConsent": {
     "title": "A note about cookies",

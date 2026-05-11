@@ -19,8 +19,8 @@ import {
   getProjectTitle,
   getStackName,
   type ProjectPageLink,
-  type Project,
 } from "@/app/_data/projects/types";
+import { isThinContent } from "@/app/_data/projects/is-thin-content";
 import { Tag } from "@/app/_components/tag/Tag";
 import { Button } from "@/app/_components/button/Button";
 import { SubpageNav } from "@/app/_components/nav/SubpageNav";
@@ -39,28 +39,17 @@ import { UserIcon } from "@/assets/icons/UserIcon";
 import { UsersIcon } from "@/assets/icons/UsersIcon";
 import styles from "./project-detail.module.css";
 
-const THIN_CONTENT_THRESHOLD_WORDS = 120;
-
 const companyLogos: Record<string, string> = {
   Allsquare: "/assets/companies/allsquare.jpg",
   "Avocado Technology": "/assets/companies/avocado_tech_logo.jpg",
   EngagePoint: "/assets/companies/engagepoint.jpg",
 };
 
-function combinedProse(project: Project): string {
-  return [
-    project.description,
-    project.problem ?? "",
-    project.approach ?? "",
-    ...project.achievements,
-    ...project.duties,
-    project.skills,
-    project.teamDetail,
-  ].join(" ");
-}
-
-function wordCount(text: string): number {
-  return text.split(/\s+/).filter(Boolean).length;
+function trimToWordBoundary(text: string, max: number): string {
+  if (text.length <= max) return text;
+  const sliced = text.slice(0, max);
+  const lastSpace = sliced.lastIndexOf(" ");
+  return (lastSpace > 0 ? sliced.slice(0, lastSpace) : sliced) + "…";
 }
 
 export async function generateStaticParams() {
@@ -77,11 +66,11 @@ export async function generateMetadata({
 
   const title =
     project.seoTitle ?? `${getProjectTitle(project)} — ${siteConfig.author.name}`;
-  const description = project.problem ?? project.description.slice(0, 160);
+  const description =
+    project.problem ?? trimToWordBoundary(project.description, 160);
   const { pageUrl } = buildCaseStudyUrls(project.slug);
 
-  const isThin =
-    wordCount(combinedProse(project)) < THIN_CONTENT_THRESHOLD_WORDS;
+  const isThin = isThinContent(project);
 
   return {
     title,

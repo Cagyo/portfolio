@@ -7,6 +7,7 @@ function makeProject(overrides: Partial<Project>): Project {
     id: 1,
     slug: "example-project",
     year: "2024",
+    updatedAt: "2026-05-11T10:15:00+03:00",
     link: { type: "web", url: "https://example.com" },
     stackFilters: [],
     stack: [],

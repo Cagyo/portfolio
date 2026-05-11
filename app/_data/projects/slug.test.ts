@@ -10,6 +10,8 @@ import { PROJECT_CONTENT_EN } from "./content.en"
 import { getProjectBySlug, getProjects } from "./get-projects"
 
 const SLUG_PATTERN = /^[a-z0-9]+(?:-[a-z0-9]+)*$/
+const MIN_UPDATED_AT = Date.parse("2026-04-20T00:00:00Z")
+const ISO_TIMESTAMP_PATTERN = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:Z|[+-]\d{2}:\d{2})$/
 
 function tokenize(value: string): string[] {
   return value
@@ -37,6 +39,20 @@ describe("project slugs", () => {
         `slug "${base.slug}" used by both id ${previous} and id ${base.id}`,
       ).toBeUndefined()
       seen.set(base.slug, base.id)
+    }
+  })
+
+  it("every project base has a static updatedAt timestamp", () => {
+    for (const base of PROJECT_BASES) {
+      expect(base.updatedAt, `id ${base.id} missing updatedAt`).toBeTruthy()
+      expect(
+        base.updatedAt,
+        `id ${base.id} updatedAt "${base.updatedAt}" must be an ISO timestamp`,
+      ).toMatch(ISO_TIMESTAMP_PATTERN)
+      expect(
+        Date.parse(base.updatedAt),
+        `id ${base.id} updatedAt "${base.updatedAt}" must be on or after 2026-04-20`,
+      ).toBeGreaterThanOrEqual(MIN_UPDATED_AT)
     }
   })
 
