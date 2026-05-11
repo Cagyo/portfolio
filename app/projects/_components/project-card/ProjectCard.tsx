@@ -81,15 +81,15 @@ export function ProjectCard({ project, onNavigate, animationDelay = 0 }: Project
 
             {/* Meta column */}
             <div className="flex flex-col items-end gap-1.5 flex-shrink-0">
-              <MetaRow icon={<BuildingOfficeIcon className="w-3.5 h-3.5 text-amber-500/60 flex-shrink-0" />} value={project.company} />
-              <MetaRow icon={<UserIcon className="w-3.5 h-3.5 text-amber-500/60 flex-shrink-0" />} value={project.role} />
-              <MetaRow icon={<UsersIcon className="w-3.5 h-3.5 text-amber-500/60 flex-shrink-0" />} value={`Team ${project.teamLabel}`} />
+              <MetaRow icon={<BuildingOfficeIcon className={`w-3.5 h-3.5 flex-shrink-0 ${styles.metaIcon}`} />} value={project.company} />
+              <MetaRow icon={<UserIcon className={`w-3.5 h-3.5 flex-shrink-0 ${styles.metaIcon}`} />} value={project.role} />
+              <MetaRow icon={<UsersIcon className={`w-3.5 h-3.5 flex-shrink-0 ${styles.metaIcon}`} />} value={`Team ${project.teamLabel}`} />
             </div>
           </div>
 
           {/* Problem */}
           {project.problem && (
-            <p className="text-amber-400/70 text-xs italic mb-2">{project.problem}</p>
+            <p className={styles.problem}>{project.problem}</p>
           )}
 
           {/* Description */}

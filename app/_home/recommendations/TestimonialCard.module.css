@@ -1,3 +1,34 @@
+.quoteIcon {
+  color: color-mix(in srgb, var(--amber-light) 30%, transparent);
+}
+
+.readMoreButton,
+.readLessButton {
+  cursor: pointer;
+  font-style: normal;
+  transition: color 200ms ease;
+}
+
+.readMoreButton {
+  color: var(--amber-light);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.readMoreButton:hover {
+  color: color-mix(in srgb, var(--amber-light) 78%, white);
+}
+
+.readLessButton {
+  align-self: flex-start;
+  color: color-mix(in srgb, white 30%, transparent);
+  font-size: 0.875rem;
+}
+
+.readLessButton:hover {
+  color: var(--amber-light);
+}
+
 .linkedinLink:hover {
   color: var(--linkedin-blue);
 }
@@ -8,4 +39,24 @@
 
 .linkedinLink:hover .linkedinIcon {
   color: var(--linkedin-blue);
+}
+
+html[data-theme="light"] .quoteIcon {
+  color: color-mix(in srgb, var(--amber-dark) 24%, transparent);
+}
+
+html[data-theme="light"] .readMoreButton {
+  color: var(--tag-color);
+}
+
+html[data-theme="light"] .readMoreButton:hover {
+  color: color-mix(in srgb, var(--amber-dark) 80%, black);
+}
+
+html[data-theme="light"] .readLessButton {
+  color: var(--text-ghost);
+}
+
+html[data-theme="light"] .readLessButton:hover {
+  color: var(--tag-color);
 }

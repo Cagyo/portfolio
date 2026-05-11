@@ -24,3 +24,15 @@
     color: var(--amber);
   }
 }
+
+html[data-theme="light"] .skillFilterBtn:hover {
+  background: color-mix(in srgb, var(--amber) 8%, transparent);
+  border-color: var(--border-amber);
+  color: var(--tag-color);
+}
+
+html[data-theme="light"] .skillFilterBtn.active {
+  background: color-mix(in srgb, var(--amber) 12%, transparent);
+  border-color: color-mix(in srgb, var(--amber-dark) 42%, transparent);
+  color: color-mix(in srgb, var(--amber-dark) 82%, black);
+}

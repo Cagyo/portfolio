@@ -1,0 +1,59 @@
+.body {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-inline: 1.5rem;
+  background: #080810;
+  color: white;
+}
+
+.content {
+  max-width: 28rem;
+  text-align: center;
+}
+
+.title {
+  margin-bottom: 1rem;
+  font-size: 3rem;
+  font-weight: 700;
+}
+
+.message {
+  margin-bottom: 2rem;
+  color: color-mix(in srgb, white 50%, transparent);
+  line-height: 1.625;
+}
+
+.button {
+  padding: 0.75rem 1.5rem;
+  border: 0;
+  border-radius: 0.75rem;
+  background: var(--amber);
+  color: #0D0D0D;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 200ms ease;
+}
+
+.button:hover {
+  background: var(--amber-light);
+}
+
+.button:focus-visible {
+  outline: 2px solid var(--amber-light);
+  outline-offset: 3px;
+}
+
+html[data-theme="light"] .body {
+  background: var(--bg);
+  color: var(--text-primary);
+}
+
+html[data-theme="light"] .message {
+  color: var(--text-muted);
+}
+
+html[data-theme="light"] .button:focus-visible {
+  outline-color: var(--amber-dark);
+}

@@ -1,30 +1,43 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import styles from "./global-error.module.css";
 
 type GlobalErrorProps = {
   error: Error & { digest?: string }
   reset: () => void
 }
 
+function getPersistedTheme(): "light" | undefined {
+  if (typeof document === "undefined") return undefined;
+
+  return document.cookie
+    .split("; ")
+    .some((cookie) => cookie === "theme=light")
+    ? "light"
+    : undefined;
+}
+
 export default function GlobalError({ error, reset }: GlobalErrorProps) {
+  const [theme] = useState<"light" | undefined>(getPersistedTheme);
+
   useEffect(() => {
     // TODO: report to error tracking service (e.g. Sentry)
     console.error("Global error:", error);
   }, [error]);
 
   return (
-    <html lang="en">
-      <body className="min-h-screen flex items-center justify-center bg-[#080810] text-white px-6">
-        <div className="text-center max-w-md">
-          <p className="text-5xl font-bold mb-4">Something went wrong</p>
-          <p className="text-white/50 mb-8 leading-relaxed">
+    <html lang="en" data-theme={theme} suppressHydrationWarning>
+      <body className={styles.body} suppressHydrationWarning>
+        <div className={styles.content}>
+          <p className={styles.title}>Something went wrong</p>
+          <p className={styles.message}>
             An unexpected error occurred. Please try again.
           </p>
           <button
             type="button"
             onClick={() => reset()}
-            className="px-6 py-3 rounded-xl bg-amber-500 text-black font-semibold hover:bg-amber-400 transition-colors cursor-pointer"
+            className={styles.button}
           >
             Try again
           </button>

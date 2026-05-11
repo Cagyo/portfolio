@@ -43,6 +43,10 @@
 }
 
 /* ── Light mode overrides ── */
+html[data-theme="light"] .overlay {
+  background: color-mix(in srgb, var(--text-primary) 18%, transparent);
+}
+
 html[data-theme="light"] .panel {
   background: var(--bg);
   border-right-color: var(--border);

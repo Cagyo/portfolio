@@ -44,7 +44,7 @@
 }
 
 html[data-theme="light"] .cardTitle {
-  color: var(--text-strong);
+  color: var(--text-primary);
 }
 
 .tagRow {
@@ -76,4 +76,8 @@ html[data-theme="light"] .shippedLine {
 .ctaArrow {
   display: inline-block;
   transition: transform 0.2s ease;
+}
+
+html[data-theme="light"] .cta {
+  color: var(--tag-color);
 }

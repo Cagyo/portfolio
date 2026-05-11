@@ -43,8 +43,20 @@
   font-weight: 600;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  color: color-mix(in srgb, var(--amber) 80%, transparent);
+  color: color-mix(in srgb, var(--amber-light) 78%, transparent);
   transition: color 0.2s ease;
+}
+
+.metaIcon {
+  color: color-mix(in srgb, var(--amber-light) 60%, transparent);
+}
+
+.problem {
+  margin-bottom: 0.5rem;
+  color: color-mix(in srgb, var(--amber-light) 70%, transparent);
+  font-size: 0.75rem;
+  font-style: italic;
+  line-height: 1.45;
 }
 
 .readMore svg {
@@ -258,10 +270,26 @@ html[data-theme="light"] .metaBadge {
   color: var(--text-muted);
 }
 
+html[data-theme="light"] .readMore {
+  color: var(--tag-color);
+}
+
+html[data-theme="light"] .cardLink:hover .readMore {
+  color: color-mix(in srgb, var(--amber-dark) 80%, black);
+}
+
 html[data-theme="light"] .stackChip {
   background: var(--surface);
   border-color: var(--border);
   color: var(--text-muted);
+}
+
+html[data-theme="light"] .metaIcon {
+  color: var(--tag-color);
+}
+
+html[data-theme="light"] .problem {
+  color: color-mix(in srgb, var(--amber-dark) 76%, var(--text-primary));
 }
 
 html[data-theme="light"] .linkStrip {
@@ -279,7 +307,18 @@ html[data-theme="light"] .linkStore {
 
 html[data-theme="light"] .linkStore:hover {
   background: var(--surface-hover);
-  border-color: rgba(0, 0, 0, 0.12);
+  border-color: var(--border);
+}
+
+html[data-theme="light"] .linkWeb {
+  color: var(--tag-color);
+  background: color-mix(in srgb, var(--amber) 8%, transparent);
+  border-color: var(--border-amber);
+}
+
+html[data-theme="light"] .linkWeb:hover {
+  background: color-mix(in srgb, var(--amber) 14%, transparent);
+  border-color: color-mix(in srgb, var(--amber-dark) 42%, transparent);
 }
 
 html[data-theme="light"] .storeLabelTop {

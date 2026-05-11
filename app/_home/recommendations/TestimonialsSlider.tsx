@@ -46,7 +46,7 @@ export function TestimonialsSlider({ items }: TestimonialsSliderProps) {
           <button
             onClick={goToPrev}
             aria-label="Previous testimonial"
-            className={`absolute left-0 top-1/2 -translate-y-1/2 -translate-x-14 z-10 w-10 h-10 rounded-full glass border border-white/10 flex items-center justify-center text-white/40 hover:text-amber-400 hover:border-amber-500/30 transition-colors duration-200 cursor-pointer ${styles.arrowBtn}`}
+            className={`absolute left-0 top-1/2 -translate-y-1/2 -translate-x-14 z-10 w-10 h-10 rounded-full glass border flex items-center justify-center transition-colors duration-200 cursor-pointer ${styles.arrowBtn}`}
           >
             <ArrowLeftShortIcon className="w-4 h-4" />
           </button>
@@ -77,7 +77,7 @@ export function TestimonialsSlider({ items }: TestimonialsSliderProps) {
           <button
             onClick={goToNext}
             aria-label="Next testimonial"
-            className={`absolute right-0 top-1/2 -translate-y-1/2 translate-x-14 z-10 w-10 h-10 rounded-full glass border border-white/10 flex items-center justify-center text-white/40 hover:text-amber-400 hover:border-amber-500/30 transition-colors duration-200 cursor-pointer ${styles.arrowBtn}`}
+            className={`absolute right-0 top-1/2 -translate-y-1/2 translate-x-14 z-10 w-10 h-10 rounded-full glass border flex items-center justify-center transition-colors duration-200 cursor-pointer ${styles.arrowBtn}`}
           >
             <ArrowRightShortIcon className="w-4 h-4" />
           </button>
@@ -92,11 +92,7 @@ export function TestimonialsSlider({ items }: TestimonialsSliderProps) {
               key={index}
               onClick={() => setCurrentIndex(index)}
               aria-label={`Go to testimonial ${index + 1}`}
-              className={`rounded-full transition-all duration-300 cursor-pointer ${
-                index === currentIndex
-                  ? "w-6 h-2 bg-amber-400"
-                  : "w-2 h-2 bg-white/20 hover:bg-white/40"
-              }`}
+              className={`${styles.dot} ${index === currentIndex ? styles.dotActive : ""}`}
             />
           ))}
         </div>

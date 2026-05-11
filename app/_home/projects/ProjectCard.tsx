@@ -46,7 +46,7 @@ export function ProjectCard({
         <div className="absolute inset-0 flex items-center justify-center">
           {imageContent}
         </div>
-        <div className={`${styles.projectOverlay} absolute inset-0 bg-black/50 flex items-center justify-center`}>
+        <div className={`${styles.projectOverlay} absolute inset-0 flex items-center justify-center`}>
           {linkOverlay}
         </div>
       </div>

@@ -44,7 +44,7 @@
 }
 
 html[data-theme="light"] .eyebrow {
-  color: color-mix(in srgb, var(--text) 50%, transparent);
+  color: var(--text-muted);
 }
 
 html[data-theme="light"] .logoLink {

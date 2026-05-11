@@ -58,3 +58,11 @@
 .menuLinkActive {
   color: var(--amber);
 }
+
+html[data-theme="light"] .overlay {
+  background: color-mix(in srgb, var(--text-primary) 16%, transparent);
+}
+
+html[data-theme="light"] .menuLinkActive {
+  color: var(--tag-color);
+}

@@ -33,6 +33,22 @@
   }
 }
 
+html[data-theme="light"] .outline {
+  border-color: var(--border-amber);
+  color: var(--tag-color);
+
+  &:hover {
+    background: color-mix(in srgb, var(--amber) 12%, transparent);
+    border-color: color-mix(in srgb, var(--amber-dark) 45%, transparent);
+    color: color-mix(in srgb, var(--amber-dark) 80%, black);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--amber-dark);
+    outline-offset: 3px;
+  }
+}
+
 /* Raises all content (including bare text nodes) above the ::before shimmer */
 .inner {
   position: relative;

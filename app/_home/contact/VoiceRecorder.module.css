@@ -333,8 +333,29 @@
 }
 
 /* ── Light mode overrides ── */
+html[data-theme="light"] .recorder {
+  background: color-mix(in srgb, var(--amber) 7%, transparent);
+  border-color: var(--border-amber);
+}
+
 html[data-theme="light"] .hint {
   color: var(--text-faint);
+}
+
+html[data-theme="light"] .recordBtn,
+html[data-theme="light"] .playBtn {
+  color: var(--tag-color);
+  background: color-mix(in srgb, var(--amber) 12%, transparent);
+  border-color: var(--border-amber);
+}
+
+html[data-theme="light"] .recordBtn:hover,
+html[data-theme="light"] .playBtn:hover {
+  background: color-mix(in srgb, var(--amber) 18%, transparent);
+}
+
+html[data-theme="light"] .recordBtnRing {
+  border-color: color-mix(in srgb, var(--amber) 28%, transparent);
 }
 
 html[data-theme="light"] .idleLabel {
@@ -346,6 +367,16 @@ html[data-theme="light"] .recordingItem {
   border-color: var(--border);
 }
 
+html[data-theme="light"] .recordingState {
+  background: color-mix(in srgb, var(--red) 7%, transparent);
+  border-color: color-mix(in srgb, var(--red) 24%, transparent);
+}
+
+html[data-theme="light"] .itemLabel,
+html[data-theme="light"] .timer {
+  color: var(--tag-color);
+}
+
 html[data-theme="light"] .itemTime {
   color: var(--text-faint);
 }
@@ -355,16 +386,45 @@ html[data-theme="light"] .deleteBtn {
   border-color: var(--border);
 }
 
+html[data-theme="light"] .progressBar {
+  background: color-mix(in srgb, var(--amber) 14%, transparent);
+}
+
 html[data-theme="light"] .recordingLabel {
   color: var(--text-secondary);
+}
+
+html[data-theme="light"] .waveBar,
+html[data-theme="light"] .progressFill {
+  background: var(--tag-color);
+}
+
+html[data-theme="light"] .stopBtn {
+  color: color-mix(in srgb, var(--red) 75%, black);
+  background: color-mix(in srgb, var(--red) 9%, transparent);
+  border-color: color-mix(in srgb, var(--red) 28%, transparent);
+}
+
+html[data-theme="light"] .stopBtn:hover {
+  background: color-mix(in srgb, var(--red) 14%, transparent);
 }
 
 html[data-theme="light"] .addAnotherBtn {
   color: var(--text-faint);
 }
 
+html[data-theme="light"] .addAnotherBtn:hover {
+  color: var(--tag-color);
+  border-color: var(--border-amber);
+  background: color-mix(in srgb, var(--amber) 8%, transparent);
+}
+
 html[data-theme="light"] .maxReachedLabel {
   color: var(--text-ghost);
+}
+
+html[data-theme="light"] .errorMsg {
+  color: color-mix(in srgb, var(--red) 75%, black);
 }
 
 /* ── Reduced motion ── */

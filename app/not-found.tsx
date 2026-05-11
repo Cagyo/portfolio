@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { getTranslations } from "next-intl/server";
 import { ArrowRightShortIcon } from "@/assets/icons/ArrowRightShortIcon";
+import styles from "./not-found.module.css";
 
 export default async function NotFound() {
   const t = await getTranslations("notFound");
@@ -17,7 +18,7 @@ export default async function NotFound() {
         </p>
         <Link
           href="/"
-          className="inline-flex items-center gap-2 text-amber-400 hover:text-amber-300 transition-colors font-medium"
+          className={`inline-flex items-center gap-2 transition-colors font-medium ${styles.homeLink}`}
         >
           <ArrowRightShortIcon className="w-4 h-4" />
           {t("backHome")}

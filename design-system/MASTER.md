@@ -1,6 +1,6 @@
 # Portfolio Design System — Oleksii Berliziev
 > Single source of truth for all design decisions, tokens, components, and patterns.
-> Last updated: 2026-03-20
+> Last updated: 2026-05-10
 
 ---
 
@@ -10,7 +10,7 @@
 
 | Principle | Description |
 |-----------|-------------|
-| **Dark-first** | Every component is designed for `#080810` background. No light mode. |
+| **Dark-first baseline** | Dark mode remains the default visual baseline on `#080810`; light mode is supported through `html[data-theme="light"]` token overrides. |
 | **Amber as accent only** | Amber is used for CTAs, highlights, and interactive states — never as a background fill. |
 | **Glass over solid** | Cards and surfaces use glassmorphism (`rgba(255,255,255,0.04)` + `backdrop-filter: blur`) rather than solid fills. |
 | **Numbered structure** | Sections are sequentially numbered (`01.` → `07.`) to signal intentional, ordered narrative. |
@@ -42,6 +42,28 @@
   --border-amber: rgba(245,158,11,0.30);    /* Amber glass border */
 }
 ```
+
+### 2.1.1 Light Theme Addendum
+
+Light mode uses a crisp neutral portfolio treatment: cool off-white page backgrounds, white or translucent-white surfaces, slate borders, and restrained amber accents. Do not mirror dark-mode opacity values in light mode; readable text must use a contrast-led slate ramp.
+
+```css
+html[data-theme="light"] {
+  --bg: #F8FAFC;
+  --bg-secondary: #EEF2F7;
+  --surface: rgba(255,255,255,0.82);
+  --surface-hover: rgba(255,255,255,0.96);
+  --border: rgba(15,23,42,0.12);
+
+  --text-primary: #0F172A;
+  --text-secondary: #1E293B;
+  --text-muted: #475569;
+  --text-faint: #5B677A;
+  --text-ghost: #64748B;
+}
+```
+
+Normal readable copy in light mode should meet WCAG AA contrast. Decorative dividers, disabled hints, and atmospheric elements may be softer, but body copy, card descriptions, form labels, testimonial text, and navigation labels should not use decorative-only colors.
 
 ### 2.2 Semantic Color Usage
 

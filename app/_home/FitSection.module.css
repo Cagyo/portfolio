@@ -1,9 +1,9 @@
 .quoteMark {
-  color: color-mix(in srgb, var(--amber) 55%, transparent);
+  color: color-mix(in srgb, var(--amber-light) 56%, transparent);
 }
 
 html[data-theme="light"] .quoteMark {
-  color: #B45309;
+  color: var(--tag-color);
 }
 
 .goodCard {

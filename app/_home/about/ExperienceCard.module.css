@@ -1,5 +1,18 @@
 /* Multi-position timeline */
 
+.logoInitials {
+  color: var(--amber-light);
+}
+
+.projectsLink {
+  color: color-mix(in srgb, var(--amber-light) 60%, transparent);
+  transition: color 200ms ease;
+}
+
+.projectsLink:hover {
+  color: var(--amber-light);
+}
+
 .positionItem {
   display: grid;
   grid-template-columns: 16px 1fr;
@@ -17,8 +30,8 @@
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background: color-mix(in srgb, var(--amber) 40%, transparent);
-  border: 1px solid color-mix(in srgb, var(--amber) 70%, transparent);
+  background: color-mix(in srgb, var(--amber-light) 35%, transparent);
+  border: 1px solid color-mix(in srgb, var(--amber-light) 68%, transparent);
   flex-shrink: 0;
 }
 
@@ -29,8 +42,33 @@
   margin-top: 4px;
   background: linear-gradient(
     to bottom,
-    color-mix(in srgb, var(--amber) 25%, transparent),
+    color-mix(in srgb, var(--amber-light) 24%, transparent),
     color-mix(in srgb, var(--border) 60%, transparent)
+  );
+}
+
+html[data-theme="light"] .logoInitials {
+  color: var(--tag-color);
+}
+
+html[data-theme="light"] .projectsLink {
+  color: color-mix(in srgb, var(--amber-dark) 68%, transparent);
+}
+
+html[data-theme="light"] .projectsLink:hover {
+  color: color-mix(in srgb, var(--amber-dark) 82%, black);
+}
+
+html[data-theme="light"] .dot {
+  background: color-mix(in srgb, var(--amber) 16%, transparent);
+  border-color: var(--border-amber);
+}
+
+html[data-theme="light"] .connector {
+  background: linear-gradient(
+    to bottom,
+    color-mix(in srgb, var(--amber) 18%, transparent),
+    var(--border)
   );
 }
 

@@ -86,10 +86,15 @@
 }
 
 html[data-theme="light"] .eyebrow {
-  color: #B45309;
+  color: var(--tag-color);
+}
+
+html[data-theme="light"] .faqButton svg {
+  color: var(--tag-color);
 }
 
 html[data-theme="light"] .faqButton:hover {
+  border-color: var(--border-amber);
   box-shadow: 0 14px 34px color-mix(in srgb, var(--amber) 10%, transparent);
 }
 

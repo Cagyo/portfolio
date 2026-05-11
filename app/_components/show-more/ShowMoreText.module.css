@@ -7,7 +7,7 @@
   display: inline-flex;
   align-items: center;
   gap: 0.2rem;
-  color: color-mix(in srgb, var(--amber) 70%, transparent);
+  color: color-mix(in srgb, var(--amber-light) 72%, transparent);
   font-size: 0.75rem;
   margin-top: 0.25rem;
   cursor: pointer;
@@ -16,6 +16,14 @@
 
 .toggle:hover {
   color: var(--amber-light);
+}
+
+html[data-theme="light"] .toggle {
+  color: var(--tag-color);
+}
+
+html[data-theme="light"] .toggle:hover {
+  color: color-mix(in srgb, var(--amber-dark) 80%, black);
 }
 
 .chevron {

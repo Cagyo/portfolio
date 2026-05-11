@@ -193,7 +193,7 @@ Never add new plain `.className { }` blocks to `globals.css`. Use `@utility` or 
   - **Exception**: JS-computed values only — `style={{ opacity: value }}`, `style={{ maxHeight: open ? 1000 : 0 }}`, `style={{ animationDelay: \`${delay}s\` }}`, data-driven colors from a data array.
 - Do not use Tailwind arbitrary values (`w-[123px]`) for values that belong in a token.
 - Do not add `position: relative; z-index: N` to individual child elements — let the component wrapper handle stacking context.
-- **Light mode is mandatory**: any white-opacity color (`text-white/N`, `color-mix(in srgb, white ...)`, `oklch(from white ...)`) or hardcoded dark background (`#080810`, `#0d0d18`, `#16162a`, etc.) needs a `html[data-theme="light"]` override using design tokens.
+- **Light mode is mandatory**: any white-opacity color (`text-white/N`, `color-mix(in srgb, white ...)`, `oklch(from white ...)`), foreground amber on light surfaces (`text-amber-*`, `color: var(--amber)`), Tailwind opacity variants that are not already covered globally, hardcoded dark utilities (`bg-black/*`, `bg-zinc-*`, `bg-gray-*`), hardcoded dark backgrounds (`#080810`, `#0d0d18`, `#16162a`, etc.), and component-specific overlay/tooltip styles need a `html[data-theme="light"]` override using design tokens.
 - Do not combine a CSS-module class and Tailwind utilities to style the same visual concern on the same element.
 
 `@utility` registry, CSS module patterns, React UI primitive extraction rules, `color-mix` usage: [docs/styling-details.md](docs/styling-details.md).

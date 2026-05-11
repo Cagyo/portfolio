@@ -33,6 +33,18 @@
   border: 1px solid color-mix(in srgb, var(--teal) 20%, transparent);
 }
 
+.labelAmber {
+  color: color-mix(in srgb, var(--amber) 70%, transparent);
+}
+
+.labelPurple {
+  color: color-mix(in srgb, var(--purple) 70%, transparent);
+}
+
+.labelTeal {
+  color: color-mix(in srgb, var(--teal) 70%, transparent);
+}
+
 /* Kicker — default (amber/purple) */
 .kicker {
   font-style: italic;
@@ -72,6 +84,51 @@
 /* ── Light mode overrides ── */
 html[data-theme="light"] .kicker {
   color: var(--text-faint);
+}
+
+html[data-theme="light"] .tagAmber {
+  background: color-mix(in srgb, var(--amber) 8%, transparent);
+  border-color: var(--border-amber);
+  color: var(--tag-color);
+}
+
+html[data-theme="light"] .tagPurple {
+  background: color-mix(in srgb, var(--purple) 7%, transparent);
+  border-color: color-mix(in srgb, var(--purple) 22%, transparent);
+  color: color-mix(in srgb, var(--purple) 72%, black);
+}
+
+html[data-theme="light"] .tagTeal {
+  background: color-mix(in srgb, var(--teal) 7%, transparent);
+  border-color: color-mix(in srgb, var(--teal) 20%, transparent);
+  color: color-mix(in srgb, var(--teal) 72%, black);
+}
+
+html[data-theme="light"] .bestForAmber {
+  background: color-mix(in srgb, var(--amber) 7%, transparent);
+  border-color: var(--border-amber);
+}
+
+html[data-theme="light"] .bestForPurple {
+  background: color-mix(in srgb, var(--purple) 6%, transparent);
+  border-color: color-mix(in srgb, var(--purple) 18%, transparent);
+}
+
+html[data-theme="light"] .bestForTeal {
+  background: color-mix(in srgb, var(--teal) 6%, transparent);
+  border-color: color-mix(in srgb, var(--teal) 17%, transparent);
+}
+
+html[data-theme="light"] .labelAmber {
+  color: var(--tag-color);
+}
+
+html[data-theme="light"] .labelPurple {
+  color: color-mix(in srgb, var(--purple) 72%, black);
+}
+
+html[data-theme="light"] .labelTeal {
+  color: color-mix(in srgb, var(--teal) 72%, black);
 }
 
 html[data-theme="light"] .kickerTeal {

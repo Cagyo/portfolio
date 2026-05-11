@@ -49,7 +49,7 @@ export function ExperienceCard({
 
   const logoNode = logo ?? (
     <div className="glass w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0">
-      <span className="text-amber-400 text-xs font-bold tracking-wider leading-none">
+      <span className={`${styles.logoInitials} text-xs font-bold tracking-wider leading-none`}>
         {getInitials(company)}
       </span>
     </div>
@@ -73,7 +73,7 @@ export function ExperienceCard({
               {projectsHref && (
                 <Link
                   href={projectsHref}
-                  className="text-amber-500/60 text-xs whitespace-nowrap hover:text-amber-400 transition-colors flex-shrink-0 mt-0.5 flex items-center gap-1"
+                  className={`${styles.projectsLink} text-xs whitespace-nowrap flex-shrink-0 mt-0.5 flex items-center gap-1`}
                 >
                   View projects <ArrowRightIcon className="w-3 h-3" />
                 </Link>

@@ -56,6 +56,18 @@ Current UI primitives: `<Button>` — `variant?: "primary" | "outline"`, renders
   /* ✅ */  <div className={styles.expandGrid} style={{ gridTemplateRows: expanded ? '1fr' : '0fr' }}>
   ```
 
-- Every CSS module must include `html[data-theme="light"]` overrides for any property that uses white-based opacity colors (`oklch(from white ...)`, `color-mix(in srgb, white ...)`) or hardcoded dark backgrounds (`#080810`, `#0d0d18`, `#16162a`, etc.). Use design tokens (`var(--text-primary)`, `var(--surface)`, `var(--border)`, etc.) in light mode overrides. Similarly, any new Tailwind utility class using white opacity (`text-white/N`, `border-white/N`, `bg-white/N`) or amber hover variants must have a corresponding `html[data-theme="light"]` override in `globals.css`.
+- Every CSS module must include `html[data-theme="light"]` overrides for any property that uses white-based opacity colors (`oklch(from white ...)`, `color-mix(in srgb, white ...)`), foreground amber on light surfaces (`color: var(--amber)` or low-opacity amber text), or hardcoded dark backgrounds (`#080810`, `#0d0d18`, `#16162a`, etc.). Use design tokens (`var(--text-primary)`, `var(--surface)`, `var(--border)`, `var(--tag-color)`, etc.) in light mode overrides. Similarly, any new Tailwind utility class using white opacity (`text-white/N`, `border-white/N`, `bg-white/N`), uncovered amber opacity variants, `bg-black/*`, `bg-zinc-*`, or `bg-gray-*` must have a corresponding `html[data-theme="light"]` override in `globals.css` only when the class is genuinely shared.
+
+- Light mode text tokens are contrast-led, not opacity mirrors of dark mode. Use `--text-primary`, `--text-secondary`, `--text-muted`, and `--text-faint` for readable copy; reserve `--text-ghost`, `--text-invisible`, low-opacity borders, and pale backgrounds for decorative meta, disabled hints, dividers, and atmospheric details.
 
 - Do not combine a CSS-module class and Tailwind utility classes to style the same visual concern on the same element (e.g. `` `${isTeal ? styles.kickerTeal : 'italic text-white/40'}` ``). Either promote both branches to the CSS module (preferred when one branch already lives there) or handle both with Tailwind. Mixing forces readers to cross-reference two styling systems to understand one element.
+
+## Light-mode audit checklist
+
+Run a scoped search before and after theme work for:
+- White-opacity CSS and utilities: `text-white/`, `border-white/`, `bg-white/`, `color-mix(in srgb, white`, `oklch(from white`
+- Amber foreground states: `text-amber-`, `hover:text-amber-`, `color: var(--amber)`, and low-opacity amber text used as readable copy
+- Hardcoded dark utilities and surfaces: `bg-black/`, `bg-zinc-`, `bg-gray-`, `#080810`, `#0d0d18`, `#16162a`
+- Component-specific overlays, tooltips, drawers, native control options, and disabled/private states
+
+If a risky class appears in 3+ unrelated call sites, add or extend a global light utility override. If it is component-specific, move the visual state into the co-located CSS module and add a local `html[data-theme="light"]` override. Keep dark-mode declarations unchanged unless the task explicitly asks for a dark-mode redesign.

@@ -14,7 +14,53 @@
 }
 
 .arrowBtn {
-  /* Arrow buttons extend slightly outside the card — give the wrapper overflow-visible */
+  border-color: color-mix(in srgb, white 10%, transparent);
+  color: color-mix(in srgb, white 40%, transparent);
+}
+
+.arrowBtn:hover {
+  border-color: color-mix(in srgb, var(--amber) 30%, transparent);
+  color: var(--amber-light);
+}
+
+.dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 9999px;
+  background: color-mix(in srgb, white 20%, transparent);
+  cursor: pointer;
+  transition: width 300ms ease, background-color 300ms ease;
+}
+
+.dot:hover {
+  background: color-mix(in srgb, white 40%, transparent);
+}
+
+.dotActive {
+  width: 1.5rem;
+  background: var(--amber-light);
+}
+
+html[data-theme="light"] .arrowBtn {
+  border-color: var(--border);
+  color: var(--text-faint);
+}
+
+html[data-theme="light"] .arrowBtn:hover {
+  border-color: var(--border-amber);
+  color: var(--tag-color);
+}
+
+html[data-theme="light"] .dot {
+  background: color-mix(in srgb, var(--text-primary) 16%, transparent);
+}
+
+html[data-theme="light"] .dot:hover {
+  background: color-mix(in srgb, var(--text-primary) 28%, transparent);
+}
+
+html[data-theme="light"] .dotActive {
+  background: var(--tag-color);
 }
 
 /* On small screens, hide arrows and use dots only */

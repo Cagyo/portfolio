@@ -81,6 +81,10 @@ html[data-theme="light"] .outcomeItem {
   color: color-mix(in srgb, var(--text-primary) 80%, transparent);
 }
 
+html[data-theme="light"] .outcomeIcon {
+  color: var(--tag-color);
+}
+
 html[data-theme="light"] .viewInProjectsLink {
   color: var(--amber-dark);
 

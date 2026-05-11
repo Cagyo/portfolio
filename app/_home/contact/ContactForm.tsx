@@ -196,19 +196,19 @@ export function ContactForm() {
             className="form-input w-full rounded-xl px-4 py-3 text-white/70 text-sm cursor-pointer"
             {...register('interest')}
           >
-            <option value="mvp" className="bg-gray-900">
+            <option value="mvp">
               {t('form.interestOptions.mvp')}
             </option>
-            <option value="full-build" className="bg-gray-900">
+            <option value="full-build">
               {t('form.interestOptions.fullBuild')}
             </option>
-            <option value="rescue" className="bg-gray-900">
+            <option value="rescue">
               {t('form.interestOptions.rescue')}
             </option>
-            <option value="mentorship" className="bg-gray-900">
+            <option value="mentorship">
               {t('form.interestOptions.mentorship')}
             </option>
-            <option value="" className="bg-gray-900">
+            <option value="">
               {t('form.interestOptions.figureOut')}
             </option>
           </select>

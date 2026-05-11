@@ -38,7 +38,7 @@ export function TestimonialCard({ quotePreview, quoteRest, readMoreLabel, readLe
       className="reveal glass rounded-2xl p-7 flex flex-col gap-6 hover:border-amber-500/20 transition-colors duration-300 cursor-default"
       style={delay ? { transitionDelay: delay } : undefined}
     >
-      <QuoteMarkIcon className="w-8 h-8 text-amber-500/30 flex-shrink-0" />
+      <QuoteMarkIcon className={`w-8 h-8 flex-shrink-0 ${styles.quoteIcon}`} />
       <div className="text-white/70 text-base leading-relaxed flex-1 italic flex flex-col gap-3">
         {paragraphs.map((paragraph, index) => {
           const isFirst = index === 0;
@@ -55,7 +55,7 @@ export function TestimonialCard({ quotePreview, quoteRest, readMoreLabel, readLe
                   {" "}
                   <button
                     onClick={() => setExpanded(true)}
-                    className="not-italic text-amber-400 hover:text-amber-300 transition-colors duration-200 underline underline-offset-2 cursor-pointer"
+                    className={styles.readMoreButton}
                   >
                     {readMoreLabel ?? "Read more"}
                   </button>
@@ -68,7 +68,7 @@ export function TestimonialCard({ quotePreview, quoteRest, readMoreLabel, readLe
         {expanded && hasMore && (
           <button
             onClick={() => setExpanded(false)}
-            className="not-italic text-white/30 hover:text-amber-400 transition-colors duration-200 text-sm cursor-pointer self-start"
+            className={styles.readLessButton}
           >
             {readLessLabel ?? "Read less"}
           </button>

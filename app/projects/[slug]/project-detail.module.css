@@ -77,7 +77,7 @@
 }
 
 .problem {
-  color: color-mix(in srgb, var(--amber) 75%, transparent);
+  color: color-mix(in srgb, var(--amber-light) 76%, transparent);
   font-style: italic;
   font-size: 1rem;
   line-height: 1.5;
@@ -105,7 +105,7 @@
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  color: color-mix(in srgb, var(--amber) 70%, transparent);
+  color: color-mix(in srgb, var(--amber-light) 66%, transparent);
   margin-top: 2px;
 }
 
@@ -196,6 +196,10 @@
   line-height: 1.5;
 }
 
+.achievementIcon {
+  color: var(--amber-light);
+}
+
 .dutiesList {
   display: grid;
   grid-template-columns: 1fr;
@@ -226,7 +230,7 @@
   width: 6px;
   height: 6px;
   border-radius: 9999px;
-  background: color-mix(in srgb, var(--amber) 60%, transparent);
+  background: color-mix(in srgb, var(--amber-light) 58%, transparent);
   margin-top: 9px;
 }
 
@@ -363,7 +367,21 @@
 
 /* Light mode overrides — design-token surfaces, no hardcoded greys */
 html[data-theme="light"] .problem {
-  color: color-mix(in srgb, var(--amber) 90%, var(--text-primary));
+  color: color-mix(in srgb, var(--amber-dark) 76%, var(--text-primary));
+}
+
+html[data-theme="light"] .metaIcon,
+html[data-theme="light"] .achievementIcon {
+  color: var(--tag-color);
+}
+
+html[data-theme="light"] .achievementsList {
+  background: color-mix(in srgb, var(--amber) 7%, transparent);
+  border-color: var(--border-amber);
+}
+
+html[data-theme="light"] .dutyDot {
+  background: var(--tag-color);
 }
 
 html[data-theme="light"] .metaBadge,
@@ -402,6 +420,23 @@ html[data-theme="light"] .linkChip {
   background: color-mix(in srgb, var(--text-primary) 5%, transparent);
   border-color: color-mix(in srgb, var(--text-primary) 12%, transparent);
   color: color-mix(in srgb, var(--text-primary) 70%, transparent);
+}
+
+html[data-theme="light"] .linkChip:hover {
+  background: color-mix(in srgb, var(--amber) 8%, transparent);
+  border-color: var(--border-amber);
+  color: var(--tag-color);
+}
+
+html[data-theme="light"] .linkWeb {
+  color: var(--tag-color);
+  background: color-mix(in srgb, var(--amber) 8%, transparent);
+  border-color: var(--border-amber);
+}
+
+html[data-theme="light"] .linkWeb:hover {
+  background: color-mix(in srgb, var(--amber) 14%, transparent);
+  border-color: color-mix(in srgb, var(--amber-dark) 42%, transparent);
 }
 
 html[data-theme="light"] .validationStrip {

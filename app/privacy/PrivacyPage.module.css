@@ -153,6 +153,27 @@ html[data-theme="light"] .section {
   background: color-mix(in srgb, var(--bg) 90%, transparent);
 }
 
+html[data-theme="light"] .cookieName {
+  background: var(--tag-bg);
+  border-color: var(--tag-border);
+  color: var(--tag-color);
+}
+
+html[data-theme="light"] .settingsButton,
+html[data-theme="light"] .emailLink {
+  color: var(--tag-color);
+}
+
+html[data-theme="light"] .settingsButton {
+  border-color: var(--border-amber);
+}
+
+html[data-theme="light"] .settingsButton:hover {
+  border-color: color-mix(in srgb, var(--amber-dark) 45%, transparent);
+  background: color-mix(in srgb, var(--amber) 12%, transparent);
+  color: color-mix(in srgb, var(--amber-dark) 80%, black);
+}
+
 @media (max-width: 767px) {
   .main {
     width: min(100% - 1.5rem, 56rem);

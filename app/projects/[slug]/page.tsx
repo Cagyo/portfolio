@@ -234,7 +234,7 @@ export default async function Page({
                 {project.achievements.map((achievement) => (
                   <li key={achievement} className={styles.achievementItem}>
                     <LightningIcon
-                      className="w-4 h-4 text-[var(--amber)] flex-shrink-0 mt-0.5"
+                      className={`w-4 h-4 flex-shrink-0 mt-0.5 ${styles.achievementIcon}`}
                       aria-hidden
                     />
                     {achievement}

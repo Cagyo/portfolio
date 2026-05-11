@@ -74,6 +74,16 @@ html[data-theme="light"] .modeTab:hover {
   color: var(--text-secondary);
 }
 
+html[data-theme="light"] .modeTabActive {
+  color: var(--tag-color);
+  background: color-mix(in srgb, var(--amber) 12%, transparent);
+  border-color: var(--border-amber);
+}
+
+html[data-theme="light"] .modeTabActive:hover {
+  color: var(--tag-color);
+}
+
 /* ── Honeypot (off-viewport, not display:none — bots skip those) ── */
 .honeypot {
   position: absolute;
@@ -169,9 +179,15 @@ html[data-theme="light"] .successCta:hover {
 }
 
 html[data-theme="light"] .successCtaPrimary {
-  color: var(--text-primary);
-  background: color-mix(in srgb, var(--color-amber-400) 22%, transparent);
-  border-color: color-mix(in srgb, var(--color-amber-400) 45%, transparent);
+  color: var(--tag-color);
+  background: color-mix(in srgb, var(--amber) 12%, transparent);
+  border-color: var(--border-amber);
+}
+
+html[data-theme="light"] .successCtaPrimary:hover {
+  color: color-mix(in srgb, var(--amber-dark) 75%, black);
+  background: color-mix(in srgb, var(--amber) 18%, transparent);
+  border-color: color-mix(in srgb, var(--amber) 42%, transparent);
 }
 
 @media (prefers-reduced-motion: reduce) {
