@@ -7,7 +7,7 @@
   display: inline-flex;
   align-items: center;
   gap: 0.2rem;
-  color: color-mix(in srgb, var(--amber-light) 72%, transparent);
+  color: var(--amber);
   font-size: 0.75rem;
   margin-top: 0.25rem;
   cursor: pointer;
