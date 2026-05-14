@@ -1,3 +1,15 @@
 .cta {
   transition-delay: 0.25s;
 }
+
+.cta :global(.btn-amber) {
+  transition: color 0.2s ease;
+}
+
+.cta :global(.btn-amber):hover {
+  color: var(--amber-light);
+}
+
+html[data-theme="light"] .cta :global(.btn-amber):hover {
+  color: color-mix(in srgb, var(--amber-dark) 82%, black);
+}
