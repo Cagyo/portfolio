@@ -1,0 +1,43 @@
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: var(--text-secondary);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.logo:hover .name,
+.logo:hover .backIcon {
+  color: var(--text-primary);
+}
+
+.logo:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--amber) 70%, transparent);
+  outline-offset: 0.375rem;
+  border-radius: 0.625rem;
+}
+
+.backIcon {
+  width: 1rem;
+  height: 1rem;
+  color: var(--text-muted);
+  transition: color 200ms ease;
+}
+
+.name {
+  display: none;
+  color: var(--text-secondary);
+  font-family: var(--font-heading);
+  font-size: 0.875rem;
+  font-weight: 700;
+  line-height: 1;
+  transition: color 200ms ease;
+  white-space: nowrap;
+}
+
+@media (min-width: 640px) {
+  .name {
+    display: inline;
+  }
+}

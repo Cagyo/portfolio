@@ -11,53 +11,35 @@ type PhotoCardProps = {
 export function PhotoCard({ availableLabel, testimonial }: PhotoCardProps) {
   return (
     <div className={styles.wrapper}>
-      {/* ── Floating "Available" badge ─── */}
-      <div
-        className={`absolute top-0 left-1/2 -translate-x-1/2 z-20 whitespace-nowrap flex items-center gap-2 glass rounded-full px-3.5 py-2 text-xs font-medium text-white/80 ${styles.badge}`}
-      >
-        <span className={`w-2 h-2 rounded-full bg-emerald-400 flex-shrink-0 ${styles.availableDot}`} />
+      <div className={styles.badge}>
+        <span className={styles.availableDot} />
         {availableLabel}
       </div>
 
-      {/* ── Main card ─── */}
-      <div className={`glass-amber rounded-3xl overflow-hidden ${styles.mainCard}`}>
-        {/* Photo */}
+      <div className={`glass-amber ${styles.mainCard}`}>
         <div className={styles.photoArea}>
           <Image
             src="/assets/photo/main_photo.jpg"
             alt="Oleksii Berliziev"
             fill
             className="object-cover object-[50%_20%]"
-            sizes="320px"
+            sizes="352px"
             priority
           />
         </div>
 
-        {/* Tags */}
-        <div className="px-6 py-4">
+        <div className={styles.skillRail}>
           <HeroSkillChips />
         </div>
       </div>
 
-      {/* ── Floating mini testimonial ─── */}
       {testimonial && (
         <TestimonialSnippet
           testimonial={testimonial}
           size="sm"
-          className={`absolute bottom-3 left-2 right-2 z-20 ${styles.miniReview}`}
+          className={styles.miniReview}
         />
       )}
-
-      {/* ── Decorative dot grid ─── */}
-      <div className={`absolute top-20 -right-1 z-0 ${styles.decorGrid}`} aria-hidden="true">
-        {[0, 1, 2, 3, 4, 5].map((row) => (
-          <div key={row} className="flex gap-2 mb-2">
-            {[0, 1, 2].map((col) => (
-              <div key={col} className="w-1 h-1 rounded-full bg-amber-400/20" />
-            ))}
-          </div>
-        ))}
-      </div>
     </div>
   );
 }

@@ -8,6 +8,7 @@ import { NavLinks } from "./NavLinks";
 import { MobileMenu } from "./MobileMenu";
 import { ThemeToggle } from "@/app/_components/theme/ThemeToggle";
 import { Button } from "@/app/_components/button/Button";
+import styles from "./Nav.module.css";
 
 type NavProps = {
   initialIsDark: boolean
@@ -45,26 +46,23 @@ export function Nav({ initialIsDark, links: linksProp, ctaHref = "#contact", cta
 
   return (
     <nav
-      className={`fixed top-4 left-4 right-4 z-50 duration-300 transition-[top] ${scrolled ? "top-2" : ""}`}
+      className={`${styles.root} ${scrolled ? styles.rootScrolled : ""}`}
     >
-      <div className="max-w-6xl mx-auto glass rounded-2xl px-6 py-4 flex items-center justify-between">
+      <div className={styles.bar}>
         <NavLogo />
 
-        {/* Desktop nav */}
-        <div className="hidden md:flex items-center gap-6">
+        <div className={styles.desktopLinks}>
           <NavLinks links={links} />
         </div>
 
-        {/* Desktop CTA + theme toggle */}
-        <div className="hidden md:flex items-center gap-3">
+        <div className={styles.desktopActions}>
           <ThemeToggle initialIsDark={initialIsDark} />
-          <Button href={ctaHref} className="px-5 py-2 rounded-xl text-sm cursor-pointer">
+          <Button href={ctaHref} className={styles.desktopCta}>
             {cta}
           </Button>
         </div>
 
-        {/* Mobile: theme toggle + hamburger */}
-        <div className="md:hidden flex items-center gap-2">
+        <div className={styles.mobileActions}>
           <ThemeToggle initialIsDark={initialIsDark} />
           <MobileMenu links={links} cta={{ href: ctaHref, label: cta }} />
         </div>
