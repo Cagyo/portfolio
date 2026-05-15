@@ -17,9 +17,9 @@ import {
 } from "@/app/_data/projects/get-projects";
 import {
   getProjectTitle,
-  getStackName,
   type ProjectPageLink,
 } from "@/app/_data/projects/types";
+import { getProjectStackGroups } from "@/app/_data/projects/stack-groups";
 import { isThinContent } from "@/app/_data/projects/is-thin-content";
 import { Tag } from "@/app/_components/tag/Tag";
 import { Button } from "@/app/_components/button/Button";
@@ -31,12 +31,9 @@ import { AppStoreLogo } from "@/assets/logos/AppStoreLogo";
 import { GooglePlayLogo } from "@/assets/logos/GooglePlayLogo";
 import { ArrowLeftShortIcon } from "@/assets/icons/ArrowLeftShortIcon";
 import { ArrowRightIcon } from "@/assets/icons/ArrowRightIcon";
-import { BuildingOfficeIcon } from "@/assets/icons/BuildingOfficeIcon";
 import { ExternalLinkIcon } from "@/assets/icons/ExternalLinkIcon";
-import { LightningIcon } from "@/assets/icons/LightningIcon";
 import { LockIcon } from "@/assets/icons/LockIcon";
-import { UserIcon } from "@/assets/icons/UserIcon";
-import { UsersIcon } from "@/assets/icons/UsersIcon";
+import { StackEvidence } from "./StackEvidence";
 import styles from "./project-detail.module.css";
 
 const companyLogos: Record<string, string> = {
@@ -101,15 +98,25 @@ export default async function Page({
   // is needed.
   if (!project) notFound();
 
-  const [t, tHub, tNav, initialIsDark] = await Promise.all([
+  const [t, tHub, tNav, tCommon, initialIsDark] = await Promise.all([
     getTranslations("projectDetail"),
     getTranslations("projectsPage"),
     getTranslations("nav"),
+    getTranslations("common"),
     getInitialIsDark(),
   ]);
   const isPrivate = project.link.type === "private";
   const title = getProjectTitle(project);
   const companyLogo = companyLogos[project.company];
+  const heroProofItems = (
+    project.homeCard?.outcome.length
+      ? project.homeCard.outcome
+      : project.achievements
+  ).slice(0, 3);
+  const stackGroups = getProjectStackGroups(project.stack);
+  const hasStackEvidence =
+    stackGroups.primaryGroups.length > 0 ||
+    stackGroups.secondaryGroups.length > 0;
 
   const { pageUrl, imageUrl } = buildCaseStudyUrls(project.slug);
   const articleSchema = buildCaseStudySchema({ project, pageUrl, imageUrl });
@@ -143,60 +150,82 @@ export default async function Page({
             data-no-visual={project.screenshots?.length ? undefined : "true"}
           >
             <div className={styles.heroText}>
-          <div className={styles.heroMeta}>
-            {project.devTypes.map((devType) => (
-              <Tag key={devType}>{devType}</Tag>
-            ))}
-            <span className={styles.metaBadge}>{project.productType}</span>
-            <span className={styles.metaBadge}>{project.industry}</span>
-            {project.year ? (
-              <span className={styles.year}>{project.year}</span>
-            ) : null}
-            {isPrivate ? (
-              <span className={styles.ndaBadge}>
-                <LockIcon className="w-3.5 h-3.5" aria-hidden />
-                {t("ndaBadge")}
-              </span>
-            ) : null}
-          </div>
-          <h1 id="case-study-title" className={styles.title}>
-            {title}
-          </h1>
-          {project.problem ? (
-            <p className={styles.problem}>{project.problem}</p>
-          ) : null}
+              <h1 id="case-study-title" className={styles.title}>
+                {title}
+              </h1>
+              {project.problem ? (
+                <p className={styles.problem}>{project.problem}</p>
+              ) : null}
 
-          <ul className={styles.metaGrid} role="list">
-            <MetaItem
-              icon={<BuildingOfficeIcon className="w-4 h-4" />}
-              label={t("metaCompany")}
-              value={project.company}
-              logo={companyLogo}
-            />
-            <MetaItem
-              icon={<UserIcon className="w-4 h-4" />}
-              label={t("metaRole")}
-              value={project.role}
-            />
-            <MetaItem
-              icon={<UsersIcon className="w-4 h-4" />}
-              label={t("metaTeam")}
-              value={`${t("teamPrefix")} ${project.teamLabel}`}
-            />
-          </ul>
+              {heroProofItems.length > 0 ? (
+                <ProofHighlights items={heroProofItems} />
+              ) : null}
 
-          {/* Primary CTA above the fold */}
-          <div className={styles.heroCta}>
-            <Button
-              href={`/?ref=${project.slug}#contact`}
-              variant="primary"
-              className="px-6 py-3 rounded-xl text-sm gap-2"
-            >
-              {t("primaryCta")}
-              <ArrowRightIcon className="w-4 h-4" aria-hidden />
-            </Button>
-            <span className={styles.heroCtaHint}>{t("primaryCtaHint")}</span>
-          </div>
+              <div className={styles.heroMeta}>
+                {project.devTypes.map((devType) => (
+                  <Tag key={devType}>{devType}</Tag>
+                ))}
+                <span className={styles.metaBadge}>{project.productType}</span>
+                <span className={styles.metaBadge}>{project.industry}</span>
+                {project.year ? (
+                  <span className={styles.year}>{project.year}</span>
+                ) : null}
+                {isPrivate ? (
+                  <span className={styles.ndaBadge}>
+                    <LockIcon className="w-3.5 h-3.5" aria-hidden />
+                    {t("ndaBadge")}
+                  </span>
+                ) : null}
+              </div>
+
+              <div className={styles.metaStrip}>
+                {companyLogo ? (
+                  <Image
+                    src={companyLogo}
+                    alt=""
+                    width={24}
+                    height={24}
+                    className={styles.metaStripLogo}
+                  />
+                ) : null}
+                <span className={styles.metaStripItem}>
+                  <span className={styles.metaStripLabel}>
+                    {t("metaCompany")}
+                  </span>
+                  <span className={styles.metaStripValue}>
+                    {project.company}
+                  </span>
+                </span>
+                <span className={styles.metaStripItem}>
+                  <span className={styles.metaStripLabel}>
+                    {t("metaRole")}
+                  </span>
+                  <span className={styles.metaStripValue}>{project.role}</span>
+                </span>
+                <span className={styles.metaStripItem}>
+                  <span className={styles.metaStripLabel}>
+                    {t("metaTeam")}
+                  </span>
+                  <span className={styles.metaStripValue}>
+                    {`${t("teamPrefix")} ${project.teamLabel}`}
+                  </span>
+                </span>
+              </div>
+
+              {/* Primary CTA above the fold */}
+              <div className={styles.heroCta}>
+                <Button
+                  href={`/?ref=${project.slug}#contact`}
+                  variant="primary"
+                  className="px-6 py-3 rounded-xl text-sm gap-2"
+                >
+                  {t("primaryCta")}
+                  <ArrowRightIcon className="w-4 h-4" aria-hidden />
+                </Button>
+                <span className={styles.heroCtaHint}>
+                  {t("primaryCtaHint")}
+                </span>
+              </div>
             </div>
             {project.screenshots?.length ? (
               <div className={styles.heroVisual}>
@@ -211,97 +240,102 @@ export default async function Page({
         </header>
 
         <div className={styles.body}>
-          {/* Description */}
-          <Section heading={t("overviewHeading")}>
+          {/* Band 1 — Overview (description + scope) */}
+          <Band heading={t("overviewHeading")}>
             <p className={styles.bodyText}>{project.description}</p>
-          </Section>
-
-          {/* Achievements */}
-          {project.achievements.length > 0 ? (
-            <Section heading={t("achievementsHeading")}>
-              <ul className={styles.achievementsList}>
-                {project.achievements.map((achievement) => (
-                  <li key={achievement} className={styles.achievementItem}>
-                    <LightningIcon
-                      className={`w-4 h-4 flex-shrink-0 mt-0.5 ${styles.achievementIcon}`}
-                      aria-hidden
-                    />
-                    {achievement}
-                  </li>
-                ))}
-              </ul>
-            </Section>
-          ) : null}
-
-          {/* Approach (optional) */}
-          {project.approach ? (
-            <Section heading={t("approachHeading")}>
-              <p className={styles.bodyText}>{project.approach}</p>
-            </Section>
-          ) : null}
-
-          {/* Duties */}
-          {project.duties.length > 0 ? (
-            <Section heading={t("dutiesHeading")}>
-              <ul className={styles.dutiesList}>
-                {project.duties.map((duty) => (
-                  <li key={duty} className={styles.dutyItem}>
-                    <span className={styles.dutyDot} aria-hidden />
-                    {duty}
-                  </li>
-                ))}
-              </ul>
-            </Section>
-          ) : null}
-
-          {/* Tech Stack */}
-          {project.stack.length > 0 ? (
-            <Section heading={t("stackHeading")}>
-              <div className={styles.chipRow}>
-                {project.stack.map((stackItem) => {
-                  const name = getStackName(stackItem);
-                  return (
-                    <Link
-                      key={name}
-                      href={`/projects?stackFilters=${encodeURIComponent(name)}`}
-                      className={styles.linkChip}
-                      prefetch={false}
-                    >
-                      {name}
-                    </Link>
-                  );
-                })}
-              </div>
-            </Section>
-          ) : null}
-
-          {/* Dev Types */}
-          {project.devTypes.length > 0 ? (
-            <Section heading={t("devTypesHeading")}>
-              <div className={styles.chipRow}>
-                {project.devTypes.map((devType) => (
-                  <Link
-                    key={devType}
-                    href={`/projects?devTypes=${encodeURIComponent(devType)}`}
-                    className={styles.linkChip}
-                    prefetch={false}
-                  >
-                    {devType}
-                  </Link>
-                ))}
-              </div>
-            </Section>
-          ) : null}
-
-          {/* Team + Scope */}
-          <div className={styles.twoCol}>
-            <Section heading={t("teamHeading")}>
-              <p className={styles.bodyText}>{project.teamDetail}</p>
-            </Section>
-            <Section heading={t("scopeHeading")}>
+            <SubBlock kicker={t("scopeHeading")}>
               <p className={styles.bodyText}>{project.skills}</p>
-            </Section>
-          </div>
+            </SubBlock>
+          </Band>
+
+          {/* Band 2 — Approach (approach narrative + duties + team) */}
+          {(project.approach ||
+            project.duties.length > 0 ||
+            project.teamDetail) ? (
+            <Band
+              heading={
+                project.approach
+                  ? t("approachHeading")
+                  : t("dutiesHeading")
+              }
+            >
+              {project.approach ? (
+                <p className={styles.bodyText}>{project.approach}</p>
+              ) : null}
+              {project.duties.length > 0 ? (
+                project.approach ? (
+                  <SubBlock kicker={t("dutiesHeading")}>
+                    <ul className={styles.dutiesList}>
+                      {project.duties.map((duty) => (
+                        <li key={duty} className={styles.dutyItem}>
+                          <span className={styles.dutyDot} aria-hidden />
+                          {duty}
+                        </li>
+                      ))}
+                    </ul>
+                  </SubBlock>
+                ) : (
+                  <ul className={styles.dutiesList}>
+                    {project.duties.map((duty) => (
+                      <li key={duty} className={styles.dutyItem}>
+                        <span className={styles.dutyDot} aria-hidden />
+                        {duty}
+                      </li>
+                    ))}
+                  </ul>
+                )
+              ) : null}
+              {project.teamDetail ? (
+                <SubBlock kicker={t("teamHeading")}>
+                  <p className={styles.bodyText}>{project.teamDetail}</p>
+                </SubBlock>
+              ) : null}
+            </Band>
+          ) : null}
+
+          {/* Band 3 — Achievements (achievements + stack + dev types) */}
+          {(project.achievements.length > 0 ||
+            project.stack.length > 0 ||
+            project.devTypes.length > 0) ? (
+            <Band heading={t("achievementsHeading")}>
+              {project.achievements.length > 0 ? (
+                <ul className={styles.achievementsList}>
+                  {project.achievements.map((achievement) => (
+                    <li key={achievement} className={styles.achievementItem}>
+                      <span className={styles.dutyDot} aria-hidden />
+                      {achievement}
+                    </li>
+                  ))}
+                </ul>
+              ) : null}
+              {hasStackEvidence ? (
+                <SubBlock kicker={t("stackHeading")}>
+                  <StackEvidence
+                    primaryGroups={stackGroups.primaryGroups}
+                    secondaryGroups={stackGroups.secondaryGroups}
+                    showMoreLabel={tCommon("showMore")}
+                    showLessLabel={tCommon("showLess")}
+                  />
+                </SubBlock>
+              ) : null}
+              {project.devTypes.length > 0 ? (
+                <SubBlock kicker={t("devTypesHeading")}>
+                  <div className={styles.chipRow}>
+                    {project.devTypes.map((devType) => (
+                      <Link
+                        key={devType}
+                        href={`/projects?devTypes=${encodeURIComponent(devType)}`}
+                        className={styles.linkChip}
+                        prefetch={false}
+                      >
+                        {devType}
+                      </Link>
+                    ))}
+                  </div>
+                </SubBlock>
+              ) : null}
+            </Band>
+          ) : null}
 
           {/* Validation strip */}
           <ValidationStrip
@@ -342,7 +376,22 @@ export default async function Page({
   );
 }
 
-function Section({
+function ProofHighlights({ items }: { items: readonly string[] }) {
+  return (
+    <ol className={styles.proofList}>
+      {items.map((proofItem, proofIndex) => (
+        <li key={proofItem} className={styles.proofItem}>
+          <span className={styles.proofIndex} aria-hidden="true">
+            {String(proofIndex + 1).padStart(2, "0")}
+          </span>
+          <span>{proofItem}</span>
+        </li>
+      ))}
+    </ol>
+  );
+}
+
+function Band({
   heading,
   children,
 }: {
@@ -350,45 +399,25 @@ function Section({
   children: React.ReactNode;
 }) {
   return (
-    <section className={styles.section}>
-      <h2 className={styles.sectionHeading}>{heading}</h2>
+    <section className={styles.band}>
+      <h2 className={styles.bandHeading}>{heading}</h2>
       {children}
     </section>
   );
 }
 
-function MetaItem({
-  icon,
-  label,
-  value,
-  logo,
+function SubBlock({
+  kicker,
+  children,
 }: {
-  icon?: React.ReactNode;
-  label: string;
-  value: string;
-  logo?: string;
+  kicker: string;
+  children: React.ReactNode;
 }) {
   return (
-    <li className={styles.metaItem}>
-      {!logo && (
-        <span className={styles.metaIcon} aria-hidden="true">
-          {icon}
-        </span>
-      )}
-      {logo ? (
-        <Image
-          src={logo}
-          alt=""
-          width={36}
-          height={36}
-          className={styles.metaLogo}
-        />
-      ) : null}
-      <div>
-        <p className={styles.metaLabel}>{label}</p>
-        <p className={styles.metaValue}>{value}</p>
-      </div>
-    </li>
+    <div className={styles.subBlock}>
+      <p className={styles.kickerLabel}>{kicker}</p>
+      {children}
+    </div>
   );
 }
 
