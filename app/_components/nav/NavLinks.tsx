@@ -21,7 +21,7 @@ export function NavLinks({ links, className = "" }: NavLinksProps) {
         <a
           key={link.href}
           href={link.href}
-          className={`${styles.navLink} text-sm text-white/70 hover:text-white font-medium cursor-pointer ${link.href === `#${activeId}` ? styles.active : ''} ${className}`}
+          className={`${styles.navLink} ${link.href === `#${activeId}` ? styles.active : ''} ${className}`}
         >
           {link.label}
         </a>

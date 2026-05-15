@@ -58,7 +58,7 @@ export function MobileMenu({ links, cta }: MobileMenuProps) {
       <Button
         href={ctaHref}
         onClick={() => setOpen(false)}
-        className="px-4 py-1.5 rounded-xl text-sm text-center cursor-pointer"
+        className={styles.mobileCta}
       >
         {ctaLabel}
       </Button>
@@ -67,7 +67,7 @@ export function MobileMenu({ links, cta }: MobileMenuProps) {
         <button
           ref={triggerRef}
           onClick={() => setOpen((prev) => !prev)}
-          className="text-white/70 hover:text-white cursor-pointer focus-visible:ring-2 focus-visible:ring-amber-500 rounded-lg p-1"
+          className={styles.trigger}
           aria-label={t("mobileMenuOpenAriaLabel")}
           aria-expanded={open}
         >

@@ -1,10 +1,260 @@
-.profileFrame {
-  aspect-ratio: 4 / 5;
-  max-height: 300px;
-  border: 1px solid color-mix(in srgb, var(--amber) 20%, transparent);
-  box-shadow: 0 0 50px color-mix(in srgb, var(--amber) 12%, transparent);
+.section {
+  position: relative;
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  isolation: isolate;
+  padding: 7rem 0 5rem;
 }
 
-.cardGlow {
-  box-shadow: 0 0 36px color-mix(in srgb, var(--amber) 18%, transparent);
+.section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(to right, color-mix(in srgb, var(--amber) 9%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in srgb, var(--amber) 6%, transparent) 1px, transparent 1px);
+  background-size: 5.5rem 5.5rem;
+  mask-image: linear-gradient(to bottom, transparent 0%, black 18%, black 72%, transparent 100%);
+  opacity: 0.22;
+  pointer-events: none;
+}
+
+.section::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(145deg, color-mix(in srgb, var(--amber) 8%, transparent) 0%, transparent 38%),
+    linear-gradient(to bottom, transparent 0%, var(--bg) 96%);
+  opacity: 0.72;
+  pointer-events: none;
+}
+
+.layout {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 72rem;
+  margin: 0 auto;
+  display: grid;
+  gap: clamp(2.5rem, 7vw, 5rem);
+  align-items: center;
+  padding: 0 1rem;
+}
+
+.copyColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  max-width: 40rem;
+}
+
+.mobilePhotoFrame {
+  position: relative;
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  max-height: 14rem;
+  overflow: hidden;
+  border: 1px solid color-mix(in srgb, var(--amber) 18%, transparent);
+  border-radius: 1rem;
+  box-shadow: 0 18px 54px color-mix(in srgb, var(--amber) 10%, transparent);
+}
+
+.identityRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+.nameBlock {
+  min-width: 0;
+}
+
+.heading {
+  margin: 0;
+  color: var(--text-primary);
+  font-family: var(--font-heading);
+  font-size: 3.25rem;
+  font-weight: 900;
+  letter-spacing: 0;
+  line-height: 0.92;
+}
+
+.lastName {
+  color: var(--amber-light);
+}
+
+.tagline {
+  max-width: 34rem;
+  margin: 1rem 0 0;
+  color: var(--text-muted);
+  font-size: 1.125rem;
+  font-weight: 400;
+  line-height: 1.42;
+}
+
+.taglineRole {
+  color: var(--text-secondary);
+}
+
+.taglineEmphasis {
+  color: var(--amber-light);
+  font-weight: 600;
+}
+
+.tabletPhotoFrame {
+  position: relative;
+  display: none;
+  width: 8rem;
+  height: 8rem;
+  flex-shrink: 0;
+  overflow: hidden;
+  border: 1px solid color-mix(in srgb, var(--amber) 22%, transparent);
+  border-radius: 1rem;
+  box-shadow: 0 18px 48px color-mix(in srgb, var(--amber) 12%, transparent);
+}
+
+.description {
+  max-width: 32rem;
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 1.0625rem;
+  line-height: 1.7;
+}
+
+.ctaRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.primaryCta,
+.secondaryCta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.primaryCta {
+  min-height: 3.25rem;
+  padding: 0 1.5rem;
+  border-radius: 0.875rem;
+  font-size: 1rem;
+}
+
+.secondaryCta {
+  min-height: 3rem;
+  padding: 0 1.25rem;
+  border-radius: 0.875rem;
+  font-size: 0.9375rem;
+}
+
+.mobileSkills {
+  display: block;
+}
+
+.mobileTestimonial {
+  display: block;
+}
+
+.visualColumn {
+  display: none;
+}
+
+html[data-theme="light"] .section::after {
+  opacity: 0.58;
+}
+
+html[data-theme="light"] .lastName,
+html[data-theme="light"] .taglineEmphasis {
+  color: var(--tag-color);
+}
+
+@media (max-width: 399px) {
+  .heading {
+    font-size: 2.875rem;
+  }
+
+  .ctaRow {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .primaryCta,
+  .secondaryCta {
+    width: 100%;
+  }
+}
+
+@media (min-width: 640px) {
+  .layout {
+    padding: 0 1.5rem;
+  }
+
+  .copyColumn {
+    gap: 1.75rem;
+  }
+
+  .mobilePhotoFrame {
+    display: none;
+  }
+
+  .tabletPhotoFrame {
+    display: block;
+  }
+
+  .heading {
+    font-size: 4rem;
+  }
+
+  .tagline {
+    font-size: 1.375rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .section {
+    min-height: max(43rem, 100svh);
+    padding: 7.5rem 0 6rem;
+  }
+
+  .layout {
+    grid-template-columns: minmax(0, 1.08fr) minmax(20rem, 0.92fr);
+    padding: 0 2rem;
+  }
+
+  .copyColumn {
+    gap: 2rem;
+  }
+
+  .heading {
+    font-size: 5.25rem;
+  }
+
+  .tabletPhotoFrame,
+  .mobileSkills,
+  .mobileTestimonial {
+    display: none;
+  }
+
+  .visualColumn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+@media (min-width: 1280px) {
+  .heading {
+    font-size: 5.75rem;
+  }
 }

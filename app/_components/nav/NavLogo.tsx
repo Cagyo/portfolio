@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useTranslations } from "next-intl";
 import { ArrowLeftShortIcon } from "@/assets/icons/ArrowLeftShortIcon";
 import { IconMarkFace } from "@/app/_og/icon-mark-face";
+import styles from "./NavLogo.module.css";
 
 type NavLogoProps = {
   href?: string
@@ -15,12 +16,12 @@ export function NavLogo({ href = "#hero", showBackArrow = false, ariaLabel }: Na
   const t = useTranslations("common");
 
   return (
-    <Link href={href} className="flex items-center gap-3 cursor-pointer group" aria-label={ariaLabel}>
+    <Link href={href} className={styles.logo} aria-label={ariaLabel}>
       {showBackArrow && (
-        <ArrowLeftShortIcon className="w-4 h-4 text-white/60 group-hover:text-white transition-colors" />
+        <ArrowLeftShortIcon className={styles.backIcon} />
       )}
       <IconMarkFace size={32} />
-      <span className="font-heading font-bold text-sm text-white/80 group-hover:text-white transition-colors hidden sm:block">
+      <span className={styles.name}>
         {t("author")}
       </span>
     </Link>
