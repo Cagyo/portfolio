@@ -1,9 +1,74 @@
+.list {
+  display: grid;
+  gap: 1rem;
+}
+
 .expandGrid {
   display: grid;
   transition: grid-template-rows 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .expandInner {
+  display: grid;
+  gap: 1rem;
   overflow: hidden;
   min-height: 0;
+  padding-top: 1rem;
+}
+
+.toggle {
+  display: grid;
+  grid-template-columns: minmax(1rem, 1fr) auto auto minmax(1rem, 1fr);
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+  padding: 0.25rem 0;
+  color: var(--text-ghost);
+  cursor: pointer;
+  transition: color 200ms ease;
+}
+
+.toggle:hover {
+  color: var(--text-muted);
+}
+
+.toggle:focus-visible {
+  outline: 2px solid var(--amber);
+  outline-offset: 4px;
+  border-radius: 0.5rem;
+}
+
+.toggleRule {
+  height: 1px;
+  border-top: 1px dashed color-mix(in srgb, var(--text-primary) 12%, transparent);
+  transition: border-color 200ms ease;
+}
+
+.toggle:hover .toggleRule {
+  border-color: color-mix(in srgb, var(--text-primary) 22%, transparent);
+}
+
+.toggleText {
+  font-size: 0.75rem;
+  letter-spacing: 0;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.chevron {
+  width: 0.75rem;
+  height: 0.75rem;
+  flex-shrink: 0;
+  transition: transform 300ms ease;
+}
+
+.chevronExpanded {
+  transform: rotate(180deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .expandGrid,
+  .chevron {
+    transition: none;
+  }
 }
