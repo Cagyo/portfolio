@@ -5,6 +5,8 @@ import { ShowMoreText } from "@/app/_components/show-more/ShowMoreText";
 import { getProjectCountByStack, isFilterableStack } from "@/app/_data/projects/get-stack-stats";
 import styles from "./ExperienceCard.module.css";
 
+type AccentStyle = React.CSSProperties & { "--accent-opacity": string }
+
 type ExperiencePosition = {
   title: string
   period: string
@@ -48,62 +50,57 @@ export function ExperienceCard({
   });
 
   const logoNode = logo ?? (
-    <div className="glass w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0">
-      <span className={`${styles.logoInitials} text-xs font-bold tracking-wider leading-none`}>
+    <div className={styles.logoFallback}>
+      <span className={styles.logoInitials}>
         {getInitials(company)}
       </span>
     </div>
   );
+  const accentStyle: AccentStyle = { "--accent-opacity": accentOpacity };
 
   return (
-    <div className="glass rounded-2xl p-5 relative overflow-hidden group cursor-default hover:border-amber-500/30 transition-colors duration-200">
-      <div
-        className="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-amber-500 to-amber-600 rounded-l-2xl"
-        style={{ opacity: accentOpacity }}
-      />
-      <div className="pl-4">
-          {/* Company header */}
-          <div className="flex items-start gap-3">
-            <div className="flex-shrink-0 mt-0.5">{logoNode}</div>
-            <div className="flex-1 flex items-start justify-between gap-2">
-              <div>
-                <p className="font-heading font-bold text-white">{company}</p>
-                <p className="text-white/30 text-xs mt-0.5">{period}</p>
-              </div>
-              {projectsHref && (
-                <Link
-                  href={projectsHref}
-                  className={`${styles.projectsLink} text-xs whitespace-nowrap flex-shrink-0 mt-0.5 flex items-center gap-1`}
-                >
-                  View projects <ArrowRightIcon className="w-3 h-3" />
-                </Link>
-              )}
+    <div className={styles.card} style={accentStyle}>
+      <div className={styles.inner}>
+        <div className={styles.companyHeader}>
+          <div className={styles.logoSlot}>{logoNode}</div>
+          <div className={styles.companyMeta}>
+            <div className={styles.companyCopy}>
+              <p className={styles.companyName}>{company}</p>
+              <p className={styles.companyPeriod}>{period}</p>
             </div>
+            {projectsHref && (
+              <Link
+                href={projectsHref}
+                className={styles.projectsLink}
+              >
+                View projects <ArrowRightIcon className={styles.projectsLinkIcon} />
+              </Link>
+            )}
           </div>
+        </div>
 
-          {/* Positions timeline */}
-          <div className="mt-4">
-            {positions.map((pos, posIndex) => (
-              <div key={pos.title} className={styles.positionItem}>
-                <div className={styles.track}>
-                  <div className={styles.dot} />
-                  {posIndex < positions.length - 1 && <div className={styles.connector} />}
-                </div>
-                <div className={posIndex < positions.length - 1 ? "pb-4" : ""}>
-                  <div className="flex items-baseline justify-between gap-3">
-                    <p className="text-white/90 font-medium text-sm">{pos.title}</p>
-                    <span className="text-white/30 text-xs whitespace-nowrap">{pos.period}</span>
-                  </div>
-                  <ShowMoreText
-                    text={pos.description}
-                    textClassName="text-white/50 text-sm mt-1 leading-relaxed"
-                  />
-                </div>
+        <div className={styles.positionList}>
+          {positions.map((position, positionIndex) => (
+            <div key={position.title} className={styles.positionItem}>
+              <div className={styles.track}>
+                <div className={styles.dot} />
+                {positionIndex < positions.length - 1 && <div className={styles.connector} />}
               </div>
-            ))}
-          </div>
+              <div className={positionIndex < positions.length - 1 ? styles.positionContentSpaced : styles.positionContent}>
+                <div className={styles.positionHeader}>
+                  <p className={styles.positionTitle}>{position.title}</p>
+                  <span className={styles.positionPeriod}>{position.period}</span>
+                </div>
+                <ShowMoreText
+                  text={position.description}
+                  textClassName={styles.positionDescription}
+                />
+              </div>
+            </div>
+          ))}
+        </div>
 
-        <div className="flex flex-wrap gap-1.5 mt-3">
+        <div className={styles.tags}>
           {tagItems.map(({ tag, href, ariaLabel }) => (
             <Tag key={tag} href={href} aria-label={ariaLabel}>
               {tag}
