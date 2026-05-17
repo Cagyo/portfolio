@@ -36,34 +36,34 @@ export function ProjectCard({
   viewInProjectsHref,
   viewInProjectsLabel,
 }: ProjectCardProps) {
-  const imageH = featured ? "h-48" : "h-40";
-  const padding = featured ? "p-6" : "p-5";
-  const titleSize = featured ? "text-xl" : "text-lg";
+  const cardClassName = featured ? styles.featuredCard : styles.supportingCard;
 
   return (
-    <div className={`${styles.projectCard} glass rounded-3xl overflow-hidden cursor-pointer group reveal flex flex-col${featured ? " md:col-span-2" : ""}`}>
-      <div className={`relative ${imageH} overflow-hidden ${imageBg}`}>
-        <div className="absolute inset-0 flex items-center justify-center">
+    <article className={`${styles.projectCard} ${cardClassName} glass group reveal`}>
+      <div className={`${styles.imageFrame} ${imageBg}`}>
+        <div className={styles.imageContent}>
           {imageContent}
         </div>
-        <div className={`${styles.projectOverlay} absolute inset-0 flex items-center justify-center`}>
+        <div className={styles.projectOverlay}>
           {linkOverlay}
         </div>
       </div>
-      <div className={`${padding} flex flex-col flex-1`}>
-        <ProjectMeta {...meta} />
-        <h3 className={`font-heading font-bold ${titleSize} text-white mb-2`}>
-          <Link href={viewInProjectsHref} className={styles.titleLink}>
-            {title}
-          </Link>
-        </h3>
-        {problem && (
-          <p className={styles.problemText}>{problem}</p>
-        )}
-        {!problem && (
-          <p className="text-white/50 text-sm leading-relaxed mb-4">{description}</p>
-        )}
-        <div className="mt-auto">
+      <div className={styles.cardBody}>
+        <div className={styles.narrativeBlock}>
+          <ProjectMeta {...meta} />
+          <h3 className={styles.title}>
+            <Link href={viewInProjectsHref} className={styles.titleLink}>
+              {title}
+            </Link>
+          </h3>
+          {problem && (
+            <p className={styles.problemText}>{problem}</p>
+          )}
+          {!problem && (
+            <p className={styles.descriptionText}>{description}</p>
+          )}
+        </div>
+        <div className={styles.proofBlock}>
           {outcome && outcome.length > 0 && (
             <ul className={styles.outcomeList}>
               {outcome.map((item) => (
@@ -74,16 +74,16 @@ export function ProjectCard({
               ))}
             </ul>
           )}
-          <div className="inline-flex self-start items-center gap-1.5 glass-amber rounded-lg px-3 py-1.5 mb-2">
+          <div className={styles.badge}>
             {badge.icon}
-            <span className="text-amber-400 text-xs font-bold">{badge.label}</span>
+            <span className={styles.badgeText}>{badge.label}</span>
           </div>
-          <div className="flex flex-wrap gap-2 mb-3">
+          <div className={styles.tagList}>
             {tags.map((tag) => (
               <Tag key={tag}>{tag}</Tag>
             ))}
           </div>
-          <div className="flex justify-end">
+          <div className={styles.actionRow}>
             <Link href={viewInProjectsHref} className={styles.viewInProjectsLink} aria-hidden="true" tabIndex={-1}>
               {viewInProjectsLabel}
               <ArrowRightIcon className="w-3.5 h-3.5" />
@@ -91,6 +91,6 @@ export function ProjectCard({
           </div>
         </div>
       </div>
-    </div>
+    </article>
   );
 }
