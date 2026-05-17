@@ -37,24 +37,25 @@ export function TestimonialsSlider({ items }: TestimonialsSliderProps) {
   const item = items[currentIndex];
   if (!item) return null;
 
+  const cardVariant = isSingle ? "feature" : "carousel";
+
   return (
-    <div className="w-full">
-      {/* Card + arrows row */}
-      <div className="relative">
-        {/* Prev arrow */}
+    <div className={styles.slider}>
+      <div className={isSingle ? styles.singleFrame : styles.carouselFrame}>
         {!isSingle && (
           <button
+            type="button"
             onClick={goToPrev}
             aria-label="Previous testimonial"
-            className={`absolute left-0 top-1/2 -translate-y-1/2 -translate-x-14 z-10 w-10 h-10 rounded-full glass border flex items-center justify-center transition-colors duration-200 cursor-pointer ${styles.arrowBtn}`}
+            className={`${styles.arrowBtn} ${styles.arrowPrev}`}
           >
             <ArrowLeftShortIcon className="w-4 h-4" />
           </button>
         )}
 
-        {/* Card — key forces remount → triggers CSS animation */}
-        <div className={`max-w-2xl mx-auto ${styles.cardTransition}`} key={currentIndex}>
+        <div className={styles.cardTransition} key={currentIndex}>
           <TestimonialCard
+            variant={cardVariant}
             quotePreview={item.quotePreview}
             quoteRest={item.quoteRest}
             readMoreLabel={item.readMoreLabel}
@@ -67,29 +68,29 @@ export function TestimonialsSlider({ items }: TestimonialsSliderProps) {
               initialsColor: item.initialsColor,
               photoUrl: item.photoUrl,
             }}
-            linkedinUrl={item.linkedinUrl ?? "#"}
+            linkedinUrl={item.linkedinUrl}
             viewOnLinkedInLabel={item.viewOnLinkedInLabel}
           />
         </div>
 
-        {/* Next arrow */}
         {!isSingle && (
           <button
+            type="button"
             onClick={goToNext}
             aria-label="Next testimonial"
-            className={`absolute right-0 top-1/2 -translate-y-1/2 translate-x-14 z-10 w-10 h-10 rounded-full glass border flex items-center justify-center transition-colors duration-200 cursor-pointer ${styles.arrowBtn}`}
+            className={`${styles.arrowBtn} ${styles.arrowNext}`}
           >
             <ArrowRightShortIcon className="w-4 h-4" />
           </button>
         )}
       </div>
 
-      {/* Mobile swipe hint + dot indicators (hidden for single item) */}
       {!isSingle && (
-        <div className="flex justify-center items-center gap-2 mt-6">
-          {items.map((_, index) => (
+        <div className={styles.dots}>
+          {items.map((sliderItem, index) => (
             <button
-              key={index}
+              key={sliderItem.authorName}
+              type="button"
               onClick={() => setCurrentIndex(index)}
               aria-label={`Go to testimonial ${index + 1}`}
               className={`${styles.dot} ${index === currentIndex ? styles.dotActive : ""}`}

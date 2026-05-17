@@ -1,5 +1,4 @@
 import { getTranslations } from "next-intl/server";
-import { BlobBackground } from "@/app/_components/BlobBackground";
 import { SectionHeader } from "@/app/_components/SectionHeader";
 import { TestimonialsSlider } from "./TestimonialsSlider";
 
@@ -44,8 +43,6 @@ export async function RecommendationsSection({ sectionNumber }: RecommendationsS
 
   return (
     <section id="recommendations" className="py-16 relative overflow-hidden">
-      <BlobBackground size="md" position="top-0 -right-20" opacity={0.1} />
-
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeader number={sectionNumber} title={t("sectionTitle")} />
 
