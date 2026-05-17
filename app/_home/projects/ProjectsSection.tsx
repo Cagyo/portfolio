@@ -11,6 +11,7 @@ import { Button } from "@/app/_components/button/Button";
 import { ProjectCard } from "./ProjectCard";
 import { ProjectLinkOverlay } from "./ProjectLinkOverlay";
 import { AnonymizedImageContent } from "./AnonymizedImageContent";
+import styles from "./ProjectsSection.module.css";
 
 type ProjectsSectionProps = { sectionNumber?: string }
 
@@ -18,7 +19,55 @@ export async function ProjectsSection({ sectionNumber }: ProjectsSectionProps) {
   const t = await getTranslations("projects");
 
   const allProjects = await getProjects();
-  const projects = HOME_PROJECT_IDS.map((id) => allProjects.find((project) => project.id === id)!)
+  const projects = HOME_PROJECT_IDS.map((id) => {
+    const project = allProjects.find((candidate) => candidate.id === id);
+
+    if (!project) {
+      throw new Error(`Missing home project with id ${id}`);
+    }
+
+    return project;
+  });
+  const featuredProject = projects.find((project) => project.featured) ?? projects.at(0);
+  const supportingProjects = featuredProject
+    ? projects.filter((project) => project.id !== featuredProject.id)
+    : [];
+
+  const renderProjectCard = (project: (typeof projects)[number], isFeatured: boolean) => {
+    const visuals = getHomeProjectVisual(project.id);
+    const homeCard = project.homeCard;
+    const blurredSrc = project.screenshots?.find((screenshot) => screenshot.kind === "blurred")?.src;
+
+    return (
+      <ProjectCard
+        key={project.id}
+        title={getProjectTitle(project)}
+        description={project.description}
+        problem={homeCard?.problem}
+        outcome={homeCard?.outcome}
+        meta={{ category: project.industry, role: project.role, year: project.year }}
+        badge={{ icon: visuals?.icon, label: homeCard?.buyerBadge ?? '' }}
+        tags={project.stack.map(getStackName).filter(isFilterableStack)}
+        imageBg={project.imageBg ?? ''}
+        imageContent={
+          <>
+            {visuals?.imageContent}
+            {blurredSrc && <AnonymizedImageContent src={blurredSrc} />}
+          </>
+        }
+        linkOverlay={
+          <ProjectLinkOverlay
+            overlayType={overlayTypeFor(project.link)}
+            link={project.link}
+            hasBlurredImage={!!blurredSrc}
+          />
+        }
+        featured={isFeatured}
+        viewInProjectsHref={`/projects/${project.slug}`}
+        viewInProjectsLabel={t("viewInProjects")}
+      />
+    );
+  };
 
   return (
     <section id="projects" className="py-16 relative overflow-hidden">
@@ -30,42 +79,11 @@ export async function ProjectsSection({ sectionNumber }: ProjectsSectionProps) {
           {t("subtitle")}
         </p>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {projects.map((project) => {
-            const visuals = getHomeProjectVisual(project.id);
-            const homeCard = project.homeCard;
-            const blurredSrc = project.screenshots?.find((s) => s.kind === "blurred")?.src;
-
-            return (
-              <ProjectCard
-                key={project.id}
-                title={getProjectTitle(project)}
-                description={project.description}
-                problem={homeCard?.problem}
-                outcome={homeCard?.outcome}
-                meta={{ category: project.industry, role: project.role, year: project.year }}
-                badge={{ icon: visuals?.icon, label: homeCard?.buyerBadge ?? '' }}
-                tags={project.stack.map(getStackName).filter(isFilterableStack)}
-                imageBg={project.imageBg ?? ''}
-                imageContent={
-                  <>
-                    {visuals?.imageContent}
-                    {blurredSrc && <AnonymizedImageContent src={blurredSrc} />}
-                  </>
-                }
-                linkOverlay={
-                  <ProjectLinkOverlay
-                    overlayType={overlayTypeFor(project.link)}
-                    link={project.link}
-                    hasBlurredImage={!!blurredSrc}
-                  />
-                }
-                featured={project.featured}
-                viewInProjectsHref={`/projects/${project.slug}`}
-                viewInProjectsLabel={t("viewInProjects")}
-              />
-            );
-          })}
+        <div className={styles.proofLayout}>
+          {featuredProject && renderProjectCard(featuredProject, true)}
+          <div className={styles.supportingGrid}>
+            {supportingProjects.map((project) => renderProjectCard(project, false))}
+          </div>
         </div>
 
         <div className="flex flex-wrap items-center justify-center gap-4 mt-12 reveal">
