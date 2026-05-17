@@ -1,78 +1,75 @@
+import type { ReactNode } from "react";
 import styles from "./EngagementCard.module.css";
+
+type CardTone = "primary" | "secondary"
+type CardRole = "featured" | "supporting"
 
 type EngagementCardProps = {
   tag: string
-  tagIcon: React.ReactNode
-  tagVariant?: "amber" | "purple" | "teal"
+  tagIcon: ReactNode
+  tone?: CardTone
+  role?: CardRole
   kicker?: string
   title: string
   body: string
   bestFor: string
   bestForLabel: string
   note: string
-  order?: string
   delay?: string
-  ctaSlot?: React.ReactNode
+  ctaSlot?: ReactNode
 }
 
-const VARIANTS = {
-  amber: {
-    tag: styles.tagAmber,
-    bestFor: styles.bestForAmber,
-    label: styles.labelAmber,
-    bar: "from-amber-600 via-amber-400 to-amber-600",
+const TONES = {
+  primary: {
+    tag: styles.tagPrimary,
+    bestFor: styles.bestForPrimary,
+    label: styles.labelPrimary,
+    kicker: styles.kickerPrimary,
+  },
+  secondary: {
+    tag: styles.tagSecondary,
+    bestFor: styles.bestForSecondary,
+    label: styles.labelSecondary,
     kicker: styles.kicker,
   },
-  purple: {
-    tag: styles.tagPurple,
-    bestFor: styles.bestForPurple,
-    label: styles.labelPurple,
-    bar: "from-purple-600 via-purple-400 to-purple-600",
-    kicker: styles.kicker,
-  },
-  teal: {
-    tag: styles.tagTeal,
-    bestFor: styles.bestForTeal,
-    label: styles.labelTeal,
-    bar: "from-teal-600 via-teal-400 to-teal-600",
-    kicker: styles.kickerTeal,
-  },
-} as const
+} as const satisfies Record<CardTone, { tag: string; bestFor: string; label: string; kicker: string }>
+
+const ROLES = {
+  featured: styles.featured,
+  supporting: styles.supporting,
+} as const satisfies Record<CardRole, string>
 
 export function EngagementCard({
-  tag, tagIcon, tagVariant = "amber", kicker, title, body, bestFor, bestForLabel, note, order, delay, ctaSlot,
+  tag, tagIcon, tone = "secondary", role = "supporting", kicker, title, body, bestFor, bestForLabel, note, delay, ctaSlot,
 }: EngagementCardProps) {
-  const variant = VARIANTS[tagVariant]
+  const toneClasses = TONES[tone]
 
   return (
-    <div
-      className={`reveal glass rounded-2xl flex flex-col gap-5 overflow-hidden cursor-default ${order ?? ""}`}
+    <article
+      className={`reveal ${styles.card} ${ROLES[role]}`}
       style={delay ? { transitionDelay: delay } : undefined}
     >
-      {variant.bar && (
-        <div className={`absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r ${variant.bar}`} />
-      )}
-      <div className="p-6 flex flex-col gap-5 flex-1 relative">
-        <div className="flex items-center">
-          <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider ${variant.tag}`}>
+      <div className={styles.content}>
+        <div className={styles.header}>
+          <span className={`${styles.tag} ${toneClasses.tag}`}>
             {tagIcon}
             {tag}
           </span>
         </div>
         <div>
           {kicker && (
-            <p className={`text-xs mb-1.5 ${variant.kicker}`}>{kicker}</p>
+            <p className={`${styles.kicker} ${toneClasses.kicker}`}>{kicker}</p>
           )}
-          <h3 className="font-heading font-black text-xl text-white leading-tight">{title}</h3>
+          <h3 className={styles.title}>{title}</h3>
         </div>
-        <p className="text-white/55 text-sm leading-relaxed flex-1">{body}</p>
-        <div className={`rounded-xl p-4 ${variant.bestFor}`}>
-          <p className={`${variant.label} text-xs uppercase tracking-widest font-bold mb-1.5`}>{bestForLabel}</p>
-          <p className="text-white/60 text-sm leading-relaxed">{bestFor}</p>
+        <p className={styles.body}>{body}</p>
+        <div className={`${styles.bestFor} ${toneClasses.bestFor}`}>
+          <p className={`${styles.label} ${toneClasses.label}`}>{bestForLabel}</p>
+          <p className={styles.bestForText}>{bestFor}</p>
         </div>
         {ctaSlot}
-        <p className="text-white/30 text-xs italic border-t border-white/5 pt-4">{note}</p>
+        <p className={styles.note}>{note}</p>
       </div>
-    </div>
+    </article>
   );
 }
