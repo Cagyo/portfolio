@@ -8,6 +8,7 @@ import { LinkedInLogo } from "@/assets/logos/LinkedInLogo";
 import styles from "./TestimonialCard.module.css";
 
 type TestimonialCardProps = {
+  variant?: "feature" | "carousel";
   quotePreview: string;
   quoteRest?: string;
   readMoreLabel?: string;
@@ -21,80 +22,55 @@ type TestimonialCardProps = {
     photoUrl?: string;
   };
   linkedinUrl?: string;
-  delay?: string;
   viewOnLinkedInLabel: string;
 };
 
-export function TestimonialCard({ quotePreview, quoteRest, readMoreLabel, readLessLabel, author, linkedinUrl, delay, viewOnLinkedInLabel }: TestimonialCardProps) {
+export function TestimonialCard({
+  variant = "carousel",
+  quotePreview,
+  quoteRest,
+  readMoreLabel,
+  readLessLabel,
+  author,
+  linkedinUrl,
+  viewOnLinkedInLabel,
+}: TestimonialCardProps) {
   const [expanded, setExpanded] = useState(false);
   const hasMore = !!quoteRest;
 
   const previewParagraphs = quotePreview.split("\n\n");
-  const fullParagraphs = hasMore ? (quotePreview + quoteRest).split("\n\n") : previewParagraphs;
+  const fullParagraphs = hasMore
+    ? (quotePreview + quoteRest).split("\n\n")
+    : previewParagraphs;
   const paragraphs = expanded ? fullParagraphs : previewParagraphs;
+  const cardClassName = `${styles.card} ${
+    variant === "feature" ? styles.cardFeature : styles.cardCarousel
+  }`;
 
   return (
-    <div
-      className="reveal glass rounded-2xl p-7 flex flex-col gap-6 hover:border-amber-500/20 transition-colors duration-300 cursor-default"
-      style={delay ? { transitionDelay: delay } : undefined}
-    >
-      <QuoteMarkIcon className={`w-8 h-8 flex-shrink-0 ${styles.quoteIcon}`} />
-      <div className="text-white/70 text-base leading-relaxed flex-1 italic flex flex-col gap-3">
-        {paragraphs.map((paragraph, index) => {
-          const isFirst = index === 0;
-          const isLast = index === paragraphs.length - 1;
-          const stableKey = paragraph.slice(0, 40);
-          const showReadMore = !expanded && hasMore && isLast;
-
-          return (
-            <p key={stableKey}>
-              {isFirst && "\u201C"}
-              {paragraph}
-              {showReadMore && (
-                <>
-                  {" "}
-                  <button
-                    onClick={() => setExpanded(true)}
-                    className={styles.readMoreButton}
-                  >
-                    {readMoreLabel ?? "Read more"}
-                  </button>
-                </>
-              )}
-              {!showReadMore && isLast && "\u201D"}
-            </p>
-          );
-        })}
-        {expanded && hasMore && (
-          <button
-            onClick={() => setExpanded(false)}
-            className={styles.readLessButton}
-          >
-            {readLessLabel ?? "Read less"}
-          </button>
-        )}
-      </div>
-      <div className="h-px bg-white/6" />
-      <div className="flex items-center justify-between gap-4">
-        <div className="flex items-center gap-3">
+    <div className={cardClassName}>
+      <div className={styles.metaPanel}>
+        <div className={styles.authorBlock}>
           {author.photoUrl ? (
-            <div className="w-10 h-10 rounded-xl overflow-hidden flex-shrink-0">
+            <div className={styles.avatar}>
               <Image
                 src={author.photoUrl}
                 alt={author.name}
                 width={40}
                 height={40}
-                className="w-full h-full object-cover"
+                className={styles.avatarImage}
               />
             </div>
           ) : (
-            <div className={`w-10 h-10 rounded-xl ${author.gradientClass} flex items-center justify-center font-heading font-black text-sm flex-shrink-0`}>
-              <span className={author.initialsColor ?? "text-black"}>{author.initials}</span>
+            <div className={`${styles.avatarFallback} ${author.gradientClass}`}>
+              <span className={author.initialsColor ?? "text-black"}>
+                {author.initials}
+              </span>
             </div>
           )}
-          <div>
-            <p className="text-white font-semibold text-sm">{author.name}</p>
-            <p className="text-white/40 text-xs">{author.role}</p>
+          <div className={styles.authorText}>
+            <p className={styles.authorName}>{author.name}</p>
+            <p className={styles.authorRole}>{author.role}</p>
           </div>
         </div>
         {linkedinUrl && (
@@ -103,13 +79,55 @@ export function TestimonialCard({ quotePreview, quoteRest, readMoreLabel, readLe
             aria-label={viewOnLinkedInLabel}
             target="_blank"
             rel="noopener noreferrer"
-            className={`flex items-center gap-1.5 text-xs text-white/30 transition-colors duration-200 cursor-pointer flex-shrink-0 ${styles.linkedinLink}`}
+            className={styles.linkedinLink}
           >
-            <LinkedInLogo className={`w-4 h-4 transition-colors ${styles.linkedinIcon}`} />
-            <span className="hidden sm:inline">{viewOnLinkedInLabel}</span>
-            <ExternalLinkIcon className="w-3 h-3" />
+            <LinkedInLogo className={styles.linkedinIcon} />
+            <span className={styles.linkedinLabel}>{viewOnLinkedInLabel}</span>
+            <ExternalLinkIcon className={styles.externalIcon} />
           </a>
         )}
+      </div>
+      <div className={styles.quotePanel}>
+        <QuoteMarkIcon className={styles.quoteIcon} />
+        <div className={styles.quoteBody}>
+          {paragraphs.map((paragraph, index) => {
+            const isFirst = index === 0;
+            const isLast = index === paragraphs.length - 1;
+            const stableKey = paragraph.slice(0, 40);
+            const showReadMore = !expanded && hasMore && isLast;
+
+            return (
+              <p key={stableKey} className={styles.quoteParagraph}>
+                {isFirst && "\u201C"}
+                {paragraph}
+                {showReadMore && (
+                  <>
+                    {" "}
+                    <button
+                      type="button"
+                      aria-expanded={expanded}
+                      onClick={() => setExpanded(true)}
+                      className={styles.readMoreButton}
+                    >
+                      {readMoreLabel ?? "Read more"}
+                    </button>
+                  </>
+                )}
+                {!showReadMore && isLast && "\u201D"}
+              </p>
+            );
+          })}
+          {expanded && hasMore && (
+            <button
+              type="button"
+              aria-expanded={expanded}
+              onClick={() => setExpanded(false)}
+              className={styles.readLessButton}
+            >
+              {readLessLabel ?? "Read less"}
+            </button>
+          )}
+        </div>
       </div>
     </div>
   );
