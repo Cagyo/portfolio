@@ -16,68 +16,72 @@ export async function FitSection({ sectionNumber }: FitSectionProps) {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeader number={sectionNumber} title={t("sectionTitle")} />
 
-        <div className="reveal mb-10 text-center max-w-3xl mx-auto">
-          <p className="text-white/80 text-xl sm:text-2xl leading-snug font-normal">
-            <span className={`text-2xl leading-none mr-1 ${styles.quoteMark}`}>&ldquo;</span>
+        <div className={`reveal ${styles.quotePanel}`}>
+          <p className={styles.quote}>
+            <span className={styles.quoteMark}>&ldquo;</span>
             {t("quote")}
-            <span className={`text-2xl leading-none ml-1 ${styles.quoteMark}`}>&rdquo;</span>
+            <span className={styles.quoteMark}>&rdquo;</span>
           </p>
         </div>
 
-        <div className="grid sm:grid-cols-2 gap-5 items-start">
-          <div className={`reveal rounded-2xl p-7 ${styles.goodCard}`}>
-            <div className="flex items-center gap-3 mb-6">
-              <div className={`w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 ${styles.goodHeadingIcon}`}>
-                <CheckIcon className="w-4 h-4 text-green-400" strokeWidth={2.5} />
-              </div>
-              <h3 className="font-heading font-bold text-white text-lg">{t("goodFitHeading")}</h3>
+        <div className={`reveal ${styles.ledger}`}>
+          <article className={`${styles.ledgerPane} ${styles.goodPane}`} aria-labelledby="fit-good-heading">
+            <div className={styles.panelHeader}>
+              <span className={`${styles.headingIcon} ${styles.goodHeadingIcon}`} aria-hidden="true">
+                <CheckIcon className={styles.statusIcon} strokeWidth={2.5} />
+              </span>
+              <h3 id="fit-good-heading" className={styles.panelTitle}>{t("goodFitHeading")}</h3>
             </div>
 
-            <div className={`rounded-xl p-5 mb-5 ${styles.featured}`}>
-              <p className={`font-bold uppercase mb-2 ${styles.featuredEyebrow}`}>
+            <div className={styles.featured}>
+              <p className={styles.featuredEyebrow}>
                 {t("featuredEyebrow")}
               </p>
-              <p className={`leading-relaxed ${styles.featuredBody}`}>
+              <p className={styles.featuredBody}>
                 {t("featuredBody")}
               </p>
             </div>
 
-            <ul>
-              {goodFit.map((text, index) => (
+            <ul className={styles.criteriaList}>
+              {goodFit.map((text) => (
                 <li
                   key={text}
-                  className={`flex items-start gap-3 text-sm leading-relaxed py-4 ${styles.bulletText} ${index > 0 ? styles.bulletDivider : ""}`}
+                  className={styles.criterion}
                 >
-                  <span className={`w-1.5 h-1.5 rounded-full flex-shrink-0 mt-2 ${styles.dot}`} aria-hidden="true" />
+                  <span className={`${styles.marker} ${styles.goodMarker}`} aria-hidden="true">
+                    <CheckIcon className={styles.markerIcon} strokeWidth={2.5} />
+                  </span>
                   <span>{text}</span>
                 </li>
               ))}
             </ul>
-          </div>
+          </article>
 
-          <div className={`reveal rounded-2xl p-7 ${styles.notCard}`}>
-            <div className="flex items-center gap-3 mb-6">
-              <div className={`w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 ${styles.notHeadingIcon}`}>
-                <XMarkIcon className="w-4 h-4 text-red-400" />
-              </div>
-              <h3 className="font-heading font-bold text-white text-lg">{t("notFitHeading")}</h3>
+          <article className={`${styles.ledgerPane} ${styles.notPane}`} aria-labelledby="fit-not-heading">
+            <div className={styles.panelHeader}>
+              <span className={`${styles.headingIcon} ${styles.notHeadingIcon}`} aria-hidden="true">
+                <XMarkIcon className={styles.statusIcon} />
+              </span>
+              <h3 id="fit-not-heading" className={styles.panelTitle}>{t("notFitHeading")}</h3>
             </div>
 
-            <ul>
-              {notFit.map((text, index) => (
+            <ul className={styles.criteriaList}>
+              {notFit.map((text) => (
                 <li
                   key={text}
-                  className={`flex items-start gap-3 text-sm leading-relaxed py-4 ${styles.bulletText} ${index > 0 ? styles.bulletDivider : ""}`}
+                  className={styles.criterion}
                 >
-                  <span className={`w-1.5 h-1.5 rounded-full flex-shrink-0 mt-2 ${styles.dotNot}`} aria-hidden="true" />
+                  <span className={`${styles.marker} ${styles.notMarker}`} aria-hidden="true">
+                    <XMarkIcon className={styles.markerIcon} />
+                  </span>
                   <span>{text}</span>
                 </li>
               ))}
             </ul>
-          </div>
+          </article>
         </div>
 
-        <p className={`reveal mt-10 text-center text-sm italic ${styles.closing}`}>
+        <p className={`reveal ${styles.closing}`}>
           {t("closingLine")}
         </p>
       </div>
