@@ -1,49 +1,196 @@
-.skillsToggleBtn {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 7px 16px;
-  border-radius: 10px;
-  background: var(--surface);
-  border: 1px solid var(--input-border);
-  color: var(--text-faint);
-  font-size: 0.75rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  letter-spacing: 0.02em;
-
-  &:hover {
-    background: color-mix(in srgb, var(--amber) 8%, transparent);
-    border-color: var(--border-amber);
-    color: var(--tag-color);
-  }
-}
-
-.toggleCount {
-  background: color-mix(in srgb, var(--amber) 15%, transparent);
-  color: var(--amber);
-  font-size: 0.65rem;
-  font-weight: 700;
-  padding: 1px 6px;
-  border-radius: 4px;
-  letter-spacing: 0;
-}
-
-.toggleChevron {
-  transition: transform 0.3s ease;
-}
-
-.expanded .toggleChevron {
-  transform: rotate(180deg);
-}
-
 .detailsGrid {
   display: grid;
+  grid-template-rows: 0fr;
   transition: grid-template-rows 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.detailsGridOpen {
+  grid-template-rows: 1fr;
 }
 
 .detailsInner {
   overflow: hidden;
-  min-height: 0;
+}
+
+.drawerTrigger {
+  width: 100%;
+  display: grid;
+  grid-template-columns: minmax(24px, 1fr) auto auto minmax(24px, 1fr);
+  align-items: center;
+  gap: 12px;
+  padding: 4px 0;
+  border: 0;
+  background: transparent;
+  color: var(--text-faint);
+  cursor: pointer;
+  font-size: 0.75rem;
+  letter-spacing: 0.03em;
+  transition: color 0.2s ease;
+
+  &::before,
+  &::after {
+    content: "";
+    height: 1px;
+    border-top: 1px dashed var(--input-border);
+    transition: border-color 0.2s ease;
+  }
+
+  &:hover,
+  &:focus-visible {
+    color: var(--tag-color);
+  }
+
+  &:hover::before,
+  &:hover::after,
+  &:focus-visible::before,
+  &:focus-visible::after {
+    border-color: color-mix(in srgb, var(--amber) 30%, transparent);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--amber);
+    outline-offset: 4px;
+  }
+}
+
+.drawerTriggerLabel {
+  white-space: nowrap;
+}
+
+.drawerChevron {
+  width: 12px;
+  height: 12px;
+  transition: transform 0.3s ease;
+}
+
+.drawerTriggerOpen .drawerChevron {
+  transform: rotate(180deg);
+}
+
+.detailsDrawer {
+  --details-inline-padding: 1rem;
+
+  margin-top: 18px;
+  border-top: 1px solid var(--input-border);
+  border-bottom: 1px solid var(--input-border);
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--surface) 86%, transparent),
+    color-mix(in srgb, var(--surface) 28%, transparent)
+  );
+}
+
+.detailsToolbar {
+  display: grid;
+  grid-template-columns: minmax(230px, 320px) minmax(0, 1fr);
+  gap: 16px;
+  align-items: start;
+  padding: 16px var(--details-inline-padding) 18px;
+  border-bottom: 1px solid var(--input-border);
+}
+
+.detailsSearchStack {
+  display: grid;
+  gap: 8px;
+}
+
+.searchInput {
+  max-width: none;
+}
+
+.counterLine {
+  color: var(--text-faint);
+  font-size: 0.72rem;
+  line-height: 1.4;
+}
+
+.detailsResults {
+  padding: 18px var(--details-inline-padding) 20px;
+}
+
+.inventoryGrid {
+  display: grid;
+  gap: 18px;
+}
+
+.skillGroup {
+  display: grid;
+  gap: 10px;
+}
+
+.skillGroupHeader {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.skillGroupTitle,
+.skillGroupTitleStrong {
+  font-size: 0.68rem;
+  line-height: 1;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.skillGroupTitle {
+  color: var(--text-faint);
+  font-weight: 600;
+}
+
+.skillGroupTitleStrong {
+  color: var(--text-muted);
+  font-weight: 700;
+}
+
+.skillGroupRule {
+  flex: 1;
+  height: 1px;
+  background: var(--input-border);
+}
+
+.featuredChipGroup,
+.denseChipGroup {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.featuredChipGroup {
+  gap: 8px;
+}
+
+.denseChipGroup {
+  gap: 6px;
+}
+
+@media (max-width: 767px) {
+  .detailsToolbar {
+    grid-template-columns: 1fr;
+  }
+
+  .drawerTrigger {
+    gap: 10px;
+  }
+}
+
+@media (min-width: 640px) {
+  .detailsDrawer {
+    --details-inline-padding: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .detailsDrawer {
+    --details-inline-padding: 2rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .detailsGrid,
+  .drawerChevron,
+  .drawerTrigger,
+  .drawerTrigger::before,
+  .drawerTrigger::after {
+    transition: none;
+  }
 }
