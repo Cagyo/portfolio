@@ -51,6 +51,7 @@ function RecordingItem({
 }: RecordingItemProps) {
   const t = useTranslations("contact.form.voice");
   const progress = duration > 0 ? (currentTime / duration) * 100 : 0;
+  const progressScale = Math.min(Math.max(progress / 100, 0), 1);
 
   return (
     <div className={styles.recordingItem}>
@@ -88,7 +89,7 @@ function RecordingItem({
         <div className={styles.progressBar}>
           <div
             className={styles.progressFill}
-            style={{ width: `${progress}%` }}
+            style={{ transform: `scaleX(${progressScale})` }}
           />
         </div>
       </div>

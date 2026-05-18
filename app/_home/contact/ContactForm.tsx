@@ -121,7 +121,7 @@ export function ContactForm() {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="glass rounded-3xl p-8 space-y-5"
+      className="glass rounded-3xl p-5 sm:p-8 space-y-5"
       noValidate
     >
         {/* ── Honeypot ── */}
@@ -288,6 +288,13 @@ export function ContactForm() {
           </div>
         )}
 
+        {/* ── Error banner (server-side errors only) ── */}
+        {errorKey && (
+          <p className={styles.errorBanner} role="alert">
+            {t(`form.errors.${errorKey}`)}
+          </p>
+        )}
+
         {/* ── Turnstile ── */}
         <div
           className={
@@ -307,13 +314,6 @@ export function ContactForm() {
             )}
           />
         </div>
-
-        {/* ── Error banner (server-side errors only) ── */}
-        {errorKey && (
-          <p className={styles.errorBanner} role="alert">
-            {t(`form.errors.${errorKey}`)}
-          </p>
-        )}
 
         <Button
           type="submit"
