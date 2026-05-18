@@ -13,7 +13,7 @@ export async function FaqSection({ sectionNumber }: FaqSectionProps) {
   const t = await getTranslations("faqPage");
 
   return (
-    <section id="faq" className="py-10 relative">
+    <section id="faq" className="py-16 relative">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeader number={sectionNumber} title={faq.sectionTitle} />
         <div className="reveal">
