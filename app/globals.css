@@ -258,7 +258,7 @@ body {
 ::-webkit-scrollbar-thumb { background: var(--amber-dark); border-radius: 4px; }
 
 /* Offset anchor scroll targets below the fixed glass nav (~80px) */
-section[id] { scroll-margin-top: 3rem; }
+section[id] { scroll-margin-top: clamp(5rem, 8vw, 6.25rem); }
 
 /* ══════════════════════════════════════════════
    UTILITIES — shared design primitives
@@ -356,7 +356,7 @@ html[data-theme="light"] .active-chip {
   color: rgba(255,255,255,0.6);
 }
 
-#rest-chips-wrap { overflow: hidden; transition: max-height 0.45s cubic-bezier(0.4,0,0.2,1); }
+#rest-chips-wrap { overflow: hidden; }
 #rest-chips-wrap.collapsed { max-height: 0 !important; }
 
 @keyframes fadeUp {

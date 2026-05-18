@@ -7,6 +7,11 @@ export function useReveal() {
     const els = document.querySelectorAll<HTMLElement>(".reveal");
     if (!els.length) return;
 
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      els.forEach((el) => el.classList.add("visible"));
+      return;
+    }
+
     const obs = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
