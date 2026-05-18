@@ -2,9 +2,10 @@
 
 type BackToTopLinkProps = {
   label: string;
+  className?: string;
 };
 
-export function BackToTopLink({ label }: BackToTopLinkProps) {
+export function BackToTopLink({ label, className = "" }: BackToTopLinkProps) {
   function handleClick() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
@@ -12,7 +13,7 @@ export function BackToTopLink({ label }: BackToTopLinkProps) {
   return (
     <button
       type="button"
-      className="bg-transparent border-0 p-0 text-white/30 hover:text-amber-400 text-sm transition-colors cursor-pointer"
+      className={className}
       onClick={handleClick}
     >
       {label}
