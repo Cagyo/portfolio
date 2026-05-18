@@ -67,6 +67,7 @@ export default async function RootLayout({
     <html
       lang={locale}
       className={`${archivo.variable} ${spaceGrotesk.variable} h-full antialiased`}
+      data-scroll-behavior="smooth"
       data-theme={theme === "light" ? "light" : undefined}
     >
       <head />
