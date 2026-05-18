@@ -16,8 +16,8 @@ export async function ContactSection({ sectionNumber }: ContactSectionProps) {
   const t = await getTranslations("contact");
 
   return (
-    <section id="contact" className="py-16 relative overflow-hidden">
-      <BlobBackground position="-bottom-32 left-1/2 -translate-x-1/2" opacity={0.1} />
+    <section id="contact" className={styles.section}>
+      <BlobBackground position="-bottom-40 left-1/2 -translate-x-1/2" opacity={0.08} />
       <ContactSectionView />
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">

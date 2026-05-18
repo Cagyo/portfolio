@@ -20,27 +20,27 @@ const FOOTER_LINKS = [
 export async function Footer() {
   const t = await getTranslations("footer");
   return (
-    <footer className="py-8 border-t border-white/5">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col gap-6">
+    <footer className={styles.footer}>
+      <div className={styles.inner}>
         <nav
           aria-label={t("navAriaLabel")}
-          className="flex flex-wrap items-center justify-center sm:justify-start gap-x-6 gap-y-2 text-sm"
+          className={styles.nav}
         >
           {FOOTER_LINKS.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              className="text-white/30 hover:text-amber-400 transition-colors"
+              className={styles.footerLink}
             >
               {t(`links.${link.key}`)}
             </Link>
           ))}
         </nav>
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div className="text-center sm:text-left">
-            <p className="text-white/30 text-sm">
+        <div className={styles.meta}>
+          <div className={styles.copy}>
+            <p className={styles.copyLine}>
               {t("copyright")} {" "}
-              <span className="text-gradient font-semibold">{t("author")}</span>. {t("crafted")}
+              <span className={styles.author}>{t("author")}</span>. {t("crafted")}
               {/* <span className="text-white/15 mx-1.5">&middot;</span>
               <span className="inline-flex items-center gap-1.5">
                 <span
@@ -53,17 +53,17 @@ export async function Footer() {
             </p>
             <p className={styles.disclosure}>{t("analyticsDisclosure")}</p>
           </div>
-          <div className="flex items-center gap-4 sm:gap-6">
-            <BackToTopLink label={t("backToTop")} />
-            <CookieSettingsLink className="text-white/30 hover:text-amber-400 text-sm transition-colors cursor-pointer" />
-            <div className="flex gap-3">
+          <div className={styles.actions}>
+            <BackToTopLink label={t("backToTop")} className={styles.actionLink} />
+            <CookieSettingsLink className={styles.actionLink} />
+            <div className={styles.socials}>
               <TrackedLink
                 href={siteConfig.social.github.url}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={t("githubAriaLabel")}
                 tracking={{ action: "outbound", target: "github" }}
-                className="text-white/30 hover:text-amber-400 transition-colors cursor-pointer"
+                className={styles.socialLink}
               >
                 <GitHubLogo className="w-4 h-4" />
               </TrackedLink>
@@ -73,7 +73,7 @@ export async function Footer() {
                 rel="noopener noreferrer"
                 aria-label={t("linkedinAriaLabel")}
                 tracking={{ action: "outbound", target: "linkedin" }}
-                className="text-white/30 hover:text-amber-400 transition-colors cursor-pointer"
+                className={styles.socialLink}
               >
                 <LinkedInLogo className="w-4 h-4" />
               </TrackedLink>
@@ -84,7 +84,7 @@ export async function Footer() {
                   rel="noopener noreferrer"
                   aria-label={t("twitterAriaLabel")}
                   tracking={{ action: "outbound", target: "twitter" }}
-                  className="text-white/30 hover:text-amber-400 transition-colors cursor-pointer"
+                  className={styles.socialLink}
                 >
                   <XLogo className="w-4 h-4" />
                 </TrackedLink>

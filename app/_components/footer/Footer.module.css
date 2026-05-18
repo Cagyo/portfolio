@@ -1,3 +1,119 @@
+.footer {
+  position: relative;
+  isolation: isolate;
+  padding-block: clamp(1.75rem, 2.8vw, 2.75rem) calc(clamp(2rem, 3vw, 3rem) + env(safe-area-inset-bottom));
+  border-top: 1px solid var(--border);
+  background: linear-gradient(180deg, color-mix(in srgb, var(--bg-secondary) 86%, var(--bg)) 0%, var(--bg) 100%);
+}
+
+.footer::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, color-mix(in srgb, var(--amber) 28%, transparent) 50%, transparent 100%);
+  opacity: 0.42;
+  pointer-events: none;
+}
+
+.inner {
+  width: min(100% - 2rem, 72rem);
+  margin-inline: auto;
+  display: grid;
+  gap: clamp(1.25rem, 2vw, 1.75rem);
+}
+
+.nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.625rem 1.5rem;
+  font-size: 0.875rem;
+}
+
+.meta {
+  display: grid;
+  align-items: end;
+  gap: 1.25rem;
+}
+
+.copy {
+  min-width: 0;
+  text-align: center;
+}
+
+.copyLine {
+  color: var(--text-faint);
+  font-size: 0.875rem;
+  line-height: 1.55;
+}
+
+.author {
+  color: var(--tag-color);
+  font-weight: 700;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.875rem 1rem;
+}
+
+.socials {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+}
+
+.footerLink,
+.actionLink,
+.socialLink {
+  color: var(--text-faint);
+  transition: color 180ms ease, border-color 180ms ease, background 180ms ease;
+}
+
+.footerLink,
+.actionLink {
+  border: 0;
+  background: transparent;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+}
+
+.socialLink {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  border: 1px solid color-mix(in srgb, var(--text-primary) 7%, transparent);
+  border-radius: 9999px;
+  background: color-mix(in srgb, var(--text-primary) 4%, transparent);
+}
+
+.footerLink:hover,
+.actionLink:hover,
+.socialLink:hover {
+  color: var(--tag-color);
+}
+
+.socialLink:hover {
+  border-color: color-mix(in srgb, var(--amber) 24%, transparent);
+  background: color-mix(in srgb, var(--amber) 8%, transparent);
+}
+
+.footerLink:focus-visible,
+.actionLink:focus-visible,
+.socialLink:focus-visible {
+  outline: 2px solid var(--amber);
+  outline-offset: 3px;
+  border-radius: 0.375rem;
+}
+
 .statusBadge {
   background: color-mix(in srgb, var(--amber) 8%, transparent);
   border: 1px solid color-mix(in srgb, var(--amber) 18%, transparent);
@@ -7,11 +123,45 @@
 .disclosure {
   margin-top: 0.35rem;
   max-width: 34rem;
-  color: color-mix(in srgb, white 26%, transparent);
+  color: var(--text-ghost);
   font-size: 0.75rem;
   line-height: 1.5;
 }
 
+html[data-theme="light"] .footer {
+  background: linear-gradient(180deg, color-mix(in srgb, var(--bg-secondary) 72%, var(--bg)) 0%, var(--bg) 100%);
+}
+
+html[data-theme="light"] .footer::before {
+  opacity: 0.36;
+}
+
 html[data-theme="light"] .disclosure {
   color: var(--text-muted);
+}
+
+@media (min-width: 640px) {
+  .nav {
+    justify-content: flex-start;
+  }
+
+  .meta {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+
+  .copy {
+    text-align: left;
+  }
+
+  .actions {
+    justify-content: flex-end;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .footerLink,
+  .actionLink,
+  .socialLink {
+    transition: none;
+  }
 }
