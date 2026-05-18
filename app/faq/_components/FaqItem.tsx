@@ -10,23 +10,40 @@ type FaqItemProps = {
   onToggle: () => void;
   eyebrow?: string;
   eyebrowClassName?: string;
+  itemClassName?: string;
+  buttonClassName?: string;
+  panelContentClassName?: string;
 };
 
-export function FaqItem({ item, isOpen, onToggle, eyebrow, eyebrowClassName }: FaqItemProps) {
+export function FaqItem({
+  item,
+  isOpen,
+  onToggle,
+  eyebrow,
+  eyebrowClassName,
+  itemClassName,
+  buttonClassName,
+  panelContentClassName,
+}: FaqItemProps) {
   const label = <span className={styles.questionText}>{item.question}</span>;
+  const itemClassNames = itemClassName ? `scroll-mt-24 ${itemClassName}` : "scroll-mt-24";
+  const buttonClassNames = buttonClassName ? `${styles.faqButton} ${buttonClassName}` : styles.faqButton;
+  const panelContentClassNames = panelContentClassName
+    ? `${styles.panelContent} ${panelContentClassName}`
+    : styles.panelContent;
 
   return (
-    <li id={item.slug} className="scroll-mt-24">
+    <li id={item.slug} className={itemClassNames}>
       {eyebrow && <div className={eyebrowClassName ?? styles.eyebrow}>{eyebrow}</div>}
       <ExpandSection
         isExpanded={isOpen}
         onToggle={onToggle}
         expandLabel={label}
         collapseLabel={label}
-        buttonClassName={styles.faqButton}
+        buttonClassName={buttonClassNames}
         panelId={`faq-panel-${item.slug}`}
       >
-        <div className={styles.panelContent}>
+        <div className={panelContentClassNames}>
           <p className={styles.answer}>{item.answer}</p>
           <p className={styles.body}>{item.body}</p>
         </div>

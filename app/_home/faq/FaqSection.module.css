@@ -1,27 +1,37 @@
-.columns {
+.trackGrid {
   display: grid;
-  gap: 3rem;
+  gap: 1.25rem;
+  align-items: start;
 }
 
 @media (min-width: 1024px) {
-  .columns {
+  .trackGrid {
     grid-template-columns: 1fr 1fr;
-    gap: 2rem;
-    align-items: start;
+    gap: 1.5rem;
   }
 }
 
-.list {
-  display: grid;
-  gap: 0.9rem;
+.trackGroup {
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid color-mix(in srgb, white 9%, transparent);
+  border-radius: 8px;
+  background:
+    linear-gradient(135deg, color-mix(in srgb, var(--amber) 7%, transparent), transparent 42%),
+    color-mix(in srgb, var(--surface) 84%, transparent);
+  box-shadow: 0 22px 64px color-mix(in srgb, var(--amber) 8%, transparent);
 }
 
-.eyebrow {
+.trackHeader {
+  padding: 1.25rem 1.25rem 1rem;
+  border-bottom: 1px solid color-mix(in srgb, white 7%, transparent);
+}
+
+.trackEyebrow {
   display: inline-flex;
   align-items: center;
   width: fit-content;
-  margin-bottom: 0.75rem;
-  border: 1px solid color-mix(in srgb, var(--amber) 22%, transparent);
+  border: 1px solid color-mix(in srgb, var(--amber) 24%, transparent);
   border-radius: 999px;
   background: color-mix(in srgb, var(--amber) 8%, transparent);
   padding: 0.25rem 0.65rem;
@@ -30,6 +40,59 @@
   font-weight: 800;
   letter-spacing: 0.1em;
   text-transform: uppercase;
+}
+
+.trackHeading {
+  margin-top: 0.75rem;
+  color: var(--text-primary);
+  font-family: var(--font-heading);
+  font-size: clamp(1.15rem, 1vw + 0.95rem, 1.45rem);
+  font-weight: 900;
+  line-height: 1.12;
+}
+
+.list {
+  display: grid;
+  margin: 0;
+  padding: 0.55rem;
+  list-style: none;
+}
+
+.item + .item {
+  border-top: 1px solid color-mix(in srgb, white 7%, transparent);
+}
+
+.trackGroup .itemButton {
+  min-height: 64px;
+  border-color: transparent;
+  border-radius: 6px;
+  background: transparent;
+  padding: 1rem;
+  box-shadow: none;
+}
+
+.trackGroup .itemButton:hover {
+  transform: none;
+  border-color: color-mix(in srgb, var(--amber) 18%, transparent);
+  background: color-mix(in srgb, white 4%, transparent);
+  box-shadow: none;
+}
+
+.trackGroup .itemButton[aria-expanded="true"] {
+  border-color: color-mix(in srgb, var(--amber) 28%, transparent);
+  background: linear-gradient(90deg, color-mix(in srgb, var(--amber) 10%, transparent), transparent 88%);
+}
+
+.trackGroup .itemButton svg {
+  color: color-mix(in srgb, var(--amber-light) 86%, transparent);
+}
+
+.trackGroup .itemPanel {
+  padding: 0.15rem 1rem 1.1rem;
+}
+
+.trackGroup .itemButton[aria-expanded="true"] + div .itemPanel {
+  border-bottom: 1px solid color-mix(in srgb, var(--amber) 16%, transparent);
 }
 
 .cta {
@@ -81,8 +144,41 @@
   gap: 0.5rem;
 }
 
-html[data-theme="light"] .eyebrow {
-  color: #B45309;
+html[data-theme="light"] .trackGroup {
+  border-color: var(--border);
+  background:
+    linear-gradient(135deg, color-mix(in srgb, var(--amber) 9%, transparent), transparent 44%),
+    var(--surface);
+  box-shadow: 0 22px 64px color-mix(in srgb, var(--text-primary) 7%, transparent);
+}
+
+html[data-theme="light"] .trackHeader,
+html[data-theme="light"] .item + .item {
+  border-color: var(--border);
+}
+
+html[data-theme="light"] .trackEyebrow {
+  border-color: var(--tag-border);
+  background: var(--tag-bg);
+  color: var(--tag-color);
+}
+
+html[data-theme="light"] .trackGroup .itemButton:hover {
+  border-color: var(--border-amber);
+  background: color-mix(in srgb, var(--amber) 7%, transparent);
+}
+
+html[data-theme="light"] .trackGroup .itemButton[aria-expanded="true"] {
+  border-color: var(--border-amber);
+  background: linear-gradient(90deg, color-mix(in srgb, var(--amber) 10%, transparent), transparent 88%);
+}
+
+html[data-theme="light"] .trackGroup .itemButton svg {
+  color: var(--tag-color);
+}
+
+html[data-theme="light"] .trackGroup .itemButton[aria-expanded="true"] + div .itemPanel {
+  border-bottom-color: color-mix(in srgb, var(--amber-dark) 22%, transparent);
 }
 
 @media (prefers-reduced-motion: reduce) {
