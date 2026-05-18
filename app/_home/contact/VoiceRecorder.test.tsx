@@ -247,7 +247,7 @@ describe('VoiceRecorder', () => {
     expect(audioInstances[1].play).toHaveBeenCalledOnce()
   })
 
-  it('case 12: fire ontimeupdate → progressFill width updates proportional to currentTime / duration', async () => {
+  it('case 12: fire ontimeupdate → progressFill transform updates proportional to currentTime / duration', async () => {
     const user = userEvent.setup()
     const { container } = renderWithIntl(<VoiceRecorder onRecordingsChange={onRecordingsChange} />)
     await recordOneClip(user, 1)
@@ -261,7 +261,7 @@ describe('VoiceRecorder', () => {
     await waitFor(() => {
       const fill = container.querySelector('[class*="progressFill"]') as HTMLElement | null
       expect(fill).not.toBeNull()
-      expect(fill!.style.width).toBe('50%')
+      expect(fill!.style.transform).toBe('scaleX(0.5)')
     })
   })
 
@@ -282,7 +282,7 @@ describe('VoiceRecorder', () => {
 
     const fill = container.querySelector('[class*="progressFill"]') as HTMLElement | null
     expect(fill).not.toBeNull()
-    expect(fill!.style.width).toBe('0%')
+    expect(fill!.style.transform).toBe('scaleX(0)')
   })
 
   // ─── Delete ──────────────────────────────────────────────────────────────
@@ -403,10 +403,10 @@ describe('VoiceRecorder', () => {
       expect(screen.getByText(voiceMessages.recordingNLabel.replace('{n}', '1'))).toBeInTheDocument()
     })
 
-    // The progress fill should be 0% — no NaN, no crash
+    // The progress fill should be empty, no NaN, no crash
     await user.click(screen.getByRole('button', { name: voiceMessages.playBtn }))
     const fill = container.querySelector('[class*="progressFill"]') as HTMLElement | null
     expect(fill).not.toBeNull()
-    expect(fill!.style.width).toBe('0%')
+    expect(fill!.style.transform).toBe('scaleX(0)')
   })
 })

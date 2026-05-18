@@ -1,9 +1,9 @@
 .recorder {
   border-radius: 1rem;
-  background: color-mix(in srgb, var(--color-amber-400) 4%, transparent);
-  border: 1px solid color-mix(in srgb, var(--color-amber-400) 18%, transparent);
-  padding: 1.25rem 1.25rem;
-  min-height: 180px;
+  background: color-mix(in srgb, var(--color-amber-400) 3%, transparent);
+  border: 1px solid color-mix(in srgb, var(--color-amber-400) 14%, transparent);
+  padding: 1rem;
+  min-height: 108px;
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
@@ -12,20 +12,19 @@
 /* ── Idle (no recordings) ── */
 .idleState {
   flex: 1;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
   align-items: center;
-  justify-content: center;
-  gap: 1rem;
+  gap: 0.875rem;
   width: 100%;
-  text-align: center;
-  padding: 0.5rem 0;
+  text-align: left;
+  padding: 0.25rem 0;
 }
 
 .hint {
   font-size: 0.8125rem;
   color: oklch(from white l c h / 0.45);
-  max-width: 28ch;
+  max-width: 34ch;
   line-height: 1.6;
 }
 
@@ -34,18 +33,18 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 4rem;
-  height: 4rem;
+  width: 3.5rem;
+  height: 3.5rem;
   border-radius: 9999px;
-  background: color-mix(in srgb, var(--color-amber-400) 15%, transparent);
-  border: 1.5px solid color-mix(in srgb, var(--color-amber-400) 45%, transparent);
+  background: color-mix(in srgb, var(--color-amber-400) 11%, transparent);
+  border: 1.5px solid color-mix(in srgb, var(--color-amber-400) 34%, transparent);
   color: var(--color-amber-400);
   cursor: pointer;
   transition: background 200ms ease, transform 150ms ease;
 }
 
 .recordBtn:hover {
-  background: color-mix(in srgb, var(--color-amber-400) 22%, transparent);
+  background: color-mix(in srgb, var(--color-amber-400) 17%, transparent);
   transform: scale(1.06);
 }
 
@@ -56,15 +55,9 @@
 
 .recordBtnRing {
   position: absolute;
-  inset: -6px;
+  inset: -5px;
   border-radius: 9999px;
-  border: 1.5px solid color-mix(in srgb, var(--color-amber-400) 25%, transparent);
-  animation: ringPulse 2.4s ease-in-out infinite;
-}
-
-@keyframes ringPulse {
-  0%, 100% { opacity: 0.6; transform: scale(1); }
-  50% { opacity: 0; transform: scale(1.18); }
+  border: 1.5px solid color-mix(in srgb, var(--color-amber-400) 18%, transparent);
 }
 
 .idleLabel {
@@ -72,6 +65,7 @@
   color: oklch(from white l c h / 0.35);
   letter-spacing: 0.04em;
   text-transform: uppercase;
+  white-space: nowrap;
 }
 
 /* ── Recordings list ── */
@@ -82,8 +76,9 @@
 }
 
 .recordingItem {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: minmax(8rem, 0.9fr) minmax(10rem, 1.3fr);
+  align-items: center;
   gap: 0.5rem;
   padding: 0.625rem 0.75rem;
   border-radius: 0.625rem;
@@ -193,18 +188,23 @@
 }
 
 .progressFill {
+  width: 100%;
   height: 100%;
   background: var(--color-amber-400);
   border-radius: 9999px;
-  transition: width 200ms linear;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 200ms linear;
 }
 
 /* ── Active recording bar ── */
 .recordingState {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  flex-wrap: wrap;
   align-items: center;
-  gap: 1rem;
+  justify-content: space-between;
+  gap: 0.75rem 1rem;
   padding: 0.875rem 0.75rem;
   border-radius: 0.625rem;
   background: color-mix(in srgb, var(--red) 6%, transparent);
@@ -249,6 +249,8 @@
   align-items: center;
   gap: 3px;
   height: 32px;
+  flex: 1 1 10rem;
+  min-width: 7rem;
 }
 
 .waveBar {
@@ -276,7 +278,22 @@
   font-size: 0.8125rem;
   font-weight: 500;
   cursor: pointer;
+  flex-shrink: 0;
   transition: background 200ms ease;
+}
+
+@media (max-width: 520px) {
+  .idleState {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+
+  .idleLabel {
+    grid-column: 1 / -1;
+  }
+
+  .recordingItem {
+    grid-template-columns: 1fr;
+  }
 }
 
 .stopBtn:hover {
@@ -334,7 +351,7 @@
 
 /* ── Light mode overrides ── */
 html[data-theme="light"] .recorder {
-  background: color-mix(in srgb, var(--amber) 7%, transparent);
+  background: color-mix(in srgb, var(--amber) 5%, transparent);
   border-color: var(--border-amber);
 }
 
@@ -430,7 +447,6 @@ html[data-theme="light"] .errorMsg {
 /* ── Reduced motion ── */
 @media (prefers-reduced-motion: reduce) {
   .waveBar           { animation: none; height: 14px; }
-  .recordBtnRing     { animation: none; }
   .recordingDot      { animation: none; }
   .recordingItem,
   .recordingState    { animation: none; }

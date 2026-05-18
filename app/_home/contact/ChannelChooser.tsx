@@ -1,6 +1,5 @@
 import { getTranslations } from 'next-intl/server'
 import { ExternalLinkIcon } from '@/assets/icons/ExternalLinkIcon'
-import { CalendarIcon } from '@/assets/icons/CalendarIcon'
 import { TelegramLogo } from '@/assets/logos/TelegramLogo'
 import { WhatsAppLogo } from '@/assets/logos/WhatsAppLogo'
 import { TrackedLink } from '@/app/_components/tracked-link/TrackedLink'
@@ -40,15 +39,6 @@ export async function ChannelChooser() {
       hoverClass: styles.cardWhatsapp,
       tracking: { action: 'outbound', target: 'whatsapp' },
     },
-    {
-      href: siteConfig.calendly.url,
-      title: t('channels.calendlyTitle'),
-      meta: t('channels.calendlyMeta'),
-      icon: <CalendarIcon className="w-5 h-5 text-white" />,
-      bubbleClass: styles.bubbleCalendly,
-      hoverClass: styles.cardCalendly,
-      tracking: { action: 'calendly' },
-    },
   ]
 
   return (
@@ -62,18 +52,16 @@ export async function ChannelChooser() {
             target="_blank"
             rel="noopener noreferrer"
             tracking={channel.tracking}
-            className={`group glass rounded-2xl p-4 flex items-center gap-3 transition-all duration-200 cursor-pointer ${channel.hoverClass}`}
+            className={`group ${styles.channelLink} ${channel.hoverClass}`}
           >
-            <div
-              className={`w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0 transition-transform duration-200 group-hover:scale-105 ${channel.bubbleClass}`}
-            >
+            <span className={`${styles.bubble} ${channel.bubbleClass}`}>
               {channel.icon}
-            </div>
-            <div className="flex-1 min-w-0">
-              <p className={`text-white font-semibold text-sm ${styles.cardTitle}`}>{channel.title}</p>
-              <p className={`text-white/35 text-xs mt-0.5 ${styles.cardMeta}`}>{channel.meta}</p>
-            </div>
-            <ExternalLinkIcon className={`w-4 h-4 flex-shrink-0 ${styles.externalIcon}`} />
+            </span>
+            <span className={styles.linkText}>
+              <span className={styles.cardTitle}>{channel.title}</span>
+              <span className={styles.cardMeta}>{channel.meta}</span>
+            </span>
+            <ExternalLinkIcon className={styles.externalIcon} />
           </TrackedLink>
         ))}
       </div>

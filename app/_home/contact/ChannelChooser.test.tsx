@@ -4,8 +4,8 @@ import messages from '@/messages/en.json'
 
 vi.mock('server-only', () => ({}))
 
-// Stub siteConfig — these URLs are gated off in production but the chooser
-// must still render them when mounted in tests.
+// Stub siteConfig — these URLs are gated off in production but contact entry
+// points must still render them when mounted in tests.
 vi.mock('@/app/_config/site-config', () => ({
   siteConfig: {
     social: {
@@ -51,24 +51,24 @@ vi.mock('@/app/_components/tracked-link/TrackedLink', () => ({
 }))
 
 import { ChannelChooser } from './ChannelChooser'
+import { ContactCallCard } from './ContactCallCard'
 
 describe('ChannelChooser', () => {
   beforeEach(() => {
     vi.clearAllMocks()
   })
 
-  it('renders 3 anchors with hrefs from siteConfig and external link attributes', async () => {
+  it('renders secondary channel anchors with hrefs from siteConfig and external link attributes', async () => {
     const ui = await ChannelChooser()
     render(ui)
 
     const links = screen.getAllByRole('link')
-    expect(links).toHaveLength(3)
+    expect(links).toHaveLength(2)
 
     const hrefs = links.map((link) => link.getAttribute('href'))
     expect(hrefs).toEqual([
       'https://t.me/test-tg',
       'https://wa.me/123456789',
-      'https://calendly.com/test/discovery',
     ])
 
     for (const link of links) {
@@ -81,5 +81,18 @@ describe('ChannelChooser', () => {
     const ui = await ChannelChooser()
     render(ui)
     expect(screen.getByText(messages.contact.channels.eyebrow)).toBeInTheDocument()
+  })
+
+  it('renders the promoted call card with the Calendly href', async () => {
+    const ui = await ContactCallCard()
+    render(ui)
+
+    expect(screen.getByText(messages.contact.preferCall)).toBeInTheDocument()
+    expect(screen.getByText(messages.contact.bookDiscoveryMeta)).toBeInTheDocument()
+
+    const link = screen.getByRole('link', { name: messages.contact.bookDiscovery })
+    expect(link).toHaveAttribute('href', 'https://calendly.com/test/discovery')
+    expect(link).toHaveAttribute('target', '_blank')
+    expect(link).toHaveAttribute('rel', 'noopener noreferrer')
   })
 })

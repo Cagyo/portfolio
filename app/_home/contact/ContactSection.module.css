@@ -1,3 +1,6 @@
 .formCol {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
   transition-delay: 0.15s;
 }

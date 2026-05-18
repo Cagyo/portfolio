@@ -3,6 +3,7 @@ import { getTranslations } from "next-intl/server";
 import { BlobBackground } from "@/app/_components/BlobBackground";
 import { SectionHeader } from "@/app/_components/SectionHeader";
 import { siteConfig } from "@/app/_config/site-config";
+import { ContactCallCard } from "./ContactCallCard";
 import { ChannelChooser } from "./ChannelChooser";
 import { ContactForm } from "./ContactForm";
 import { ContactInfo } from "./ContactInfo";
@@ -22,13 +23,14 @@ export async function ContactSection({ sectionNumber }: ContactSectionProps) {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeader number={sectionNumber} title={t("sectionTitle")} />
 
-        <div className="grid lg:grid-cols-5 gap-12">
+        <div className="grid lg:grid-cols-5 gap-10 lg:gap-12 items-start">
           <ContactInfo />
-          <div className={`lg:col-span-3 reveal ${styles.formCol}`}>
-            {siteConfig.features.contactChannels && <ChannelChooser />}
+          <div className={`lg:col-span-3 reveal order-1 lg:order-2 ${styles.formCol}`}>
+            <ContactCallCard />
             <Suspense>
               <ContactForm />
             </Suspense>
+            {siteConfig.features.contactChannels && <ChannelChooser />}
           </div>
         </div>
       </div>
