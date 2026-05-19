@@ -1,3 +1,4 @@
+/* Retained per refactor policy: @supports (backdrop-filter) fallback + data-state CSS transitions with dual duration (open vs closed) + multi-breakpoint grid→flex layout not expressible as Tailwind utilities. */
 .panel {
   position: fixed;
   left: 0.75rem;
