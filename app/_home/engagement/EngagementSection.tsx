@@ -2,14 +2,13 @@ import { getTranslations } from "next-intl/server";
 import type { ComponentType } from "react";
 import { BlobBackground } from "@/app/_components/BlobBackground";
 import { SectionHeader } from "@/app/_components/SectionHeader";
+import { Button } from "@/app/_components/button/Button";
 import { ExternalLinkIcon } from "@/assets/icons/ExternalLinkIcon";
 import { LightningIcon } from "@/assets/icons/LightningIcon";
 import { WarningIcon } from "@/assets/icons/WarningIcon";
 import { EngagementCard } from "./EngagementCard";
 import { EngagementCta } from "./EngagementCta";
 import type { Interest } from "../contact/contact-types";
-import cardStyles from "./EngagementCard.module.css";
-import styles from "./EngagementSection.module.css";
 
 type CardTone = "primary" | "secondary"
 type CardRole = "featured" | "supporting"
@@ -24,9 +23,13 @@ type CardMeta = {
   delay?: string
 }
 
+const engagementCtaLinkClassName = "w-fit text-sm font-medium leading-[1.4] no-underline underline-offset-4 transition-[color,text-decoration-color] duration-200 hover:underline";
+const engagementCtaPrimaryClassName = "text-amber-light [html[data-theme=light]_&]:text-[var(--tag-color)]";
+const engagementCtaSecondaryClassName = "text-[color-mix(in_srgb,var(--amber-light)_70%,var(--text-primary))] hover:text-amber-light";
+
 const VISIBLE_CARD_META: CardMeta[] = [
-  { translationIndex: 2, tone: "primary", role: "featured", IconComponent: WarningIcon, interest: "rescue", ctaClass: cardStyles.ctaPrimary },
-  { translationIndex: 0, tone: "secondary", role: "supporting", IconComponent: LightningIcon, interest: "mvp", ctaClass: cardStyles.ctaSecondary, delay: "0.08s" },
+  { translationIndex: 2, tone: "primary", role: "featured", IconComponent: WarningIcon, interest: "rescue", ctaClass: engagementCtaPrimaryClassName },
+  { translationIndex: 0, tone: "secondary", role: "supporting", IconComponent: LightningIcon, interest: "mvp", ctaClass: engagementCtaSecondaryClassName, delay: "0.08s" },
 ]
 
 type EngagementCardContent = {
@@ -62,7 +65,7 @@ export async function EngagementSection({ sectionNumber }: EngagementSectionProp
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeader number={sectionNumber} title={t("sectionTitle")} />
 
-        <div className={styles.pathGrid}>
+        <div className="grid items-stretch gap-5 md:grid-cols-[minmax(0,1.35fr)_minmax(18rem,0.8fr)]">
           {visibleCards.map(({ card, meta }, index) => {
             const cardNode = (
               <EngagementCard
@@ -82,7 +85,7 @@ export async function EngagementSection({ sectionNumber }: EngagementSectionProp
                   <EngagementCta
                     text={card.cta}
                     interest={meta.interest}
-                    className={`${cardStyles.ctaLink} ${meta.ctaClass}`}
+                    className={`${engagementCtaLinkClassName} ${meta.ctaClass}`}
                   />
                 }
               />
@@ -93,16 +96,16 @@ export async function EngagementSection({ sectionNumber }: EngagementSectionProp
             }
 
             return (
-              <div key={card.tag} className={styles.secondaryStack}>
+              <div key={card.tag} className="grid content-stretch gap-5">
                 {cardNode}
-                <div className={`reveal glass ${styles.cta}`}>
+                <div className="reveal glass flex flex-col items-center justify-between gap-4 rounded-2xl p-5 delay-[160ms] sm:flex-row sm:text-left">
                   <p className="text-muted-foreground text-sm text-center sm:text-left">
                     {t("footerText")}
                   </p>
-                  <a href="#contact" className="btn-amber px-6 py-2.5 rounded-xl text-sm flex-shrink-0 cursor-pointer inline-flex items-center gap-2">
+                  <Button href="#contact" className="inline-flex flex-shrink-0 cursor-pointer items-center gap-2 rounded-xl px-6 py-2.5 text-sm">
                     <span>{t("bookCall")}</span>
-                    <ExternalLinkIcon className="w-4 h-4 relative z-10" />
-                  </a>
+                    <ExternalLinkIcon className="w-4 h-4" />
+                  </Button>
                 </div>
               </div>
             )

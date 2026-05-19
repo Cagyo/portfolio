@@ -2,7 +2,6 @@ import Link from "next/link";
 import { getTranslations } from "next-intl/server";
 import { ArrowRightShortIcon } from "@/assets/icons/ArrowRightShortIcon";
 import { siteConfig } from "@/app/_config/site-config";
-import styles from "./not-found.module.css";
 
 export async function generateMetadata() {
   const t = await getTranslations("notFound");
@@ -27,7 +26,7 @@ export default async function NotFound() {
         </p>
         <Link
           href="/"
-          className={`inline-flex items-center gap-2 transition-colors font-medium ${styles.homeLink}`}
+          className="inline-flex items-center gap-2 font-medium text-amber-foreground transition-colors hover:text-[color-mix(in_srgb,var(--amber-light)_78%,var(--text-primary))] [html[data-theme=light]_&]:hover:text-[color-mix(in_srgb,var(--amber-dark)_80%,black)]"
         >
           <ArrowRightShortIcon className="w-4 h-4" />
           {t("backHome")}

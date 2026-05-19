@@ -8,7 +8,6 @@ import { CookieSettingsLink } from "@/app/_components/cookie-consent/CookieSetti
 import { TrackedLink } from "@/app/_components/tracked-link/TrackedLink";
 import { siteConfig } from "@/app/_config/site-config";
 import { BackToTopLink } from "./BackToTopLink";
-import styles from "./Footer.module.css";
 
 const FOOTER_LINKS = [
   { href: "/", key: "home" },
@@ -17,53 +16,47 @@ const FOOTER_LINKS = [
   { href: "/privacy", key: "privacy" },
 ] as const;
 
+const footerLinkClassName = "border-0 bg-transparent p-0 font-[inherit] text-faint-foreground transition-[color,border-color,background] duration-[180ms] ease-[ease] hover:text-[var(--tag-color)] focus-visible:rounded-md focus-visible:outline-2 focus-visible:outline-offset-[3px] focus-visible:outline-amber";
+const socialLinkClassName = "inline-flex size-7 items-center justify-center rounded-full border border-[color-mix(in_srgb,var(--text-primary)_7%,transparent)] bg-[color-mix(in_srgb,var(--text-primary)_4%,transparent)] text-faint-foreground transition-[color,border-color,background] duration-[180ms] ease-[ease] hover:border-[color-mix(in_srgb,var(--amber)_24%,transparent)] hover:bg-[color-mix(in_srgb,var(--amber)_8%,transparent)] hover:text-[var(--tag-color)] focus-visible:rounded-md focus-visible:outline-2 focus-visible:outline-offset-[3px] focus-visible:outline-amber";
+
 export async function Footer() {
   const t = await getTranslations("footer");
   return (
-    <footer className={styles.footer}>
-      <div className={styles.inner}>
+    <footer className="relative isolate border-t border-border bg-[linear-gradient(180deg,color-mix(in_srgb,var(--bg-secondary)_86%,var(--bg))_0%,var(--bg)_100%)] py-[clamp(1.75rem,2.8vw,2.75rem)] pb-[calc(clamp(2rem,3vw,3rem)_+_env(safe-area-inset-bottom))] before:pointer-events-none before:absolute before:inset-x-0 before:top-0 before:h-px before:bg-[linear-gradient(90deg,transparent_0%,color-mix(in_srgb,var(--amber)_28%,transparent)_50%,transparent_100%)] before:opacity-[0.42] [html[data-theme=light]_&]:bg-[linear-gradient(180deg,color-mix(in_srgb,var(--bg-secondary)_72%,var(--bg))_0%,var(--bg)_100%)] [html[data-theme=light]_&]:before:opacity-[0.36]">
+      <div className="mx-auto grid w-[min(calc(100%_-_2rem),72rem)] gap-[clamp(1.25rem,2vw,1.75rem)]">
         <nav
           aria-label={t("navAriaLabel")}
-          className={styles.nav}
+          className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2.5 text-sm sm:justify-start"
         >
           {FOOTER_LINKS.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              className={styles.footerLink}
+              className={footerLinkClassName}
             >
               {t(`links.${link.key}`)}
             </Link>
           ))}
         </nav>
-        <div className={styles.meta}>
-          <div className={styles.copy}>
-            <p className={styles.copyLine}>
+        <div className="grid items-end gap-5 sm:grid-cols-[minmax(0,1fr)_auto]">
+          <div className="min-w-0 text-center sm:text-left">
+            <p className="text-sm leading-[1.55] text-faint-foreground">
               {t("copyright")} {" "}
-              <span className={styles.author}>{t("author")}</span>. {t("crafted")}
-              {/* <span className="text-white/15 mx-1.5">&middot;</span>
-              <span className="inline-flex items-center gap-1.5">
-                <span
-                  className={`inline-flex items-center gap-1.5 px-2 py-0.5 rounded-md text-xs font-semibold tracking-wide ${styles.statusBadge}`}
-                >
-                  <SparkleIcon className="w-3 h-3 flex-shrink-0" />
-                  {t("builtWithAI")}
-                </span>
-              </span> */}
+              <span className="font-bold text-[var(--tag-color)]">{t("author")}</span>. {t("crafted")}
             </p>
-            <p className={styles.disclosure}>{t("analyticsDisclosure")}</p>
+            <p className="mt-[0.35rem] max-w-[34rem] text-xs leading-normal text-ghost-foreground [html[data-theme=light]_&]:text-muted-foreground">{t("analyticsDisclosure")}</p>
           </div>
-          <div className={styles.actions}>
-            <BackToTopLink label={t("backToTop")} className={styles.actionLink} />
-            <CookieSettingsLink className={styles.actionLink} />
-            <div className={styles.socials}>
+          <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-3.5 sm:justify-end">
+            <BackToTopLink label={t("backToTop")} className={footerLinkClassName} />
+            <CookieSettingsLink className={footerLinkClassName} />
+            <div className="flex items-center gap-2.5">
               <TrackedLink
                 href={siteConfig.social.github.url}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={t("githubAriaLabel")}
                 tracking={{ action: "outbound", target: "github" }}
-                className={styles.socialLink}
+                className={socialLinkClassName}
               >
                 <GitHubLogo className="w-4 h-4" />
               </TrackedLink>
@@ -73,7 +66,7 @@ export async function Footer() {
                 rel="noopener noreferrer"
                 aria-label={t("linkedinAriaLabel")}
                 tracking={{ action: "outbound", target: "linkedin" }}
-                className={styles.socialLink}
+                className={socialLinkClassName}
               >
                 <LinkedInLogo className="w-4 h-4" />
               </TrackedLink>
@@ -84,7 +77,7 @@ export async function Footer() {
                   rel="noopener noreferrer"
                   aria-label={t("twitterAriaLabel")}
                   tracking={{ action: "outbound", target: "twitter" }}
-                  className={styles.socialLink}
+                  className={socialLinkClassName}
                 >
                   <XLogo className="w-4 h-4" />
                 </TrackedLink>
