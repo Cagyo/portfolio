@@ -6,6 +6,7 @@ export type FilterGroupConfig = {
   key: string
   label: string
   options: string[]
+  defaultCollapsed?: boolean
   match: (project: Project, values: string[]) => boolean
 }
 
@@ -46,12 +47,14 @@ export const FILTER_GROUPS: FilterGroupConfig[] = [
     key: "stackFilters",
     label: "Stack",
     options: [...STACK_FILTER_NAMES],
+    defaultCollapsed: true,
     match: (project, values) => values.every((value) => project.stack.some((entry) => getStackName(entry) === value)),
   },
   {
     key: "company",
     label: "Company",
     options: ["Personal", "Avocado Technology", "All Square", "EngagePoint"],
+    defaultCollapsed: true,
     match: (project, values) => values.includes(project.company),
   },
 ]

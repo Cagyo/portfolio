@@ -1,9 +1,17 @@
 .card {
-  transition: border-color 0.25s ease;
+  overflow: hidden;
+  border-radius: 8px;
+  transition: background 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
 }
 
 .card:hover {
-  border-color: color-mix(in srgb, var(--amber) 20%, transparent);
+  background: var(--surface-hover);
+  border-color: color-mix(in srgb, var(--amber) 18%, transparent);
+  transform: translateY(-1px);
+}
+
+.cardFeatured {
+  border-color: color-mix(in srgb, var(--amber) 16%, transparent);
 }
 
 .card[data-highlighted="true"] {
@@ -24,6 +32,72 @@
   display: block;
   color: inherit;
   text-decoration: none;
+}
+
+.cardContent {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1.25rem;
+  padding: 1.5rem 1.5rem 0.5rem;
+}
+
+.cardMain {
+  min-width: 0;
+}
+
+.cardTop {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.cardHeader {
+  display: grid;
+  flex: 1 1 auto;
+  gap: 0.45rem;
+  min-width: 0;
+}
+
+.cardTags {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.cardTitle {
+  color: var(--text-primary);
+  font-family: var(--font-heading);
+  font-size: clamp(1.25rem, 3.4vw, 1.55rem);
+  font-weight: 900;
+  line-height: 1.08;
+}
+
+.cardFeatured .cardTitle {
+  font-size: clamp(1.55rem, 4.4vw, 2rem);
+}
+
+.metaGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem 1rem;
+  margin-top: 0.95rem;
+}
+
+.metaRow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  min-width: 0;
+  color: var(--text-muted);
+  font-size: 0.875rem;
+}
+
+.metaRow span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .cardLink:hover .readMore {
@@ -52,11 +126,47 @@
 }
 
 .problem {
-  margin-bottom: 0.5rem;
+  margin-top: 1.15rem;
+  margin-bottom: 0.55rem;
   color: color-mix(in srgb, var(--amber-light) 70%, transparent);
-  font-size: 0.75rem;
+  font-size: 0.875rem;
   font-style: italic;
-  line-height: 1.45;
+  line-height: 1.55;
+}
+
+.description {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  line-height: 1.65;
+}
+
+.outcomes {
+  margin-top: 1.1rem;
+  padding-top: 1rem;
+  border-top: 1px solid color-mix(in srgb, var(--amber) 18%, transparent);
+}
+
+.outcomesLabel {
+  margin-bottom: 0.55rem;
+  color: color-mix(in srgb, var(--amber-light) 72%, transparent);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.outcomesList {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.outcomesItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  line-height: 1.55;
 }
 
 .readMore svg {
@@ -78,19 +188,6 @@
   }
 }
 
-.details {
-  overflow: hidden;
-  transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.expandIcon {
-  transition: transform 0.2s ease;
-}
-
-.expandIconOpen {
-  transform: rotate(180deg);
-}
-
 .metaBadge {
   background: color-mix(in srgb, white 5%, transparent);
   border: 1px solid color-mix(in srgb, white 10%, transparent);
@@ -103,14 +200,83 @@
   border-radius: 4px;
 }
 
-.stackChip {
-  padding: 4px 10px;
-  border-radius: 7px;
-  font-size: 0.7rem;
-  font-weight: 500;
-  background: color-mix(in srgb, white 5%, transparent);
-  border: 1px solid color-mix(in srgb, white 9%, transparent);
-  color: color-mix(in srgb, white 60%, transparent);
+.projectIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  width: 3.25rem;
+  height: 3.25rem;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.projectIconImage {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: saturate(0.92) drop-shadow(0 1px 8px color-mix(in srgb, var(--bg) 42%, transparent));
+}
+
+.projectLogo {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.projectLogoApp {
+  width: 74%;
+  height: 74%;
+}
+
+.projectLogoInline {
+  width: 1.25rem;
+  height: 1.25rem;
+  border-radius: 5px;
+}
+
+.projectLogoOriginal {
+  display: block;
+}
+
+.projectLogoMask {
+  position: absolute;
+  inset: 0;
+  display: none;
+  background: var(--project-icon-color-dark);
+  -webkit-mask: var(--project-icon-mask) center / contain no-repeat;
+  mask: var(--project-icon-mask) center / contain no-repeat;
+  pointer-events: none;
+}
+
+/* Dark theme is the default: tint the logo via the dark mask and drop the authored SVG. */
+.projectLogo[data-has-dark-icon-color="true"] .projectLogoOriginal {
+  display: none;
+}
+
+.projectLogo[data-has-dark-icon-color="true"] .projectLogoMaskDark {
+  display: block;
+}
+
+/* Light theme: hide the dark mask. If no light color is provided, fall back to the
+   authored SVG; otherwise tint with the light mask. */
+html[data-theme="light"] .projectLogo[data-has-dark-icon-color="true"] .projectLogoMaskDark {
+  display: none;
+}
+
+html[data-theme="light"] .projectLogo[data-has-dark-icon-color="true"]:not([data-has-light-icon-color="true"]) .projectLogoOriginal {
+  display: block;
+}
+
+html[data-theme="light"] .projectLogo[data-has-light-icon-color="true"] .projectLogoOriginal {
+  display: none;
+}
+
+html[data-theme="light"] .projectLogo[data-has-light-icon-color="true"] .projectLogoMaskLight {
+  display: block;
+  background: var(--project-icon-color-light);
 }
 
 /* Link strip */
@@ -153,7 +319,7 @@
   border: 1px solid color-mix(in srgb, var(--amber) 22%, transparent);
   color: var(--amber);
   text-decoration: none;
-  transition: background 0.2s, border-color 0.2s, transform 0.2s;
+  transition: background 0.2s, border-color 0.2s, color 0.2s, transform 0.2s;
   cursor: pointer;
   flex-shrink: 0;
 }
@@ -161,7 +327,22 @@
 .linkWeb:hover {
   background: color-mix(in srgb, var(--amber) 15%, transparent);
   border-color: color-mix(in srgb, var(--amber) 45%, transparent);
+  color: var(--amber-light);
   transform: translateY(-1px);
+}
+
+.linkIcon {
+  width: 0.875rem;
+  height: 0.875rem;
+  flex-shrink: 0;
+}
+
+.inlineLogoImage {
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+  object-fit: contain;
+  filter: drop-shadow(0 1px 5px color-mix(in srgb, var(--bg) 38%, transparent));
 }
 
 .linkStore {
@@ -174,16 +355,30 @@
   border-radius: 10px;
   background: color-mix(in srgb, white 4%, transparent);
   border: 1px solid color-mix(in srgb, white 9%, transparent);
+  color: color-mix(in srgb, white 62%, transparent);
   text-decoration: none;
-  transition: background 0.2s, border-color 0.2s, transform 0.2s;
+  transition: background 0.2s, border-color 0.2s, color 0.2s, transform 0.2s;
   cursor: pointer;
   flex-shrink: 0;
 }
 
 .linkStore:hover {
-  background: color-mix(in srgb, white 8%, transparent);
-  border-color: color-mix(in srgb, white 18%, transparent);
+  background: color-mix(in srgb, white 9%, transparent);
+  border-color: color-mix(in srgb, var(--amber-light) 28%, transparent);
+  color: var(--text-primary);
   transform: translateY(-1px);
+}
+
+.storeIcon {
+  width: 1.25rem;
+  height: 1.25rem;
+  flex-shrink: 0;
+  color: currentColor;
+  transition: color 0.2s;
+}
+
+.linkStore:hover .storeIcon {
+  color: var(--amber-light);
 }
 
 .storeLabelTop {
@@ -192,6 +387,7 @@
   line-height: 1;
   margin-bottom: 1px;
   display: block;
+  transition: color 0.2s;
 }
 
 .storeLabelMain {
@@ -200,6 +396,15 @@
   color: color-mix(in srgb, white 75%, transparent);
   line-height: 1;
   display: block;
+  transition: color 0.2s;
+}
+
+.linkStore:hover .storeLabelTop {
+  color: var(--text-secondary);
+}
+
+.linkStore:hover .storeLabelMain {
+  color: var(--text-primary);
 }
 
 .linkPrivateWrap {
@@ -229,7 +434,7 @@
   bottom: calc(100% + 8px);
   left: 50%;
   transform: translateX(-50%);
-  background: #16162a;
+  background: var(--bg-secondary);
   border: 1px solid color-mix(in srgb, white 10%, transparent);
   color: color-mix(in srgb, white 45%, transparent);
   font-size: 0.68rem;
@@ -274,14 +479,13 @@ html[data-theme="light"] .readMore {
   color: var(--tag-color);
 }
 
-html[data-theme="light"] .cardLink:hover .readMore {
-  color: color-mix(in srgb, var(--amber-dark) 80%, black);
+html[data-theme="light"] .card:hover {
+  background: var(--surface-hover);
+  border-color: color-mix(in srgb, var(--amber-dark) 18%, var(--border));
 }
 
-html[data-theme="light"] .stackChip {
-  background: var(--surface);
-  border-color: var(--border);
-  color: var(--text-muted);
+html[data-theme="light"] .cardLink:hover .readMore {
+  color: color-mix(in srgb, var(--amber-dark) 80%, var(--text-primary));
 }
 
 html[data-theme="light"] .metaIcon {
@@ -290,6 +494,19 @@ html[data-theme="light"] .metaIcon {
 
 html[data-theme="light"] .problem {
   color: color-mix(in srgb, var(--amber-dark) 76%, var(--text-primary));
+}
+
+html[data-theme="light"] .outcomes {
+  border-top-color: color-mix(in srgb, var(--amber-dark) 18%, transparent);
+}
+
+html[data-theme="light"] .outcomesLabel {
+  color: color-mix(in srgb, var(--amber-dark) 72%, var(--text-primary));
+}
+
+html[data-theme="light"] .projectIcon {
+  background: var(--surface);
+  border-color: var(--border);
 }
 
 html[data-theme="light"] .linkStrip {
@@ -301,13 +518,15 @@ html[data-theme="light"] .linkTypeLabel {
 }
 
 html[data-theme="light"] .linkStore {
-  background: var(--surface);
-  border-color: var(--border);
+  background: color-mix(in srgb, var(--text-primary) 4%, var(--surface));
+  border-color: color-mix(in srgb, var(--text-primary) 12%, transparent);
+  color: var(--text-muted);
 }
 
 html[data-theme="light"] .linkStore:hover {
-  background: var(--surface-hover);
-  border-color: var(--border);
+  background: color-mix(in srgb, var(--text-primary) 10%, var(--surface));
+  border-color: color-mix(in srgb, var(--text-primary) 24%, transparent);
+  color: var(--text-primary);
 }
 
 html[data-theme="light"] .linkWeb {
@@ -319,6 +538,7 @@ html[data-theme="light"] .linkWeb {
 html[data-theme="light"] .linkWeb:hover {
   background: color-mix(in srgb, var(--amber) 14%, transparent);
   border-color: color-mix(in srgb, var(--amber-dark) 42%, transparent);
+  color: color-mix(in srgb, var(--amber-dark) 82%, var(--text-primary));
 }
 
 html[data-theme="light"] .storeLabelTop {
@@ -329,6 +549,12 @@ html[data-theme="light"] .storeLabelMain {
   color: var(--text-secondary);
 }
 
+html[data-theme="light"] .linkStore:hover .storeIcon,
+html[data-theme="light"] .linkStore:hover .storeLabelTop,
+html[data-theme="light"] .linkStore:hover .storeLabelMain {
+  color: var(--text-primary);
+}
+
 html[data-theme="light"] .linkPrivate {
   background: var(--surface);
   border-color: var(--border);
@@ -336,9 +562,29 @@ html[data-theme="light"] .linkPrivate {
 }
 
 html[data-theme="light"] .linkPrivateTooltip {
-  background: #fff;
+  background: var(--surface-hover);
   border-color: var(--border);
   color: var(--text-faint);
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .card,
+  .cardEntrance,
+  .readMore,
+  .readMore svg,
+  .linkWeb,
+  .linkStore,
+  .storeIcon,
+  .storeLabelTop,
+  .storeLabelMain,
+  .linkPrivateTooltip {
+    animation: none;
+    transition: none;
+  }
 
+  .card:hover,
+  .linkWeb:hover,
+  .linkStore:hover {
+    transform: none;
+  }
+}

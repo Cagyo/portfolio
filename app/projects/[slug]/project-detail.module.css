@@ -133,6 +133,7 @@
   object-fit: contain;
   border-radius: 4px;
   margin-right: 0.25rem;
+  filter: drop-shadow(0 1px 5px color-mix(in srgb, var(--bg) 36%, transparent));
 }
 
 .metaStripItem {
@@ -405,12 +406,28 @@
   border: 1px solid color-mix(in srgb, var(--amber) 24%, transparent);
   color: var(--amber);
   text-decoration: none;
-  transition: background 0.2s, border-color 0.2s;
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
 }
 
 .linkWeb:hover {
   background: color-mix(in srgb, var(--amber) 18%, transparent);
   border-color: color-mix(in srgb, var(--amber) 45%, transparent);
+  color: var(--amber-light);
+}
+
+.linkIcon {
+  width: 0.875rem;
+  height: 0.875rem;
+  flex-shrink: 0;
+}
+
+.inlineLogo {
+  width: 1.25rem;
+  height: 1.25rem;
+  flex-shrink: 0;
+  border-radius: 5px;
+  object-fit: contain;
+  filter: drop-shadow(0 1px 5px color-mix(in srgb, var(--bg) 38%, transparent));
 }
 
 .linkStore {
@@ -425,13 +442,30 @@
   background: color-mix(in srgb, white 4%, transparent);
   border: 1px solid color-mix(in srgb, white 10%, transparent);
   text-decoration: none;
-  transition: background 0.2s, border-color 0.2s, transform 0.2s;
+  transition: background 0.2s, border-color 0.2s, color 0.2s, transform 0.2s;
 }
 
 .linkStore:hover {
-  background: color-mix(in srgb, white 8%, transparent);
-  border-color: color-mix(in srgb, white 18%, transparent);
+  background: color-mix(in srgb, white 9%, transparent);
+  border-color: color-mix(in srgb, var(--amber-light) 28%, transparent);
+  color: var(--text-primary);
   transform: translateY(-1px);
+}
+
+.storeIcon {
+  width: 1.25rem;
+  height: 1.25rem;
+  flex-shrink: 0;
+  color: currentColor;
+  transition: color 0.2s;
+}
+
+.linkStore:hover .storeIcon {
+  color: var(--amber-light);
+}
+
+.linkStore span {
+  transition: color 0.2s;
 }
 
 .privateBadge {
@@ -498,17 +532,35 @@ html[data-theme="light"] .dutyDot {
 
 html[data-theme="light"] .metaBadge,
 html[data-theme="light"] .ndaBadge,
-html[data-theme="light"] .privateBadge,
-html[data-theme="light"] .linkStore {
+html[data-theme="light"] .privateBadge {
   background: color-mix(in srgb, var(--text-primary) 5%, transparent);
   border-color: color-mix(in srgb, var(--text-primary) 12%, transparent);
   color: color-mix(in srgb, var(--text-primary) 70%, transparent);
 }
 
+html[data-theme="light"] .linkStore {
+  background: color-mix(in srgb, var(--text-primary) 4%, var(--surface));
+  border-color: color-mix(in srgb, var(--text-primary) 12%, transparent);
+  color: var(--text-muted);
+}
+
+html[data-theme="light"] .metaStripLogo {
+  filter: saturate(0.96) contrast(1.08) drop-shadow(0 1px 1px color-mix(in srgb, var(--text-primary) 34%, transparent));
+}
+
+html[data-theme="light"] .inlineLogo {
+  filter: var(--logo-tint-light);
+}
+
 html[data-theme="light"] .linkStore:hover {
-  background: color-mix(in srgb, var(--text-primary) 10%, transparent);
-  border-color: color-mix(in srgb, var(--text-primary) 20%, transparent);
+  background: color-mix(in srgb, var(--text-primary) 10%, var(--surface));
+  border-color: color-mix(in srgb, var(--text-primary) 24%, transparent);
+  color: var(--text-primary);
   transform: translateY(-1px);
+}
+
+html[data-theme="light"] .linkStore:hover .storeIcon {
+  color: var(--text-primary);
 }
 
 html[data-theme="light"] .year {
@@ -554,6 +606,7 @@ html[data-theme="light"] .linkWeb {
 html[data-theme="light"] .linkWeb:hover {
   background: color-mix(in srgb, var(--amber) 14%, transparent);
   border-color: color-mix(in srgb, var(--amber-dark) 42%, transparent);
+  color: color-mix(in srgb, var(--amber-dark) 82%, var(--text-primary));
 }
 
 html[data-theme="light"] .validationStrip {

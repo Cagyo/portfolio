@@ -16,6 +16,9 @@ export const PROJECT_BASES: ProjectBase[] = [
     homeHero: true,
     imageBg: "bg-gradient-to-br from-red-900/40 via-red-800/20 to-transparent",
     logo: "/assets/projects/logo/omegamasters_logo.svg",
+    iconColor: {
+      light: "rgb(179, 50, 54)",
+    },
     stack: ["TypeScript", "React", "React Native", "Next.js", "NestJS", "GraphQL", "Apollo Client", "Apollo Server", "Node.js", "PostgreSQL", "Prisma", "Redis", { name: "Bull", extra: true }, "Saferpay", "OneSignal", "MJML", "Docker", "DigitalOcean"],
   },
   {
@@ -29,6 +32,7 @@ export const PROJECT_BASES: ProjectBase[] = [
       appStore: "https://apps.apple.com/lu/app/all-square-golf/id793801635",
       playStore: "https://play.google.com/store/apps/details?id=com.allsquaregolf.rnapp",
     },
+    logo: "/assets/projects/logo/allsquaregolf_logo.svg",
     imageBg: "bg-gradient-to-br from-green-900/30 to-transparent",
     stack: ["TypeScript", "React", "Next.js", "React Native", "GraphQL", "Apollo Client", "Apollo Server", "Node.js", "MariaDB", "Sequelize", "Stripe"],
   },
@@ -72,6 +76,10 @@ export const PROJECT_BASES: ProjectBase[] = [
     stack: ["TypeScript", "React", "React Native", "GraphQL", "Apollo Client", "Apollo Server", "Node.js", "MongoDB", "Express", "AWS", "CircleCI", "Google Maps", "Redux", "Redux-Saga"],
     homeHero: true,
     logo: "/assets/projects/logo/pinclean_logo.svg",
+    iconColor: {
+      light: "rgb(94, 165, 217)",
+      dark: "rgb(94, 165, 217)",
+    },
     screenshots: [
       {
         src: "/projects-anonymized/pinclean.png",
@@ -91,6 +99,10 @@ export const PROJECT_BASES: ProjectBase[] = [
       type: "mobile",
       appStore: "https://apps.apple.com/ua/app/yamback/id1494671035",
       playStore: "https://play.google.com/store/apps/details?id=com.yamback.app",
+    },
+    iconColor: {
+      light: "rgb(117, 179, 92)",
+      dark: "rgb(96, 176, 76)",
     },
     homeHero: true,
     logo: "/assets/projects/logo/yamback_logo.svg",

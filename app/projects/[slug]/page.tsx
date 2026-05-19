@@ -474,10 +474,10 @@ function WebLink({ url, label, logo }: { url: string; label: string; logo?: stri
           alt=""
           width={20}
           height={20}
-          className="object-contain flex-shrink-0"
+          className={styles.inlineLogo}
         />
       ) : (
-        <ExternalLinkIcon className="w-3.5 h-3.5 flex-shrink-0" />
+        <ExternalLinkIcon className={styles.linkIcon} />
       )}
       {label}
     </a>
@@ -503,7 +503,7 @@ function StoreLinks({
         rel="noopener noreferrer"
         className={styles.linkStore}
       >
-        <AppStoreLogo className="w-5 h-5 flex-shrink-0" />
+        <AppStoreLogo className={styles.storeIcon} />
         <span>{appStoreLabel}</span>
       </a>
       <a
@@ -512,7 +512,7 @@ function StoreLinks({
         rel="noopener noreferrer"
         className={styles.linkStore}
       >
-        <GooglePlayLogo className="w-5 h-5 flex-shrink-0" />
+        <GooglePlayLogo className={styles.storeIcon} />
         <span>{playStoreLabel}</span>
       </a>
     </>
@@ -536,10 +536,10 @@ function PrivateBadge({
           alt=""
           width={20}
           height={20}
-          className="object-contain flex-shrink-0"
+          className={styles.inlineLogo}
         />
       ) : (
-        <LockIcon className="w-3.5 h-3.5 flex-shrink-0" />
+        <LockIcon className={styles.linkIcon} />
       )}
       {label}
     </span>
