@@ -78,7 +78,7 @@ export function FilterPanelMobile({
         tabIndex={-1}
       >
         <div className="flex items-center justify-between mb-6">
-          <h2 className="font-heading font-bold text-white text-lg">{t("filters")}</h2>
+          <h2 className="font-heading font-bold text-foreground text-lg">{t("filters")}</h2>
           <button
             type="button"
             onClick={onClose}
@@ -101,11 +101,11 @@ export function FilterPanelMobile({
         ))}
 
         {totalActive > 0 && (
-          <div className="mt-6 pt-6 border-t border-white/5">
+          <div className="mt-6 pt-6 border-t border-border">
             <button
               type="button"
               onClick={() => { onClear(); onClose(); }}
-              className="w-full text-center text-amber-500 text-sm hover:text-amber-400 cursor-pointer py-2"
+              className="w-full text-center text-amber-foreground text-sm hover:text-amber-foreground/80 cursor-pointer py-2"
             >
               {t("clearAllFilters")}
             </button>

@@ -98,7 +98,7 @@ export function ProjectCard({ project, onNavigate, animationDelay = 0, featured 
                   <span className={styles.metaBadge}>{project.productType}</span>
                   <span className={styles.metaBadge}>{project.industry}</span>
                   {project.year && (
-                    <span className="text-white/25 text-xs font-mono">{project.year}</span>
+                    <span className="text-ghost-foreground text-xs font-mono">{project.year}</span>
                   )}
                 </div>
 
@@ -131,7 +131,7 @@ export function ProjectCard({ project, onNavigate, animationDelay = 0, featured 
                 <ul className={styles.outcomesList}>
                   {project.achievements.map((achievement) => (
                     <li key={achievement} className={styles.outcomesItem}>
-                      <LightningIcon className="w-4 h-4 text-amber-400 flex-shrink-0 mt-0.5" />
+                      <LightningIcon className="w-4 h-4 text-amber-foreground flex-shrink-0 mt-0.5" />
                       {achievement}
                     </li>
                   ))}

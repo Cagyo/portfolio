@@ -144,7 +144,7 @@ export function ContactForm() {
           <div>
             <label
               htmlFor="name"
-              className="block text-white/60 text-sm font-medium mb-2"
+              className="block text-muted-foreground text-sm font-medium mb-2"
             >
               {t("form.nameLabel")}
             </label>
@@ -152,7 +152,7 @@ export function ContactForm() {
               id="name"
               type="text"
               placeholder={t('form.namePlaceholder')}
-              className="form-input w-full rounded-xl px-4 py-3 text-white placeholder-white/25 text-sm"
+              className="form-input w-full rounded-xl px-4 py-3 text-foreground placeholder-ghost-foreground text-sm"
               {...register('name')}
             />
             {errors.name && (
@@ -164,7 +164,7 @@ export function ContactForm() {
           <div>
             <label
               htmlFor="email"
-              className="block text-white/60 text-sm font-medium mb-2"
+              className="block text-muted-foreground text-sm font-medium mb-2"
             >
               {t('form.emailLabel')}
             </label>
@@ -172,7 +172,7 @@ export function ContactForm() {
               id="email"
               type="email"
               placeholder={t('form.emailPlaceholder')}
-              className="form-input w-full rounded-xl px-4 py-3 text-white placeholder-white/25 text-sm"
+              className="form-input w-full rounded-xl px-4 py-3 text-foreground placeholder-ghost-foreground text-sm"
               {...register('email')}
             />
             {errors.email && (
@@ -187,13 +187,13 @@ export function ContactForm() {
         <div>
           <label
             htmlFor="interest"
-            className="block text-white/60 text-sm font-medium mb-2"
+            className="block text-muted-foreground text-sm font-medium mb-2"
           >
             {t('form.interestLabel')}
           </label>
           <select
             id="interest"
-            className="form-input w-full rounded-xl px-4 py-3 text-white/70 text-sm cursor-pointer"
+            className="form-input w-full rounded-xl px-4 py-3 text-foreground-soft text-sm cursor-pointer"
             {...register('interest')}
           >
             <option value="mvp">
@@ -248,7 +248,7 @@ export function ContactForm() {
             <div>
               <label
                 htmlFor="message"
-                className="block text-white/60 text-sm font-medium mb-2"
+                className="block text-muted-foreground text-sm font-medium mb-2"
               >
                 {t('form.messageLabel')}
               </label>
@@ -256,7 +256,7 @@ export function ContactForm() {
                 id="message"
                 rows={5}
                 placeholder={t('form.messagePlaceholder')}
-                className="form-input w-full rounded-xl px-4 py-3 text-white placeholder-white/25 text-sm resize-none"
+                className="form-input w-full rounded-xl px-4 py-3 text-foreground placeholder-ghost-foreground text-sm resize-none"
                 {...register('message')}
               />
               {errors.message && (
@@ -337,9 +337,9 @@ export function ContactForm() {
           <div className={`glass-amber rounded-xl p-5 ${styles.successCard}`}>
             <div className="flex items-center gap-3 mb-4">
               <CheckIcon className="w-5 h-5 text-green-400 flex-shrink-0" />
-              <p className="text-white font-semibold text-sm">{t('form.successHeading')}</p>
+              <p className="text-foreground font-semibold text-sm">{t('form.successHeading')}</p>
             </div>
-            <p className="text-white/60 text-sm mb-4">{t('form.successBody')}</p>
+            <p className="text-muted-foreground text-sm mb-4">{t('form.successBody')}</p>
             <div className={styles.successCtas}>
               <TrackedLink
                 href={siteConfig.calendly.url}

@@ -96,7 +96,7 @@ export async function EngagementSection({ sectionNumber }: EngagementSectionProp
               <div key={card.tag} className={styles.secondaryStack}>
                 {cardNode}
                 <div className={`reveal glass ${styles.cta}`}>
-                  <p className="text-white/50 text-sm text-center sm:text-left">
+                  <p className="text-muted-foreground text-sm text-center sm:text-left">
                     {t("footerText")}
                   </p>
                   <a href="#contact" className="btn-amber px-6 py-2.5 rounded-xl text-sm flex-shrink-0 cursor-pointer inline-flex items-center gap-2">

@@ -18,7 +18,7 @@ export async function SocialLinks() {
         rel="noopener noreferrer"
         aria-label={t("githubProfile")}
         tracking={{ action: "outbound", target: "github" }}
-        className="glass w-10 h-10 rounded-xl flex items-center justify-center text-white/50 hover:text-amber-400 hover:border-amber-500/30 transition-colors duration-200 cursor-pointer"
+        className="glass w-10 h-10 rounded-xl flex items-center justify-center text-muted-foreground hover:text-amber-foreground hover:border-border-amber transition-colors duration-200 cursor-pointer"
       >
         <GitHubLogo className="w-5 h-5" />
       </TrackedLink>
@@ -28,7 +28,7 @@ export async function SocialLinks() {
         rel="noopener noreferrer"
         aria-label={t("linkedinProfile")}
         tracking={{ action: "outbound", target: "linkedin" }}
-        className="glass w-10 h-10 rounded-xl flex items-center justify-center text-white/50 hover:text-amber-400 hover:border-amber-500/30 transition-colors duration-200 cursor-pointer"
+        className="glass w-10 h-10 rounded-xl flex items-center justify-center text-muted-foreground hover:text-amber-foreground hover:border-border-amber transition-colors duration-200 cursor-pointer"
       >
         <LinkedInLogo className="w-5 h-5" />
       </TrackedLink>
@@ -39,7 +39,7 @@ export async function SocialLinks() {
           rel="noopener noreferrer"
           aria-label={t("twitterProfile")}
           tracking={{ action: "outbound", target: "twitter" }}
-          className="glass w-10 h-10 rounded-xl flex items-center justify-center text-white/50 hover:text-amber-400 hover:border-amber-500/30 transition-colors duration-200 cursor-pointer"
+          className="glass w-10 h-10 rounded-xl flex items-center justify-center text-muted-foreground hover:text-amber-foreground hover:border-border-amber transition-colors duration-200 cursor-pointer"
         >
           <XLogo className="w-5 h-5" />
         </TrackedLink>

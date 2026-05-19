@@ -28,14 +28,14 @@ export async function ApplySection() {
         </div>
 
         <h2
-          className={`reveal font-heading font-black text-4xl sm:text-5xl text-white mb-6 ${styles.delay1}`}
+          className={`reveal font-heading font-black text-4xl sm:text-5xl text-foreground mb-6 ${styles.delay1}`}
         >
           {t("headline1")}<br />
           <span className="text-gradient">{t("headlineGradient")}</span>
         </h2>
 
         <p
-          className={`reveal text-white/50 text-lg leading-relaxed mb-10 ${styles.delay2}`}
+          className={`reveal text-muted-foreground text-lg leading-relaxed mb-10 ${styles.delay2}`}
         >
           {t("body")}
         </p>
@@ -54,16 +54,16 @@ export async function ApplySection() {
             <div
               className={`w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform duration-200 ${styles.calendlyBtn}`}
             >
-              <CalendarIcon className="w-5 h-5 text-white" />
+              <CalendarIcon className="w-5 h-5 text-foreground" />
             </div>
             <div className="text-left">
-              <p className="text-white font-semibold text-sm">{t("calendlyLabel")}</p>
-              <p className="text-white/35 text-xs mt-0.5">{t("calendlyMeta")}</p>
+              <p className="text-foreground font-semibold text-sm">{t("calendlyLabel")}</p>
+              <p className="text-faint-foreground text-xs mt-0.5">{t("calendlyMeta")}</p>
             </div>
-            <ExternalLinkIcon className="w-4 h-4 text-white/25 group-hover:text-violet-400 group-hover:translate-x-0.5 transition-all duration-200 flex-shrink-0 ml-2" />
+            <ExternalLinkIcon className="w-4 h-4 text-ghost-foreground group-hover:text-violet-400 group-hover:translate-x-0.5 transition-all duration-200 flex-shrink-0 ml-2" />
           </TrackedLink>
 
-          <span className="text-white/25 text-sm hidden sm:block">{t("or")}</span>
+          <span className="text-ghost-foreground text-sm hidden sm:block">{t("or")}</span>
 
           <Button href="/#contact" className="px-7 py-3.5 rounded-xl text-base cursor-pointer inline-flex items-center gap-2">
             {t("messageCta")}

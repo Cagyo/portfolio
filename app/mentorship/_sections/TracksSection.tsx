@@ -12,13 +12,13 @@ import styles from "./TracksSection.module.css";
 type TrackAccent = "amber" | "violet"
 
 function DeliverablesList({ items, accent }: { items: string[]; accent: TrackAccent }) {
-  const checkColor = accent === "amber" ? "text-amber-500" : "text-violet-400";
+  const checkColor = accent === "amber" ? "text-amber-foreground" : "text-violet-400";
   return (
     <>
       {items.map((item) => (
         <div key={item} className="flex items-start gap-3">
           <CheckIcon className={`w-4 h-4 ${checkColor} mt-0.5 flex-shrink-0`} strokeWidth={2.5} />
-          <span className="text-white/60 text-sm">{item}</span>
+          <span className="text-muted-foreground text-sm">{item}</span>
         </div>
       ))}
     </>
@@ -27,7 +27,7 @@ function DeliverablesList({ items, accent }: { items: string[]; accent: TrackAcc
 
 function ScopeTags({ items, accent }: { items: string[]; accent: TrackAccent }) {
   const tagClass = accent === "amber"
-    ? "bg-white/5 text-white/40 border border-white/8"
+    ? "bg-card text-faint-foreground border border-border"
     : "bg-violet-500/10 text-violet-400/70 border border-violet-500/20";
   return (
     <div className="flex flex-wrap gap-1.5">
@@ -54,7 +54,7 @@ export async function TracksSection() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeader number={t("sectionNumber")} title={t("sectionTitle")} accentColor="violet" />
 
-        <p className="reveal text-white/50 text-lg leading-relaxed max-w-2xl mb-16">
+        <p className="reveal text-muted-foreground text-lg leading-relaxed max-w-2xl mb-16">
           {t("body")}
         </p>
 
@@ -62,35 +62,35 @@ export async function TracksSection() {
         <div className="grid sm:grid-cols-2 gap-6 items-stretch mb-8">
 
           {/* Fast Track */}
-          <div className="reveal glass rounded-2xl overflow-hidden flex flex-col hover:border-amber-500/20 transition-colors duration-300">
-            <div className="bg-gradient-to-r from-amber-500/20 to-amber-600/10 px-6 pt-6 pb-5 border-b border-white/5">
+          <div className="reveal glass rounded-2xl overflow-hidden flex flex-col hover:border-border-amber transition-colors duration-300">
+            <div className="bg-gradient-to-r from-amber/10 to-amber-dark/10 px-6 pt-6 pb-5 border-b border-border">
               <div className="flex items-center justify-between mb-3">
-                <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-amber-500/20 border border-amber-500/30 text-amber-400">
+                <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-amber/10 border border-border-amber text-amber-foreground">
                   {t("fastTrack.badge")}
                 </span>
-                <span className="text-white/30 text-xs font-medium">{t("fastTrack.duration")}</span>
+                <span className="text-ghost-foreground text-xs font-medium">{t("fastTrack.duration")}</span>
               </div>
-              <h3 className="font-heading font-black text-2xl text-white mb-1">{t("fastTrack.name")}</h3>
-              <p className="text-white/50 text-sm">{t("fastTrack.tagline")}</p>
+              <h3 className="font-heading font-black text-2xl text-foreground mb-1">{t("fastTrack.name")}</h3>
+              <p className="text-muted-foreground text-sm">{t("fastTrack.tagline")}</p>
             </div>
 
-            <div className="px-6 py-5 border-b border-white/5 flex items-baseline gap-2">
+            <div className="px-6 py-5 border-b border-border flex items-baseline gap-2">
               <span
                 className={`font-heading font-black text-4xl ${styles.amberPrice}`}
               >
                 {t("fastTrack.price")}
               </span>
-              <span className="text-white/30 text-sm">{t("fastTrack.pricePer")}</span>
-              <span className="ml-auto text-white/25 text-xs">{t("fastTrack.priceBreakdown")}</span>
+              <span className="text-ghost-foreground text-sm">{t("fastTrack.pricePer")}</span>
+              <span className="ml-auto text-ghost-foreground text-xs">{t("fastTrack.priceBreakdown")}</span>
             </div>
 
             <div className="px-6 py-5 flex-1 space-y-3">
-              <p className="text-white/40 text-xs uppercase tracking-widest font-bold mb-4">{t("deliverableLabel")}</p>
+              <p className="text-faint-foreground text-xs uppercase tracking-widest font-bold mb-4">{t("deliverableLabel")}</p>
               <DeliverablesList items={fastDeliverables} accent="amber" />
             </div>
 
             <div className="px-6 pb-5">
-              <p className="text-white/25 text-xs uppercase tracking-widest font-bold mb-3">{t("scopeLabel")}</p>
+              <p className="text-ghost-foreground text-xs uppercase tracking-widest font-bold mb-3">{t("scopeLabel")}</p>
               <ScopeTags items={fastScope} accent="amber" />
             </div>
 
@@ -105,37 +105,37 @@ export async function TracksSection() {
           <div className={`reveal relative glass rounded-2xl overflow-hidden flex flex-col ${styles.deepDiveCard}`}>
             <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-violet-600 via-violet-400 to-violet-600 pointer-events-none" />
 
-            <div className="bg-gradient-to-r from-violet-500/15 to-violet-600/8 px-6 pt-6 pb-5 border-b border-white/5">
+            <div className="bg-gradient-to-r from-violet-500/15 to-violet-600/8 px-6 pt-6 pb-5 border-b border-border">
               <div className="flex items-center justify-between mb-3">
                 <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-violet-500/15 border border-violet-500/25 text-violet-400">
                   {t("deepDive.badge")}
                 </span>
-                <span className="text-white/30 text-xs font-medium flex items-center gap-1">
+                <span className="text-ghost-foreground text-xs font-medium flex items-center gap-1">
                   {t("deepDive.duration")}
                   <span className="px-1.5 py-0.5 rounded bg-violet-500/20 text-violet-400 text-xs font-bold">{t("deepDive.fullStackLabel")}</span>
                 </span>
               </div>
-              <h3 className="font-heading font-black text-2xl text-white mb-1">{t("deepDive.name")}</h3>
-              <p className="text-white/50 text-sm">{t("deepDive.tagline")}</p>
+              <h3 className="font-heading font-black text-2xl text-foreground mb-1">{t("deepDive.name")}</h3>
+              <p className="text-muted-foreground text-sm">{t("deepDive.tagline")}</p>
             </div>
 
-            <div className="px-6 py-5 border-b border-white/5 flex items-baseline gap-2">
+            <div className="px-6 py-5 border-b border-border flex items-baseline gap-2">
               <span
                 className={`font-heading font-black text-4xl ${styles.violetPrice}`}
               >
                 {t("deepDive.price")}
               </span>
-              <span className="text-white/30 text-sm">{t("deepDive.pricePer")}</span>
-              <span className="ml-auto text-white/25 text-xs">{t("deepDive.priceBreakdown")}</span>
+              <span className="text-ghost-foreground text-sm">{t("deepDive.pricePer")}</span>
+              <span className="ml-auto text-ghost-foreground text-xs">{t("deepDive.priceBreakdown")}</span>
             </div>
 
             <div className="px-6 py-5 flex-1 space-y-3">
-              <p className="text-white/40 text-xs uppercase tracking-widest font-bold mb-4">{t("deliverableLabel")}</p>
+              <p className="text-faint-foreground text-xs uppercase tracking-widest font-bold mb-4">{t("deliverableLabel")}</p>
               <DeliverablesList items={deepDeliverables} accent="violet" />
             </div>
 
             <div className="px-6 pb-5">
-              <p className="text-white/25 text-xs uppercase tracking-widest font-bold mb-3">{t("scopeLabel")}</p>
+              <p className="text-ghost-foreground text-xs uppercase tracking-widest font-bold mb-3">{t("scopeLabel")}</p>
               <ScopeTags items={deepScope} accent="violet" />
             </div>
 
@@ -155,8 +155,8 @@ export async function TracksSection() {
           <div className="flex items-center gap-3">
             <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse-slow flex-shrink-0" />
             <div>
-              <p className="text-white/60 text-sm font-medium">{t("scarcityText")}</p>
-              <p className="text-white/35 text-xs mt-0.5">{t("scarcitySubtext")}</p>
+              <p className="text-muted-foreground text-sm font-medium">{t("scarcityText")}</p>
+              <p className="text-faint-foreground text-xs mt-0.5">{t("scarcitySubtext")}</p>
             </div>
           </div>
           <TrackedLink
@@ -164,7 +164,7 @@ export async function TracksSection() {
             target="_blank"
             rel="noopener noreferrer"
             tracking={{ action: "calendly" }}
-            className={`flex-shrink-0 inline-flex items-center gap-2 px-6 py-2.5 rounded-xl text-sm font-semibold cursor-pointer text-white ${styles.bookBtn}`}
+            className={`flex-shrink-0 inline-flex items-center gap-2 px-6 py-2.5 rounded-xl text-sm font-semibold cursor-pointer text-foreground ${styles.bookBtn}`}
           >
             <CalendarIcon className="w-4 h-4" />
             {t("bookCall")}

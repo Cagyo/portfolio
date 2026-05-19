@@ -45,7 +45,7 @@ export async function MentorshipHero() {
 
         {/* Subhead */}
         <p
-          className={`reveal text-white/55 text-lg sm:text-xl leading-relaxed max-w-2xl mb-10 ${styles.delay2}`}
+          className={`reveal text-muted-foreground text-lg sm:text-xl leading-relaxed max-w-2xl mb-10 ${styles.delay2}`}
         >
           {t("subhead")}
         </p>
@@ -56,10 +56,10 @@ export async function MentorshipHero() {
         >
           {stats.map((stat, i) => (
             <div key={stat.label} className="flex items-center gap-8 sm:gap-14">
-              {i > 0 && <div className="w-px h-8 bg-white/10 hidden sm:block" />}
+              {i > 0 && <div className="w-px h-8 bg-foreground/8 hidden sm:block" />}
               <div className="text-center">
                 <p className="font-heading font-black text-3xl text-gradient">{stat.value}</p>
-                <p className="text-white/40 text-sm mt-1">{stat.label}</p>
+                <p className="text-faint-foreground text-sm mt-1">{stat.label}</p>
               </div>
             </div>
           ))}
@@ -91,7 +91,7 @@ export async function MentorshipHero() {
 
       {/* Scroll indicator — violet variant */}
       <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2">
-        <span className="text-white/30 text-xs tracking-widest uppercase">Scroll</span>
+        <span className="text-ghost-foreground text-xs tracking-widest uppercase">Scroll</span>
         <div className="w-px h-12 bg-gradient-to-b from-violet-500/60 to-transparent" />
       </div>
     </section>

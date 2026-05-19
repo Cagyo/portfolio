@@ -21,10 +21,10 @@ export async function MentorshipTeaser() {
                 <SparkleIcon className="w-3 h-3 flex-shrink-0" />
                 {t("eyebrow")}
               </span>
-              <span className="text-white/25 text-xs">&middot; {t("badge")}</span>
+              <span className="text-ghost-foreground text-xs">&middot; {t("badge")}</span>
             </div>
-            <h3 className="font-heading font-black text-2xl text-white mb-2">{t("heading")}</h3>
-            <p className="text-white/50 text-sm leading-relaxed max-w-lg">
+            <h3 className="font-heading font-black text-2xl text-foreground mb-2">{t("heading")}</h3>
+            <p className="text-muted-foreground text-sm leading-relaxed max-w-lg">
               {t("body")}
             </p>
           </div>

@@ -75,7 +75,7 @@ export async function ProjectsSection({ sectionNumber }: ProjectsSectionProps) {
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeader number={sectionNumber} title={t("sectionTitle")} />
-        <p className="reveal text-white/50 mb-16 max-w-xl">
+        <p className="reveal text-muted-foreground mb-16 max-w-xl">
           {t("subtitle")}
         </p>
 

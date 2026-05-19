@@ -9,8 +9,8 @@ export function ClosingCta() {
   return (
     <div className="mt-12 glass rounded-2xl px-7 py-5 flex flex-col sm:flex-row items-center justify-between gap-4">
       <div className="text-center sm:text-left">
-        <p className="text-white/40 text-xs mb-1">{t("closingEyebrow")}</p>
-        <p className="font-heading font-bold text-white text-base sm:text-lg leading-snug">
+        <p className="text-faint-foreground text-xs mb-1">{t("closingEyebrow")}</p>
+        <p className="font-heading font-bold text-foreground text-base sm:text-lg leading-snug">
           {t("closingHeadline")}
         </p>
       </div>
