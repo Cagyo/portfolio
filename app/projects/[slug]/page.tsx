@@ -42,6 +42,24 @@ const companyLogos: Record<string, string> = {
   EngagePoint: "/assets/companies/engagepoint.jpg",
 };
 
+const metaBadgeClass =
+  "inline-flex items-center bg-card border border-border text-muted-foreground text-[0.65rem] font-semibold tracking-[0.04em] uppercase px-1.5 py-0.5 rounded";
+
+const ndaBadgeClass =
+  "inline-flex items-center gap-1.5 px-2 py-0.5 rounded-md text-[0.65rem] font-semibold tracking-[0.04em] uppercase bg-card border border-border text-muted-foreground";
+
+const bodyTextClass =
+  "text-foreground-soft text-[1.0625rem] leading-[1.65] m-0 max-w-[75ch]";
+
+const kickerLabelClass =
+  "text-[0.65rem] font-semibold tracking-[0.12em] uppercase text-faint-foreground m-0";
+
+const dutyDotClass =
+  "flex-shrink-0 w-1.5 h-1.5 rounded-full bg-foreground/35 mt-[9px]";
+
+const linkChipClass =
+  "inline-flex items-center min-h-9 px-3 py-1.5 rounded-lg text-xs font-medium bg-card border border-border text-muted-foreground no-underline transition-[background-color,border-color,color] duration-200 hover:bg-card-hover hover:border-foreground/20 hover:text-foreground max-sm:min-h-11";
+
 function trimToWordBoundary(text: string, max: number): string {
   if (text.length <= max) return text;
   const sliced = text.slice(0, max);
@@ -117,6 +135,7 @@ export default async function Page({
   const hasStackEvidence =
     stackGroups.primaryGroups.length > 0 ||
     stackGroups.secondaryGroups.length > 0;
+  const hasScreenshots = Boolean(project.screenshots?.length);
 
   const { pageUrl, imageUrl } = buildCaseStudyUrls(project.slug);
   const articleSchema = buildCaseStudySchema({ project, pageUrl, imageUrl });
@@ -125,6 +144,10 @@ export default async function Page({
     { name: tHub("title"), path: "/projects" },
     { name: title, path: caseStudyPath(project.slug) },
   ]);
+
+  const heroGridClass = hasScreenshots
+    ? "grid grid-cols-[minmax(0,1fr)_minmax(280px,360px)] gap-12 items-start max-md:grid-cols-1 max-md:gap-8"
+    : "grid grid-cols-1 gap-12 items-start max-md:gap-8";
 
   return (
     <>
@@ -144,76 +167,85 @@ export default async function Page({
 
       <main className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-20">
         {/* Hero */}
-        <header className={styles.hero} aria-labelledby="case-study-title">
-          <div
-            className={styles.heroGrid}
-            data-no-visual={project.screenshots?.length ? undefined : "true"}
-          >
-            <div className={styles.heroText}>
-              <h1 id="case-study-title" className={styles.title}>
+        <header
+          className="mb-14 pb-11 border-b border-border max-md:mb-11 max-md:pb-9"
+          aria-labelledby="case-study-title"
+        >
+          <div className={heroGridClass}>
+            <div className="max-w-none">
+              <h1
+                id="case-study-title"
+                className="font-heading font-black text-[clamp(2rem,5vw,3.25rem)] leading-[1.05] text-foreground m-0 mb-3 max-sm:text-[2.35rem]"
+              >
                 {title}
               </h1>
               {project.problem ? (
-                <p className={styles.problem}>{project.problem}</p>
+                <p className="text-amber-foreground/85 italic text-[1.0625rem] leading-[1.5] m-0 mb-5 max-w-[75ch]">
+                  {project.problem}
+                </p>
               ) : null}
 
               {heroProofItems.length > 0 ? (
                 <ProofHighlights items={heroProofItems} />
               ) : null}
 
-              <div className={styles.heroMeta}>
+              <div className="flex flex-wrap items-center gap-2 mb-3">
                 {project.devTypes.map((devType) => (
                   <Tag key={devType}>{devType}</Tag>
                 ))}
-                <span className={styles.metaBadge}>{project.productType}</span>
-                <span className={styles.metaBadge}>{project.industry}</span>
+                <span className={metaBadgeClass}>{project.productType}</span>
+                <span className={metaBadgeClass}>{project.industry}</span>
                 {project.year ? (
-                  <span className={styles.year}>{project.year}</span>
+                  <span className="text-ghost-foreground text-xs font-mono">
+                    {project.year}
+                  </span>
                 ) : null}
                 {isPrivate ? (
-                  <span className={styles.ndaBadge}>
+                  <span className={ndaBadgeClass}>
                     <LockIcon className="w-3.5 h-3.5" aria-hidden />
                     {t("ndaBadge")}
                   </span>
                 ) : null}
               </div>
 
-              <div className={styles.metaStrip}>
+              <div className="flex flex-wrap items-center gap-y-2 gap-x-4 mt-5 mb-6 list-none p-0 max-sm:items-start max-sm:flex-col">
                 {companyLogo ? (
                   <Image
                     src={companyLogo}
                     alt=""
                     width={24}
                     height={24}
-                    className={styles.metaStripLogo}
+                    className={`flex-shrink-0 object-contain rounded mr-1 ${styles.metaStripLogo}`}
                   />
                 ) : null}
                 <span className={styles.metaStripItem}>
-                  <span className={styles.metaStripLabel}>
+                  <span className="text-faint-foreground/90 text-[0.65rem] font-semibold tracking-[0.06em] uppercase">
                     {t("metaCompany")}
                   </span>
-                  <span className={styles.metaStripValue}>
+                  <span className="text-foreground-soft text-[0.9rem] font-medium">
                     {project.company}
                   </span>
                 </span>
                 <span className={styles.metaStripItem}>
-                  <span className={styles.metaStripLabel}>
+                  <span className="text-faint-foreground/90 text-[0.65rem] font-semibold tracking-[0.06em] uppercase">
                     {t("metaRole")}
                   </span>
-                  <span className={styles.metaStripValue}>{project.role}</span>
+                  <span className="text-foreground-soft text-[0.9rem] font-medium">
+                    {project.role}
+                  </span>
                 </span>
                 <span className={styles.metaStripItem}>
-                  <span className={styles.metaStripLabel}>
+                  <span className="text-faint-foreground/90 text-[0.65rem] font-semibold tracking-[0.06em] uppercase">
                     {t("metaTeam")}
                   </span>
-                  <span className={styles.metaStripValue}>
+                  <span className="text-foreground-soft text-[0.9rem] font-medium">
                     {`${t("teamPrefix")} ${project.teamLabel}`}
                   </span>
                 </span>
               </div>
 
               {/* Primary CTA above the fold */}
-              <div className={styles.heroCta}>
+              <div className="flex flex-wrap items-center gap-4 mt-6">
                 <Button
                   href={`/?ref=${project.slug}#contact`}
                   variant="primary"
@@ -222,13 +254,13 @@ export default async function Page({
                   {t("primaryCta")}
                   <ArrowRightIcon className="w-4 h-4" aria-hidden />
                 </Button>
-                <span className={styles.heroCtaHint}>
+                <span className="text-[0.8rem] text-muted-foreground">
                   {t("primaryCtaHint")}
                 </span>
               </div>
             </div>
             {project.screenshots?.length ? (
-              <div className={styles.heroVisual}>
+              <div className="w-full">
                 <ProjectScreenshots
                   screenshots={project.screenshots}
                   projectTitle={title}
@@ -239,12 +271,12 @@ export default async function Page({
           </div>
         </header>
 
-        <div className={styles.body}>
+        <div className="flex flex-col gap-14">
           {/* Band 1 — Overview (description + scope) */}
           <Band heading={t("overviewHeading")}>
-            <p className={styles.bodyText}>{project.description}</p>
+            <p className={bodyTextClass}>{project.description}</p>
             <SubBlock kicker={t("scopeHeading")}>
-              <p className={styles.bodyText}>{project.skills}</p>
+              <p className={bodyTextClass}>{project.skills}</p>
             </SubBlock>
           </Band>
 
@@ -260,34 +292,20 @@ export default async function Page({
               }
             >
               {project.approach ? (
-                <p className={styles.bodyText}>{project.approach}</p>
+                <p className={bodyTextClass}>{project.approach}</p>
               ) : null}
               {project.duties.length > 0 ? (
                 project.approach ? (
                   <SubBlock kicker={t("dutiesHeading")}>
-                    <ul className={styles.dutiesList}>
-                      {project.duties.map((duty) => (
-                        <li key={duty} className={styles.dutyItem}>
-                          <span className={styles.dutyDot} aria-hidden />
-                          {duty}
-                        </li>
-                      ))}
-                    </ul>
+                    <DutiesList duties={project.duties} />
                   </SubBlock>
                 ) : (
-                  <ul className={styles.dutiesList}>
-                    {project.duties.map((duty) => (
-                      <li key={duty} className={styles.dutyItem}>
-                        <span className={styles.dutyDot} aria-hidden />
-                        {duty}
-                      </li>
-                    ))}
-                  </ul>
+                  <DutiesList duties={project.duties} />
                 )
               ) : null}
               {project.teamDetail ? (
                 <SubBlock kicker={t("teamHeading")}>
-                  <p className={styles.bodyText}>{project.teamDetail}</p>
+                  <p className={bodyTextClass}>{project.teamDetail}</p>
                 </SubBlock>
               ) : null}
             </Band>
@@ -299,10 +317,13 @@ export default async function Page({
             project.devTypes.length > 0) ? (
             <Band heading={t("achievementsHeading")}>
               {project.achievements.length > 0 ? (
-                <ul className={styles.achievementsList}>
+                <ul className="flex flex-col gap-2 max-w-[75ch] m-0 p-0 list-none">
                   {project.achievements.map((achievement) => (
-                    <li key={achievement} className={styles.achievementItem}>
-                      <span className={styles.dutyDot} aria-hidden />
+                    <li
+                      key={achievement}
+                      className="flex items-start gap-2.5 text-foreground/90 text-[0.95rem] leading-[1.5]"
+                    >
+                      <span className={dutyDotClass} aria-hidden />
                       {achievement}
                     </li>
                   ))}
@@ -320,12 +341,12 @@ export default async function Page({
               ) : null}
               {project.devTypes.length > 0 ? (
                 <SubBlock kicker={t("devTypesHeading")}>
-                  <div className={styles.chipRow}>
+                  <div className="flex flex-wrap gap-1.5">
                     {project.devTypes.map((devType) => (
                       <Link
                         key={devType}
                         href={`/projects?devTypes=${encodeURIComponent(devType)}`}
-                        className={styles.linkChip}
+                        className={linkChipClass}
                         prefetch={false}
                       >
                         {devType}
@@ -352,10 +373,10 @@ export default async function Page({
           />
 
           {/* Bottom nav: back to hub + secondary contact CTA */}
-          <div className={styles.bottomNav}>
+          <div className="flex flex-wrap items-center justify-between gap-4 mt-4 pt-6 border-t border-border">
             <Link
               href="/projects"
-              className={styles.backLink}
+              className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground no-underline transition-colors hover:text-foreground"
               prefetch={false}
             >
               <ArrowLeftShortIcon className="w-4 h-4" aria-hidden />
@@ -378,16 +399,38 @@ export default async function Page({
 
 function ProofHighlights({ items }: { items: readonly string[] }) {
   return (
-    <ol className={styles.proofList}>
+    <ol className="flex flex-col gap-2.5 max-w-[44ch] m-0 mb-6 py-3.5 px-0 list-none border-y border-border">
       {items.map((proofItem, proofIndex) => (
-        <li key={proofItem} className={styles.proofItem}>
-          <span className={styles.proofIndex} aria-hidden="true">
+        <li
+          key={proofItem}
+          className="grid grid-cols-[2.5rem_minmax(0,1fr)] gap-3 text-foreground/85 text-[0.95rem] leading-[1.5] max-sm:grid-cols-[2rem_minmax(0,1fr)]"
+        >
+          <span
+            className="text-amber-foreground/85 font-mono text-[0.7rem] leading-[2]"
+            aria-hidden="true"
+          >
             {String(proofIndex + 1).padStart(2, "0")}
           </span>
           <span>{proofItem}</span>
         </li>
       ))}
     </ol>
+  );
+}
+
+function DutiesList({ duties }: { duties: readonly string[] }) {
+  return (
+    <ul className="grid grid-cols-1 sm:grid-cols-2 sm:gap-x-6 gap-2 list-none m-0 p-0">
+      {duties.map((duty) => (
+        <li
+          key={duty}
+          className="flex items-start gap-2.5 text-foreground-soft text-[0.95rem] leading-[1.5]"
+        >
+          <span className={dutyDotClass} aria-hidden />
+          {duty}
+        </li>
+      ))}
+    </ul>
   );
 }
 
@@ -399,8 +442,10 @@ function Band({
   children: React.ReactNode;
 }) {
   return (
-    <section className={styles.band}>
-      <h2 className={styles.bandHeading}>{heading}</h2>
+    <section className="flex flex-col gap-5">
+      <h2 className="font-heading font-extrabold text-[1.625rem] leading-[1.2] text-foreground m-0 max-sm:text-[1.35rem]">
+        {heading}
+      </h2>
       {children}
     </section>
   );
@@ -414,8 +459,8 @@ function SubBlock({
   children: React.ReactNode;
 }) {
   return (
-    <div className={styles.subBlock}>
-      <p className={styles.kickerLabel}>{kicker}</p>
+    <div className="flex flex-col gap-2">
+      <p className={kickerLabelClass}>{kicker}</p>
       {children}
     </div>
   );
@@ -440,8 +485,10 @@ function ValidationStrip({
   labels: ValidationLabels;
 }) {
   return (
-    <div className={styles.validationStrip}>
-      <span className={styles.linkTypeLabel}>{labels.links}</span>
+    <div className="flex flex-wrap items-center gap-2.5 px-5 py-4 rounded-[0.875rem] bg-foreground/[0.03] border border-border">
+      <span className="text-[0.65rem] font-semibold tracking-[0.06em] uppercase text-ghost-foreground mr-1.5">
+        {labels.links}
+      </span>
       {link.type === "private" ? (
         <PrivateBadge label={labels.privateLabel} tooltip={labels.privateTooltip} logo={logo} />
       ) : null}
@@ -460,13 +507,22 @@ function ValidationStrip({
   );
 }
 
+const linkWebClass =
+  "inline-flex items-center gap-2 px-4 py-2 rounded-[0.625rem] text-[0.8rem] font-semibold bg-amber/10 border border-[color-mix(in_srgb,var(--amber)_24%,transparent)] text-amber-foreground no-underline transition-[background-color,border-color,color] duration-200 hover:bg-amber/18 hover:border-border-amber hover:text-amber-foreground/90";
+
+const linkStoreClass =
+  "group/store inline-flex items-center gap-2 px-3.5 py-2 rounded-[0.625rem] text-[0.8rem] font-semibold text-foreground-soft bg-card border border-border no-underline transition-[background-color,border-color,color,transform] duration-200 hover:bg-card-hover hover:border-border-amber hover:text-foreground hover:-translate-y-px motion-reduce:transition-none motion-reduce:hover:translate-y-0";
+
+const storeIconClass =
+  "w-5 h-5 flex-shrink-0 text-current transition-colors duration-200 group-hover/store:text-amber-foreground";
+
 function WebLink({ url, label, logo }: { url: string; label: string; logo?: string }) {
   return (
     <a
       href={url}
       target="_blank"
       rel="noopener noreferrer"
-      className={styles.linkWeb}
+      className={linkWebClass}
     >
       {logo ? (
         <Image
@@ -474,10 +530,10 @@ function WebLink({ url, label, logo }: { url: string; label: string; logo?: stri
           alt=""
           width={20}
           height={20}
-          className={styles.inlineLogo}
+          className={`w-5 h-5 flex-shrink-0 rounded-[5px] object-contain ${styles.inlineLogo}`}
         />
       ) : (
-        <ExternalLinkIcon className={styles.linkIcon} />
+        <ExternalLinkIcon className="w-3.5 h-3.5 flex-shrink-0" />
       )}
       {label}
     </a>
@@ -501,19 +557,19 @@ function StoreLinks({
         href={appStore}
         target="_blank"
         rel="noopener noreferrer"
-        className={styles.linkStore}
+        className={linkStoreClass}
       >
-        <AppStoreLogo className={styles.storeIcon} />
-        <span>{appStoreLabel}</span>
+        <AppStoreLogo className={storeIconClass} />
+        <span className="transition-colors duration-200">{appStoreLabel}</span>
       </a>
       <a
         href={playStore}
         target="_blank"
         rel="noopener noreferrer"
-        className={styles.linkStore}
+        className={linkStoreClass}
       >
-        <GooglePlayLogo className={styles.storeIcon} />
-        <span>{playStoreLabel}</span>
+        <GooglePlayLogo className={storeIconClass} />
+        <span className="transition-colors duration-200">{playStoreLabel}</span>
       </a>
     </>
   );
@@ -529,17 +585,20 @@ function PrivateBadge({
   logo?: string;
 }) {
   return (
-    <span className={styles.privateBadge} title={tooltip}>
+    <span
+      className="inline-flex items-center gap-2 px-3.5 py-2 rounded-[0.625rem] text-[0.8rem] font-semibold bg-card border border-border text-muted-foreground"
+      title={tooltip}
+    >
       {logo ? (
         <Image
           src={logo}
           alt=""
           width={20}
           height={20}
-          className={styles.inlineLogo}
+          className={`w-5 h-5 flex-shrink-0 rounded-[5px] object-contain ${styles.inlineLogo}`}
         />
       ) : (
-        <LockIcon className={styles.linkIcon} />
+        <LockIcon className="w-3.5 h-3.5 flex-shrink-0" />
       )}
       {label}
     </span>
