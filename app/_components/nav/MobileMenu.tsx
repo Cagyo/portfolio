@@ -3,11 +3,11 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { useTranslations } from "next-intl";
+import { cn } from "@/app/_lib/cn";
 import { HamburgerIcon } from "@/assets/icons/HamburgerIcon";
 import { XMarkIcon } from "@/assets/icons/XMarkIcon";
 import { Button } from "@/app/_components/button/Button";
 import { useActiveSection } from "./use-active-section";
-import styles from "./MobileMenu.module.css";
 
 type NavLink = { label: string; href: string }
 
@@ -53,12 +53,17 @@ export function MobileMenu({ links, cta }: MobileMenuProps) {
     wasOpen.current = open;
   }, [open]);
 
+  // Reset open state when navigating away (Activity preservation)
+  useEffect(() => {
+    return () => setOpen(false);
+  }, []);
+
   return (
     <>
       <Button
         href={ctaHref}
         onClick={() => setOpen(false)}
-        className={styles.mobileCta}
+        className="inline-flex items-center justify-center min-h-9 px-[0.875rem] rounded-[0.75rem] text-[0.8125rem] leading-none whitespace-nowrap"
       >
         {ctaLabel}
       </Button>
@@ -67,7 +72,7 @@ export function MobileMenu({ links, cta }: MobileMenuProps) {
         <button
           ref={triggerRef}
           onClick={() => setOpen((prev) => !prev)}
-          className={styles.trigger}
+          className="inline-flex items-center justify-center w-9 h-9 p-0 border border-transparent rounded-[0.75rem] bg-transparent text-foreground-soft cursor-pointer transition-[color,background-color,border-color] duration-200 hover:text-foreground hover:bg-amber/8 hover:border-[color-mix(in_srgb,var(--amber)_22%,transparent)] focus-visible:outline-2 focus-visible:outline focus-visible:outline-[color-mix(in_srgb,var(--amber)_70%,transparent)] focus-visible:outline-offset-[0.1875rem]"
           aria-label={t("mobileMenuOpenAriaLabel")}
           aria-expanded={open}
         >
@@ -79,7 +84,10 @@ export function MobileMenu({ links, cta }: MobileMenuProps) {
         <>
           {/* Backdrop */}
           <div
-            className={`${styles.overlay} ${open ? styles.overlayOpen : ""}`}
+            className={cn(
+              "mobile-overlay fixed inset-0 backdrop-blur-[4px] z-40 transition-opacity duration-[250ms] ease-[ease]",
+              open ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+            )}
             onClick={() => setOpen(false)}
             aria-hidden
           />
@@ -91,15 +99,21 @@ export function MobileMenu({ links, cta }: MobileMenuProps) {
             aria-label={t("mobileMenuAriaLabel")}
             aria-hidden={!open}
             inert={!open}
-            className={`${styles.panel} ${open ? styles.panelOpen : ""}`}
+            className={cn(
+              "fixed inset-0 z-40 bg-background-elevated overflow-y-auto overflow-x-hidden flex flex-col items-center pt-[120px] pb-12 transition-transform duration-300 ease-[cubic-bezier(0.4,0,0.2,1)]",
+              open ? "translate-y-0" : "-translate-y-full"
+            )}
           >
-            <nav aria-label={t("mobileMenuAriaLabel")} className={styles.menuNav}>
+            <nav aria-label={t("mobileMenuAriaLabel")} className="flex flex-col items-center gap-6 w-full">
               {links.map((link) => (
                 <a
                   key={link.href}
                   href={link.href}
                   onClick={() => setOpen(false)}
-                  className={`${styles.menuLink} ${link.href === `#${activeId}` ? styles.menuLinkActive : ""}`}
+                  className={cn(
+                    "text-2xl font-medium text-foreground-soft transition-colors duration-200 px-4 py-2 cursor-pointer hover:text-foreground",
+                    link.href === `#${activeId}` && "text-amber-foreground"
+                  )}
                 >
                   {link.label}
                 </a>

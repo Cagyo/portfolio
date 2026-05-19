@@ -4,7 +4,6 @@ import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { MoonIcon } from "@/assets/icons/MoonIcon";
 import { SunIcon } from "@/assets/icons/SunIcon";
-import styles from "./ThemeToggle.module.css";
 
 type ThemeToggleProps = {
   /**
@@ -34,7 +33,7 @@ export function ThemeToggle({ initialIsDark }: ThemeToggleProps) {
   return (
     <button
       onClick={toggle}
-      className={styles.themeToggle}
+      className="relative w-9 h-9 rounded-[10px] bg-card border border-border flex items-center justify-center cursor-pointer transition-all duration-[250ms] ease-[ease] text-faint-foreground shrink-0 hover:bg-amber/8 hover:border-border-amber hover:text-amber-foreground"
       aria-label={t("toggleTheme")}
     >
       {isDark ? (

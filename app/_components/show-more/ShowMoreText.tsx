@@ -2,8 +2,8 @@
 
 import { useId, useState, useRef, useLayoutEffect } from 'react'
 import { useTranslations } from 'next-intl'
+import { cn } from '@/app/_lib/cn'
 import { ChevronDownIcon } from '@/assets/icons/ChevronDownIcon'
-import styles from './ShowMoreText.module.css'
 
 type ShowMoreTextProps = {
   text: string
@@ -41,8 +41,8 @@ export function ShowMoreText({ text, textClassName, collapsedLines = 2 }: ShowMo
       <p
         id={textId}
         ref={ref}
-        className={`${styles.text} ${textClassName ?? ''}`}
-        style={{ maxHeight: isExpanded ? (fullHeight ?? 'none') : collapsedHeight }}
+        className={cn('overflow-hidden', textClassName)}
+        style={{ maxHeight: isExpanded ? (fullHeight ?? undefined) : collapsedHeight }}
       >
         {text}
       </p>
@@ -52,10 +52,13 @@ export function ShowMoreText({ text, textClassName, collapsedLines = 2 }: ShowMo
           onClick={() => setIsExpanded((prev) => !prev)}
           aria-controls={textId}
           aria-expanded={isExpanded}
-          className={styles.toggle}
+          className="show-more-toggle inline-flex items-center gap-[0.2rem] text-[0.75rem] mt-1 cursor-pointer transition-colors duration-150 hover:text-amber-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber focus-visible:ring-offset-[3px] focus-visible:rounded-md motion-reduce:transition-none"
         >
           <span>{isExpanded ? t('showLess') : t('showMore')}</span>
-          <ChevronDownIcon className={`${styles.chevron} ${isExpanded ? styles.chevronUp : ''}`} />
+          <ChevronDownIcon className={cn(
+            'w-3 h-3 transition-transform duration-[350ms] ease-[ease] motion-reduce:transition-none',
+            isExpanded && 'rotate-180'
+          )} />
         </button>
       )}
     </div>
