@@ -12,7 +12,6 @@ import { SkillFilterTabs } from "./SkillFilterTabs";
 import { ShippableStacks } from "./ShippableStacks";
 import { CATEGORIES, SKILLS } from "@/app/_data/skills-data";
 import { getProjectCountByStack } from "@/app/_data/projects/get-stack-stats";
-import styles from "./SkillsSection.module.css";
 
 const AI_CATEGORY_ID = 9;
 
@@ -26,10 +25,18 @@ type SkillGroupProps = {
 
 function SkillGroup({ children, label, tone = "muted" }: SkillGroupProps) {
   return (
-    <div className={styles.skillGroup}>
-      <div className={styles.skillGroupHeader}>
-        <span className={tone === "strong" ? styles.skillGroupTitleStrong : styles.skillGroupTitle}>{label}</span>
-        <div className={styles.skillGroupRule} />
+    <div className="grid gap-[10px]">
+      <div className="flex items-center gap-[10px]">
+        <span
+          className={
+            tone === "strong"
+              ? "text-[0.68rem] leading-none tracking-[0.13em] uppercase whitespace-nowrap text-muted-foreground font-bold"
+              : "text-[0.68rem] leading-none tracking-[0.13em] uppercase whitespace-nowrap text-faint-foreground font-semibold"
+          }
+        >
+          {label}
+        </span>
+        <div className="flex-1 h-px bg-[var(--input-border)]" />
       </div>
       {children}
     </div>
@@ -87,13 +94,13 @@ export function SkillsSection({ sectionNumber }: SkillsSectionProps) {
             onClick={() => setDetailsOpen((prev) => !prev)}
             aria-expanded={detailsOpen}
             aria-controls={detailsPanelId}
-            className={`${styles.drawerTrigger} ${detailsOpen ? styles.drawerTriggerOpen : ""}`}
+            className="group w-full grid [grid-template-columns:minmax(24px,1fr)_auto_auto_minmax(24px,1fr)] items-center gap-3 py-1 border-0 bg-transparent text-faint-foreground cursor-pointer text-[0.75rem] tracking-[0.03em] transition-colors duration-200 ease hover:text-[color:var(--tag-color)] focus-visible:text-[color:var(--tag-color)] focus-visible:outline-2 focus-visible:outline-[var(--amber)] focus-visible:outline-offset-4 before:content-[''] before:h-px before:border-t before:border-dashed before:border-[var(--input-border)] before:transition-[border-color] before:duration-200 before:ease after:content-[''] after:h-px after:border-t after:border-dashed after:border-[var(--input-border)] after:transition-[border-color] after:duration-200 after:ease hover:before:border-[color-mix(in_srgb,var(--amber)_30%,transparent)] hover:after:border-[color-mix(in_srgb,var(--amber)_30%,transparent)] focus-visible:before:border-[color-mix(in_srgb,var(--amber)_30%,transparent)] focus-visible:after:border-[color-mix(in_srgb,var(--amber)_30%,transparent)] motion-reduce:transition-none motion-reduce:before:transition-none motion-reduce:after:transition-none"
           >
-            <span className={styles.drawerTriggerLabel}>
+            <span className="whitespace-nowrap">
               {detailsOpen ? t("fullStackToggleHide") : t("fullStackToggleShow")}
             </span>
             <ChevronDownIcon
-              className={styles.drawerChevron}
+              className="size-3 transition-transform duration-300 ease group-aria-expanded:rotate-180 motion-reduce:transition-none"
               aria-hidden
             />
           </button>
@@ -101,30 +108,31 @@ export function SkillsSection({ sectionNumber }: SkillsSectionProps) {
 
         <div
           id={detailsPanelId}
-          className={`${styles.detailsGrid} ${detailsOpen ? styles.detailsGridOpen : ""}`}
+          data-open={detailsOpen ? "true" : undefined}
+          className="grid [grid-template-rows:0fr] data-[open=true]:[grid-template-rows:1fr] transition-[grid-template-rows] duration-400 ease-[cubic-bezier(0.4,0,0.2,1)] motion-reduce:transition-none"
           aria-hidden={!detailsOpen}
           inert={!detailsOpen}
         >
-          <div className={styles.detailsInner}>
-            <div className={styles.detailsDrawer}>
-              <div className={styles.detailsToolbar}>
-                <div className={styles.detailsSearchStack}>
+          <div className="overflow-hidden">
+            <div className="mt-[18px] border-y border-[var(--input-border)] [background:var(--skills-drawer-bg)]">
+              <div className="grid [grid-template-columns:minmax(230px,320px)_minmax(0,1fr)] max-md:grid-cols-1 gap-4 items-start pt-4 pb-[18px] px-4 sm:px-6 lg:px-8 border-b border-[var(--input-border)]">
+                <div className="grid gap-2">
                   <SearchInput
                     value={search}
                     onChange={setSearch}
                     placeholder={t("searchPlaceholder")}
                     label={t("searchLabel")}
                     clearLabel={t("clearSearch")}
-                    className={styles.searchInput}
+                    className="max-w-none"
                   />
-                  <p className={styles.counterLine} aria-live="polite">
+                  <p className="text-faint-foreground text-[0.72rem] leading-[1.4]" aria-live="polite">
                     {t("counter", { filtered: filtered.length, total: SKILLS.length })}
                   </p>
                 </div>
                 <SkillFilterTabs active={activeCategory} counts={counts} onSelect={setActiveCategory} />
               </div>
 
-              <div className={styles.detailsResults}>
+              <div className="pt-[18px] pb-5 px-4 sm:px-6 lg:px-8">
                 {filtered.length === 0 ? (
                   <EmptyState
                     message={t("noResults", { query: search })}
@@ -132,10 +140,10 @@ export function SkillsSection({ sectionNumber }: SkillsSectionProps) {
                     onClear={() => { setSearch(""); setActiveCategory(0); }}
                   />
                 ) : (
-                  <div className={styles.inventoryGrid}>
+                  <div className="grid gap-[18px]">
                     {topSkills.length > 0 && (
                       <SkillGroup label={t("coreExpertise")} tone="strong">
-                        <div className={styles.featuredChipGroup}>
+                        <div className="flex flex-wrap gap-2">
                           {topSkills.map((skill) => (
                             <SkillChip
                               key={skill.name}
@@ -151,7 +159,7 @@ export function SkillsSection({ sectionNumber }: SkillsSectionProps) {
 
                     {aiSkills.length > 0 && (
                       <SkillGroup label={t("aiToolingLabel")} tone="strong">
-                        <div className={styles.featuredChipGroup}>
+                        <div className="flex flex-wrap gap-2">
                           {aiSkills.map((skill) => (
                             <SkillChip
                               key={skill.name}
@@ -167,7 +175,7 @@ export function SkillsSection({ sectionNumber }: SkillsSectionProps) {
 
                     {restSkills.length > 0 && (
                       <SkillGroup label={t("additionalSkills")}>
-                        <div id="skills-additional" className={styles.denseChipGroup}>
+                        <div id="skills-additional" className="flex flex-wrap gap-1.5">
                           {restSkills.map((skill) => (
                             <SkillChip key={skill.name} name={skill.name} category={categoryLabelFor(skill.cat)} variant="rest" />
                           ))}
@@ -177,7 +185,7 @@ export function SkillsSection({ sectionNumber }: SkillsSectionProps) {
 
                     {showBuriedHeader && (
                       <SkillGroup label={t("moreToolsLabel")}>
-                        <div id="skills-more-tools" className={styles.denseChipGroup}>
+                        <div id="skills-more-tools" className="flex flex-wrap gap-1.5">
                           {buriedSkills.map((skill) => (
                             <SkillChip key={skill.name} name={skill.name} category={categoryLabelFor(skill.cat)} variant="rest" />
                           ))}
