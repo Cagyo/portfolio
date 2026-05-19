@@ -18,6 +18,24 @@
   --animate-glow: glow 2s ease-in-out infinite alternate;
   --animate-pulse-slow: pulse 3s infinite;
   --animate-fade-up: fadeUp 0.6s ease forwards;
+
+  /* ── Semantic color tokens (Tailwind-first refactor) ─────── */
+  --color-background: var(--bg);
+  --color-background-elevated: var(--bg-secondary);
+  --color-card: var(--surface);
+  --color-card-hover: var(--surface-hover);
+  --color-foreground: var(--text-primary);
+  --color-foreground-soft: var(--text-secondary);
+  --color-muted-foreground: var(--text-muted);
+  --color-faint-foreground: var(--text-faint);
+  --color-ghost-foreground: var(--text-ghost);
+  --color-invisible-foreground: var(--text-invisible);
+  --color-border: var(--border);
+  --color-border-amber: var(--border-amber);
+  --color-amber: var(--amber);
+  --color-amber-light: var(--amber-light);
+  --color-amber-dark: var(--amber-dark);
+  --color-amber-foreground: var(--amber-fg);
 }
 
 /* ══════════════════════════════════════════════
@@ -27,6 +45,7 @@
   --amber: #F59E0B;
   --amber-light: #FBBF24;
   --amber-dark: #D97706;
+  --amber-fg: #FBBF24;  /* readable amber on dark surfaces */
 
   --green: #22C55E;
   --green-light: #4ADE80;
@@ -97,6 +116,7 @@
 
 html[data-theme="light"] {
   --logo-tint-light: brightness(0) saturate(100%) invert(13%) sepia(18%) saturate(1091%) hue-rotate(182deg) brightness(88%) contrast(93%);
+  --amber-fg: #B45309;  /* readable amber on light surfaces */
   --bg: #F8FAFC;
   --bg-secondary: #EEF2F7;
   --surface: rgba(255,255,255,0.82);
