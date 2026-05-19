@@ -4,13 +4,14 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import { trackFaqOpen } from "@/app/_analytics/analytics";
 import type { FaqItem as FaqItemData, TrackMetaMap } from "@/app/_data/faq/types";
 import { FaqItem } from "./FaqItem";
-import styles from "./FaqList.module.css";
 
 type FaqListProps = {
   items: FaqItemData[];
   tracks: TrackMetaMap;
   renderEyebrowOnFirstItem?: boolean;
 };
+
+const trackEyebrowClassName = "inline-flex w-fit items-center rounded-full border border-[color-mix(in_srgb,var(--amber)_22%,transparent)] bg-amber/7 px-[0.65rem] py-1 text-[0.7rem] font-extrabold uppercase tracking-[0.1em] text-amber-foreground [html[data-theme=light]_&]:text-[var(--tag-color)]";
 
 export function FaqList({ items, tracks, renderEyebrowOnFirstItem = false }: FaqListProps) {
   const [openSlugs, setOpenSlugs] = useState<Set<string>>(() => new Set());
@@ -69,12 +70,12 @@ export function FaqList({ items, tracks, renderEyebrowOnFirstItem = false }: Faq
   return (
     <>
       {renderEyebrowOnFirstItem && trackMeta && (
-        <header className={styles.trackHeader}>
-          <p className={styles.trackEyebrow}>{trackMeta.eyebrow}</p>
-          {trackMeta.heading && <h2 className={styles.trackHeading}>{trackMeta.heading}</h2>}
+        <header className="mb-6">
+          <p className={trackEyebrowClassName}>{trackMeta.eyebrow}</p>
+          {trackMeta.heading && <h2 className="mt-3 font-heading text-[1.6rem] font-black leading-[1.1] text-foreground">{trackMeta.heading}</h2>}
         </header>
       )}
-      <ul className={styles.list}>
+      <ul className="grid gap-[0.9rem]">
         {items.map((item) => (
           <FaqItem
             key={item.slug}

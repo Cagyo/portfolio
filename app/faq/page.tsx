@@ -14,11 +14,12 @@ import { absoluteUrl } from "@/app/_schema/absolute-url";
 import { buildBreadcrumbSchema } from "@/app/_schema/breadcrumb";
 import { buildFaqPageSchema } from "@/app/_schema/faq-page";
 import { FaqList } from "./_components/FaqList";
-import listStyles from "./_components/FaqList.module.css";
 
 function getItemsByTrack(items: FaqItem[], track: TrackKey): FaqItem[] {
   return items.filter((item) => item.track === track);
 }
+
+const universalTrackEyebrowClassName = "inline-flex w-fit items-center rounded-full border border-[color-mix(in_srgb,var(--amber)_22%,transparent)] bg-amber/7 px-[0.65rem] py-1 text-[0.7rem] font-extrabold uppercase tracking-[0.1em] text-amber-foreground [html[data-theme=light]_&]:text-[var(--tag-color)]";
 
 export async function generateMetadata() {
   const faqPage = await getTranslations("faqPage");
@@ -101,8 +102,8 @@ export default async function Page({ params }: PageProps<"/faq">) {
         </div>
 
         <section id={`track-${FAQ_TRACK_ORDER[2]}`} className="mt-20 max-w-3xl mx-auto scroll-mt-24">
-          <p className={listStyles.trackEyebrow}>{faq.tracks.universal.eyebrow}</p>
-          <hr className={listStyles.universalDivider} />
+          <p className={universalTrackEyebrowClassName}>{faq.tracks.universal.eyebrow}</p>
+          <hr className="mt-4 mb-5 h-px border-0 bg-[linear-gradient(90deg,color-mix(in_srgb,var(--amber)_30%,transparent),transparent)]" />
           <FaqList items={universalItems} tracks={faq.tracks} />
         </section>
 
