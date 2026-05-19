@@ -3,7 +3,7 @@ import { SectionHeader } from "@/app/_components/SectionHeader";
 import { TestimonialsSlider } from "./TestimonialsSlider";
 
 const GRADIENT_CLASSES = [
-  "bg-gradient-to-br from-amber-500 to-amber-700",
+  "bg-gradient-to-br from-amber to-amber-dark",
   "bg-gradient-to-br from-slate-500 to-slate-700",
 ];
 const INITIALS_COLORS: (string | undefined)[] = [undefined, "text-foreground"];

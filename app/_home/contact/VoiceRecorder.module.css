@@ -1,3 +1,6 @@
+/* Retained per refactor policy: multiple @keyframes (ringPulse, waveAnim, blink) tightly
+   coupled to recorder state machine, plus state-dependent ::before pulse ring with 5+
+   properties. Migration would inflate the JSX without removing complexity. */
 .recorder {
   border-radius: 1rem;
   background: color-mix(in srgb, var(--color-amber-400) 3%, transparent);

@@ -1,6 +1,5 @@
 import Image from "next/image";
 import { StarRating } from "@/app/_components/StarRating";
-import styles from "./TestimonialSnippet.module.css";
 
 export type SnippetTestimonial = {
   quotePreview: string
@@ -34,22 +33,22 @@ const VARIANTS: Record<TestimonialSize, {
     avatar: "w-6 h-6",
     radius: "rounded-md",
     photoSize: "24px",
-    initial: styles.initialSm,
+    initial: "text-[9px]",
     gap: "gap-2",
-    quote: styles.quoteSm,
-    name: styles.nameSm,
-    company: styles.companySm,
+    quote: "text-[11px]",
+    name: "text-[10px]",
+    company: "text-[9px]",
     star: "w-3 h-3 text-amber-foreground",
   },
   md: {
     avatar: "w-7 h-7",
     radius: "rounded-lg",
     photoSize: "28px",
-    initial: styles.initialMd,
+    initial: "text-[10px]",
     gap: "gap-2.5",
-    quote: styles.quoteMd,
-    name: styles.nameMd,
-    company: styles.companyMd,
+    quote: "text-sm",
+    name: "text-xs",
+    company: "text-[10px]",
     star: "w-3.5 h-3.5 text-amber-foreground",
   },
 }
