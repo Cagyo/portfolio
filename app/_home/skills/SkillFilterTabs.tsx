@@ -2,7 +2,6 @@
 
 import { useTranslations } from "next-intl";
 import { CATEGORIES } from "@/app/_data/skills-data";
-import styles from "./SkillFilterTabs.module.css";
 
 type SkillFilterTabsProps = {
   active: number
@@ -14,7 +13,7 @@ export function SkillFilterTabs({ active, counts, onSelect }: SkillFilterTabsPro
   const t = useTranslations("skills");
 
   return (
-    <div className={styles.filterGroup} role="group" aria-label={t("filterAriaLabel")}>
+    <div className="flex flex-wrap gap-1.5 justify-start md:justify-end" role="group" aria-label={t("filterAriaLabel")}>
       {CATEGORIES.map((category) => {
         const label = t(`categories.${category.label.toLowerCase()}`);
         const isActive = active === category.id;
@@ -23,11 +22,12 @@ export function SkillFilterTabs({ active, counts, onSelect }: SkillFilterTabsPro
             key={category.id}
             type="button"
             onClick={() => onSelect(category.id)}
-            className={`${styles.skillFilterBtn} ${isActive ? styles.active : ""}`}
+            aria-pressed={isActive}
+            className="inline-flex items-center gap-1 min-h-[30px] px-[10px] py-[5px] rounded-[8px] text-[0.72rem] font-semibold cursor-pointer whitespace-nowrap transition-[background-color,border-color,color] duration-200 ease bg-[var(--filter-btn-bg)] border border-[var(--filter-btn-border)] text-[color:var(--filter-btn-color)] hover:bg-[color-mix(in_srgb,var(--amber)_8%,transparent)] hover:border-[color-mix(in_srgb,var(--amber)_25%,transparent)] hover:text-[color:var(--tag-color)] aria-pressed:bg-[color-mix(in_srgb,var(--amber)_12%,transparent)] aria-pressed:border-[color-mix(in_srgb,var(--amber)_40%,transparent)] aria-pressed:text-amber-foreground focus-visible:outline-2 focus-visible:outline-[var(--amber)] focus-visible:outline-offset-2"
           >
             {label}
             {category.id === 0 && (
-              <span className={styles.skillCount}>{counts[0] ?? 0}</span>
+              <span className="opacity-[0.58]">{counts[0] ?? 0}</span>
             )}
           </button>
         );
