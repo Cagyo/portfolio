@@ -51,7 +51,7 @@ export function ExperienceCard({
 
   const logoNode = logo ?? (
     <div className={styles.logoFallback}>
-      <span className={styles.logoInitials}>
+      <span className="text-xs font-bold tracking-normal leading-none text-amber-foreground">
         {getInitials(company)}
       </span>
     </div>
@@ -60,47 +60,47 @@ export function ExperienceCard({
 
   return (
     <div className={styles.card} style={accentStyle}>
-      <div className={styles.inner}>
-        <div className={styles.companyHeader}>
-          <div className={styles.logoSlot}>{logoNode}</div>
-          <div className={styles.companyMeta}>
-            <div className={styles.companyCopy}>
-              <p className={styles.companyName}>{company}</p>
-              <p className={styles.companyPeriod}>{period}</p>
+      <div className="grid gap-4 p-[1.125rem]">
+        <div className="flex items-start gap-3">
+          <div className="flex-shrink-0 mt-0.5">{logoNode}</div>
+          <div className="flex items-start justify-between gap-3 min-w-0 flex-1">
+            <div className="min-w-0">
+              <p className="m-0 text-foreground font-heading font-[750] leading-[1.25]">{company}</p>
+              <p className="m-0 mt-[0.15rem] text-ghost-foreground text-xs leading-[1.3]">{period}</p>
             </div>
             {projectsHref && (
               <Link
                 href={projectsHref}
-                className={styles.projectsLink}
+                className="inline-flex items-center flex-shrink-0 gap-1 mt-0.5 text-amber text-xs leading-[1.2] whitespace-nowrap transition-colors duration-200 hover:text-amber-light focus-visible:outline focus-visible:outline-2 focus-visible:outline-amber focus-visible:outline-offset-[3px] focus-visible:rounded-[0.375rem] [html[data-theme=light]_&]:text-[color-mix(in_srgb,var(--amber-dark)_68%,transparent)] [html[data-theme=light]_&]:hover:text-[color-mix(in_srgb,var(--amber-dark)_82%,black)]"
               >
-                View projects <ArrowRightIcon className={styles.projectsLinkIcon} />
+                View projects <ArrowRightIcon className="w-3 h-3" />
               </Link>
             )}
           </div>
         </div>
 
-        <div className={styles.positionList}>
+        <div className="grid">
           {positions.map((position, positionIndex) => (
-            <div key={position.title} className={styles.positionItem}>
-              <div className={styles.track}>
-                <div className={styles.dot} />
+            <div key={position.title} className="grid grid-cols-[16px_1fr] gap-x-[10px]">
+              <div className="flex flex-col items-center pt-[5px]">
+                <div className="w-[7px] h-[7px] rounded-full bg-amber border border-amber flex-shrink-0 [html[data-theme=light]_&]:bg-amber/[16%] [html[data-theme=light]_&]:border-border-amber" />
                 {positionIndex < positions.length - 1 && <div className={styles.connector} />}
               </div>
-              <div className={positionIndex < positions.length - 1 ? styles.positionContentSpaced : styles.positionContent}>
-                <div className={styles.positionHeader}>
-                  <p className={styles.positionTitle}>{position.title}</p>
-                  <span className={styles.positionPeriod}>{position.period}</span>
+              <div className={positionIndex < positions.length - 1 ? "min-w-0 pb-4" : "min-w-0"}>
+                <div className="grid grid-cols-[minmax(0,1fr)_auto] items-baseline gap-3">
+                  <p className="m-0 text-foreground text-sm font-semibold leading-[1.35]">{position.title}</p>
+                  <span className="text-ghost-foreground text-xs leading-[1.2] whitespace-nowrap">{position.period}</span>
                 </div>
                 <ShowMoreText
                   text={position.description}
-                  textClassName={styles.positionDescription}
+                  textClassName="mt-1 text-muted-foreground text-sm leading-[1.65]"
                 />
               </div>
             </div>
           ))}
         </div>
 
-        <div className={styles.tags}>
+        <div className="flex flex-wrap gap-1.5">
           {tagItems.map(({ tag, href, ariaLabel }) => (
             <Tag key={tag} href={href} aria-label={ariaLabel}>
               {tag}

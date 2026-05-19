@@ -1,7 +1,6 @@
 import { getTranslations } from "next-intl/server";
 import { ArrowRightIcon } from "@/assets/icons/ArrowRightIcon";
 import { Button } from "@/app/_components/button/Button";
-import styles from "./BusinessImpact.module.css";
 
 export async function BusinessImpact() {
   const t = await getTranslations("businessImpact");
@@ -10,7 +9,7 @@ export async function BusinessImpact() {
   return (
     <div className="reveal mt-12">
       <div
-        className={`glass rounded-3xl p-6 sm:p-8 relative overflow-hidden ${styles.card}`}
+        className="glass rounded-3xl p-6 sm:p-8 relative overflow-hidden border-amber/20"
       >
         <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-amber-500 via-amber-400 to-transparent rounded-t-3xl pointer-events-none" />
         <div className="flex flex-col lg:flex-row items-start lg:items-center gap-8">
