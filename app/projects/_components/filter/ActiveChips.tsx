@@ -29,7 +29,7 @@ export function ActiveChips({ activeFilters, groups, onRemove }: ActiveChipsProp
           onClick={() => onRemove(groupKey, value)}
           className="active-chip"
         >
-          <span className="text-white/40 text-xs">{groupLabel}:</span>
+          <span className="text-faint-foreground text-xs">{groupLabel}:</span>
           {value}
           <XMarkIcon className="w-3 h-3 flex-shrink-0" />
         </button>

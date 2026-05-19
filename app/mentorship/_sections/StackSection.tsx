@@ -45,7 +45,7 @@ export async function StackSection() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeader number={t("sectionNumber")} title={t("sectionTitle")} accentColor="violet" />
 
-        <p className="reveal text-white/50 text-lg leading-relaxed max-w-2xl mb-12">
+        <p className="reveal text-muted-foreground text-lg leading-relaxed max-w-2xl mb-12">
           {t("body")}
         </p>
 
@@ -53,7 +53,7 @@ export async function StackSection() {
           {stackItems.map((item) => (
             <span
               key={item.label}
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-white/60 text-xs font-medium hover:border-violet-500/40 hover:text-violet-400 transition-colors duration-200 cursor-default"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-card border border-border text-muted-foreground text-xs font-medium hover:border-violet-500/40 hover:text-violet-400 transition-colors duration-200 cursor-default"
             >
               <span style={{ color: item.iconColor }}>{item.icon}</span>
               {item.label}

@@ -53,15 +53,15 @@ function ProjectsNavExtras({ count, onFilterOpen, initialIsDark }: ProjectsNavEx
       <button
         type="button"
         onClick={onFilterOpen}
-        className="lg:hidden glass px-3 py-2 rounded-xl text-sm text-white/60 hover:text-amber-400 transition-colors cursor-pointer flex items-center gap-2"
+        className="lg:hidden glass px-3 py-2 rounded-xl text-sm text-muted-foreground hover:text-amber-foreground transition-colors cursor-pointer flex items-center gap-2"
         aria-label={t("filters")}
       >
         <FunnelIcon className="w-4 h-4" />
         {t("filters")}
       </button>
 
-      <div className="hidden sm:flex items-center gap-2 text-white/30 text-sm">
-        <span className="font-heading font-bold text-white">{count}</span>
+      <div className="hidden sm:flex items-center gap-2 text-ghost-foreground text-sm">
+        <span className="font-heading font-bold text-foreground">{count}</span>
         <span>{count === 1 ? "project" : "projects"}</span>
       </div>
       <ThemeToggle initialIsDark={initialIsDark} />
@@ -236,10 +236,10 @@ export function ProjectsPage({ projects, initialIsDark }: { projects: Project[];
         {/* Page header */}
         <div className="mb-10">
           <div className="flex items-center gap-4 mb-3">
-            <h1 className="font-heading font-black text-4xl sm:text-5xl text-white">{t("title")}</h1>
-            <div className="h-px flex-1 bg-gradient-to-r from-amber-500/30 to-transparent" />
+            <h1 className="font-heading font-black text-4xl sm:text-5xl text-foreground">{t("title")}</h1>
+            <div className="h-px flex-1 bg-gradient-to-r from-amber/20 to-transparent" />
           </div>
-          <p className="text-white/40 max-w-xl">{t("subtitle")}</p>
+          <p className="text-faint-foreground max-w-xl">{t("subtitle")}</p>
         </div>
 
         <div className="flex gap-8 items-start">
@@ -270,7 +270,7 @@ export function ProjectsPage({ projects, initialIsDark }: { projects: Project[];
             </div>
 
             {/* Result count */}
-            <p className="text-white/35 text-sm mb-5" aria-live="polite">
+            <p className="text-faint-foreground text-sm mb-5" aria-live="polite">
               {resultLabel}
             </p>
 

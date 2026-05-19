@@ -21,8 +21,8 @@ export function ShippableStacks() {
   return (
     <div className="reveal mb-10">
       <div className="mb-5">
-        <h3 className="font-heading font-bold text-xl text-white leading-tight">{t("shippableStacksTitle")}</h3>
-        <p className="text-white/45 text-sm mt-1">{t("shippableStacksSubtitle")}</p>
+        <h3 className="font-heading font-bold text-xl text-foreground leading-tight">{t("shippableStacksTitle")}</h3>
+        <p className="text-muted-foreground text-sm mt-1">{t("shippableStacksSubtitle")}</p>
       </div>
 
       <div className={styles.grid}>

@@ -82,11 +82,11 @@ export default async function Page({ params }: PageProps<"/faq">) {
       <BlobBackground shade={600} position="bottom-0 left-0" opacity={0.08} />
       <main className="relative z-10 pt-28 pb-20 px-4 sm:px-6 lg:px-8">
         <header className="max-w-3xl mx-auto">
-          <p className="mb-4 text-xs font-bold uppercase tracking-widest text-amber-400">{t("eyebrow")}</p>
-          <h1 className="font-heading font-black text-3xl sm:text-4xl lg:text-5xl text-white leading-tight">
+          <p className="mb-4 text-xs font-bold uppercase tracking-widest text-amber-foreground">{t("eyebrow")}</p>
+          <h1 className="font-heading font-black text-3xl sm:text-4xl lg:text-5xl text-foreground leading-tight">
             {t("title")}
           </h1>
-          <p className="mt-5 text-base sm:text-lg leading-relaxed text-white/50">
+          <p className="mt-5 text-base sm:text-lg leading-relaxed text-muted-foreground">
             {t("subtitle")}
           </p>
         </header>
@@ -107,10 +107,10 @@ export default async function Page({ params }: PageProps<"/faq">) {
         </section>
 
         <section className="mt-20 max-w-3xl mx-auto text-center">
-          <h2 className="font-heading font-black text-2xl sm:text-3xl text-white">
+          <h2 className="font-heading font-black text-2xl sm:text-3xl text-foreground">
             {t("stillQuestionsHeading")}
           </h2>
-          <p className="mt-3 text-white/50 leading-relaxed">
+          <p className="mt-3 text-muted-foreground leading-relaxed">
             {t("stillQuestionsBody")}
           </p>
           <div className="mt-7 flex justify-center">

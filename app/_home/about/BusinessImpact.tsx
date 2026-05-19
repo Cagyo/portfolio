@@ -15,19 +15,19 @@ export async function BusinessImpact() {
         <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-amber-500 via-amber-400 to-transparent rounded-t-3xl pointer-events-none" />
         <div className="flex flex-col lg:flex-row items-start lg:items-center gap-8">
           <div className="flex-shrink-0">
-            <p className="text-amber-500/70 text-xs uppercase tracking-wider font-semibold mb-2">{t("eyebrow")}</p>
-            <h3 className="font-heading font-black text-2xl sm:text-3xl text-white leading-tight">
+            <p className="text-amber-foreground/70 text-xs uppercase tracking-wider font-semibold mb-2">{t("eyebrow")}</p>
+            <h3 className="font-heading font-black text-2xl sm:text-3xl text-foreground leading-tight">
               {t("heading")}
               <br />
               <span className="text-gradient">{t("headingGradient")}</span>
             </h3>
           </div>
-          <div className="hidden lg:block w-px self-stretch bg-white/10 mx-2" />
+          <div className="hidden lg:block w-px self-stretch bg-foreground/8 mx-2" />
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-x-8 gap-y-6 flex-1">
             {metrics.map((metric) => (
               <div key={metric.label}>
                 <p className="font-heading font-black text-3xl text-gradient">{metric.value}</p>
-                <p className="text-white/40 text-xs mt-1 leading-snug whitespace-pre-line">{metric.label}</p>
+                <p className="text-faint-foreground text-xs mt-1 leading-snug whitespace-pre-line">{metric.label}</p>
               </div>
             ))}
           </div>

@@ -24,11 +24,11 @@ export function FitList({ goodFit, notFit, goodFitHeading, notFitHeading }: FitL
           >
             <CheckIcon className="w-4 h-4 text-green-400" strokeWidth={2.5} />
           </div>
-          <h3 className="font-heading font-bold text-white text-lg">{goodFitHeading}</h3>
+          <h3 className="font-heading font-bold text-foreground text-lg">{goodFitHeading}</h3>
         </div>
         <ul className="space-y-4">
           {goodFit.map((item) => (
-            <li key={item.text} className="flex items-start gap-3 text-white/65 text-sm leading-relaxed">
+            <li key={item.text} className="flex items-start gap-3 text-foreground-soft text-sm leading-relaxed">
               <CheckIcon className="w-4 h-4 text-green-400/60 flex-shrink-0 mt-0.5" strokeWidth={2.5} />
               {item.text}
             </li>
@@ -46,11 +46,11 @@ export function FitList({ goodFit, notFit, goodFitHeading, notFitHeading }: FitL
           >
             <XMarkIcon className="w-4 h-4 text-red-400" />
           </div>
-          <h3 className="font-heading font-bold text-white text-lg">{notFitHeading}</h3>
+          <h3 className="font-heading font-bold text-foreground text-lg">{notFitHeading}</h3>
         </div>
         <ul className="space-y-4">
           {notFit.map((item) => (
-            <li key={item.text} className="flex items-start gap-3 text-white/65 text-sm leading-relaxed">
+            <li key={item.text} className="flex items-start gap-3 text-foreground-soft text-sm leading-relaxed">
               <XMarkIcon className="w-4 h-4 text-red-400/60 flex-shrink-0 mt-0.5" />
               {item.text}
             </li>

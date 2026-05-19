@@ -33,7 +33,7 @@ export function FilterSidebar({ groups, activeFilters, onToggle, onClear, totalA
         <button
           type="button"
           onClick={onClear}
-          className="w-full mt-4 text-center text-amber-500 text-xs hover:text-amber-400 cursor-pointer py-2 rounded-xl hover:bg-amber-500/5 transition-colors"
+          className="w-full mt-4 text-center text-amber-foreground text-xs hover:text-amber-foreground/80 cursor-pointer py-2 rounded-xl hover:bg-amber/6 transition-colors"
         >
           {t("clearAllFilters")}
         </button>

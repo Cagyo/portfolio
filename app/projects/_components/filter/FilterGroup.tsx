@@ -27,7 +27,7 @@ export function FilterGroup({ label, options, active, onToggle, defaultCollapsed
         aria-expanded={!collapsed}
         aria-controls={contentId}
       >
-        <span className="text-white/40 text-xs uppercase tracking-widest font-semibold">{label}</span>
+        <span className="text-faint-foreground text-xs uppercase tracking-widest font-semibold">{label}</span>
         <ChevronDownIcon
           className={`${styles.groupChevron} w-3.5 h-3.5 ${collapsed ? styles.groupChevronCollapsed : ""}`}
         />

@@ -6,7 +6,7 @@ const GRADIENT_CLASSES = [
   "bg-gradient-to-br from-amber-500 to-amber-700",
   "bg-gradient-to-br from-slate-500 to-slate-700",
 ];
-const INITIALS_COLORS: (string | undefined)[] = [undefined, "text-white"];
+const INITIALS_COLORS: (string | undefined)[] = [undefined, "text-foreground"];
 
 type RecommendationsSectionProps = { sectionNumber?: string }
 

@@ -21,7 +21,7 @@ export function getHomeProjectVisual(id: number): ProjectVisual | undefined {
   switch (id) {
     case 1:
       return {
-        icon: <GolfTournamentIcon className="w-3.5 h-3.5 text-amber-500" />,
+        icon: <GolfTournamentIcon className="w-3.5 h-3.5 text-amber-foreground" />,
         imageBg: "bg-gradient-to-br from-red-900/40 via-red-800/20 to-transparent",
         imageContent: (
           <>
@@ -32,7 +32,7 @@ export function getHomeProjectVisual(id: number): ProjectVisual | undefined {
       }
     case 2:
       return {
-        icon: <GolfSocialIcon className="w-3.5 h-3.5 text-amber-500" />,
+        icon: <GolfSocialIcon className="w-3.5 h-3.5 text-amber-foreground" />,
         imageBg: "bg-gradient-to-br from-green-900/30 to-transparent",
         imageContent: (
           <>
@@ -43,7 +43,7 @@ export function getHomeProjectVisual(id: number): ProjectVisual | undefined {
       }
     case 3:
       return {
-        icon: <GolfBookingIcon className="w-3.5 h-3.5 text-amber-500" />,
+        icon: <GolfBookingIcon className="w-3.5 h-3.5 text-amber-foreground" />,
         imageBg: "bg-gradient-to-br from-emerald-900/30 to-transparent",
         imageContent: (
           <>
@@ -54,7 +54,7 @@ export function getHomeProjectVisual(id: number): ProjectVisual | undefined {
       }
     case 6:
       return {
-        icon: <CurrencyExchangeIcon className="w-3.5 h-3.5 text-amber-500" />,
+        icon: <CurrencyExchangeIcon className="w-3.5 h-3.5 text-amber-foreground" />,
         imageBg: "bg-gradient-to-br from-indigo-900/30 to-transparent",
         imageContent: (
           <>
@@ -65,7 +65,7 @@ export function getHomeProjectVisual(id: number): ProjectVisual | undefined {
       }
     case 4:
       return {
-        icon: <CarWashIcon className="w-3.5 h-3.5 text-amber-500" />,
+        icon: <CarWashIcon className="w-3.5 h-3.5 text-amber-foreground" />,
         imageBg: "bg-gradient-to-br from-sky-900/30 to-transparent",
         imageContent: (
           <>

@@ -39,7 +39,7 @@ const VARIANTS: Record<TestimonialSize, {
     quote: styles.quoteSm,
     name: styles.nameSm,
     company: styles.companySm,
-    star: "w-3 h-3 text-amber-400",
+    star: "w-3 h-3 text-amber-foreground",
   },
   md: {
     avatar: "w-7 h-7",
@@ -50,7 +50,7 @@ const VARIANTS: Record<TestimonialSize, {
     quote: styles.quoteMd,
     name: styles.nameMd,
     company: styles.companyMd,
-    star: "w-3.5 h-3.5 text-amber-400",
+    star: "w-3.5 h-3.5 text-amber-foreground",
   },
 }
 
@@ -63,9 +63,9 @@ export function TestimonialSnippet({ testimonial, size = "md", className = "" }:
   return (
     <a
       href="#recommendations"
-      className={`glass rounded-2xl p-4 hover:border-amber-500/20 transition-colors duration-200 cursor-pointer ${className}`}
+      className={`glass rounded-2xl p-4 hover:border-border-amber transition-colors duration-200 cursor-pointer ${className}`}
     >
-      <p className={`text-white/65 ${variant.quote} leading-relaxed italic line-clamp-2 mb-3`}>
+      <p className={`text-foreground-soft ${variant.quote} leading-relaxed italic line-clamp-2 mb-3`}>
         &ldquo;{testimonial.quotePreview}&rdquo;
       </p>
       <div className="flex items-center justify-between gap-2">
@@ -86,9 +86,9 @@ export function TestimonialSnippet({ testimonial, size = "md", className = "" }:
             </div>
           )}
           <div className="min-w-0">
-            <p className={`text-white/60 ${variant.name} font-semibold leading-none truncate`}>{displayName}</p>
+            <p className={`text-muted-foreground ${variant.name} font-semibold leading-none truncate`}>{displayName}</p>
             {authorCompany && (
-              <p className={`text-white/35 ${variant.company} mt-0.5 leading-none truncate`}>{authorCompany}</p>
+              <p className={`text-faint-foreground ${variant.company} mt-0.5 leading-none truncate`}>{authorCompany}</p>
             )}
           </div>
         </div>

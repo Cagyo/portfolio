@@ -5,7 +5,7 @@ type StarRatingProps = {
   starClassName?: string
 }
 
-export function StarRating({ count = 5, starClassName = "w-3.5 h-3.5 text-amber-400" }: StarRatingProps) {
+export function StarRating({ count = 5, starClassName = "w-3.5 h-3.5 text-amber-foreground" }: StarRatingProps) {
   return (
     <div className="flex gap-0.5 flex-shrink-0">
       {Array.from({ length: count }).map((_, index) => (
