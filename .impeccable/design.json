@@ -1,0 +1,303 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-05-18T00:00:00.000Z",
+  "title": "Design System: Fractional CTO Portfolio",
+  "extensions": {
+    "colorMeta": {
+      "amber": {
+        "role": "primary",
+        "displayName": "Workbench Amber",
+        "canonical": "#F59E0B",
+        "tonalRamp": ["#1A0F02", "#3D2406", "#6B3F0A", "#9C5C0E", "#D97706", "#F59E0B", "#FBBF24", "#FCD34D"]
+      },
+      "amber-light": {
+        "role": "primary",
+        "displayName": "Workbench Amber Light",
+        "canonical": "#FBBF24",
+        "tonalRamp": ["#1A0F02", "#3D2406", "#6B3F0A", "#9C5C0E", "#D97706", "#F59E0B", "#FBBF24", "#FEF3C7"]
+      },
+      "amber-dark": {
+        "role": "primary",
+        "displayName": "Workbench Amber Dark (deep)",
+        "canonical": "#D97706",
+        "tonalRamp": ["#180D02", "#321A04", "#552B06", "#7A3F08", "#92400E", "#B45309", "#D97706", "#F59E0B"]
+      },
+      "graphite-black": {
+        "role": "neutral",
+        "displayName": "Graphite Black",
+        "canonical": "#080810",
+        "tonalRamp": ["#080810", "#0C0C18", "#16162A", "#22223A", "#2E2E4A", "#3D3D5C", "#5C5C7A", "#9B9BB8"]
+      },
+      "graphite-secondary": {
+        "role": "neutral",
+        "displayName": "Graphite Secondary",
+        "canonical": "#0c0c18",
+        "tonalRamp": ["#080810", "#0C0C18", "#16162A", "#22223A", "#2E2E4A", "#3D3D5C", "#5C5C7A", "#9B9BB8"]
+      },
+      "text-primary-dark": {
+        "role": "neutral",
+        "displayName": "Text Primary (Dark Mode)",
+        "canonical": "#F8FAFC",
+        "tonalRamp": ["#0F172A", "#1E293B", "#334155", "#475569", "#64748B", "#94A3B8", "#CBD5E1", "#F8FAFC"]
+      },
+      "text-primary-light": {
+        "role": "neutral",
+        "displayName": "Text Primary (Light Mode)",
+        "canonical": "#0F172A",
+        "tonalRamp": ["#0F172A", "#1E293B", "#334155", "#475569", "#64748B", "#94A3B8", "#CBD5E1", "#F8FAFC"]
+      },
+      "text-secondary-light": {
+        "role": "neutral",
+        "displayName": "Text Secondary (Light Mode)",
+        "canonical": "#1E293B"
+      },
+      "text-muted-light": {
+        "role": "neutral",
+        "displayName": "Text Muted (Light Mode)",
+        "canonical": "#475569"
+      },
+      "surface-dark": {
+        "role": "neutral",
+        "displayName": "Surface (Dark Mode glass)",
+        "canonical": "rgba(255,255,255,0.04)"
+      },
+      "surface-light": {
+        "role": "neutral",
+        "displayName": "Surface (Light Mode glass)",
+        "canonical": "rgba(255,255,255,0.82)"
+      },
+      "border-light": {
+        "role": "neutral",
+        "displayName": "Hairline Border",
+        "canonical": "rgba(255,255,255,0.08)"
+      },
+      "signal-green": {
+        "role": "tertiary",
+        "displayName": "Signal Green",
+        "canonical": "#22C55E",
+        "tonalRamp": ["#052E16", "#14532D", "#166534", "#15803D", "#16A34A", "#22C55E", "#4ADE80", "#86EFAC"]
+      },
+      "signal-green-light": {
+        "role": "tertiary",
+        "displayName": "Signal Green Light",
+        "canonical": "#4ADE80"
+      },
+      "signal-red": {
+        "role": "tertiary",
+        "displayName": "Signal Red",
+        "canonical": "#EF4444",
+        "tonalRamp": ["#450A0A", "#7F1D1D", "#991B1B", "#B91C1C", "#DC2626", "#EF4444", "#F87171", "#FCA5A5"]
+      },
+      "accent-violet": {
+        "role": "tertiary",
+        "displayName": "Accent Violet (alternate section)",
+        "canonical": "#A78BFA",
+        "tonalRamp": ["#1E1B4B", "#312E81", "#4338CA", "#5B21B6", "#7C3AED", "#8B5CF6", "#A78BFA", "#C4B5FD"]
+      },
+      "accent-purple": {
+        "role": "tertiary",
+        "displayName": "Accent Purple (mentorship subroute)",
+        "canonical": "#A855F7"
+      },
+      "accent-teal": {
+        "role": "tertiary",
+        "displayName": "Accent Teal (tertiary category chip)",
+        "canonical": "#14B8A6"
+      },
+      "brand-linkedin": {
+        "role": "tertiary",
+        "displayName": "LinkedIn Blue (brand override)",
+        "canonical": "#0A66C2"
+      },
+      "brand-calendly": {
+        "role": "tertiary",
+        "displayName": "Calendly Blue (brand override)",
+        "canonical": "#006BFF"
+      },
+      "brand-telegram": {
+        "role": "tertiary",
+        "displayName": "Telegram Blue (brand override)",
+        "canonical": "#229ED9"
+      },
+      "brand-whatsapp": {
+        "role": "tertiary",
+        "displayName": "WhatsApp Green (brand override)",
+        "canonical": "#25D366"
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display (Hero h1)",
+        "purpose": "The hero <h1> first/last name only. Last name in amber-light. Drops to 2.875rem below 400px."
+      },
+      "headline": {
+        "displayName": "Headline (Section h2)",
+        "purpose": "Every section <h2>. Always paired with a mono section number and a fading amber/violet rule."
+      },
+      "title": {
+        "displayName": "Title (Card titles)",
+        "purpose": "Project card titles. Featured cards scale to 1.55rem; regular cards 1.125rem."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Hero description and primary reading body. Capped at max-width 32rem."
+      },
+      "body-sm": {
+        "displayName": "Body Small",
+        "purpose": "Card body copy, problem text, project descriptions."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Tag chips, stack chips, status badges. Uppercase, never for sentences."
+      },
+      "section-number": {
+        "displayName": "Section Number (mono)",
+        "purpose": "The 01 / 02 / 03 prefix in SectionHeader. Always amber or violet, never neutral."
+      }
+    },
+    "shadows": [
+      { "name": "card-hover-glow", "value": "0 20px 60px rgba(245,158,11,0.15)", "purpose": "Canonical project-card hover. Warm amber, never neutral grey. Light-mode token resolves to 0 20px 60px rgba(15,23,42,0.10)." },
+      { "name": "cta-hover-glow", "value": "0 8px 30px color-mix(in srgb, #F59E0B 40%, transparent)", "purpose": "Primary button hover lift, paired with translateY(-2px)." },
+      { "name": "hero-photo-frame", "value": "0 18px 54px color-mix(in srgb, #F59E0B 10%, transparent)", "purpose": "The only resting shadow in the system. Reserved for hero photo frames." },
+      { "name": "nav-ambient", "value": "0 16px 48px color-mix(in srgb, #080810 62%, transparent)", "purpose": "Floating glass nav bar's ambient lift. Same-hue-as-background, not coloured." },
+      { "name": "focus-ring-amber", "value": "0 0 0 3px rgba(245,158,11,0.15)", "purpose": "Input focus ring. Always amber, 3px, 15% alpha. Replaces native outline." }
+    ],
+    "motion": [
+      { "name": "ease-out-quart", "value": "cubic-bezier(0.25, 1, 0.5, 1)", "purpose": "Canonical ease for card hover lift, transforms, exponential-feeling state changes." },
+      { "name": "ease-standard", "value": "ease", "purpose": "Default for color/border/background transitions on buttons, chips, links." },
+      { "name": "duration-fast", "value": "200ms", "purpose": "Form input border/shadow transition. Tag hover." },
+      { "name": "duration-mid", "value": "250ms", "purpose": "Button hover state and shimmer overlay." },
+      { "name": "duration-card", "value": "300ms", "purpose": "Card lift, overlay opacity, nav top-offset on scroll." },
+      { "name": "duration-theme", "value": "350ms", "purpose": "Theme transition (dark/light swap) on bg/color/border/shadow." },
+      { "name": "reveal", "value": "0.7s ease", "purpose": "On-scroll reveal utility (.reveal → .visible). Translates 40px up + fades in." }
+    ],
+    "breakpoints": [
+      { "name": "xs", "value": "400px" },
+      { "name": "sm", "value": "640px" },
+      { "name": "md", "value": "768px" },
+      { "name": "lg", "value": "1024px" },
+      { "name": "xl", "value": "1180px" },
+      { "name": "2xl", "value": "1280px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Amber gradient CTA with shimmer overlay on hover and a -2px lift with warm glow.",
+      "html": "<button class=\"ds-btn-primary\"><span class=\"ds-btn-primary__inner\">Start a conversation<svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M5 12h14M13 5l7 7-7 7\"/></svg></span></button>",
+      "css": ".ds-btn-primary { display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; min-height: 3.25rem; padding: 0 1.5rem; border: 1px solid transparent; border-radius: 0.875rem; background: linear-gradient(135deg, #F59E0B, #D97706); color: #0D0D0D; font-family: 'Space Grotesk', system-ui, sans-serif; font-size: 1rem; font-weight: 600; cursor: pointer; transition: transform 0.25s ease, box-shadow 0.25s ease; position: relative; overflow: hidden; } .ds-btn-primary::before { content: ''; position: absolute; inset: 0; border-radius: inherit; background: linear-gradient(135deg, #FBBF24, #F59E0B); opacity: 0; transition: opacity 0.25s; } .ds-btn-primary:hover::before { opacity: 1; } .ds-btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(245,158,11,0.4); } .ds-btn-primary:focus-visible { outline: 2px solid #F59E0B; outline-offset: 3px; } .ds-btn-primary__inner { position: relative; z-index: 1; display: inline-flex; align-items: center; gap: inherit; }"
+    },
+    {
+      "name": "Outline Button",
+      "kind": "button",
+      "refersTo": "button-outline",
+      "description": "Amber-on-transparent secondary CTA. Hover fills to 10% amber and saturates border.",
+      "html": "<button class=\"ds-btn-outline\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z\"/><polyline points=\"22,6 12,13 2,6\"/></svg>Contact</button>",
+      "css": ".ds-btn-outline { display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; min-height: 3rem; padding: 0 1.25rem; border: 1px solid rgba(245,158,11,0.5); border-radius: 0.875rem; background: transparent; color: #F59E0B; font-family: 'Space Grotesk', system-ui, sans-serif; font-size: 0.9375rem; font-weight: 600; cursor: pointer; transition: all 0.25s ease; } .ds-btn-outline:hover { background: rgba(245,158,11,0.1); border-color: #F59E0B; transform: translateY(-2px); } .ds-btn-outline:focus-visible { outline: 2px solid #F59E0B; outline-offset: 3px; }"
+    },
+    {
+      "name": "Amber Tag",
+      "kind": "chip",
+      "refersTo": "tag-amber",
+      "description": "The canonical skill/stack tag. Soft amber fill, uppercase letter-spaced label.",
+      "html": "<span class=\"ds-tag-amber\">TYPESCRIPT</span>",
+      "css": ".ds-tag-amber { display: inline-block; padding: 2px 8px; border-radius: 4px; background: rgba(245,158,11,0.1); border: 1px solid rgba(245,158,11,0.25); color: #FBBF24; font-family: 'Space Grotesk', system-ui, sans-serif; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; line-height: 1.4; }"
+    },
+    {
+      "name": "Neutral Tag",
+      "kind": "chip",
+      "refersTo": "tag-neutral",
+      "description": "Secondary metadata chip (year, category). Muted, low contrast on purpose.",
+      "html": "<span class=\"ds-tag-neutral\">2024</span>",
+      "css": ".ds-tag-neutral { display: inline-block; padding: 2px 7px; border-radius: 5px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); color: rgba(248,250,252,0.5); font-family: 'Space Grotesk', system-ui, sans-serif; font-size: 0.65rem; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; line-height: 1.4; }"
+    },
+    {
+      "name": "Active Filter Chip",
+      "kind": "chip",
+      "description": "Selected filter state. Pill-shaped, amber fill, amber text, with optional close affordance.",
+      "html": "<button class=\"ds-active-chip\">React<svg width=\"10\" height=\"10\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3\" stroke-linecap=\"round\"><line x1=\"18\" y1=\"6\" x2=\"6\" y2=\"18\"/><line x1=\"6\" y1=\"6\" x2=\"18\" y2=\"18\"/></svg></button>",
+      "css": ".ds-active-chip { display: inline-flex; align-items: center; gap: 6px; padding: 3px 8px 3px 10px; border-radius: 20px; background: rgba(245,158,11,0.12); border: 1px solid rgba(245,158,11,0.3); color: #F59E0B; font-family: 'Space Grotesk', system-ui, sans-serif; font-size: 0.7rem; font-weight: 600; cursor: pointer; transition: background 0.15s ease; } .ds-active-chip:hover { background: rgba(245,158,11,0.2); } .ds-active-chip:focus-visible { outline: 2px solid #F59E0B; outline-offset: 2px; }"
+    },
+    {
+      "name": "Project Card",
+      "kind": "card",
+      "refersTo": "card-project",
+      "description": "Flat at rest, lifts 6px with warm amber glow on hover. Glass surface over graphite base.",
+      "html": "<article class=\"ds-card-project\"><div class=\"ds-card-project__image\"></div><div class=\"ds-card-project__body\"><h3 class=\"ds-card-project__title\">Saferpay integration</h3><p class=\"ds-card-project__problem\">A Swiss banking processor needed PSP integration across three editions without breaking existing checkout flows.</p></div></article>",
+      "css": ".ds-card-project { display: flex; flex-direction: column; overflow: hidden; min-width: 0; border-radius: 8px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); cursor: pointer; transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.3s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.3s ease; } .ds-card-project:hover { transform: translateY(-6px); box-shadow: 0 20px 60px rgba(245,158,11,0.15); } .ds-card-project__image { min-height: 10.5rem; background: linear-gradient(135deg, rgba(245,158,11,0.12), rgba(124,58,237,0.08)); flex-shrink: 0; } .ds-card-project__body { display: flex; flex-direction: column; gap: 1rem; padding: 1.25rem; } .ds-card-project__title { margin: 0 0 0.5rem; color: #F8FAFC; font-family: 'Archivo', system-ui, sans-serif; font-size: 1.125rem; font-weight: 700; line-height: 1.18; } .ds-card-project__problem { margin: 0; color: rgba(248,250,252,0.5); font-family: 'Space Grotesk', system-ui, sans-serif; font-size: 0.8125rem; line-height: 1.55; }"
+    },
+    {
+      "name": "Form Input",
+      "kind": "input",
+      "refersTo": "input",
+      "description": "Glass-tinted text field with amber focus ring (3px, 15% alpha). Outline removed in favor of the ring.",
+      "html": "<input class=\"ds-input\" type=\"email\" placeholder=\"founder@startup.com\" />",
+      "css": ".ds-input { width: 100%; padding: 0.75rem 1rem; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; color: #F8FAFC; font-family: 'Space Grotesk', system-ui, sans-serif; font-size: 1rem; transition: border-color 0.2s ease, box-shadow 0.2s ease; } .ds-input:focus { outline: none; border-color: #F59E0B; box-shadow: 0 0 0 3px rgba(245,158,11,0.15); } .ds-input::placeholder { color: rgba(248,250,252,0.3); }"
+    },
+    {
+      "name": "Floating Glass Nav Bar",
+      "kind": "nav",
+      "refersTo": "nav-bar",
+      "description": "Fixed top with side margins, 14px backdrop-blur, ambient page-tinted shadow.",
+      "html": "<nav class=\"ds-nav-bar\"><a class=\"ds-nav-bar__logo\" href=\"#\">CG</a><div class=\"ds-nav-bar__links\"><a href=\"#projects\">Projects</a><a href=\"#about\">About</a><a href=\"#contact\">Contact</a></div><a class=\"ds-nav-bar__cta\" href=\"#contact\">Book a call</a></nav>",
+      "css": ".ds-nav-bar { position: fixed; top: 1rem; left: 1rem; right: 1rem; z-index: 50; max-width: 72rem; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 0.8125rem 1rem 0.8125rem 1.125rem; border: 1px solid rgba(248,250,252,0.09); border-radius: 1.125rem; background: rgba(12,12,24,0.82); box-shadow: 0 16px 48px rgba(8,8,16,0.62); backdrop-filter: blur(14px) saturate(1.08); font-family: 'Space Grotesk', system-ui, sans-serif; } .ds-nav-bar__logo { color: #F8FAFC; font-family: 'Archivo', system-ui, sans-serif; font-weight: 900; font-size: 1.125rem; text-decoration: none; letter-spacing: -0.01em; } .ds-nav-bar__links { display: flex; align-items: center; gap: 1.25rem; } .ds-nav-bar__links a { color: rgba(248,250,252,0.7); font-size: 0.875rem; text-decoration: none; transition: color 0.2s ease; } .ds-nav-bar__links a:hover { color: #F59E0B; } .ds-nav-bar__cta { display: inline-flex; align-items: center; min-height: 2.25rem; padding: 0 1rem; border-radius: 0.75rem; background: linear-gradient(135deg, #F59E0B, #D97706); color: #0D0D0D; font-size: 0.8125rem; font-weight: 600; text-decoration: none; transition: transform 0.25s ease, box-shadow 0.25s ease; } .ds-nav-bar__cta:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(245,158,11,0.35); }"
+    },
+    {
+      "name": "Section Header",
+      "kind": "custom",
+      "description": "Signature structural rhythm: mono number + Archivo Black h2 + fading amber rule. Repeated identically on every primary section.",
+      "html": "<div class=\"ds-section-header\"><span class=\"ds-section-header__num\">01</span><h2 class=\"ds-section-header__title\">Selected work</h2><div class=\"ds-section-header__rule\"></div></div>",
+      "css": ".ds-section-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 4rem; } .ds-section-header__num { color: #F59E0B; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0.875rem; font-weight: 700; letter-spacing: 0; } .ds-section-header__title { margin: 0; color: #F8FAFC; font-family: 'Archivo', system-ui, sans-serif; font-size: clamp(2.25rem, 4vw, 3rem); font-weight: 900; line-height: 1.05; letter-spacing: -0.01em; } .ds-section-header__rule { flex: 1; height: 1px; margin-left: 1rem; background: linear-gradient(to right, rgba(245,158,11,0.3), transparent); }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Lit Workbench",
+    "overview": "A dark workshop with a single warm work-light overhead. The surface is graphite, almost black, faintly violet under the lamp. Amber is the only light in the room: it falls on the work, not on the worker. Nothing decorative, nothing demonstrative. The interface is a tool, not a stage.\n\nThe system is built around restraint as the seniority signal. Type is set in Archivo (display) and Space Grotesk (body) with high weight contrast (400 \u2192 900) and a tight scale. Section headers are numbered in mono, like notebook entries. The amber accent does heavy work but appears on \u226410% of any given screen: the last name in the hero, the primary CTA, the section numbers, focus rings, hover lifts. Hovers are gentle: a 2px lift, a warm amber glow, never a slam. Surfaces are translucent glass (backdrop-filter: blur(8px)) over the graphite base; light mode swaps to warm-white with the same chroma logic inverted.\n\nThe system explicitly rejects: pastel-gradient dev-portfolio templates, the SaaS hero-metric template, neon-on-black \"futuristic dev\" cosplay, and McKinsey-style navy-and-gold corporate gravitas.",
+    "keyCharacteristics": [
+      "Amber on graphite, never amber on amber, never amber on white.",
+      "Numbered, mono-labeled sections (01, 02, 03) as the structural rhythm.",
+      "Glass surfaces with warm-amber glow on hover; no neutral grey shadows.",
+      "High weight contrast in type (400 body, 900 display); flat scale forbidden.",
+      "One accent color carries the entire identity. Secondary hues (violet, teal, green, purple) appear only as semantic role colors, never as decoration."
+    ],
+    "rules": [
+      { "name": "The One Light Rule", "body": "Workbench Amber appears on \u226410% of any given screen. Its rarity is the point. If a screen reads as \"amber\", reduce until amber reads as a punctuation mark, not a color field.", "section": "colors" },
+      { "name": "The No-Pure-Extreme Rule", "body": "#000 and #fff are forbidden. Use Graphite Black (#080810, faint violet) and Text Primary Dark (#F8FAFC, faint blue). Every neutral is tinted.", "section": "colors" },
+      { "name": "The Brand-Override Exception", "body": "LinkedIn blue, Calendly blue, Telegram blue, WhatsApp green are platform-mandated and do not theme. They appear only on the corresponding contact-thread CTAs and are excluded from the One Light Rule.", "section": "colors" },
+      { "name": "The 1.25-Step Rule", "body": "Adjacent type roles must differ by at least 1.25\u00d7 in size OR by a weight class. Flat scales are forbidden.", "section": "typography" },
+      { "name": "The Mono-For-Numbers-Only Rule", "body": "Mono type appears exclusively on section numbers and inline code. Never on labels, never on body, never on CTAs.", "section": "typography" },
+      { "name": "The No-Em-Dash Rule", "body": "PRODUCT.md voice rule, enforced visually: no \u2014 and no -- in copy. Use commas, colons, semicolons, periods, or parentheses.", "section": "typography" },
+      { "name": "The Warm-Shadow Rule", "body": "Every state-change shadow is amber-tinted, not neutral grey. Generic rgba(0,0,0,0.X) shadows are forbidden.", "section": "elevation" },
+      { "name": "The Flat-At-Rest Rule", "body": "Surfaces do not lift until the user interacts. No resting drop-shadows on cards, tags, or buttons. The hero photo frame is the single intentional exception.", "section": "elevation" },
+      { "name": "The No-Glassmorphism-For-Decoration Rule", "body": "The glass and glass-amber utilities are reserved for actually-functional surfaces (nav bar, mobile menu, photo card overlay). They are not a decorative finish.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do keep Workbench Amber under 10% of any screen. The accent is rare on purpose.",
+      "Do use the numbered + mono section header on every primary section. The rhythm is the brand.",
+      "Do use warm amber-tinted shadows for state changes. Cool grey shadows look generic.",
+      "Do lift cards by -6px and buttons by -2px on hover. Same easing (cubic-bezier(0.25, 1, 0.5, 1) or ease 0.25s). Subtle, consistent.",
+      "Do tint every neutral. Graphite Black (#080810) for backgrounds, Text Primary Dark (#F8FAFC) for foreground. Never #000 or #fff.",
+      "Do name shipped systems by their actual name in copy (Saferpay, Onfido KYC, Section 508, App Store).",
+      "Do keep transitions \u2264300ms and respect prefers-reduced-motion.",
+      "Do pair amber text with darker amber (#B45309, #92400E) in light mode for WCAG AA contrast.",
+      "Do keep body line length under 34rem max-width."
+    ],
+    "donts": [
+      "Don't look or feel like a generic dev portfolio template: pastel gradients, tilted cards, floating GitHub icons, identical project tiles in a 3-up grid.",
+      "Don't cosplay a SaaS landing page: the hero-metric template, three-feature icon-card grid, testimonial slider, corner gradient blob.",
+      "Don't go crypto / neon-cyber futuristic dev: neon on black, glowing borders, matrix rain, decorative terminal-green.",
+      "Don't project corporate consultant gravitas: stock photos, enterprise solutions, navy-and-gold, McKinsey-style stiff serif headlines.",
+      "Don't add a border-left greater than 1px as a colored accent on cards, callouts, or list items.",
+      "Don't apply background-clip: text with a gradient to anything other than the existing brand wordmark gradient.",
+      "Don't sprinkle glassmorphism decoratively.",
+      "Don't use a third saturated color alongside amber. Violet/teal/green are semantic roles only.",
+      "Don't introduce flat type scales. Adjacent roles must differ by \u22651.25\u00d7 in size or a weight class.",
+      "Don't use em dashes (\u2014 or --) in any copy, ever.",
+      "Don't restate the section heading in the first line of body copy below it.",
+      "Don't animate CSS layout properties. Use transform and opacity.",
+      "Don't ease with bounce or elastic curves. Use ease-out exponentials."
+    ]
+  }
+}
