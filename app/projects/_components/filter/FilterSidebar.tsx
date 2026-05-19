@@ -25,6 +25,7 @@ export function FilterSidebar({ groups, activeFilters, onToggle, onClear, totalA
           options={group.options}
           active={activeFilters[group.key]}
           onToggle={(value) => onToggle(group.key, value)}
+          defaultCollapsed={group.defaultCollapsed}
         />
       ))}
 

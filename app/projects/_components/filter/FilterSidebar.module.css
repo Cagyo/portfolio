@@ -24,11 +24,30 @@
   cursor: pointer;
   user-select: none;
   padding: 4px 0;
+  width: 100%;
+  text-align: left;
+}
+
+.groupHeader:focus-visible {
+  outline: 2px solid var(--amber);
+  outline-offset: 4px;
+  border-radius: 6px;
 }
 
 .groupContent {
+  display: grid;
+  grid-template-rows: 1fr;
   overflow: hidden;
-  transition: max-height 0.2s ease;
+  transition: grid-template-rows 0.24s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.groupContentCollapsed {
+  grid-template-rows: 0fr;
+}
+
+.groupContentInner {
+  min-height: 0;
+  overflow: hidden;
 }
 
 .groupChevron {
@@ -80,6 +99,14 @@
   display: inline;
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .groupContent,
+  .groupChevron,
+  .pill {
+    transition: none;
+  }
+}
+
 /* ── Light mode overrides ── */
 html[data-theme="light"] .groupChevron {
   color: var(--text-ghost);
@@ -94,11 +121,11 @@ html[data-theme="light"] .pill {
 html[data-theme="light"] .pill:hover {
   background: color-mix(in srgb, var(--amber) 12%, transparent);
   border-color: color-mix(in srgb, var(--amber) 35%, transparent);
-  color: color-mix(in srgb, var(--amber) 70%, black);
+  color: color-mix(in srgb, var(--amber) 70%, var(--text-primary));
 }
 
 html[data-theme="light"] .pillActive {
   background: color-mix(in srgb, var(--amber) 20%, transparent);
   border-color: color-mix(in srgb, var(--amber) 55%, transparent);
-  color: color-mix(in srgb, var(--amber) 70%, black);
+  color: color-mix(in srgb, var(--amber) 70%, var(--text-primary));
 }

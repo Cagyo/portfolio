@@ -114,6 +114,7 @@ export function SkillsSection({ sectionNumber }: SkillsSectionProps) {
                     onChange={setSearch}
                     placeholder={t("searchPlaceholder")}
                     label={t("searchLabel")}
+                    clearLabel={t("clearSearch")}
                     className={styles.searchInput}
                   />
                   <p className={styles.counterLine} aria-live="polite">

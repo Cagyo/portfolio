@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useRef } from "react";
 import { useTranslations } from "next-intl";
 import { XMarkIcon } from "@/assets/icons/XMarkIcon";
 import type { FilterGroupConfig } from "@/app/_data/projects-filters";
@@ -26,6 +27,38 @@ export function FilterPanelMobile({
   totalActive,
 }: FilterPanelMobileProps) {
   const t = useTranslations("projectsPage");
+  const panelRef = useRef<HTMLDivElement>(null);
+  const previousFocusRef = useRef<HTMLElement | null>(null);
+
+  useEffect(() => {
+    if (!open) return;
+
+    previousFocusRef.current = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    const panel = panelRef.current;
+    if (panel) {
+      const firstFocusable = panel.querySelector<HTMLElement>("button, a[href], input, select, textarea, [tabindex]:not([tabindex='-1'])");
+      (firstFocusable ?? panel).focus();
+    }
+
+    function handleKeyDown(event: KeyboardEvent) {
+      if (event.key === "Escape") {
+        event.preventDefault();
+        onClose();
+      }
+    }
+
+    document.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      document.removeEventListener("keydown", handleKeyDown);
+      previousFocusRef.current?.focus();
+      previousFocusRef.current = null;
+    };
+  }, [onClose, open]);
 
   return (
     <>
@@ -35,14 +68,22 @@ export function FilterPanelMobile({
         aria-hidden="true"
       />
 
-      <div className={`${styles.panel} ${open ? styles.panelOpen : ""} p-6 pt-8`} role="dialog" aria-label={t("filters")}>
+      <div
+        ref={panelRef}
+        className={`${styles.panel} ${open ? styles.panelOpen : ""} p-6 pt-8`}
+        role="dialog"
+        aria-modal="true"
+        aria-label={t("filters")}
+        inert={!open}
+        tabIndex={-1}
+      >
         <div className="flex items-center justify-between mb-6">
           <h2 className="font-heading font-bold text-white text-lg">{t("filters")}</h2>
           <button
             type="button"
             onClick={onClose}
-            className="text-white/40 hover:text-white cursor-pointer transition-colors"
-            aria-label="Close filters"
+            className={styles.closeButton}
+            aria-label={t("closeFilters")}
           >
             <XMarkIcon className="w-5 h-5" />
           </button>
@@ -55,6 +96,7 @@ export function FilterPanelMobile({
             options={group.options}
             active={activeFilters[group.key]}
             onToggle={(value) => onToggle(group.key, value)}
+            defaultCollapsed={group.defaultCollapsed}
           />
         ))}
 

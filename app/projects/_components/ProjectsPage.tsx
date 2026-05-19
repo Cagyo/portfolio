@@ -86,6 +86,9 @@ export function ProjectsPage({ projects, initialIsDark }: { projects: Project[];
   }, [searchParams]);
   const [mobileOpen, setMobileOpen] = useState(false);
 
+  const openMobileFilters = useCallback(() => setMobileOpen(true), []);
+  const closeMobileFilters = useCallback(() => setMobileOpen(false), []);
+
   const commitFilters = useCallback(
     (next: Record<string, Set<string>>) => {
       const groupKeys = new Set(FILTER_GROUPS.map((filterGroup) => filterGroup.key));
@@ -159,6 +162,7 @@ export function ProjectsPage({ projects, initialIsDark }: { projects: Project[];
     () => Object.values(activeFilters).reduce((acc, filterSet) => acc + filterSet.size, 0),
     [activeFilters],
   );
+  const hasActiveNarrowing = search.trim().length > 0 || totalActive > 0;
 
   function toggleFilter(groupKey: string, value: string) {
     const next: Record<string, Set<string>> = {};
@@ -215,12 +219,12 @@ export function ProjectsPage({ projects, initialIsDark }: { projects: Project[];
       <SubpageNav
         maxWidth="max-w-6xl"
         cta={{ href: "/#contact", label: tNav("cta") }}
-        rightExtras={<ProjectsNavExtras count={filtered.length} onFilterOpen={() => setMobileOpen(true)} initialIsDark={initialIsDark} />}
+        rightExtras={<ProjectsNavExtras count={filtered.length} onFilterOpen={openMobileFilters} initialIsDark={initialIsDark} />}
       />
 
       <FilterPanelMobile
         open={mobileOpen}
-        onClose={() => setMobileOpen(false)}
+        onClose={closeMobileFilters}
         groups={FILTER_GROUPS}
         activeFilters={activeFilters}
         onToggle={toggleFilter}
@@ -255,6 +259,7 @@ export function ProjectsPage({ projects, initialIsDark }: { projects: Project[];
                 onChange={setSearch}
                 placeholder={t("searchPlaceholder")}
                 label={t("searchLabel")}
+                clearLabel={t("clearSearch")}
                 className="w-full"
               />
               <ActiveChips
@@ -273,12 +278,13 @@ export function ProjectsPage({ projects, initialIsDark }: { projects: Project[];
             {filtered.length > 0 ? (
               <>
                 <div className="space-y-5">
-                  {filtered.map((project, i) => (
+                  {filtered.map((project, projectIndex) => (
                     <ProjectCard
                       key={project.id}
                       project={project}
                       onNavigate={handleCardNavigate}
-                      animationDelay={i * 0.06}
+                      animationDelay={projectIndex * 0.06}
+                      featured={!hasActiveNarrowing && projectIndex < 3}
                     />
                   ))}
                 </div>

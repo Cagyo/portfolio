@@ -91,9 +91,12 @@
 
   --scrollbar-track: #080810;
   --dot-grid-color: rgba(245,158,11,0.2);
+
+  --logo-tint-light: none;
 }
 
 html[data-theme="light"] {
+  --logo-tint-light: brightness(0) saturate(100%) invert(13%) sepia(18%) saturate(1091%) hue-rotate(182deg) brightness(88%) contrast(93%);
   --bg: #F8FAFC;
   --bg-secondary: #EEF2F7;
   --surface: rgba(255,255,255,0.82);

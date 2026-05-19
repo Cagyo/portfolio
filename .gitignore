@@ -127,3 +127,5 @@ next-env.d.ts
 /.codex/hooks/guard-conventions.py
 /.codex/hooks/stop-check.sh
 /.codex/hooks.json
+/.vscode/settings.json
+/.mcp.json

@@ -50,6 +50,16 @@ export type ProjectBase = {
   link: ProjectPageLink
   featured?: boolean
   /**
+   * Optional brand-color override for the project's logo on the projects list.
+   * When set, the authored SVG is masked and tinted with this raw hex color
+   * (not a design token) for the matching theme. Omit either key to fall back
+   * to the SVG's authored colors in that theme.
+   */
+  iconColor?: {
+    dark?: string
+    light?: string
+  }
+  /**
    * When true, the project's logo renders in the home hero "Apps in
    * production" row, linking to /projects/{slug}.
    *

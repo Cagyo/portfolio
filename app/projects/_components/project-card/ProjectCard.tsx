@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, type CSSProperties } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
@@ -20,9 +20,9 @@ import styles from "./ProjectCard.module.css";
 
 function MetaRow({ icon, value }: { icon: React.ReactNode; value: string }) {
   return (
-    <div className="flex items-center gap-1.5">
+    <div className={styles.metaRow}>
       {icon}
-      <span className="text-white/60 text-sm">{value}</span>
+      <span>{value}</span>
     </div>
   );
 }
@@ -33,23 +33,47 @@ type ProjectCardProps = {
       hub can restore the user to the originating card on back-nav. */
   onNavigate?: (projectId: number) => void
   animationDelay?: number
+  featured?: boolean
 }
 
-export function ProjectCard({ project, onNavigate, animationDelay = 0 }: ProjectCardProps) {
+type ProjectIconColor = Project["iconColor"]
+
+type ProjectIconStyle = CSSProperties & {
+  "--project-icon-color-dark"?: string
+  "--project-icon-color-light"?: string
+  "--project-icon-mask"?: string
+}
+
+function resolveProjectIcon(logo: string, iconColor?: ProjectIconColor) {
+  const hasDarkColor = Boolean(iconColor?.dark)
+  const hasLightColor = Boolean(iconColor?.light)
+  const style: ProjectIconStyle | undefined = hasDarkColor || hasLightColor
+    ? {
+        "--project-icon-color-dark": iconColor?.dark,
+        "--project-icon-color-light": iconColor?.light,
+        "--project-icon-mask": `url("${logo}")`,
+      }
+    : undefined
+
+  return { hasDarkColor, hasLightColor, style }
+}
+
+export function ProjectCard({ project, onNavigate, animationDelay = 0, featured = false }: ProjectCardProps) {
   const t = useTranslations("projectsPage");
   const [entered, setEntered] = useState(false);
   const isPrivate = project.link.type === "private";
   const ctaLabel = isPrivate ? t("readApproach") : t("viewCaseStudy");
+  const title = getProjectTitle(project);
 
   return (
     // Legacy `id="project-{id}"` retained so old hash links (LinkedIn pins,
     // cold emails, indexed fragments) still scroll to the right card.
     <article
       id={`project-${project.id}`}
-      className={`${styles.card} ${entered ? "" : styles.cardEntrance} glass rounded-2xl overflow-hidden scroll-mt-28`}
+      className={`${styles.card} ${featured ? styles.cardFeatured : ""} ${entered ? "" : styles.cardEntrance} glass scroll-mt-28`}
       style={entered ? undefined : { animationDelay: `${animationDelay}s` }}
-      onAnimationEnd={(e) => {
-        if (e.target === e.currentTarget && !entered) setEntered(true);
+      onAnimationEnd={(animationEvent) => {
+        if (animationEvent.target === animationEvent.currentTarget && !entered) setEntered(true);
       }}
     >
       {/* Whole-card body is the link target. The link strip lives outside the
@@ -59,58 +83,63 @@ export function ProjectCard({ project, onNavigate, animationDelay = 0 }: Project
         className={styles.cardLink}
         prefetch={false}
         onClick={() => onNavigate?.(project.id)}
-        aria-label={`${ctaLabel}: ${getProjectTitle(project)}`}
+        aria-label={`${ctaLabel}: ${title}`}
       >
         {/* Card header */}
-        <div className="p-6 pb-2">
-          <div className="flex flex-wrap items-start justify-between gap-3 mb-4">
-            <div className="flex-1 min-w-0">
-              <div className="flex flex-wrap items-center gap-2 mb-1.5">
-                <Tag variant={project.scale === "Solo build" ? "green" : "neutral"}>{project.scale}</Tag>
-                {project.devTypes.map((devType) => (
-                  <Tag key={devType}>{devType}</Tag>
-                ))}
-                <span className={styles.metaBadge}>{project.productType}</span>
-                <span className={styles.metaBadge}>{project.industry}</span>
-                {project.year && (
-                  <span className="text-white/25 text-xs font-mono">{project.year}</span>
-                )}
+        <div className={styles.cardContent}>
+          <div className={styles.cardMain}>
+            <div className={styles.cardTop}>
+              <div className={styles.cardHeader}>
+                <div className={styles.cardTags}>
+                  <Tag variant={project.scale === "Solo build" ? "green" : "neutral"}>{project.scale}</Tag>
+                  {project.devTypes.map((devType) => (
+                    <Tag key={devType}>{devType}</Tag>
+                  ))}
+                  <span className={styles.metaBadge}>{project.productType}</span>
+                  <span className={styles.metaBadge}>{project.industry}</span>
+                  {project.year && (
+                    <span className="text-white/25 text-xs font-mono">{project.year}</span>
+                  )}
+                </div>
+
+                <h2 className={styles.cardTitle}>{title}</h2>
               </div>
-              <h2 className="font-heading font-black text-xl text-white leading-tight">{getProjectTitle(project)}</h2>
+
+              <ProjectAppIcon logo={project.logo} iconColor={project.iconColor} />
             </div>
 
-            {/* Meta column */}
-            <div className="flex flex-col items-end gap-1.5 flex-shrink-0">
+            <div className={styles.metaGrid}>
               <MetaRow icon={<BuildingOfficeIcon className={`w-3.5 h-3.5 flex-shrink-0 ${styles.metaIcon}`} />} value={project.company} />
               <MetaRow icon={<UserIcon className={`w-3.5 h-3.5 flex-shrink-0 ${styles.metaIcon}`} />} value={project.role} />
               <MetaRow icon={<UsersIcon className={`w-3.5 h-3.5 flex-shrink-0 ${styles.metaIcon}`} />} value={`Team ${project.teamLabel}`} />
             </div>
+
+            {/* Problem */}
+            {project.problem && (
+              <p className={styles.problem}>{project.problem}</p>
+            )}
+
+            {/* Description */}
+            <p className={styles.description}>{project.description}</p>
+
+            {/* Achievements */}
+            {project.achievements.length > 0 && (
+              <div className={styles.outcomes}>
+                <p className={styles.outcomesLabel}>
+                  {t("achievementsLabel")}
+                </p>
+                <ul className={styles.outcomesList}>
+                  {project.achievements.map((achievement) => (
+                    <li key={achievement} className={styles.outcomesItem}>
+                      <LightningIcon className="w-4 h-4 text-amber-400 flex-shrink-0 mt-0.5" />
+                      {achievement}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
           </div>
 
-          {/* Problem */}
-          {project.problem && (
-            <p className={styles.problem}>{project.problem}</p>
-          )}
-
-          {/* Description */}
-          <p className="text-white/55 text-sm leading-relaxed">{project.description}</p>
-
-          {/* Achievements */}
-          {project.achievements.length > 0 && (
-            <div className="mt-4 glass-amber rounded-xl p-3.5">
-              <p className="text-amber-500/70 text-xs uppercase tracking-widest font-bold mb-2">
-                {t("achievementsLabel")}
-              </p>
-              <ul className="space-y-1">
-                {project.achievements.map((achievement) => (
-                  <li key={achievement} className="flex items-start gap-2 text-sm text-white/80">
-                    <LightningIcon className="w-4 h-4 text-amber-400 flex-shrink-0 mt-0.5" />
-                    {achievement}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
         </div>
 
         {/* Read-more affordance */}
@@ -121,23 +150,85 @@ export function ProjectCard({ project, onNavigate, animationDelay = 0 }: Project
       </Link>
 
       {/* Link strip — outside the card link to keep external <a>s legal */}
-      <LinkStrip link={project.link} logo={project.logo} t={t} />
+      <LinkStrip link={project.link} logo={project.logo} iconColor={project.iconColor} t={t} />
     </article>
   );
+}
+
+function ProjectLogo({
+  logo,
+  iconColor,
+  size,
+  width,
+  height,
+  className,
+  onError,
+}: {
+  logo: string
+  iconColor?: ProjectIconColor
+  size: "app" | "inline"
+  width: number
+  height: number
+  className: string
+  onError: () => void
+}) {
+  const { hasDarkColor, hasLightColor, style } = resolveProjectIcon(logo, iconColor)
+
+  return (
+    <span
+      // `data-project-logo` is a query handle used by ProjectCard.test.tsx.
+      className={`${styles.projectLogo} ${size === "app" ? styles.projectLogoApp : styles.projectLogoInline}`}
+      data-project-logo={size}
+      data-has-dark-icon-color={hasDarkColor ? "true" : undefined}
+      data-has-light-icon-color={hasLightColor ? "true" : undefined}
+      style={style}
+    >
+      <Image
+        src={logo}
+        alt=""
+        width={width}
+        height={height}
+        className={`${className} ${styles.projectLogoOriginal}`}
+        onError={onError}
+      />
+      {hasDarkColor && <span className={`${styles.projectLogoMask} ${styles.projectLogoMaskDark}`} aria-hidden="true" />}
+      {hasLightColor && <span className={`${styles.projectLogoMask} ${styles.projectLogoMaskLight}`} aria-hidden="true" />}
+    </span>
+  )
+}
+
+function ProjectAppIcon({ logo, iconColor }: { logo?: string; iconColor?: ProjectIconColor }) {
+  const [logoFailed, setLogoFailed] = useState(false)
+
+  if (!logo || logoFailed) return null
+
+  return (
+    <span className={styles.projectIcon} aria-hidden="true">
+      <ProjectLogo
+        logo={logo}
+        iconColor={iconColor}
+        size="app"
+        width={52}
+        height={52}
+        className={styles.projectIconImage}
+        onError={() => setLogoFailed(true)}
+      />
+    </span>
+  )
 }
 
 function StoreLinks({ link, t }: { link: { appStore: string; playStore: string }; t: ReturnType<typeof useTranslations<"projectsPage">> }) {
   return (
     <>
       <a href={link.appStore} target="_blank" rel="noopener noreferrer" className={styles.linkStore}>
-        <AppStoreLogo className="w-5 h-5 text-white/55 flex-shrink-0" />
+        <AppStoreLogo className={styles.storeIcon} />
         <span>
           <span className={styles.storeLabelTop}>Download on the</span>
           <span className={styles.storeLabelMain}>{t("appStore")}</span>
         </span>
       </a>
       <a href={link.playStore} target="_blank" rel="noopener noreferrer" className={styles.linkStore}>
-        <GooglePlayLogo className="w-5 h-5 text-white/55 flex-shrink-0" />
+        <GooglePlayLogo className={styles.storeIcon} />
         <span>
           <span className={styles.storeLabelTop}>Get it on</span>
           <span className={styles.storeLabelMain}>{t("googlePlay")}</span>
@@ -147,29 +238,45 @@ function StoreLinks({ link, t }: { link: { appStore: string; playStore: string }
   );
 }
 
-function WebLink({ url, label, logo }: { url: string; label: string; logo?: string }) {
+function WebLink({ url, label, logo, iconColor }: { url: string; label: string; logo?: string; iconColor?: ProjectIconColor }) {
   const [logoFailed, setLogoFailed] = useState(false)
   return (
     <a href={url} target="_blank" rel="noopener noreferrer" className={styles.linkWeb}>
       {logo && !logoFailed ? (
-        <Image src={logo} alt="" width={20} height={20} className="object-contain flex-shrink-0" onError={() => setLogoFailed(true)} />
+        <ProjectLogo
+          logo={logo}
+          iconColor={iconColor}
+          size="inline"
+          width={20}
+          height={20}
+          className={styles.inlineLogoImage}
+          onError={() => setLogoFailed(true)}
+        />
       ) : (
-        <ExternalLinkIcon className="w-3.5 h-3.5 flex-shrink-0" />
+        <ExternalLinkIcon className={styles.linkIcon} />
       )}
       {label}
     </a>
   );
 }
 
-function PrivateBadge({ label, tooltip, logo }: { label: string; tooltip: string; logo?: string }) {
+function PrivateBadge({ label, tooltip, logo, iconColor }: { label: string; tooltip: string; logo?: string; iconColor?: ProjectIconColor }) {
   const [logoFailed, setLogoFailed] = useState(false)
   return (
     <div className={styles.linkPrivateWrap}>
       <span className={styles.linkPrivate}>
         {logo && !logoFailed ? (
-          <Image src={logo} alt="" width={20} height={20} className="object-contain flex-shrink-0" onError={() => setLogoFailed(true)} />
+          <ProjectLogo
+            logo={logo}
+            iconColor={iconColor}
+            size="inline"
+            width={20}
+            height={20}
+            className={styles.inlineLogoImage}
+            onError={() => setLogoFailed(true)}
+          />
         ) : (
-          <LockIcon className="w-3.5 h-3.5 flex-shrink-0" />
+          <LockIcon className={styles.linkIcon} />
         )}
         {label}
       </span>
@@ -178,17 +285,17 @@ function PrivateBadge({ label, tooltip, logo }: { label: string; tooltip: string
   );
 }
 
-function LinkStrip({ link, logo, t }: { link: ProjectPageLink; logo?: string; t: ReturnType<typeof useTranslations<"projectsPage">> }) {
+function LinkStrip({ link, logo, iconColor, t }: { link: ProjectPageLink; logo?: string; iconColor?: ProjectIconColor; t: ReturnType<typeof useTranslations<"projectsPage">> }) {
   const isPrimaryWeb = link.type === "web" || link.type === "web+mobile"
   const isPrimaryPrivate = link.type === "private"
   return (
     <div className={styles.linkStrip}>
       <span className={styles.linkTypeLabel}>{t("links")}</span>
       {link.type === "private" && (
-        <PrivateBadge label={t("privateLabel")} tooltip={t("privateTooltip")} logo={isPrimaryPrivate ? logo : undefined} />
+        <PrivateBadge label={t("privateLabel")} tooltip={t("privateTooltip")} logo={isPrimaryPrivate ? logo : undefined} iconColor={iconColor} />
       )}
       {(link.type === "web" || link.type === "web+mobile") && (
-        <WebLink url={link.url} label={t("liveApp")} logo={isPrimaryWeb ? logo : undefined} />
+        <WebLink url={link.url} label={t("liveApp")} logo={isPrimaryWeb ? logo : undefined} iconColor={iconColor} />
       )}
       {(link.type === "mobile" || link.type === "web+mobile") && (
         <StoreLinks link={link} t={t} />

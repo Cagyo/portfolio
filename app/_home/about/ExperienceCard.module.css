@@ -237,13 +237,3 @@ html[data-theme="light"] .connector {
     var(--border)
   );
 }
-
-@media (prefers-reduced-motion: reduce) {
-  .card,
-  .projectsLink,
-  .toggle,
-  .toggleRule {
-    transition: none;
-  }
-}
-
