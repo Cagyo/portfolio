@@ -23,10 +23,10 @@ import { TurnstileWidget } from './TurnstileWidget'
 import { sendContactMessage } from './contact-actions'
 import { INTEREST_VALUES, type ActionResult, type ContactErrorKey, type Interest } from './contact-types'
 import { siteConfig } from '@/app/_config/site-config'
+import { cn } from '@/app/_lib/cn'
 import { contactFormSchema, contactFormDefaultValues } from './contact-form-schema'
 import type { ContactFormValues } from './contact-form-schema'
 import { useFormPersistence } from './use-form-persistence'
-import styles from './ContactForm.module.css'
 
 function buildFormData(values: ContactFormValues): FormData {
   const fd = new FormData()
@@ -125,7 +125,7 @@ export function ContactForm() {
       noValidate
     >
         {/* ── Honeypot ── */}
-        <div className={styles.honeypot} aria-hidden="true">
+        <div className="absolute left-[-9999px] w-px h-px overflow-hidden" aria-hidden="true">
           <label htmlFor="website">{t('form.honeypotLabel')}</label>
           <input
             id="website"
@@ -156,7 +156,7 @@ export function ContactForm() {
               {...register('name')}
             />
             {errors.name && (
-              <p className={styles.fieldError} role="alert">
+              <p className="text-[var(--red)] text-xs mt-1.5" role="alert">
                 {t(`form.errors.${errors.name.message}`)}
               </p>
             )}
@@ -176,7 +176,7 @@ export function ContactForm() {
               {...register('email')}
             />
             {errors.email && (
-              <p className={styles.fieldError} role="alert">
+              <p className="text-[var(--red)] text-xs mt-1.5" role="alert">
                 {t(`form.errors.${errors.email.message}`)}
               </p>
             )}
@@ -216,14 +216,22 @@ export function ContactForm() {
 
         {/* ── Mode Toggle ── */}
         <div
-          className={styles.modeToggle}
+          className="flex bg-foreground/5 border border-foreground/10 rounded-[0.875rem] p-[4px] gap-[4px] [html[data-theme=light]_&]:bg-card [html[data-theme=light]_&]:border-border"
           role="group"
           aria-label={t('form.modeTabs.groupLabel')}
         >
           <button
             type="button"
             onClick={() => setValue('mode', 'text', { shouldValidate: true })}
-            className={`${styles.modeTab} ${mode === 'text' ? styles.modeTabActive : ''}`}
+            className={cn(
+              "flex-1 flex items-center justify-center gap-2 px-4 py-2.5 rounded-[0.625rem]",
+              "text-[0.8125rem] font-medium cursor-pointer border-0 bg-transparent",
+              "transition-[color,background] duration-200",
+              "focus-visible:outline-2 focus-visible:outline-amber-foreground focus-visible:outline-offset-[-2px]",
+              mode === 'text'
+                ? "bg-amber/15 text-amber-foreground border border-amber/30 [html[data-theme=light]_&]:bg-amber/12 [html[data-theme=light]_&]:border-border-amber [html[data-theme=light]_&]:text-[var(--tag-color)]"
+                : "text-muted-foreground hover:text-foreground-soft [html[data-theme=light]_&]:text-faint-foreground [html[data-theme=light]_&]:hover:text-foreground-soft",
+            )}
             aria-pressed={mode === 'text'}
             aria-controls="contact-text-panel"
           >
@@ -233,7 +241,15 @@ export function ContactForm() {
           <button
             type="button"
             onClick={() => setValue('mode', 'voice', { shouldValidate: true })}
-            className={`${styles.modeTab} ${mode === 'voice' ? styles.modeTabActive : ''}`}
+            className={cn(
+              "flex-1 flex items-center justify-center gap-2 px-4 py-2.5 rounded-[0.625rem]",
+              "text-[0.8125rem] font-medium cursor-pointer border-0 bg-transparent",
+              "transition-[color,background] duration-200",
+              "focus-visible:outline-2 focus-visible:outline-amber-foreground focus-visible:outline-offset-[-2px]",
+              mode === 'voice'
+                ? "bg-amber/15 text-amber-foreground border border-amber/30 [html[data-theme=light]_&]:bg-amber/12 [html[data-theme=light]_&]:border-border-amber [html[data-theme=light]_&]:text-[var(--tag-color)]"
+                : "text-muted-foreground hover:text-foreground-soft [html[data-theme=light]_&]:text-faint-foreground [html[data-theme=light]_&]:hover:text-foreground-soft",
+            )}
             aria-pressed={mode === 'voice'}
             aria-controls="contact-voice-panel"
           >
@@ -244,7 +260,7 @@ export function ContactForm() {
 
         {/* ── Text fields ── */}
         {mode === 'text' && (
-          <div id="contact-text-panel" className={`${styles.modePanel} space-y-5`}>
+          <div id="contact-text-panel" className="animate-panel-fade-in motion-reduce:animate-none space-y-5">
             <div>
               <label
                 htmlFor="message"
@@ -260,7 +276,7 @@ export function ContactForm() {
                 {...register('message')}
               />
               {errors.message && (
-                <p className={styles.fieldError} role="alert">
+                <p className="text-[var(--red)] text-xs mt-1.5" role="alert">
                   {t(`form.errors.${errors.message.message}`)}
                 </p>
               )}
@@ -270,7 +286,7 @@ export function ContactForm() {
 
         {/* ── Voice recorder ── */}
         {mode === 'voice' && (
-          <div id="contact-voice-panel" className={styles.modePanel}>
+          <div id="contact-voice-panel" className="animate-panel-fade-in motion-reduce:animate-none">
             <Controller
               name="voiceRecordings"
               control={control}
@@ -278,7 +294,7 @@ export function ContactForm() {
                 <>
                   <VoiceRecorder onRecordingsChange={field.onChange} />
                   {fieldState.error && (
-                    <p className={styles.fieldError} role="alert">
+                    <p className="text-[var(--red)] text-xs mt-1.5" role="alert">
                       {t(`form.errors.${fieldState.error.message}`)}
                     </p>
                   )}
@@ -290,7 +306,10 @@ export function ContactForm() {
 
         {/* ── Error banner (server-side errors only) ── */}
         {errorKey && (
-          <p className={styles.errorBanner} role="alert">
+          <p
+            className="text-[var(--red)] text-sm leading-5 px-4 py-3 rounded-xl bg-[color-mix(in_srgb,var(--red)_10%,transparent)] border border-[color-mix(in_srgb,var(--red)_25%,transparent)]"
+            role="alert"
+          >
             {t(`form.errors.${errorKey}`)}
           </p>
         )}
@@ -298,7 +317,7 @@ export function ContactForm() {
         {/* ── Turnstile ── */}
         <div
           className={
-            siteConfig.turnstile.size !== 'invisible' ? styles.turnstileWrapper : undefined
+            siteConfig.turnstile.size !== 'invisible' ? "flex justify-center pt-1" : undefined
           }
         >
           <Controller
@@ -334,20 +353,27 @@ export function ContactForm() {
         </Button>
 
         {isSuccess && (
-          <div className={`glass-amber rounded-xl p-5 ${styles.successCard}`}>
+          <div className="glass-amber rounded-xl p-5 animate-panel-fade-in motion-reduce:animate-none">
             <div className="flex items-center gap-3 mb-4">
               <CheckIcon className="w-5 h-5 text-green-400 flex-shrink-0" />
               <p className="text-foreground font-semibold text-sm">{t('form.successHeading')}</p>
             </div>
             <p className="text-muted-foreground text-sm mb-4">{t('form.successBody')}</p>
-            <div className={styles.successCtas}>
+            <div className="grid grid-cols-1 gap-2 sm:grid-cols-3">
               <TrackedLink
                 href={siteConfig.calendly.url}
                 target="_blank"
                 rel="noopener noreferrer"
                 tracking={{ action: 'calendly' }}
                 onClick={() => trackContactSuccessCtaClick('calendly')}
-                className={`${styles.successCta} ${styles.successCtaPrimary}`}
+                className={cn(
+                  "inline-flex items-center justify-center gap-2 px-4 py-3 rounded-xl text-[0.8125rem] font-medium",
+                  "transition-[color,background,border-color] duration-200",
+                  "text-foreground bg-amber/18 border border-amber/35",
+                  "hover:bg-amber/26 hover:border-amber/50",
+                  "[html[data-theme=light]_&]:text-[var(--tag-color)] [html[data-theme=light]_&]:bg-amber/12 [html[data-theme=light]_&]:border-border-amber",
+                  "[html[data-theme=light]_&]:hover:text-[color-mix(in_srgb,var(--amber-dark)_75%,black)] [html[data-theme=light]_&]:hover:bg-amber/18 [html[data-theme=light]_&]:hover:border-amber/42",
+                )}
               >
                 <CalendarIcon className="w-4 h-4" />
                 <span>{t('form.successCtas.calendly')}</span>
@@ -358,7 +384,14 @@ export function ContactForm() {
                 rel="noopener noreferrer"
                 tracking={{ action: 'outbound', target: 'linkedin' }}
                 onClick={() => trackContactSuccessCtaClick('linkedin')}
-                className={styles.successCta}
+                className={cn(
+                  "inline-flex items-center justify-center gap-2 px-4 py-3 rounded-xl text-[0.8125rem] font-medium",
+                  "transition-[color,background,border-color] duration-200",
+                  "text-foreground-soft bg-foreground/5 border border-foreground/10",
+                  "hover:text-foreground hover:bg-foreground/8 hover:border-foreground/18",
+                  "[html[data-theme=light]_&]:text-foreground-soft [html[data-theme=light]_&]:bg-card [html[data-theme=light]_&]:border-border",
+                  "[html[data-theme=light]_&]:hover:text-foreground [html[data-theme=light]_&]:hover:bg-card-hover",
+                )}
               >
                 <LinkedInLogo className="w-4 h-4" />
                 <span>{t('form.successCtas.linkedin')}</span>
@@ -366,7 +399,14 @@ export function ContactForm() {
               <Link
                 href="/projects"
                 onClick={() => trackContactSuccessCtaClick('projects')}
-                className={styles.successCta}
+                className={cn(
+                  "inline-flex items-center justify-center gap-2 px-4 py-3 rounded-xl text-[0.8125rem] font-medium",
+                  "transition-[color,background,border-color] duration-200",
+                  "text-foreground-soft bg-foreground/5 border border-foreground/10",
+                  "hover:text-foreground hover:bg-foreground/8 hover:border-foreground/18",
+                  "[html[data-theme=light]_&]:text-foreground-soft [html[data-theme=light]_&]:bg-card [html[data-theme=light]_&]:border-border",
+                  "[html[data-theme=light]_&]:hover:text-foreground [html[data-theme=light]_&]:hover:bg-card-hover",
+                )}
               >
                 <BriefcaseIcon className="w-4 h-4" />
                 <span>{t('form.successCtas.projects')}</span>
