@@ -109,7 +109,7 @@ export function SkillsSection({ sectionNumber }: SkillsSectionProps) {
         <div
           id={detailsPanelId}
           data-open={detailsOpen ? "true" : undefined}
-          className="grid [grid-template-rows:0fr] data-[open=true]:[grid-template-rows:1fr] transition-[grid-template-rows] duration-400 ease-[cubic-bezier(0.4,0,0.2,1)] motion-reduce:transition-none"
+          className="grid [grid-template-rows:0fr] data-[open=true]:[grid-template-rows:1fr] transition-[grid-template-rows] duration-[400ms] ease-[cubic-bezier(0.4,0,0.2,1)] motion-reduce:transition-none"
           aria-hidden={!detailsOpen}
           inert={!detailsOpen}
         >

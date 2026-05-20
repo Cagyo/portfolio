@@ -1,40 +1,8 @@
-/* Retained per refactor policy: `::-webkit-scrollbar` / `::-webkit-scrollbar-thumb`
-   pseudo-elements with state-dependent color tokens — not expressible as Tailwind
-   utilities. */
-.overlay {
-  position: fixed;
-  inset: 0;
-  background: color-mix(in srgb, var(--bg) 72%, transparent);
-  backdrop-filter: blur(4px);
-  z-index: 40;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.25s ease;
-}
-
-.overlayOpen {
-  opacity: 1;
-  pointer-events: all;
-}
-
+/* Retained: vendor pseudo-element (::-webkit-scrollbar*) — Tailwind cannot express.
+   Keeps standard-spec scrollbar-width/color siblings here so the rule lives in one place. */
 .panel {
-  position: fixed;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  width: min(320px, 90vw);
-  z-index: 50;
-  transform: translateX(-100%);
-  transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
-  overflow-y: auto;
-  background: var(--bg-secondary);
-  border-right: 1px solid var(--border);
   scrollbar-width: thin;
   scrollbar-color: color-mix(in srgb, var(--amber) 20%, transparent) transparent;
-}
-
-.panel:focus {
-  outline: none;
 }
 
 .panel::-webkit-scrollbar {
@@ -43,48 +11,4 @@
 
 .panel::-webkit-scrollbar-thumb {
   background: color-mix(in srgb, var(--amber) 20%, transparent);
-}
-
-.panelOpen {
-  transform: translateX(0);
-}
-
-.closeButton {
-  display: inline-flex;
-  min-width: 2.75rem;
-  min-height: 2.75rem;
-  align-items: center;
-  justify-content: center;
-  color: var(--text-faint);
-  cursor: pointer;
-  transition: color 0.2s ease, background 0.2s ease;
-  border-radius: 10px;
-}
-
-.closeButton:hover {
-  color: var(--text-primary);
-  background: color-mix(in srgb, var(--text-primary) 6%, transparent);
-}
-
-.closeButton:focus-visible {
-  outline: 2px solid var(--amber);
-  outline-offset: 2px;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .overlay,
-  .panel,
-  .closeButton {
-    transition: none;
-  }
-}
-
-/* ── Light mode overrides ── */
-html[data-theme="light"] .overlay {
-  background: color-mix(in srgb, var(--text-primary) 18%, transparent);
-}
-
-html[data-theme="light"] .panel {
-  background: var(--bg);
-  border-right-color: var(--border);
 }

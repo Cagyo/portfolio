@@ -259,7 +259,7 @@ describe('VoiceRecorder', () => {
     })
 
     await waitFor(() => {
-      const fill = container.querySelector('[class*="progressFill"]') as HTMLElement | null
+      const fill = container.querySelector('[data-testid="progress-fill"]') as HTMLElement | null
       expect(fill).not.toBeNull()
       expect(fill!.style.transform).toBe('scaleX(0.5)')
     })
@@ -280,7 +280,7 @@ describe('VoiceRecorder', () => {
       expect(screen.getByRole('button', { name: voiceMessages.playBtn })).toBeInTheDocument()
     })
 
-    const fill = container.querySelector('[class*="progressFill"]') as HTMLElement | null
+    const fill = container.querySelector('[data-testid="progress-fill"]') as HTMLElement | null
     expect(fill).not.toBeNull()
     expect(fill!.style.transform).toBe('scaleX(0)')
   })
@@ -405,7 +405,7 @@ describe('VoiceRecorder', () => {
 
     // The progress fill should be empty, no NaN, no crash
     await user.click(screen.getByRole('button', { name: voiceMessages.playBtn }))
-    const fill = container.querySelector('[class*="progressFill"]') as HTMLElement | null
+    const fill = container.querySelector('[data-testid="progress-fill"]') as HTMLElement | null
     expect(fill).not.toBeNull()
     expect(fill!.style.transform).toBe('scaleX(0)')
   })

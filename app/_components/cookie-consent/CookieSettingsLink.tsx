@@ -12,7 +12,7 @@ export function CookieSettingsLink({ className = "" }: { className?: string }) {
     <button
       type="button"
       className={cn(
-        "cursor-pointer appearance-none border-0 bg-transparent p-0 font-[inherit] text-[inherit]",
+        "cursor-pointer appearance-none border-0 bg-transparent p-0 font-[inherit] text-amber underline underline-offset-[0.16em] transition-colors hover:text-amber-light focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber",
         className,
       )}
       onClick={reopen}

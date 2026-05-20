@@ -25,7 +25,7 @@ export function ContactInfoCard({ icon, label, value, href }: ContactInfoCardPro
       <div className="min-w-0">
         <p className="text-faint-foreground text-[0.6875rem] font-bold tracking-[0.12em] uppercase leading-[1.2]">{label}</p>
         <p className={cn(
-          "text-foreground text-[0.9375rem] font-semibold leading-[1.35] mt-0.5 overflow-wrap-anywhere",
+          "text-foreground text-[0.9375rem] font-semibold leading-[1.35] mt-0.5 break-words",
           href && "group-hover/card:text-amber-foreground transition-colors duration-[180ms] [html[data-theme=light]_&]:group-hover/card:text-[var(--tag-color)]",
         )}>
           {value}
