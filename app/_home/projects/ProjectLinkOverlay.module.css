@@ -1,3 +1,7 @@
+/* Retained per refactor policy: descendant hover chain
+   (.privateWrap:hover .privateTooltip) for tooltip reveal. Could be migrated with
+   named groups (`group/wrap` + `group-hover/wrap:opacity-100`); candidate for
+   future migration. */
 .linkStack {
   display: flex;
   flex-direction: column;

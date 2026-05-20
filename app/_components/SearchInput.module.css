@@ -1,3 +1,6 @@
+/* Retained per refactor policy: candidate for future migration to Tailwind utilities.
+   Currently kept while absolute-positioned icon/clear-button slots are stable.
+   Re-evaluate alongside EmptyState when the search pattern is reused beyond filters. */
 .container {
   position: relative;
 }

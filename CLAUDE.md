@@ -177,24 +177,67 @@ Full patterns (Server Function result types, `catchError` wrapper, `global-error
 
 ## Styling
 
-### Architecture — three layers, do not mix
+**Tailwind-first.** Default to utility classes built on semantic tokens. CSS modules are a narrow exception, not a default.
+
+### Architecture — three layers, in priority order
 
 | Layer | Mechanism | When to use |
 | --- | --- | --- |
-| Design tokens | CSS custom properties in `:root` / `html[data-theme]` in `globals.css` | Colors, surfaces, spacing scale |
-| Shared primitives | `@utility` blocks in `globals.css` | Classes used across 3+ components or applied to varying element types |
-| Component styles | Co-located `ComponentName.module.css` | Component-specific visual identity |
+| Design tokens | `@theme` block in `globals.css` (mapped from `:root` / `html[data-theme]`) | All colors, surfaces, borders. Single source of truth. |
+| Tailwind utilities | `bg-card`, `text-foreground`, `border-border`, `text-amber-foreground`, `cn()` / `cva` | **Default for every component.** |
+| `@utility` blocks | `globals.css` | Classes used by 3+ components: `glass`, `glass-amber`, `blob`, `text-gradient`, `dot-grid`, `reveal`, `form-input`, `active-chip`, `btn-shimmer`, `btn-outline`, `show-more-toggle`, `mobile-overlay`. |
+| CSS modules | Co-located `ComponentName.module.css` | **Exception only** — must satisfy one of six retention criteria below. |
 
-Never add new plain `.className { }` blocks to `globals.css`. Use `@utility` or a CSS module instead.
+Never add new plain `.className { }` blocks to `globals.css`. Use `@utility` or, as a last resort, a CSS module.
 
-### Top rules
+### Tailwind-first rules
 
-- **No inline `style={{}}`** — use Tailwind utilities or a co-located CSS module. Static RGBA, box-shadows, border colors, brand hex, gradients, and fixed transition/animation delays always move to a CSS module.
-  - **Exception**: JS-computed values only — `style={{ opacity: value }}`, `style={{ maxHeight: open ? 1000 : 0 }}`, `style={{ animationDelay: \`${delay}s\` }}`, data-driven colors from a data array.
-- Do not use Tailwind arbitrary values (`w-[123px]`) for values that belong in a token.
-- Do not add `position: relative; z-index: N` to individual child elements — let the component wrapper handle stacking context.
-- **Light mode is mandatory**: any white-opacity color (`text-white/N`, `color-mix(in srgb, white ...)`, `oklch(from white ...)`), foreground amber on light surfaces (`text-amber-*`, `color: var(--amber)`), Tailwind opacity variants that are not already covered globally, hardcoded dark utilities (`bg-black/*`, `bg-zinc-*`, `bg-gray-*`), hardcoded dark backgrounds (`#080810`, `#0d0d18`, `#16162a`, etc.), and component-specific overlay/tooltip styles need a `html[data-theme="light"]` override using design tokens.
-- Do not combine a CSS-module class and Tailwind utilities to style the same visual concern on the same element.
+- **Use semantic tokens, never raw palette opacities.** Forbidden in `.tsx`:
+  - `text-white/N`, `bg-white/N`, `border-white/N` → use `text-foreground` / `text-foreground-soft` / `text-muted-foreground` / `text-faint-foreground` / `text-ghost-foreground` / `text-invisible-foreground`, `bg-card`, `border-border`.
+  - `text-amber-400`, `text-amber-500`, `bg-amber-500/N`, `border-amber-500/N`, `from-amber-400`, `to-amber-600` → use `text-amber-foreground`, `bg-amber`, `bg-amber/10`, `border-border-amber`, `from-amber-light`, `to-amber-dark`.
+  - `bg-black/*`, `bg-zinc-*`, `bg-gray-*`, hex backgrounds (`#080810`, `#0d0d18`, etc.) → use `bg-background` / `bg-background-elevated` / `bg-card`.
+  Review will catch these.
+- **No inline `style={{}}` for static values.** Reserve inline `style` exclusively for JS-derived values: `style={{ opacity: value }}`, `style={{ maxHeight: open ? 1000 : 0 }}`, `style={{ animationDelay: \`${i * 0.1}s\` }}`, or data-driven colors pulled from a data array.
+- **No Tailwind arbitrary values for tokenable concerns** — use the semantic token (`bg-card`, not `bg-[#080810]/82`).
+- **`cn()` from `@/app/_lib/cn.ts`** for conditional class composition. **`cva`** for primitives with variants.
+- **Prefer Tailwind v4 selectors over CSS modules**:
+  - One-level descendant hover → `group` + `group-hover:`
+  - Two-level descendant hover → named groups: `group/card` + `group-hover/card:`
+  - `:has()` → `has-[...]`; `:focus-within` → `focus-within:`; `:nth-child` → `nth-[3n+1]:`
+  - Simple `::before` / `::after` (≤3 props) → `before:content-[''] before:absolute before:inset-0 ...`
+  - State variants → `aria-pressed:`, `data-[state=open]:`, `peer-*`
+
+### CSS-module retention criteria (the six exceptions)
+
+A `.module.css` file is justified ONLY if the component meets at least one of:
+
+1. **`@keyframes` tied to component-local state** (generic keyframes belong in `@theme { --animate-foo: ... }`).
+2. **`::before` / `::after` with ≥5 properties or state-dependent gradients.**
+3. **Descendant selector chains spanning >1 nesting level.**
+4. **Sibling selectors (`~`, `+`) with state beyond what `peer-*` provides.**
+5. **`@property` registered custom properties** (animating gradient stops, conic gradients).
+6. **Named container queries with multiple rules.**
+
+Additional exception: **vendor pseudo-elements** (`::-webkit-scrollbar*`) and **`:global()` selectors** that theme third-party CSS — Tailwind cannot express these.
+
+### Every surviving `.module.css` must start with a justification comment
+
+```css
+/* Retained per refactor policy: <criterion from the list above>.
+   <Specific reason — e.g., "ringPulse keyframe coupled to recorder state machine">. */
+```
+
+**No comment = the file should not exist.** Migrate the styles to Tailwind utilities and delete the module.
+
+### Budget
+
+- ≤ 20 `.module.css` files total (target ≤ 15).
+- ≤ 1,500 LOC total across all modules (target ≤ 1,200).
+- Crossing either ceiling requires explicit discussion in the PR.
+
+### Light mode
+
+All styling must work in both themes. The `data-theme="light"` overrides in `globals.css` cover the small set of non-migrated palette utilities (`text-violet-400`, `text-green-400`, `text-red-400`, violet pill backgrounds) plus `@utility` consumers (`.glass`, `.glass-amber`, `.blob`) and the `hover:text-amber-light` custom-token hover. Do not introduce new escape-hatch utility classes that require their own override block — use semantic tokens instead.
 
 `@utility` registry, CSS module patterns, React UI primitive extraction rules, `color-mix` usage: [docs/styling-details.md](docs/styling-details.md).
 
