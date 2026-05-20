@@ -11,8 +11,6 @@ import { Button } from "@/app/_components/button/Button";
 import { ProjectCard } from "./ProjectCard";
 import { ProjectLinkOverlay } from "./ProjectLinkOverlay";
 import { AnonymizedImageContent } from "./AnonymizedImageContent";
-import styles from "./ProjectsSection.module.css";
-
 type ProjectsSectionProps = { sectionNumber?: string }
 
 export async function ProjectsSection({ sectionNumber }: ProjectsSectionProps) {
@@ -79,9 +77,9 @@ export async function ProjectsSection({ sectionNumber }: ProjectsSectionProps) {
           {t("subtitle")}
         </p>
 
-        <div className={styles.proofLayout}>
+        <div className="grid gap-[clamp(1.25rem,3vw,2.25rem)]">
           {featuredProject && renderProjectCard(featuredProject, true)}
-          <div className={styles.supportingGrid}>
+          <div className="grid gap-[clamp(1rem,2.5vw,1.75rem)] md:grid-cols-2">
             {supportingProjects.map((project) => renderProjectCard(project, false))}
           </div>
         </div>

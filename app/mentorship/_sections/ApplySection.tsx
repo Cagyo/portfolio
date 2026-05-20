@@ -6,8 +6,6 @@ import { BlobBackground } from "@/app/_components/BlobBackground";
 import { Button } from "@/app/_components/button/Button";
 import { TrackedLink } from "@/app/_components/tracked-link/TrackedLink";
 import { siteConfig } from "@/app/_config/site-config";
-import styles from "./ApplySection.module.css";
-
 export async function ApplySection() {
   const t = await getTranslations("mentorshipPage.apply");
 
@@ -20,28 +18,28 @@ export async function ApplySection() {
         {/* Badge */}
         <div className="reveal mb-4">
           <span
-            className={`inline-flex items-center gap-2 rounded-full px-4 py-2 ${styles.badge}`}
+            className="inline-flex items-center gap-2 rounded-full px-4 py-2 bg-violet-500/10 border border-violet-500/30"
           >
-            <span className={`w-2 h-2 rounded-full animate-pulse-slow ${styles.badgeDot}`} />
-            <span className={`text-sm font-medium ${styles.badgeLabel}`}>{t("badge")}</span>
+            <span className="w-2 h-2 rounded-full animate-pulse-slow bg-violet-400" />
+            <span className="text-sm font-medium text-violet-400">{t("badge")}</span>
           </span>
         </div>
 
         <h2
-          className={`reveal font-heading font-black text-4xl sm:text-5xl text-foreground mb-6 ${styles.delay1}`}
+          className="reveal font-heading font-black text-4xl sm:text-5xl text-foreground mb-6 delay-[50ms]"
         >
           {t("headline1")}<br />
           <span className="text-gradient">{t("headlineGradient")}</span>
         </h2>
 
         <p
-          className={`reveal text-muted-foreground text-lg leading-relaxed mb-10 ${styles.delay2}`}
+          className="reveal text-muted-foreground text-lg leading-relaxed mb-10 delay-[100ms]"
         >
           {t("body")}
         </p>
 
         <div
-          className={`reveal flex flex-col sm:flex-row items-center justify-center gap-4 ${styles.delay3}`}
+          className="reveal flex flex-col sm:flex-row items-center justify-center gap-4 delay-[150ms]"
         >
           {/* Calendly card */}
           <TrackedLink
@@ -52,7 +50,7 @@ export async function ApplySection() {
             className="group flex items-center gap-4 glass rounded-2xl p-4 hover:border-violet-500/40 transition-all duration-200 cursor-pointer w-full sm:w-auto"
           >
             <div
-              className={`w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform duration-200 ${styles.calendlyBtn}`}
+              className="w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform duration-200 bg-[#006BFF]"
             >
               <CalendarIcon className="w-5 h-5 text-foreground" />
             </div>

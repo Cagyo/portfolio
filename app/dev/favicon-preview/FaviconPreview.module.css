@@ -1,6 +1,5 @@
-/* Retained per refactor policy: internal /dev/* preview route — not part of the
-   public site bundle. Migration is low priority; co-located module is fine for
-   ad-hoc internal tooling. */
+/* Retained per refactor policy file-level exception: app/dev/* routes are
+   internal preview tools outside the public sitemap and user-facing CSS budget. */
 .page {
   min-height: 100vh;
   background:

@@ -39,6 +39,14 @@
   --color-amber-light: var(--amber-light);
   --color-amber-dark: var(--amber-dark);
   --color-amber-foreground: var(--amber-fg);
+  --color-danger: var(--danger);
+  --color-danger-foreground: var(--danger-fg);
+  --color-danger-shell: var(--danger-shell);
+  --color-danger-shell-border: var(--danger-shell-border);
+  --color-danger-surface-muted: var(--danger-surface-muted);
+  --color-danger-surface: var(--danger-surface);
+  --color-danger-surface-hover: var(--danger-surface-hover);
+  --color-danger-border: var(--danger-border);
 }
 
 /* ══════════════════════════════════════════════
@@ -81,6 +89,15 @@
   --text-faint: rgba(248,250,252,0.40);
   --text-ghost: rgba(248,250,252,0.30);
   --text-invisible: rgba(248,250,252,0.12);
+
+  --danger: var(--red);
+  --danger-fg: color-mix(in srgb, var(--red) 65%, white);
+  --danger-shell: color-mix(in srgb, var(--red) 6%, transparent);
+  --danger-shell-border: color-mix(in srgb, var(--red) 30%, transparent);
+  --danger-surface-muted: color-mix(in srgb, var(--red) 10%, transparent);
+  --danger-surface: color-mix(in srgb, var(--red) 18%, transparent);
+  --danger-surface-hover: color-mix(in srgb, var(--red) 28%, transparent);
+  --danger-border: color-mix(in srgb, var(--red) 35%, transparent);
 
   --blob-opacity: 0.15;
   --card-shadow: 0 20px 60px rgba(245,158,11,0.15);
@@ -135,6 +152,14 @@ html[data-theme="light"] {
   --text-faint: #5B677A;
   --text-ghost: #64748B;
   --text-invisible: rgba(100,116,139,0.36);
+
+  --danger-fg: color-mix(in srgb, var(--red) 75%, black);
+  --danger-shell: color-mix(in srgb, var(--red) 7%, transparent);
+  --danger-shell-border: color-mix(in srgb, var(--red) 24%, transparent);
+  --danger-surface-muted: color-mix(in srgb, var(--red) 8%, transparent);
+  --danger-surface: color-mix(in srgb, var(--red) 9%, transparent);
+  --danger-surface-hover: color-mix(in srgb, var(--red) 14%, transparent);
+  --danger-border: color-mix(in srgb, var(--red) 28%, transparent);
 
   --blob-opacity: 0.07;
   --card-shadow: 0 20px 60px rgba(15,23,42,0.10);
@@ -252,6 +277,20 @@ section[id] { scroll-margin-top: clamp(5rem, 8vw, 6.25rem); }
 
 @utility text-gradient {
   background: var(--gradient-amber-text);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+@utility text-gradient-amber {
+  background: var(--gradient-amber);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+@utility text-gradient-violet {
+  background: var(--gradient-violet);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;

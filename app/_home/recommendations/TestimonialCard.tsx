@@ -71,7 +71,7 @@ export function TestimonialCard({
           ) : (
             <div
               className={cn(
-                "rounded-lg shrink-0 h-10 w-10 overflow-hidden flex items-center justify-content-center font-heading text-sm font-black",
+                "rounded-lg shrink-0 h-10 w-10 overflow-hidden flex items-center justify-center font-heading text-sm font-black",
                 author.gradientClass,
               )}
             >

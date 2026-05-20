@@ -7,6 +7,7 @@ import { StopIcon } from "@/assets/icons/StopIcon";
 import { PlayIcon } from "@/assets/icons/PlayIcon";
 import { PauseIcon } from "@/assets/icons/PauseIcon";
 import { TrashIcon } from "@/assets/icons/TrashIcon";
+import { cn } from "@/app/_lib/cn";
 import styles from "./VoiceRecorder.module.css";
 
 type RecordingEntry = {
@@ -23,6 +24,9 @@ type VoiceRecorderProps = {
 const WAVE_BARS = 28;
 const MAX_DURATION_SECONDS = 120;
 const MAX_RECORDINGS = 5;
+
+const touchButtonFocusClassName =
+  "focus-visible:outline-2 focus-visible:outline-offset-[3px] focus-visible:outline-amber";
 
 function formatTime(seconds: number): string {
   const minutes = Math.floor(seconds / 60);
@@ -54,30 +58,38 @@ function RecordingItem({
   const progressScale = Math.min(Math.max(progress / 100, 0), 1);
 
   return (
-    <div className={styles.recordingItem}>
-      <div className={styles.itemHeader}>
-        <span className={styles.itemLabel}>
+    <div
+      className={cn(
+        styles.itemSlideIn,
+        "grid grid-cols-[minmax(8rem,0.9fr)_minmax(10rem,1.3fr)] items-center gap-2 rounded-[0.625rem] border border-border bg-card px-3 py-2.5 max-[520px]:grid-cols-1",
+      )}
+    >
+      <div className="flex items-center justify-between gap-2">
+        <span className="text-xs font-medium tracking-[0.02em] text-amber-foreground">
           {t("recordingNLabel", { n: index + 1 })}
         </span>
-        <div className={styles.itemActions}>
-          <span className={styles.itemTime}>
+        <div className="flex shrink-0 items-center gap-2">
+          <span className="text-xs tabular-nums text-faint-foreground">
             {formatTime(currentTime)} / {formatTime(duration)}
           </span>
           <button
             type="button"
             onClick={onDelete}
-            className={styles.deleteBtn}
+            className="flex min-h-8 min-w-8 shrink-0 cursor-pointer items-center justify-center rounded-full border border-border bg-transparent text-ghost-foreground transition-[color,border-color,background-color] duration-200 hover:border-danger-shell-border hover:bg-danger-surface-muted hover:text-danger-foreground focus-visible:outline-2 focus-visible:outline-offset-[3px] focus-visible:outline-danger"
             aria-label={`${t("deleteBtn")} ${index + 1}`}
           >
             <TrashIcon className="w-3.5 h-3.5" />
           </button>
         </div>
       </div>
-      <div className={styles.itemPlayRow}>
+      <div className="flex items-center gap-2.5">
         <button
           type="button"
           onClick={onTogglePlay}
-          className={styles.playBtn}
+          className={cn(
+            "flex min-h-11 min-w-11 shrink-0 cursor-pointer items-center justify-center rounded-full border-[1.5px] border-amber/40 bg-amber/18 text-amber transition-colors duration-200 hover:bg-amber/28",
+            touchButtonFocusClassName,
+          )}
           aria-label={isPlaying ? t("pauseBtn") : t("playBtn")}
         >
           {isPlaying ? (
@@ -86,9 +98,10 @@ function RecordingItem({
             <PlayIcon className="w-4 h-4" />
           )}
         </button>
-        <div className={styles.progressBar}>
+        <div className="h-[3px] flex-1 overflow-hidden rounded-full bg-amber/18">
           <div
-            className={styles.progressFill}
+            data-testid="progress-fill"
+            className="h-full w-full origin-left rounded-full bg-amber transition-transform duration-200 ease-linear"
             style={{ transform: `scaleX(${progressScale})` }}
           />
         </div>
@@ -249,11 +262,11 @@ export function VoiceRecorder({ onRecordingsChange }: VoiceRecorderProps) {
   const canAddMore = recordings.length < MAX_RECORDINGS;
 
   return (
-    <div className={styles.recorder}>
+    <div className="flex min-h-[108px] flex-col gap-3 rounded-2xl border border-border-amber bg-amber/5 p-4">
 
       {/* ── Completed recordings list ── */}
       {recordings.length > 0 && (
-        <div className={styles.recordingList}>
+        <div className="flex flex-col gap-2">
           {recordings.map((entry, index) => (
             <RecordingItem
               key={entry.id}
@@ -270,18 +283,28 @@ export function VoiceRecorder({ onRecordingsChange }: VoiceRecorderProps) {
 
       {/* ── Active recording bar ── */}
       {isRecording && (
-        <div className={styles.recordingState}>
-          <div className={styles.recordingHeader}>
-            <span className={styles.recordingDot} aria-hidden="true" />
-            <span className={styles.recordingLabel}>{t("recordingLabel")}</span>
-            <span className={styles.timer}>{formatTime(elapsed)}</span>
+        <div
+          className={cn(
+            styles.itemSlideIn,
+            "flex flex-row flex-wrap items-center justify-between gap-x-4 gap-y-3 rounded-[0.625rem] border border-dashed border-danger-shell-border bg-danger-shell px-3 py-3.5",
+          )}
+        >
+          <div className="flex items-center gap-2.5">
+            <span className={cn(styles.blink, "size-2 rounded-full bg-danger")} aria-hidden="true" />
+            <span className="text-[0.8125rem] font-medium text-foreground-soft">{t("recordingLabel")}</span>
+            <span className="text-[0.8125rem] font-medium tabular-nums text-amber-foreground">
+              {formatTime(elapsed)}
+            </span>
           </div>
 
-          <div className={styles.waveform} aria-hidden="true">
+          <div
+            className={cn(styles.wave, "flex h-8 min-w-28 flex-[1_1_10rem] items-center gap-[3px]")}
+            aria-hidden="true"
+          >
             {waveBars.map((barIndex) => (
               <span
                 key={barIndex}
-                className={styles.waveBar}
+                className="block w-[3px] rounded-sm bg-amber/70"
                 style={{ animationDelay: `${(barIndex * 40) % 600}ms` }}
               />
             ))}
@@ -290,7 +313,7 @@ export function VoiceRecorder({ onRecordingsChange }: VoiceRecorderProps) {
           <button
             type="button"
             onClick={stopRecording}
-            className={styles.stopBtn}
+            className="flex shrink-0 cursor-pointer items-center gap-2 rounded-full border border-danger-border bg-danger-surface px-5 py-2 text-[0.8125rem] font-medium text-danger-foreground transition-colors duration-200 hover:bg-danger-surface-hover focus-visible:outline-2 focus-visible:outline-offset-[3px] focus-visible:outline-danger"
             aria-label={t("stopBtn")}
           >
             <StopIcon className="w-5 h-5" />
@@ -301,18 +324,25 @@ export function VoiceRecorder({ onRecordingsChange }: VoiceRecorderProps) {
 
       {/* ── Idle: no recordings yet → big centered mic ── */}
       {!isRecording && recordings.length === 0 && (
-        <div className={styles.idleState}>
-          <p className={styles.hint}>{t("hint")}</p>
+        <div className="flex flex-1 flex-wrap items-center gap-3.5 p-px text-left">
+          <p className="max-w-[34ch] flex-1 text-[0.8125rem] leading-[1.6] text-faint-foreground">
+            {t("hint")}
+          </p>
           <button
             type="button"
             onClick={startRecording}
-            className={styles.recordBtn}
+            className={cn(
+              "relative flex h-14 w-14 cursor-pointer items-center justify-center rounded-full border-[1.5px] border-amber/34 bg-amber/11 text-amber transition-all duration-200 hover:scale-[1.06] hover:bg-amber/17",
+              touchButtonFocusClassName,
+            )}
             aria-label={t("recordBtn")}
           >
-            <span className={styles.recordBtnRing} aria-hidden="true" />
+            <span className="absolute inset-[-5px] rounded-full border-[1.5px] border-amber/18" aria-hidden="true" />
             <MicrophoneIcon className="w-7 h-7" />
           </button>
-          <span className={styles.idleLabel}>{t("readyLabel")}</span>
+          <span className="whitespace-nowrap text-xs font-medium tracking-[0.04em] text-ghost-foreground uppercase max-[520px]:basis-full">
+            {t("readyLabel")}
+          </span>
         </div>
       )}
 
@@ -321,7 +351,10 @@ export function VoiceRecorder({ onRecordingsChange }: VoiceRecorderProps) {
         <button
           type="button"
           onClick={startRecording}
-          className={styles.addAnotherBtn}
+          className={cn(
+            "flex w-full cursor-pointer items-center justify-center gap-2 rounded-[0.625rem] border-[1.5px] border-dashed border-amber/28 bg-transparent px-4 py-3 text-[0.8125rem] font-medium text-faint-foreground transition-[color,border-color,background-color] duration-200 hover:border-border-amber hover:bg-amber/6 hover:text-amber-foreground",
+            touchButtonFocusClassName,
+          )}
           aria-label={t("addAnotherBtn")}
         >
           <MicrophoneIcon className="w-4 h-4" />
@@ -331,13 +364,13 @@ export function VoiceRecorder({ onRecordingsChange }: VoiceRecorderProps) {
 
       {/* ── Max recordings reached ── */}
       {!isRecording && !canAddMore && (
-        <p className={styles.maxReachedLabel}>
+        <p className="px-0 py-1 text-center text-xs text-ghost-foreground">
           {t("maxReachedLabel", { max: MAX_RECORDINGS })}
         </p>
       )}
 
       {error && (
-        <p className={styles.errorMsg} role="alert">
+        <p className="text-center text-[0.8125rem] text-danger-foreground" role="alert">
           {error}
         </p>
       )}

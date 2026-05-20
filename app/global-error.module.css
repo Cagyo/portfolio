@@ -1,6 +1,6 @@
-/* Retained per refactor policy: global-error.tsx is the top-level uncaught error
-   boundary and must render with zero dependency on the Tailwind layer (which may
-   not be available on hard crash). Self-contained module is intentional. */
+/* Retained per refactor policy file-level exception: app/global-error.tsx is
+   the top-level uncaught error boundary and must render even if the Tailwind/
+   Next.js layer has failed. */
 .body {
   min-height: 100vh;
   display: flex;

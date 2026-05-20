@@ -57,7 +57,7 @@ export const siteConfig = {
     experienceInitialVisible: 2,
   },
   features: {
-    consentBanner: true,
+    consentBanner: false,
     contactChannels: true,
   },
   /**

@@ -63,14 +63,14 @@ export function FilterPanelMobile({
   return (
     <>
       <div
-        className={`${styles.overlay} ${open ? styles.overlayOpen : ""}`}
+        className={`fixed inset-0 backdrop-blur-sm bg-background/60 z-40 transition-opacity duration-300 ease-linear motion-reduce:transition-none ${open ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}`}
         onClick={onClose}
         aria-hidden="true"
       />
 
       <div
         ref={panelRef}
-        className={`${styles.panel} ${open ? styles.panelOpen : ""} p-6 pt-8`}
+        className={`${styles.panel} fixed left-0 top-0 bottom-0 w-[min(320px,90vw)] z-50 overflow-y-auto bg-card border-r border-border transition-transform duration-300 ease-[cubic-bezier(0.25,1,0.5,1)] motion-reduce:transition-none focus:outline-none ${open ? "translate-x-0" : "-translate-x-full"} p-6 pt-8`}
         role="dialog"
         aria-modal="true"
         aria-label={t("filters")}
@@ -82,7 +82,7 @@ export function FilterPanelMobile({
           <button
             type="button"
             onClick={onClose}
-            className={styles.closeButton}
+            className="inline-flex min-w-11 min-h-11 items-center justify-center text-faint-foreground cursor-pointer transition-[color,background] duration-200 ease-linear rounded-[10px] hover:text-foreground hover:bg-foreground/5 focus-visible:outline-2 focus-visible:outline-amber focus-visible:outline-offset-2 motion-reduce:transition-none"
             aria-label={t("closeFilters")}
           >
             <XMarkIcon className="w-5 h-5" />

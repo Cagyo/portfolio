@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react"
 import Link from "next/link"
 import { useTranslations } from "next-intl"
 import { Button } from "@/app/_components/button/Button"
+import { cn } from "@/app/_lib/cn"
 import { useConsent } from "./consent-context"
 import styles from "./CookieConsent.module.css"
 
@@ -72,29 +73,42 @@ export function CookieConsent() {
       aria-live="polite"
       tabIndex={-1}
       data-state={isVisible ? "open" : "closed"}
-      className={styles.panel}
+      className={cn(
+        styles.panel,
+        "fixed right-3 bottom-[max(0.75rem,env(safe-area-inset-bottom))] left-3 z-[35] mx-auto grid max-w-[min(720px,calc(100%_-_1.5rem))] grid-rows-[auto_auto] gap-y-3.5 rounded-[14px] border border-border px-[1.125rem] py-4 shadow-[var(--card-shadow)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber md:right-4 md:bottom-[max(1rem,env(safe-area-inset-bottom))] md:left-4 md:flex md:max-w-[min(720px,calc(100%_-_2rem))] md:flex-wrap md:items-end md:gap-6 md:rounded-2xl md:px-6 md:py-5 print:hidden",
+      )}
       onTransitionEnd={handleTransitionEnd}
     >
-      <div className={styles.content}>
-        <h2 className={styles.title}>{t("title")}</h2>
-        <p className={styles.description}>
+      <div className="min-w-0 md:min-w-80 md:flex-[1_1_320px]">
+        <h2 className="mb-1.5 font-heading text-[0.9375rem] leading-[1.2] font-semibold text-foreground md:text-base">
+          {t("title")}
+        </h2>
+        <p className="max-w-[56ch] font-body text-[0.8125rem] leading-[1.5] text-foreground-soft md:text-sm md:leading-[1.55]">
           {t.rich("description", {
             policyLink: (chunks) => (
-              <Link href="/privacy" className={styles.policyLink}>
+              <Link
+                href="/privacy"
+                className="text-amber underline underline-offset-[0.16em] transition-colors hover:text-amber-light focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber"
+              >
                 {chunks}
               </Link>
             ),
           })}
         </p>
       </div>
-      <div className={styles.actions}>
-        <Button type="button" variant="outline" className={styles.actionButton} onClick={() => setConsent("denied")}>
+      <div className="flex flex-col gap-2 md:flex-[0_0_20rem] md:flex-row md:flex-wrap md:items-end md:gap-6">
+        <Button
+          type="button"
+          variant="outline"
+          className="min-h-11 cursor-pointer justify-center rounded-[10px] px-[1.125rem] py-2.5 text-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber"
+          onClick={() => setConsent("denied")}
+        >
           {t("decline")}
         </Button>
         <Button
           type="button"
           variant="primary"
-          className={`${styles.actionButton} ${styles.acceptButton}`}
+          className="min-h-11 cursor-pointer justify-center rounded-[10px] px-[1.125rem] py-2.5 text-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber max-[359px]:order-first"
           onClick={() => setConsent("granted")}
         >
           {t("accept")}

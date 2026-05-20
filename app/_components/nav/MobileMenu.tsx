@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import { createPortal } from "react-dom";
+import { usePathname } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { cn } from "@/app/_lib/cn";
 import { HamburgerIcon } from "@/assets/icons/HamburgerIcon";
@@ -16,7 +17,13 @@ type MobileMenuProps = {
   cta?: { href: string; label: string }
 }
 
-export function MobileMenu({ links, cta }: MobileMenuProps) {
+export function MobileMenu(props: MobileMenuProps) {
+  const pathname = usePathname();
+
+  return <MobileMenuContent key={pathname} {...props} />;
+}
+
+function MobileMenuContent({ links, cta }: MobileMenuProps) {
   const t = useTranslations("nav");
   const ctaHref = cta?.href ?? "#contact";
   const ctaLabel = cta?.label ?? t("cta");
@@ -52,11 +59,6 @@ export function MobileMenu({ links, cta }: MobileMenuProps) {
     if (wasOpen.current && !open) triggerRef.current?.focus();
     wasOpen.current = open;
   }, [open]);
-
-  // Reset open state when navigating away (Activity preservation)
-  useEffect(() => {
-    return () => setOpen(false);
-  }, []);
 
   return (
     <>

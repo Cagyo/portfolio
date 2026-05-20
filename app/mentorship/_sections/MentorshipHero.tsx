@@ -5,8 +5,6 @@ import { BlobBackground } from "@/app/_components/BlobBackground";
 import { Button } from "@/app/_components/button/Button";
 import { TrackedLink } from "@/app/_components/tracked-link/TrackedLink";
 import { siteConfig } from "@/app/_config/site-config";
-import styles from "./MentorshipHero.module.css";
-
 type HeroStat = { value: string; label: string }
 
 export async function MentorshipHero() {
@@ -28,15 +26,15 @@ export async function MentorshipHero() {
 
         {/* Badge */}
         <div
-          className={`reveal inline-flex items-center gap-2 rounded-full px-4 py-2 mb-8 ${styles.badge}`}
+          className="reveal inline-flex items-center gap-2 rounded-full px-4 py-2 mb-8 bg-violet-500/10 border border-violet-500/30"
         >
-          <span className={`w-2 h-2 rounded-full animate-pulse-slow ${styles.badgeDot}`} />
-          <span className={`text-sm font-medium ${styles.badgeLabel}`}>{t("badge")}</span>
+          <span className="w-2 h-2 rounded-full animate-pulse-slow bg-violet-400" />
+          <span className="text-sm font-medium text-violet-400">{t("badge")}</span>
         </div>
 
         {/* Headline */}
         <h1
-          className={`reveal font-heading font-black text-5xl sm:text-6xl lg:text-7xl leading-none tracking-tight mb-6 ${styles.delay1}`}
+          className="reveal font-heading font-black text-5xl sm:text-6xl lg:text-7xl leading-none tracking-tight mb-6 delay-[50ms]"
         >
           {t("headline1")}<br />
           {t("headline2")}<br />
@@ -45,14 +43,14 @@ export async function MentorshipHero() {
 
         {/* Subhead */}
         <p
-          className={`reveal text-muted-foreground text-lg sm:text-xl leading-relaxed max-w-2xl mb-10 ${styles.delay2}`}
+          className="reveal text-muted-foreground text-lg sm:text-xl leading-relaxed max-w-2xl mb-10 delay-[100ms]"
         >
           {t("subhead")}
         </p>
 
         {/* Stats */}
         <div
-          className={`reveal flex flex-wrap justify-center gap-8 sm:gap-14 mb-12 ${styles.delay3}`}
+          className="reveal flex flex-wrap justify-center gap-8 sm:gap-14 mb-12 delay-[150ms]"
         >
           {stats.map((stat, i) => (
             <div key={stat.label} className="flex items-center gap-8 sm:gap-14">
@@ -67,7 +65,7 @@ export async function MentorshipHero() {
 
         {/* CTAs */}
         <div
-          className={`reveal flex flex-wrap justify-center gap-4 ${styles.delay4}`}
+          className="reveal flex flex-wrap justify-center gap-4 delay-[200ms]"
         >
           <Button
             href="#plans"
