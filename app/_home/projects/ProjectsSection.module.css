@@ -1,3 +1,6 @@
+/* Retained per refactor policy: candidate for future migration. Pure grid layout
+   with clamp()-based gaps; migratable to Tailwind arbitrary values + responsive
+   variants once breakpoints stabilize. */
 .proofLayout {
   display: grid;
   gap: clamp(1rem, 2.4vw, 1.5rem);

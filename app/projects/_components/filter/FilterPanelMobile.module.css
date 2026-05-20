@@ -1,3 +1,6 @@
+/* Retained per refactor policy: `::-webkit-scrollbar` / `::-webkit-scrollbar-thumb`
+   pseudo-elements with state-dependent color tokens — not expressible as Tailwind
+   utilities. */
 .overlay {
   position: fixed;
   inset: 0;

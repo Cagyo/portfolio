@@ -1,3 +1,7 @@
+/* Retained per refactor policy: descendant hover chain (card → projectOverlay) and
+   coordinated transitions across multiple child elements on hover. Migration to
+   `group` + `group-hover/card:` is possible but would require restructuring the
+   overlay component tree. */
 .projectCard {
   position: relative;
   display: flex;
