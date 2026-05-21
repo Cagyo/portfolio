@@ -1,4 +1,4 @@
-@AGENTS.md
+> **This is NOT the Next.js you know.** This version has breaking changes — APIs, conventions, and file structure may differ from your training data. Read `node_modules/next/dist/docs/` before writing code. Heed deprecation notices.
 
 # Code Conventions
 
@@ -11,6 +11,8 @@
 - Forms (react-hook-form + zod) → [docs/forms.md](docs/forms.md)
 - `@utility` blocks, CSS module internals, `color-mix` usage → [docs/styling-details.md](docs/styling-details.md)
 - SEO: metadata, sitemap/robots, OG images, JSON-LD → [docs/seo.md](docs/seo.md)
+- Product scope, audience, brand voice, anti-references → [PRODUCT.md](PRODUCT.md)
+- Visual / UX intent and design rationale → [DESIGN.md](DESIGN.md)
 
 ## Stack
 
@@ -22,6 +24,7 @@
 ## Tooling
 
 - **Package manager**: `yarn` — never use `pnpm` or `npm`. All install/run/build commands must use `yarn`.
+- **One-off tool execution**: use `npx <tool>` (e.g. `npx shadcn@latest add ...`, `npx tsx ...`). Never `yarn dlx` — it resolves through Yarn's plugin layer and silently fails on tools that assume an npm-style env.
 - **Verification after changes**: run `yarn check` (typecheck + lint) to confirm no regressions.
 
 ---
