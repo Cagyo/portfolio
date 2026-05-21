@@ -511,7 +511,7 @@ const linkWebClass =
   "inline-flex items-center gap-2 px-4 py-2 rounded-[0.625rem] text-[0.8rem] font-semibold bg-amber/10 border border-[color-mix(in_srgb,var(--amber)_24%,transparent)] text-amber-foreground no-underline transition-[background-color,border-color,color] duration-200 hover:bg-amber/18 hover:border-border-amber hover:text-amber-foreground/90";
 
 const linkStoreClass =
-  "group/store inline-flex items-center gap-2 px-3.5 py-2 rounded-[0.625rem] text-[0.8rem] font-semibold text-foreground-soft bg-card border border-border no-underline transition-[background-color,border-color,color,transform] duration-200 hover:bg-card-hover hover:border-border-amber hover:text-foreground hover:-translate-y-px motion-reduce:transition-none motion-reduce:hover:translate-y-0";
+  "group/store hover-transitions inline-flex items-center gap-2 px-3.5 py-2 rounded-[0.625rem] text-[0.8rem] font-semibold text-foreground-soft bg-card border border-border no-underline hover:bg-card-hover hover:border-border-amber hover:text-foreground";
 
 const storeIconClass =
   "w-5 h-5 flex-shrink-0 text-current transition-colors duration-200 group-hover/store:text-amber-foreground";

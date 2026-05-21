@@ -80,7 +80,7 @@ export function ProjectCard({ project, onNavigate, animationDelay = 0, featured 
     // cold emails, indexed fragments) still scroll to the right card.
     <article
       id={`project-${project.id}`}
-      className={`${styles.card} group/card glass scroll-mt-28 overflow-hidden rounded-lg transition-[background-color,border-color,transform] duration-[250ms] hover:bg-card-hover hover:-translate-y-px motion-reduce:transition-none motion-reduce:hover:translate-y-0 ${featuredFrameClass} ${entranceClass}`}
+      className={`${styles.card} group/card glass hover-transitions scroll-mt-28 overflow-hidden rounded-lg hover:bg-card-hover ${featuredFrameClass} ${entranceClass}`}
       style={entered ? undefined : { animationDelay: `${animationDelay}s` }}
       onAnimationEnd={(animationEvent) => {
         if (animationEvent.target === animationEvent.currentTarget && !entered) setEntered(true);
@@ -241,7 +241,7 @@ function ProjectAppIcon({ logo, iconColor }: { logo?: string; iconColor?: Projec
 }
 
 const linkStoreClass =
-  "group/store inline-flex items-center justify-center gap-[9px] min-h-10 px-3.5 py-[7px] rounded-[10px] bg-card border border-border text-foreground-soft no-underline transition-[background-color,border-color,color,transform] duration-200 hover:bg-card-hover hover:border-border-amber hover:text-foreground hover:-translate-y-px cursor-pointer flex-shrink-0 max-sm:justify-center motion-reduce:transition-none motion-reduce:hover:translate-y-0";
+  "group/store hover-transitions inline-flex items-center justify-center gap-[9px] min-h-10 px-3.5 py-[7px] rounded-[10px] bg-card border border-border text-foreground-soft no-underline hover:bg-card-hover hover:border-border-amber hover:text-foreground cursor-pointer flex-shrink-0 max-sm:justify-center";
 
 const storeIconClass =
   "w-5 h-5 flex-shrink-0 text-current transition-colors duration-200 group-hover/store:text-amber-foreground";
@@ -274,7 +274,7 @@ function StoreLinks({ link, t }: { link: { appStore: string; playStore: string }
 }
 
 const linkWebClass =
-  "inline-flex items-center justify-center gap-[7px] min-h-10 px-4 py-[7px] rounded-[10px] text-[0.8rem] font-semibold bg-amber/8 border border-[color-mix(in_srgb,var(--amber)_22%,transparent)] text-amber-foreground no-underline transition-[background-color,border-color,color,transform] duration-200 hover:bg-amber/15 hover:border-border-amber hover:text-amber-foreground/90 hover:-translate-y-px cursor-pointer flex-shrink-0 max-sm:justify-center motion-reduce:transition-none motion-reduce:hover:translate-y-0";
+  "hover-transitions inline-flex items-center justify-center gap-[7px] min-h-10 px-4 py-[7px] rounded-[10px] text-[0.8rem] font-semibold bg-amber/8 border border-[color-mix(in_srgb,var(--amber)_22%,transparent)] text-amber-foreground no-underline hover:bg-amber/15 hover:border-border-amber hover:text-amber-foreground/90 cursor-pointer flex-shrink-0 max-sm:justify-center";
 
 const linkIconClass = "w-3.5 h-3.5 flex-shrink-0";
 

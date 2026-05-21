@@ -18,7 +18,7 @@ export function HeroLogos({ label, logos }: HeroLogosProps) {
           <Link
             key={logo.slug}
             href={`/projects/${logo.slug}`}
-            className="inline-flex items-center justify-center w-8 h-8 opacity-55 grayscale transition-[opacity,transform,filter] duration-200 ease hover:opacity-95 hover:-translate-y-px [html[data-theme=light]_&]:opacity-[0.72] [html[data-theme=light]_&]:[filter:invert(1)_grayscale(1)] [html[data-theme=light]_&]:hover:opacity-95"
+            className="hover-transitions inline-flex items-center justify-center w-8 h-8 opacity-55 grayscale hover:opacity-95 [html[data-theme=light]_&]:opacity-[0.72] [html[data-theme=light]_&]:[filter:invert(1)_grayscale(1)] [html[data-theme=light]_&]:hover:opacity-95"
           >
             {/* eslint-disable-next-line @next/next/no-img-element -- tiny static logos, next/image's aspect-ratio API fights mixed-aspect uniform square slots */}
             <img src={logo.logo} alt={logo.title} className="w-full h-full object-contain" />

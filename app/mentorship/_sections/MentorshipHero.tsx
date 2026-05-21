@@ -79,7 +79,7 @@ export async function MentorshipHero() {
             target="_blank"
             rel="noopener noreferrer"
             tracking={{ action: "calendly" }}
-            className="border border-violet-400/50 text-violet-400 hover:bg-violet-400/10 hover:border-violet-400 hover:-translate-y-0.5 transition-all duration-200 px-7 py-3.5 rounded-xl text-base cursor-pointer inline-flex items-center gap-2 font-semibold"
+            className="hover-transitions border border-violet-400/50 text-violet-400 hover:bg-violet-400/10 hover:border-violet-400 px-7 py-3.5 rounded-xl text-base cursor-pointer inline-flex items-center gap-2 font-semibold"
           >
             <CalendarIcon className="w-4 h-4" />
             {t("ctaCall")}

@@ -5,14 +5,14 @@ import { EmptyFaceIcon } from "@/assets/icons/EmptyFaceIcon";
 import { Button } from "@/app/_components/button/Button";
 
 const clearButtonVariants = cva(
-  "cursor-pointer border-0 transition-[background,color,transform] duration-200 focus-visible:outline-2 focus-visible:outline-amber focus-visible:outline-offset-[3px] motion-reduce:transition-none",
+  "cursor-pointer border-0 focus-visible:outline-2 focus-visible:outline-amber focus-visible:outline-offset-[3px]",
   {
     variants: {
       variant: {
         primary:
-          "min-h-10 px-6 py-2 rounded-xl bg-amber text-[#0D0D0D] text-sm font-bold hover:bg-amber-light hover:-translate-y-px motion-reduce:hover:translate-y-0",
+          "hover-transitions min-h-10 px-6 py-2 rounded-xl bg-amber text-[#0D0D0D] text-sm font-bold hover:bg-amber-light",
         secondary:
-          "min-h-[2.25rem] px-1.5 py-1 rounded-md bg-transparent text-amber-foreground text-xs font-semibold underline underline-offset-[0.2em] hover:bg-amber/10 hover:text-amber-light",
+          "min-h-[2.25rem] px-1.5 py-1 rounded-md bg-transparent text-amber-foreground text-xs font-semibold underline underline-offset-[0.2em] transition-[background,color] duration-200 hover:bg-amber/10 hover:text-amber-light",
       },
     },
     defaultVariants: { variant: "secondary" },
