@@ -28,15 +28,13 @@ export async function ContactCallCard() {
         rel="noopener noreferrer"
         tracking={{ action: 'calendly' }}
         className={[
-          "flex min-h-14 items-center justify-center gap-2.5 px-4 py-3.5 rounded-[0.875rem] text-center",
+          "hover-transitions flex min-h-14 items-center justify-center gap-2.5 px-4 py-3.5 rounded-[0.875rem] text-center",
           "border border-amber/42 bg-amber/16 text-foreground text-[0.9375rem] font-bold leading-[1.25]",
-          "transition-[transform,border-color,background] duration-[180ms] ease-[ease]",
-          "hover:-translate-y-px hover:border-amber/62 hover:bg-amber/22",
+          "hover:border-amber/62 hover:bg-amber/22",
           "[html[data-theme=light]_&]:text-foreground [html[data-theme=light]_&]:bg-amber/13 [html[data-theme=light]_&]:border-border-amber",
           "[html[data-theme=light]_&]:hover:bg-amber/19 [html[data-theme=light]_&]:hover:border-amber/42",
           "focus-visible:outline-2 focus-visible:outline-amber-foreground focus-visible:outline-offset-[3px]",
           "sm:justify-between sm:text-left",
-          "motion-reduce:transition-none motion-reduce:hover:translate-y-0",
         ].join(' ')}
       >
         <CalendarIcon className="w-[1.125rem] h-[1.125rem] shrink-0 text-amber-foreground [html[data-theme=light]_&]:text-[var(--tag-color)]" />

@@ -2,20 +2,20 @@ import type { ComponentPropsWithoutRef } from "react"
 import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "@/app/_lib/cn"
 
-const buttonStyles = cva(
-  "inline-flex items-center justify-center rounded-lg text-sm font-semibold transition-all duration-[250ms] ease-[ease]",
+export const buttonStyles = cva(
+  "hover-transitions inline-flex items-center justify-center rounded-lg text-sm font-semibold",
   {
     variants: {
       variant: {
         primary: [
           "bg-[linear-gradient(135deg,var(--amber),var(--amber-dark))] text-[#0D0D0D]",
           "border border-transparent relative overflow-hidden",
-          "hover:-translate-y-0.5 hover:shadow-[0_8px_30px_color-mix(in_srgb,var(--amber)_40%,transparent)]",
+          "hover:shadow-[0_8px_30px_color-mix(in_srgb,var(--amber)_40%,transparent)]",
           "btn-shimmer",
         ],
         outline: [
           "border border-border-amber text-amber",
-          "hover:bg-amber/10 hover:border-amber hover:-translate-y-0.5",
+          "hover:bg-amber/10 hover:border-amber",
           "btn-outline",
         ],
       },

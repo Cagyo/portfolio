@@ -9,7 +9,7 @@ const chipStyles = cva(
   {
     variants: {
       tier: {
-        top: "px-[10px] py-[6px] rounded-[8px] bg-[var(--chip-top-bg)] border border-[var(--chip-top-border)] text-amber-foreground text-xs font-semibold cursor-default transition-[background-color,border-color,color,transform] duration-200 ease hover:bg-[var(--chip-top-bg-hover)] hover:border-[var(--chip-top-border-hover)]",
+        top: "px-[10px] py-[6px] rounded-[8px] bg-[var(--chip-top-bg)] border border-[var(--chip-top-border)] text-amber-foreground text-xs font-semibold cursor-default transition-[background-color,border-color,color] duration-200 ease hover:bg-[var(--chip-top-bg-hover)] hover:border-[var(--chip-top-border-hover)]",
         rest: "px-[8px] py-[4px] rounded-[7px] bg-[var(--chip-rest-bg)] border border-[var(--chip-rest-border)] text-[color:var(--chip-rest-color)] text-[0.7rem] font-medium cursor-default transition-[background-color,border-color,color] duration-200 ease hover:bg-[var(--chip-rest-bg-hover)] hover:border-[var(--chip-rest-border-hover)] hover:text-[color:var(--chip-rest-color-hover)]",
       },
     },
@@ -18,7 +18,7 @@ const chipStyles = cva(
 )
 
 const chipLinkStyles =
-  "cursor-pointer hover:-translate-y-px hover:border-[var(--amber)] focus-visible:outline-2 focus-visible:outline-[var(--amber)] focus-visible:outline-offset-2"
+  "hover-transitions cursor-pointer hover:border-[var(--amber)] focus-visible:outline-2 focus-visible:outline-[var(--amber)] focus-visible:outline-offset-2"
 
 type SkillChipProps = {
   name: string

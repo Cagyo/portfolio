@@ -32,7 +32,7 @@ export function ShippableStacks() {
             <Link
               key={bucket.key}
               href={bucket.href}
-              className="glass rounded-2xl p-5 flex flex-col gap-3 no-underline text-inherit border border-[color-mix(in_srgb,var(--amber)_8%,transparent)] transition-[transform,border-color,box-shadow] duration-200 ease hover:-translate-y-[3px] hover:border-[color-mix(in_srgb,var(--amber)_35%,transparent)] hover:shadow-[0_12px_32px_color-mix(in_srgb,var(--amber)_12%,transparent)] focus-visible:outline-2 focus-visible:outline-[var(--amber)] focus-visible:outline-offset-2 group/card"
+              className="glass hover-transitions rounded-2xl p-5 flex flex-col gap-3 no-underline text-inherit border border-[color-mix(in_srgb,var(--amber)_8%,transparent)] hover:border-[color-mix(in_srgb,var(--amber)_35%,transparent)] hover:shadow-[0_12px_32px_color-mix(in_srgb,var(--amber)_12%,transparent)] focus-visible:outline-2 focus-visible:outline-[var(--amber)] focus-visible:outline-offset-2 group/card"
             >
               <h4 className="font-heading font-bold text-[1.0625rem] leading-[1.2] text-foreground">{title}</h4>
               <div className="flex flex-wrap gap-1.5">

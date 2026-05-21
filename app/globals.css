@@ -328,6 +328,26 @@ section[id] { scroll-margin-top: clamp(5rem, 8vw, 6.25rem); }
   }
 }
 
+/* Canonical hover transition list for interactive elements: animates
+   translate, box-shadow, border-color, background-color, color, opacity
+   at 250ms ease, plus a 2px lift on hover. Owns the full transition
+   contract — consumers should not declare their own `transition-[…]`.
+   See docs/styling-details.md (§3, "Interactive elements must use…"). */
+@utility hover-transitions {
+  && {
+    /* Doubled selector beats co-applied utilities (e.g. .reveal) whose
+       `transition` shorthand would otherwise clobber this list. Tailwind v4
+       sorts compiled utilities alphabetically, so source order alone can't
+       guarantee a win. See docs/styling-details.md (§3, `&&` note). */
+    transition: translate 250ms ease, box-shadow 250ms ease, border-color 250ms ease, background-color 250ms ease, color 250ms ease, opacity 250ms ease;
+  }
+  &:hover { translate: 0 -2px; }
+  @media (prefers-reduced-motion: reduce) {
+    && { transition: box-shadow 250ms ease, border-color 250ms ease, background-color 250ms ease, color 250ms ease, opacity 250ms ease; }
+    &:hover { translate: 0; }
+  }
+}
+
 @utility btn-shimmer {
   &::before {
     content: '';
