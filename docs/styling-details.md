@@ -106,9 +106,13 @@ Static values (`display`, `transition`, `overflow`, `box-shadow`) never belong i
 
 Use `@utility` when a class is **consumed by 3+ components** OR **applied to varying element types** (e.g. `<div>` and `<form>` and `<a>`). Current registered utilities:
 
-`glass`, `glass-amber`, `blob`, `text-gradient`, `dot-grid`, `reveal`, `form-input`, `btn-shimmer`, `btn-outline`, `show-more-toggle`, `mobile-overlay`, `active-chip`
+`glass`, `glass-amber`, `blob`, `text-gradient`, `dot-grid`, `reveal`, `form-input`, `hover-transitions`, `btn-shimmer`, `btn-outline`, `show-more-toggle`, `mobile-overlay`, `active-chip`
+
+> **Interactive elements must use `hover-transitions`.** It owns the canonical hover transition list — `translate, box-shadow, border-color, background-color, color, opacity` — at 250ms ease, plus a built-in 2px lift on hover and motion-reduce handling. Apply it once and add the desired hover state classes (`hover:bg-…`, `hover:border-…`, `hover:shadow-…`); do not hand-roll a `transition-[…]` list. The name says "lift" but the contract is broader: removing it strips animation from every property in the list, not just translate. Background: Tailwind v4 writes `-translate-y-*` to the CSS `translate` property, so `transition-[transform,...]` silently drops the lift animation.
 
 `@utility` blocks support CSS nesting: `&:hover`, `&:focus`, `&.active`, `&::before`, and `html[data-theme="light"] & { … }` for theme-scoped variants.
+
+> **Specificity escape hatch — `&&`.** Tailwind v4 sorts compiled utilities alphabetically. When a utility must win over another utility that is co-applied to the same element AND declared later alphabetically (notably `.reveal`, which sets the `transition` shorthand), source order cannot rescue it. Wrap the conflicting declarations in `&& { … }` to double the class selector (`.foo.foo`) and bump specificity. `hover-transitions` uses this pattern to keep its transition list from being clobbered by `.reveal`.
 
 > **Never** move `reveal` to a CSS module — `use-reveal.ts` queries `.reveal` via `document.querySelectorAll` and toggles `.visible` via `classList`. Global class name must be stable.
 
@@ -138,6 +142,10 @@ A `.module.css` file is justified ONLY if the component meets at least one of:
 6. **Named container queries with multiple rules.**
 
 Additional accepted exception: **vendor pseudo-elements** (`::-webkit-scrollbar*`) and **`:global()` selectors** that theme a third-party library — Tailwind cannot express these.
+
+**File-level exceptions:**
+- **`app/global-error.tsx`** may use a co-located module — it is the top-level uncaught error boundary and must render even if the Tailwind/Next.js layer has failed.
+- **`app/dev/*`** routes are outside the styling policy. They are internal preview tools, not in the public sitemap, and not part of any user-facing budget.
 
 ### Required justification comment
 
