@@ -129,3 +129,5 @@ next-env.d.ts
 /.codex/hooks.json
 /.vscode/settings.json
 /.mcp.json
+
+.playwright-mcp
