@@ -60,7 +60,8 @@ export function ProjectCard({
   const v = getFeaturedStyles(featured);
 
   return (
-    <article className="glass reveal hover-transitions group/card relative flex min-w-0 cursor-pointer flex-col overflow-hidden rounded-lg hover:shadow-[var(--card-shadow)]">
+    <div className="reveal flex">
+    <article className="glass hover-transitions group/card relative flex min-w-0 flex-1 cursor-pointer flex-col overflow-hidden rounded-lg hover:shadow-[var(--card-shadow)]">
       <div className={cn("relative min-h-[10.5rem] shrink-0 overflow-hidden lg:min-h-[12.5rem]", imageBg)}>
         <div className="absolute inset-0 flex items-center justify-center">
           {imageContent}
@@ -120,5 +121,6 @@ export function ProjectCard({
         </div>
       </div>
     </article>
+    </div>
   );
 }
