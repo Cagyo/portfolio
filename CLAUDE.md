@@ -1,6 +1,20 @@
-@AGENTS.md
+> **This is NOT the Next.js you know.** This version has breaking changes — APIs, conventions, and file structure may differ from your training data. Read `node_modules/next/dist/docs/` before writing code. Heed deprecation notices.
 
 # Code Conventions
+
+## Hard rules (read first)
+
+- Package manager: **yarn only**. Never `npm` / `pnpm`. For one-off tools use `npx <tool>` (never `yarn dlx` — it silently fails on tools that assume npm-style env).
+- Run `yarn check` (typecheck + lint) after every change.
+- Tailwind-first. No raw palette opacities (`text-white/N`, `bg-amber-500/N`, hex literals) in `.tsx`. Use semantic tokens.
+- External URLs, social handles, email, resume path, and feature flags live in `siteConfig` (`app/_config/site-config.ts`). Never hardcode. See [Application Config](#application-config) for what does and doesn't belong there.
+- No barrel files. Use the `@/` alias for cross-directory imports.
+- Server Components by default. Push `'use client'` deep and narrow.
+- Convert `Date` → ISO `string` at the RSC boundary.
+- One `<main>` per page. Footer only in the root layout.
+- i18n: `getTranslations` (server) / `useTranslations` (client). `generateMetadata` is `async`, never static.
+- Commit messages, PR text, and user-visible copy: no em dashes, no marketing-speak, every word earns its place. (Inline code comments exempt.)
+- Commit format: `type(scope): subject` — see [docs/commits.md](docs/commits.md) for types and scopes.
 
 ## Deep-dive docs (read when relevant)
 
@@ -11,6 +25,8 @@
 - Forms (react-hook-form + zod) → [docs/forms.md](docs/forms.md)
 - `@utility` blocks, CSS module internals, `color-mix` usage → [docs/styling-details.md](docs/styling-details.md)
 - SEO: metadata, sitemap/robots, OG images, JSON-LD → [docs/seo.md](docs/seo.md)
+- Product scope, audience, brand voice, anti-references → [PRODUCT.md](PRODUCT.md)
+- Visual / UX intent and design rationale → [DESIGN.md](DESIGN.md)
 
 ## Stack
 
@@ -18,13 +34,6 @@
 - **React 19.2.4**
 - **TypeScript 5** (strict)
 - **Tailwind CSS 4**
-
-## Tooling
-
-- **Package manager**: `yarn` — never use `pnpm` or `npm`. All install/run/build commands must use `yarn`.
-- **Verification after changes**: run `yarn check` (typecheck + lint) to confirm no regressions.
-
----
 
 ## Naming
 
@@ -100,11 +109,8 @@ For boolean setter callbacks, use `prev` not a single letter: `setOpen((prev) =>
 
 Single source of truth for all URLs, social handles, email, resume path, and feature flags.
 
-- **File**: `app/_config/site-config.ts` — exported as `siteConfig` (camelCase object, `as const`)
-- **Contains**: external URLs, social handles, email, resume path, feature flags
-- **Does NOT contain**: i18n strings (→ `messages/en.json`), visual/styling data (→ component data arrays), feature data (→ `_data/`)
-
-All external `href` values in the app must come from `siteConfig`. Never hardcode URL strings in components.
+- **File**: `app/_config/site-config.ts` — exported as `siteConfig` (camelCase `as const`).
+- **Does NOT contain**: i18n strings (→ `messages/en.json`), visual/styling data (→ component data arrays), feature data (→ `_data/`).
 
 ```ts
 import { siteConfig } from '@/app/_config/site-config'
@@ -185,7 +191,7 @@ Full patterns (Server Function result types, `catchError` wrapper, `global-error
 | --- | --- | --- |
 | Design tokens | `@theme` block in `globals.css` (mapped from `:root` / `html[data-theme]`) | All colors, surfaces, borders. Single source of truth. |
 | Tailwind utilities | `bg-card`, `text-foreground`, `border-border`, `text-amber-foreground`, `cn()` / `cva` | **Default for every component.** |
-| `@utility` blocks | `globals.css` | Classes used by 3+ components: `glass`, `glass-amber`, `blob`, `text-gradient`, `dot-grid`, `reveal`, `form-input`, `active-chip`, `btn-shimmer`, `btn-outline`, `show-more-toggle`, `mobile-overlay`. |
+| `@utility` blocks | `globals.css` | Classes used by 3+ components. **Canonical registry lives in `globals.css` — read it before adding a new utility.** |
 | CSS modules | Co-located `ComponentName.module.css` | **Exception only** — must satisfy one of six retention criteria below. |
 
 Never add new plain `.className { }` blocks to `globals.css`. Use `@utility` or, as a last resort, a CSS module.
